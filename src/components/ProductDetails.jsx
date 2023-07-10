@@ -26,13 +26,13 @@ function ProductDetails() {
   console.log(productFound)
 
   return (
-    <div>
+    <div className='p-2'>
       <img src={productFound.main_picture_url} alt="" />
       <h2>{productFound.name} </h2>
-      <h3>Product details</h3>
+      <h3 className='mt-3'>Product details</h3>
       <table>
         <tbody>
-          <tr>
+          <tr className='bg-primaryLight'>
             <td>Brand</td>
             <td>{productFound.brand_name}</td>
           </tr>
@@ -46,7 +46,7 @@ function ProductDetails() {
           </tr>
           <tr>
             <td>Size</td>
-            <td>{productFound.size_range.join(', ')}</td>
+            <td>{productFound.size_range ? productFound.size_range.join(', ') : ''}</td>
           </tr>
           <tr>
             <td>Upper material</td>

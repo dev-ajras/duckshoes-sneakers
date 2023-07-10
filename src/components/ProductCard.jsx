@@ -9,7 +9,7 @@ function ProductCard({ product }) {
       to={`/products/${product.name}`}
       className="drop-shadow-md rounded-md bg-white p-2"
     >
-      <img src={product.main_picture_url} alt={product.name} />
+      <img src={product.grid_picture_url} alt={product.name} />
       <h3>
         {product.name.length > 30
           ? `${product.name.substring(0, 30)}...`
