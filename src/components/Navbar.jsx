@@ -3,9 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { BiShoppingBag } from 'react-icons/bi';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { useState } from 'react';
+import NavbarMenu from './NavbarMenu';
 
 function Navbar() {
   const [inputSearch, setInputSearch] = useState('');
+  const [navbarMenu, setNavbarMenu] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -14,8 +16,13 @@ function Navbar() {
     console.log(inputSearch);
   };
 
+  const handleMenu = () => {
+    setNavbarMenu(!navbarMenu);
+  };
+
   return (
     <header className=" flex flex-col justify-center bg-background p-2 h-14">
+      {navbarMenu && <NavbarMenu />}
       <nav className="flex justify-between w-full ">
         <Link to="/">
           <h3 className="text-white font-bold text-lg">Duck Shoes</h3>
@@ -30,8 +37,12 @@ function Navbar() {
           />
         </form>
         <div className="flex items-center gap-2">
-          <GiHamburgerMenu className="text-white" />
-          <BiShoppingBag className="text-white" />
+          <button onClick={handleMenu}>
+            <GiHamburgerMenu className="text-white" />
+          </button>
+          <button>
+            <BiShoppingBag className="text-white" />
+          </button>
         </div>
       </nav>
     </header>

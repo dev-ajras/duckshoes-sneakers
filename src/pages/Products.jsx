@@ -5,7 +5,6 @@ import ProductsResults from '../components/ProductsResults';
 function Products() {
   return (
     <>
-      <SearchProduct />
       <ProductsResults />
     </>
   );
