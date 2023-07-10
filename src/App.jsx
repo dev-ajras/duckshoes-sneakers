@@ -11,7 +11,7 @@ import Newsletter from './components/Newsletter';
 
 function App() {
   return (
-    <div className="box-border">
+    <div className="box-border bg-body">
       <Newsletter />
       <Navbar />
       <Routes>

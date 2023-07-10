@@ -15,7 +15,7 @@ function Navbar() {
   };
 
   return (
-    <header className=" flex flex-col justify-center bg-primary p-2 h-14">
+    <header className=" flex flex-col justify-center bg-background p-2 h-14">
       <nav className="flex justify-between w-full ">
         <Link to="/">
           <h3 className="text-white font-bold text-lg">Duck Shoes</h3>
