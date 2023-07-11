@@ -10,7 +10,7 @@ function ProductsResults() {
 
   return (
     <>
-      <div>Products results</div>
+      <h3 className="mt-2 mx-2 font-bold text-lg">Products results</h3>
       <section className="grid grid-cols-2 p-2 gap-3">
         {products.slice(0, 20).map((product) => (
           <ProductCard product={product} key={product.id} />

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 
-import { BiShoppingBag } from 'react-icons/bi';
+import { RiShoppingBagLine } from 'react-icons/ri';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { useState } from 'react';
 import NavbarMenu from './NavbarMenu';
@@ -39,11 +39,11 @@ function Navbar() {
           />
         </form>
         <div className="flex items-center gap-2">
+          <button>
+            <RiShoppingBagLine className="text-white text-lg" />
+          </button>
           <button onClick={handleMenu}>
             <GiHamburgerMenu className="text-white text-lg" />
-          </button>
-          <button>
-            <BiShoppingBag className="text-white text-lg" />
           </button>
         </div>
       </nav>
