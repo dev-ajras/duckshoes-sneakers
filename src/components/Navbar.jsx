@@ -25,7 +25,9 @@ function Navbar() {
       {navbarMenu && <NavbarMenu />}
       <nav className="flex justify-between w-full ">
         <Link to="/">
-          <h3 className="text-white font-bold text-lg">Duck Shoes</h3>
+          <h3 className="text-white font-bold text-lg text-center">
+            Duck Shoes
+          </h3>
         </Link>
         <form onSubmit={handleSubmit}>
           <input
@@ -38,10 +40,10 @@ function Navbar() {
         </form>
         <div className="flex items-center gap-2">
           <button onClick={handleMenu}>
-            <GiHamburgerMenu className="text-white" />
+            <GiHamburgerMenu className="text-white text-lg" />
           </button>
           <button>
-            <BiShoppingBag className="text-white" />
+            <BiShoppingBag className="text-white text-lg" />
           </button>
         </div>
       </nav>

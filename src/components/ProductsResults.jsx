@@ -1,25 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import queryString from 'query-string';
-import axios from 'axios';
 
 import ProductCard from './ProductCard';
+import { ProductsContext } from '../context/ProductsProvider';
 
 function ProductsResults() {
+  const products = useContext(ProductsContext);
   const { q } = queryString.parse(location.search);
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get('/sneakers.json');
-      setProducts(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <>
