@@ -15,7 +15,7 @@ function ProductCard({ product }) {
           ? `${product.name.substring(0, 30)}...`
           : product.name}
       </h3>
-      <div className="flex justify-between mt-1">
+      <div className="flex justify-between mt-1 items-center">
         <strong>${product.retail_price_cents / 100}</strong>
         <div className="flex gap-2">
           <MdFavoriteBorder />
