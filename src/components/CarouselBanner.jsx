@@ -11,14 +11,14 @@ function CarouselBanner() {
     return (
         <div className="embla" ref={emblaRef}>
           <div className="flex">
-            <div className="flex-[0_0_100%]">
-                <img src={banner1} alt={banner1} />
+            <div className="flex-[0_0_100%] p-2">
+                <img className='rounded-md' src={banner1} alt={banner1} />
             </div>
-            <div className="flex-[0_0_100%]">
-            <img src={banner2} alt={banner2} />
+            <div className="flex-[0_0_100%] p-2">
+            <img className='rounded-md' src={banner2} alt={banner2} />
             </div>
-            <div className="flex-[0_0_100%]">
-                <img src={banner3} alt={banner3} />
+            <div className="flex-[0_0_100%] p-2">
+                <img className='rounded-md' src={banner3} alt={banner3} />
                 </div>
           </div>
         </div>
