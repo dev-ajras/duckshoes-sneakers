@@ -6,7 +6,7 @@ import { RiShoppingBagFill } from 'react-icons/ri';
 import { PiSneakerFill } from 'react-icons/pi';
 import { MdAccountCircle } from 'react-icons/md';
 
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 function NavbarMenu({ navbarMenu, setNavbarMenu }) {
   return (
@@ -53,7 +53,16 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
           </Link>
         </li>
       </ul>
-      <motion.div className="absolute bg-black opacity-40 h-screen w-screen top-14 left-0"></motion.div>
+      <AnimatePresence>
+        {navbarMenu && (
+          <motion.div
+            className="absolute bg-black opacity-40 h-screen w-screen top-14 left-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          ></motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
