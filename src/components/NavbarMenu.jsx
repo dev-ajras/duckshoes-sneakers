@@ -6,35 +6,54 @@ import { RiShoppingBagFill } from 'react-icons/ri';
 import { PiSneakerFill } from 'react-icons/pi';
 import { MdAccountCircle } from 'react-icons/md';
 
-function NavbarMenu() {
+import { motion } from 'framer-motion';
+
+function NavbarMenu({ navbarMenu, setNavbarMenu }) {
   return (
-    <div className="absolute top-20 right-0 z-10 w-1/2 h-full p-2  bg-white ">
-      <ul className="">
-        <li className="flex items-center gap-2 text-lg">
-          <AiFillHome className="fill-background" />
-          <Link to="/" className="text-background font-semibold">
-            Home
+    <div>
+      <ul className="absolute top-14 right-0 z-40 w-1/2 h-screen drop-shadow-md p-2 bg-white">
+        <li>
+          <Link
+            to="/"
+            onClick={() => setNavbarMenu(false)}
+            className="flex gap-2 items-center text-lg my-2"
+          >
+            <AiFillHome className="fill-background" />
+            <h5 className="text-background font-bold">Home</h5>
           </Link>
         </li>
-        <li className="flex items-center gap-2 text-lg">
-          <PiSneakerFill className="fill-background" />
-          <Link to="/products" className="text-background font-semibold">
-            Products
+        <li>
+          <Link
+            to="/products"
+            onClick={() => setNavbarMenu(false)}
+            className="flex gap-2 items-center text-lg my-2"
+          >
+            <PiSneakerFill className="fill-background" />
+            <h5 className="text-background font-bold">Products</h5>
           </Link>
         </li>
-        <li className="flex items-center gap-2 text-lg">
-          <RiShoppingBagFill className="fill-background" />
-          <Link to="/cart" className="text-background font-semibold">
-            Cart
+        <li>
+          <Link
+            to="/cart"
+            onClick={() => setNavbarMenu(false)}
+            className="flex gap-2 items-center text-lg my-2"
+          >
+            <RiShoppingBagFill className="fill-background" />
+            <h5 className="text-background font-bold">Cart</h5>
           </Link>
         </li>
-        <li className="flex items-center gap-2 text-lg">
-          <MdAccountCircle className="fill-background" />
-          <Link to="/login" className="text-background font-semibold">
-            Login
+        <li>
+          <Link
+            to="/login"
+            onClick={() => setNavbarMenu(false)}
+            className="flex gap-2 items-center text-lg my-2"
+          >
+            <MdAccountCircle className="fill-background" />
+            <h5 className="text-background font-bold">Login</h5>
           </Link>
         </li>
       </ul>
+      <motion.div className="absolute bg-black opacity-40 h-screen w-screen top-14 left-0"></motion.div>
     </div>
   );
 }

@@ -13,16 +13,18 @@ import { ProductsProvider } from './context/ProductsProvider';
 
 function App() {
   return (
-    <div className="box-border bg-body">
+    <div>
       <Newsletter />
       <Navbar />
       <ProductsProvider>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:productName" element={<ProductDetails />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
+        <main className="box-border bg-body mt-20">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/:productName" element={<ProductDetails />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </main>
       </ProductsProvider>
     </div>
   );
