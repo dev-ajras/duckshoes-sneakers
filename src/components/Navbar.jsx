@@ -1,7 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 
 import { RiShoppingBagLine } from 'react-icons/ri';
-import { GiHamburgerMenu } from 'react-icons/gi';
+import { HiMenu } from 'react-icons/hi';
+import {TiTimes} from 'react-icons/ti'
 import { useState } from 'react';
 import NavbarMenu from './NavbarMenu';
 
@@ -43,7 +44,7 @@ function Navbar() {
             <RiShoppingBagLine className="text-white text-lg" />
           </button>
           <button onClick={handleMenu}>
-            <GiHamburgerMenu className="text-white text-lg" />
+            {navbarMenu ? <TiTimes className="text-white text-xl"/> : <HiMenu className="font-bold text-white text-xl" />}
           </button>
         </div>
       </nav>

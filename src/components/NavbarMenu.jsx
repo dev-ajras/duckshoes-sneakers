@@ -72,7 +72,7 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
           animate={!navbarMenu ? "inactive" : 'active'}
           variants={menuVariants}
           transition={{ duration: 0.3 }}
-          className="absolute bg-black h-screen w-screen top-14 left-0"
+          className={`absolute bg-black h-screen w-screen top-14 left-0 ${!navbarMenu && 'pointer-events-none'}`}
           onClick={() => setNavbarMenu(false)}
         ></motion.div>
     </>

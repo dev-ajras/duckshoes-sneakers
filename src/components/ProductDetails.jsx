@@ -27,30 +27,39 @@ function ProductDetails() {
 
   return (
     <div className='p-2'>
+      <h2 className='font-bold'>{productFound.name} </h2>
       <img src={productFound.main_picture_url} alt="" />
-      <h2>{productFound.name} </h2>
-      <h3 className='mt-3'>Product details</h3>
-      <table>
+      <h3 className='my-3 font-semibold'>Size</h3>
+      <ul className='flex'>
+
+        {productFound.size_range.map((size, idx) => (
+          <li key={idx}>
+            {size}
+          </li>
+        ))}
+      </ul>
+      <h3 className='my-3 font-semibold'>Product details</h3>
+      <table className='border-collapse table-fixed w-full'>
         <tbody>
           <tr className='bg-primaryLight'>
-            <td>Brand</td>
-            <td>{productFound.brand_name}</td>
+            <td className='w-1/2 rounded-l-lg p-2'>Brand</td>
+            <td className='w-1/2 rounded-r-lg p-2 text-right'>{productFound.brand_name}</td>
           </tr>
           <tr>
-            <td>Color</td>
-            <td>{productFound.color}</td>
+            <td className='w-1/2 rounded-l-lg p-2'>Color</td>
+            <td className='w-1/2 rounded-r-lg p-2 text-right'>{productFound.color}</td>
           </tr>
-          <tr>
-            <td>Release year</td>
-            <td>{productFound.release_year}</td>
+          <tr className='bg-primaryLight'>
+            <td className='w-1/2 rounded-l-lg p-2'>Release year</td>
+            <td className='w-1/2 rounded-r-lg p-2 text-right'>{productFound.release_year}</td>
           </tr>
-          <tr>
+          {/* <tr>
             <td>Size</td>
             <td>{productFound.size_range ? productFound.size_range.join(', ') : ''}</td>
-          </tr>
+          </tr> */}
           <tr>
-            <td>Upper material</td>
-            <td>{productFound.upper_material}</td>
+            <td className='w-1/2 rounded-l-lg p-2'>Upper material</td>
+            <td className='w-1/2 rounded-r-lg p-2 text-right'>{productFound.upper_material}</td>
           </tr>
         </tbody>
       </table>
