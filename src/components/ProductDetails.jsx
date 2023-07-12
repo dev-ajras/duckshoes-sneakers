@@ -30,14 +30,14 @@ function ProductDetails() {
       <h2 className='font-bold'>{productFound.name} </h2>
       <img src={productFound.main_picture_url} alt="" />
       <h3 className='my-3 font-semibold'>Size</h3>
-      <ul className='flex'>
+      {/* <ul className='flex overflow-hidden'>
 
         {productFound.size_range.map((size, idx) => (
           <li key={idx}>
             {size}
           </li>
         ))}
-      </ul>
+      </ul> */}
       <h3 className='my-3 font-semibold'>Product details</h3>
       <table className='border-collapse table-fixed w-full'>
         <tbody>

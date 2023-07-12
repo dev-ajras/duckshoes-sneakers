@@ -9,7 +9,7 @@ function CarouselBanner() {
 
   return (
     <div className="overflow-hidden" ref={emblaRef}>
-      <div className="flex">
+      <div className="flex overflow-hidden">
         <div className="flex-[0_0_100%] p-2">
           <img className="rounded-md" src={banner1} alt={banner1} />
         </div>
