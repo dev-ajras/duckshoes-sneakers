@@ -22,9 +22,7 @@ function Navbar() {
 
   return (
     <header className=" flex flex-col justify-center bg-background p-2 h-14 fixed w-full z-40 top-6">
-      {navbarMenu && (
         <NavbarMenu navbarMenu={navbarMenu} setNavbarMenu={setNavbarMenu} />
-      )}
       <nav className="flex justify-between w-full ">
         <Link to="/">
           <h3 className="text-white font-bold text-lg text-center">

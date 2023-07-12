@@ -9,9 +9,23 @@ import { MdAccountCircle } from 'react-icons/md';
 import { AnimatePresence, motion } from 'framer-motion';
 
 function NavbarMenu({ navbarMenu, setNavbarMenu }) {
+
+  const menuVariants = {
+    active: { opacity: 0.4 },
+    inactive: { opacity: 0 }
+  };
+
+  const navbarMenuVariants = {
+    active: {x: 0},
+    inactive: {x: '100%'}
+  }
+
   return (
-    <div>
-      <ul className="absolute top-14 right-0 z-40 w-1/2 h-screen drop-shadow-md p-2 bg-white">
+    <>
+      <motion.ul initial="inactive"
+    animate={!navbarMenu ? "inactive" : 'active'}
+    variants={navbarMenuVariants}
+    transition={{ duration: 0.3 }} className="absolute top-14 right-0 z-40 w-1/2 h-screen drop-shadow-md p-2 bg-white">
         <li>
           <Link
             to="/"
@@ -52,18 +66,16 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
             <h5 className="text-background font-bold">Login</h5>
           </Link>
         </li>
-      </ul>
-      <AnimatePresence>
-        {navbarMenu && (
-          <motion.div
-            className="absolute bg-black opacity-40 h-screen w-screen top-14 left-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          ></motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+      </motion.ul>
+          <motion.div 
+          initial="inactive"
+          animate={!navbarMenu ? "inactive" : 'active'}
+          variants={menuVariants}
+          transition={{ duration: 0.3 }}
+          className="absolute bg-black h-screen w-screen top-14 left-0"
+          onClick={() => setNavbarMenu(false)}
+        ></motion.div>
+    </>
   );
 }
 
