@@ -18,7 +18,6 @@ function Navbar() {
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate(`/products?q=${inputSearch}`);
-    console.log(inputSearch);
   };
 
   const handleMenu = () => {
