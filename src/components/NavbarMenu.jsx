@@ -5,27 +5,30 @@ import { AiFillHome } from 'react-icons/ai';
 import { RiShoppingBagFill } from 'react-icons/ri';
 import { PiSneakerFill } from 'react-icons/pi';
 import { MdAccountCircle } from 'react-icons/md';
+import { MdFavorite } from 'react-icons/md';
 
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 function NavbarMenu({ navbarMenu, setNavbarMenu }) {
-
   const menuVariants = {
     active: { opacity: 0.4 },
-    inactive: { opacity: 0 }
+    inactive: { opacity: 0 },
   };
 
   const navbarMenuVariants = {
-    active: {x: 0},
-    inactive: {x: '100%'}
-  }
+    active: { x: 0 },
+    inactive: { x: '100%' },
+  };
 
   return (
     <>
-      <motion.ul initial="inactive"
-    animate={!navbarMenu ? "inactive" : 'active'}
-    variants={navbarMenuVariants}
-    transition={{ duration: 0.3 }} className="absolute top-14 right-0 z-40 w-1/2 h-screen drop-shadow-md p-2 bg-white">
+      <motion.ul
+        initial="inactive"
+        animate={!navbarMenu ? 'inactive' : 'active'}
+        variants={navbarMenuVariants}
+        transition={{ duration: 0.3 }}
+        className="absolute top-14 right-0 z-40 w-1/2 h-screen drop-shadow-md p-2 bg-white"
+      >
         <li>
           <Link
             to="/"
@@ -44,6 +47,16 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
           >
             <PiSneakerFill className="fill-background" />
             <h5 className="text-background font-bold">Products</h5>
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/favorites"
+            onClick={() => setNavbarMenu(false)}
+            className="flex gap-2 items-center text-lg my-2"
+          >
+            <MdFavorite className="fill-background" />
+            <h5 className="text-background font-bold">Favorites</h5>
           </Link>
         </li>
         <li>
@@ -67,14 +80,16 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
           </Link>
         </li>
       </motion.ul>
-          <motion.div 
-          initial="inactive"
-          animate={!navbarMenu ? "inactive" : 'active'}
-          variants={menuVariants}
-          transition={{ duration: 0.3 }}
-          className={`absolute bg-black h-screen w-screen top-14 left-0 ${!navbarMenu && 'pointer-events-none'}`}
-          onClick={() => setNavbarMenu(false)}
-        ></motion.div>
+      <motion.div
+        initial="inactive"
+        animate={!navbarMenu ? 'inactive' : 'active'}
+        variants={menuVariants}
+        transition={{ duration: 0.3 }}
+        className={`absolute bg-black h-screen w-screen top-14 left-0 ${
+          !navbarMenu && 'pointer-events-none'
+        }`}
+        onClick={() => setNavbarMenu(false)}
+      ></motion.div>
     </>
   );
 }

@@ -10,7 +10,7 @@ export default {
         secondary: '#6C8EAD',
         background: '#262626',
         backgroundv2: '#594A48',
-        body: '#F9F9F9',
+        body: '#EFEFEF',
       },
     },
   },

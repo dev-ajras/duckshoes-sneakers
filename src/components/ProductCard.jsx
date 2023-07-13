@@ -10,11 +10,7 @@ function ProductCard({ product }) {
       className="drop-shadow-md rounded-md bg-white p-2"
     >
       <img src={product.grid_picture_url} alt={product.name} />
-      <h3>
-        {product.name.length > 30
-          ? `${product.name.substring(0, 30)}...`
-          : product.name}
-      </h3>
+      <h3 className="line-clamp-2 h-12">{product.name}</h3>
       <div className="flex justify-between mt-1 items-center">
         <strong>${product.retail_price_cents / 100}</strong>
         <div className="flex gap-2">

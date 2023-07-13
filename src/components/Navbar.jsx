@@ -1,12 +1,16 @@
+import { useState, useContext } from 'react';
+import { AppContext } from '../context/AppProvider';
+
 import { Link, useNavigate } from 'react-router-dom';
 
 import { RiShoppingBagLine } from 'react-icons/ri';
 import { HiMenu } from 'react-icons/hi';
-import {TiTimes} from 'react-icons/ti'
-import { useState } from 'react';
+import { TiTimes } from 'react-icons/ti';
 import NavbarMenu from './NavbarMenu';
 
 function Navbar() {
+  // const { favoriteAdd } = useContext(AppContext);
+
   const [inputSearch, setInputSearch] = useState('');
   const [navbarMenu, setNavbarMenu] = useState(false);
   const navigate = useNavigate();
@@ -23,7 +27,7 @@ function Navbar() {
 
   return (
     <header className=" flex flex-col justify-center bg-background p-2 h-14 fixed w-full z-40 top-6">
-        <NavbarMenu navbarMenu={navbarMenu} setNavbarMenu={setNavbarMenu} />
+      <NavbarMenu navbarMenu={navbarMenu} setNavbarMenu={setNavbarMenu} />
       <nav className="flex justify-between w-full ">
         <Link to="/">
           <h3 className="text-white font-bold text-lg text-center">
@@ -44,7 +48,11 @@ function Navbar() {
             <RiShoppingBagLine className="text-white text-lg" />
           </button>
           <button onClick={handleMenu}>
-            {navbarMenu ? <TiTimes className="text-white text-xl"/> : <HiMenu className="font-bold text-white text-xl" />}
+            {navbarMenu ? (
+              <TiTimes className="text-white text-xl" />
+            ) : (
+              <HiMenu className="font-bold text-white text-xl" />
+            )}
           </button>
         </div>
       </nav>
