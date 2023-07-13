@@ -6,6 +6,7 @@ import { RiShoppingBagFill } from 'react-icons/ri';
 import { PiSneakerFill } from 'react-icons/pi';
 import { MdAccountCircle } from 'react-icons/md';
 import { MdFavorite } from 'react-icons/md';
+import {BiSolidHelpCircle} from 'react-icons/bi'
 
 import { motion } from 'framer-motion';
 
@@ -77,6 +78,16 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
           >
             <MdAccountCircle className="fill-background" />
             <h5 className="text-background font-bold">Login</h5>
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/help"
+            onClick={() => setNavbarMenu(false)}
+            className="flex gap-2 items-center text-lg my-2"
+          >
+            <BiSolidHelpCircle className="fill-background" />
+            <h5 className="text-background font-bold">Help</h5>
           </Link>
         </li>
       </motion.ul>

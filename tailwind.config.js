@@ -10,6 +10,7 @@ export default {
         secondary: '#6C8EAD',
         background: '#262626',
         backgroundv2: '#594A48',
+        grayDuck: '#4C4B4B',
         body: '#EFEFEF',
       },
     },
