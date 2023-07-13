@@ -6,6 +6,7 @@ import { AppContext } from '../context/AppProvider';
 
 function ProductsResults() {
   const { products } = useContext(AppContext);
+
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const q = searchParams.get('q');

@@ -6,7 +6,7 @@ import { RiShoppingBagFill } from 'react-icons/ri';
 import { PiSneakerFill } from 'react-icons/pi';
 import { MdAccountCircle } from 'react-icons/md';
 import { MdFavorite } from 'react-icons/md';
-import {BiSolidHelpCircle} from 'react-icons/bi'
+import { BiSolidHelpCircle } from 'react-icons/bi';
 
 import { motion } from 'framer-motion';
 

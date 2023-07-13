@@ -9,7 +9,10 @@ function AppProvider({ children }) {
   const [cart, setCart] = useState([]);
 
   const favoriteAdd = (toFavorite) => {
-    setFavorites([...favorites, toFavorite]);
+    const found = favorites.find((fav) => fav === toFavorite);
+    if (!found) {
+      setFavorites([...favorites, toFavorite]);
+    }
   };
 
   const cartAdd = (toCart) => {

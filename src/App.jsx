@@ -14,13 +14,15 @@ import Favorites from './pages/Favorites';
 import Login from './pages/Login';
 import Help from './pages/Help';
 import NotFound404 from './pages/NotFound404';
+import ScrollToTop from './helpers/ScrollToTop';
 
 function App() {
   return (
     <div>
+      <ScrollToTop />
       <Newsletter />
-      <Navbar />
       <AppProvider>
+        <Navbar />
         <main className="flex flex-col box-border mt-20">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -30,7 +32,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
             <Route path="/help" element={<Help />} />
-            <Route path='*' element={<NotFound404/>} />
+            <Route path="*" element={<NotFound404 />} />
           </Routes>
         </main>
       </AppProvider>
