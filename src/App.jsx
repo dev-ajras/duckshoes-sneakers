@@ -15,6 +15,7 @@ import Login from './pages/Login';
 import Help from './pages/Help';
 import NotFound404 from './pages/NotFound404';
 import ScrollToTop from './helpers/ScrollToTop';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="*" element={<NotFound404 />} />
           </Routes>
         </main>
+        <Footer/>
       </AppProvider>
     </div>
   );
