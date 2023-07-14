@@ -23,7 +23,6 @@ function CarouselFeatured({ from, to, title }) {
         <div className="flex gap-3 m-3 ">
           {products.slice(from, to).map((product) => {
             const isFavorite = favorites.some((fav) => fav === product.id);
-            console.log(isFavorite);
             return (
               <Link
                 to={`/products/${product.name}`}

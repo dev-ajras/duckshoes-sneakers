@@ -11,7 +11,6 @@ function ProductCard({ product }) {
   const { favoritesHandler, favorites } = useContext(AppContext);
 
   const isFavorite = favorites.some((fav) => fav === product.id);
-  console.log(isFavorite);
 
   const handleFavorite = (e, productId) => {
     e.preventDefault();
