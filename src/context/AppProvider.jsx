@@ -8,10 +8,12 @@ function AppProvider({ children }) {
   const [favorites, setFavorites] = useState([]);
   const [cart, setCart] = useState([]);
 
-  const favoriteAdd = (toFavorite) => {
+  const favoritesHandler = (toFavorite) => {
     const found = favorites.find((fav) => fav === toFavorite);
     if (!found) {
       setFavorites([...favorites, toFavorite]);
+    } else {
+      setFavorites(favorites.filter((fav) => fav !== toFavorite));
     }
   };
 
@@ -41,7 +43,7 @@ function AppProvider({ children }) {
     products,
     favorites,
     cart,
-    favoriteAdd,
+    favoritesHandler,
     cartAdd,
     cartRemove,
   };

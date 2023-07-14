@@ -8,13 +8,14 @@ import { AiFillHeart } from 'react-icons/ai';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 
 function ProductCard({ product }) {
-  const { favoriteAdd, favorites } = useContext(AppContext);
+  const { favoritesHandler, favorites } = useContext(AppContext);
 
-  const result = favorites.some((fav) => fav.id === product.id);
-  console.log(result);
+  const isFavorite = favorites.some((fav) => fav === product.id);
+  console.log(isFavorite);
 
-  const handleFavorite = (productFav) => {
-    favoriteAdd(productFav);
+  const handleFavorite = (e, productId) => {
+    e.preventDefault();
+    favoritesHandler(productId);
   };
   return (
     <Link
@@ -23,11 +24,11 @@ function ProductCard({ product }) {
     >
       <img src={product.grid_picture_url} alt={product.name} />
       <h3 className="line-clamp-2 h-12">{product.name}</h3>
-      <div className="flex justify-between mt-1 items-center">
+      <div className="flex justify-between mt-1 items-center z-50">
         <strong>${product.retail_price_cents / 100}</strong>
         <div className="flex gap-2">
-          <button onClick={() => handleFavorite(product)}>
-            {result ? (
+          <button onClick={(e) => handleFavorite(e, product.id)}>
+            {isFavorite ? (
               <AiFillHeart className="fill-red-500" />
             ) : (
               <MdFavoriteBorder />

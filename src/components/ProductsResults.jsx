@@ -25,12 +25,12 @@ function ProductsResults() {
       <h3 className="pt-2 mx-3 font-bold text-lg">
         {q ? `Results for "${q}" ` : 'Products'}
       </h3>
-      <section className="grid grid-cols-2 p-3 gap-3">
+      <div className="grid grid-cols-2 p-3 gap-3">
         {filteredProducts.slice(0, 20).map((product) => (
           <ProductCard product={product} key={product.id} />
         ))}
         {filteredProducts.length === 0 && <div>No results for "{q}"</div>}
-      </section>
+      </div>
     </>
   );
 }
