@@ -22,7 +22,7 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
   };
 
   return (
-    <>
+    <div onBlur={() => setNavbarMenu(false)} tabIndex={0}>
       <motion.ul
         initial="inactive"
         animate={!navbarMenu ? 'inactive' : 'active'}
@@ -34,6 +34,7 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
           <Link
             to="/"
             onClick={() => setNavbarMenu(false)}
+            onBlur={() => setNavbarMenu(false)}
             className="flex gap-2 items-center text-lg my-2"
           >
             <AiFillHome className="fill-background" />
@@ -101,7 +102,7 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
         }`}
         onClick={() => setNavbarMenu(false)}
       ></motion.div>
-    </>
+    </div>
   );
 }
 

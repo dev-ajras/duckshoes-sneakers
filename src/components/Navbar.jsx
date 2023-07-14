@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
@@ -6,6 +6,7 @@ import { RiShoppingBagLine } from 'react-icons/ri';
 import { HiMenu } from 'react-icons/hi';
 import { TiTimes } from 'react-icons/ti';
 import NavbarMenu from './NavbarMenu';
+import CartMenu from './CartMenu';
 
 function Navbar() {
   const location = useLocation();
@@ -14,14 +15,12 @@ function Navbar() {
 
   const [inputSearch, setInputSearch] = useState(q ?? '');
   const [navbarMenu, setNavbarMenu] = useState(false);
+  const [cartMenu, setCartMenu] = useState(false)
   const navigate = useNavigate();
-
-  const inputRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate(`/products?q=${inputSearch}`);
-    inputRef.current.blur();
   };
 
   useEffect(() => {
@@ -31,13 +30,20 @@ function Navbar() {
   }, [q]);
 
   const handleMenu = () => {
+    setCartMenu(false)
     setNavbarMenu(!navbarMenu);
   };
+
+  const handleCart = () => {
+    setNavbarMenu(false)
+    setCartMenu(!cartMenu)
+  }
 
   return (
     <header className=" flex flex-col justify-center bg-background p-2 h-14 fixed w-full z-40 top-6">
       <NavbarMenu navbarMenu={navbarMenu} setNavbarMenu={setNavbarMenu} />
-      <nav className="flex justify-between w-full ">
+      <CartMenu cartMenu={cartMenu} setCartMenu={setCartMenu} />
+      <nav className="flex justify-between w-full">
         <Link to="/">
           <h3 className="text-white font-bold text-lg text-center">
             Duck Shoes
@@ -45,7 +51,7 @@ function Navbar() {
         </Link>
         <form onSubmit={handleSubmit}>
           <input
-            ref={inputRef}
+            onClick={() => {setCartMenu(false), setNavbarMenu(false)}}
             className="align-middle outline-none border-none rounded p-1 px-2"
             type="text"
             placeholder="Buscar producto..."
@@ -55,8 +61,8 @@ function Navbar() {
           />
         </form>
         <div className="flex items-center gap-2">
-          <button>
-            <RiShoppingBagLine className="text-white text-lg" />
+          <button onClick={handleCart}>
+            {cartMenu ? <TiTimes className="text-white text-xl" /> : <RiShoppingBagLine className="text-white text-xl" /> }
           </button>
           <button onClick={handleMenu}>
             {navbarMenu ? (
