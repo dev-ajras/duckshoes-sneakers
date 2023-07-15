@@ -23,9 +23,9 @@ function ProductCard({ product }) {
     >
       <img src={product.grid_picture_url} alt={product.name} />
       <h3 className="line-clamp-2 h-12">{product.name}</h3>
-      <div className="flex justify-between mt-1 items-center z-50">
+      <div className="flex justify-between mt-1 items-center text-xl">
         <strong>${product.retail_price_cents / 100}</strong>
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
           <button onClick={(e) => handleFavorite(e, product.id)}>
             {isFavorite ? (
               <AiFillHeart className="fill-red-500" />
@@ -34,7 +34,6 @@ function ProductCard({ product }) {
             )}
           </button>
           <button>
-            {' '}
             <AiOutlinePlusCircle />
           </button>
         </div>

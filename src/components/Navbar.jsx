@@ -15,7 +15,7 @@ function Navbar() {
 
   const [inputSearch, setInputSearch] = useState(q ?? '');
   const [navbarMenu, setNavbarMenu] = useState(false);
-  const [cartMenu, setCartMenu] = useState(false)
+  const [cartMenu, setCartMenu] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -30,20 +30,20 @@ function Navbar() {
   }, [q]);
 
   const handleMenu = () => {
-    setCartMenu(false)
+    setCartMenu(false);
     setNavbarMenu(!navbarMenu);
   };
 
   const handleCart = () => {
-    setNavbarMenu(false)
-    setCartMenu(!cartMenu)
-  }
+    setNavbarMenu(false);
+    setCartMenu(!cartMenu);
+  };
 
   return (
     <header className=" flex flex-col justify-center bg-background p-2 h-14 fixed w-full z-40 top-6">
       <NavbarMenu navbarMenu={navbarMenu} setNavbarMenu={setNavbarMenu} />
       <CartMenu cartMenu={cartMenu} setCartMenu={setCartMenu} />
-      <nav className="flex justify-between w-full">
+      <nav className="flex justify-between w-full items-center">
         <Link to="/">
           <h3 className="text-white font-bold text-lg text-center">
             Duck Shoes
@@ -51,7 +51,9 @@ function Navbar() {
         </Link>
         <form onSubmit={handleSubmit}>
           <input
-            onClick={() => {setCartMenu(false), setNavbarMenu(false)}}
+            onClick={() => {
+              setCartMenu(false), setNavbarMenu(false);
+            }}
             className="align-middle outline-none border-none rounded p-1 px-2"
             type="text"
             placeholder="Buscar producto..."
@@ -60,15 +62,19 @@ function Navbar() {
             autoFocus
           />
         </form>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 text-2xl">
           <button onClick={handleCart}>
-            {cartMenu ? <TiTimes className="text-white text-xl" /> : <RiShoppingBagLine className="text-white text-xl" /> }
+            {cartMenu ? (
+              <TiTimes className="text-white" />
+            ) : (
+              <RiShoppingBagLine className="text-white" />
+            )}
           </button>
           <button onClick={handleMenu}>
             {navbarMenu ? (
-              <TiTimes className="text-white text-xl" />
+              <TiTimes className="text-white" />
             ) : (
-              <HiMenu className="font-bold text-white text-xl" />
+              <HiMenu className="font-bold text-white" />
             )}
           </button>
         </div>

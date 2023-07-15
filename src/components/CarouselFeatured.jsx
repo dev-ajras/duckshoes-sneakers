@@ -35,7 +35,7 @@ function CarouselFeatured({ from, to, title }) {
                   alt={product.name}
                 />
                 <h3 className="line-clamp-2 h-12">{product.name}</h3>
-                <div className="flex justify-between mt-1 items-center">
+                <div className="flex justify-between mt-1 items-center text-xl">
                   <strong>${product.retail_price_cents / 100}</strong>
                   <div className="flex gap-2">
                     <button onClick={(e) => handleFavorite(e, product.id)}>
