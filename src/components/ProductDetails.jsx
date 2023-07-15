@@ -35,6 +35,10 @@ function ProductDetails() {
       </span>
       <h3 className="font-semibold bg-white px-3 mt-2">Size:</h3>
       <CarouselDetails arrayDetails={productFound.size_range} />
+      {productFound.color && <div><h3 className="font-semibold bg-white px-3 mt-2">Color:</h3>
+      <div className='w-10 m-3 drop-shadow-md'>
+      <img className='' src={`/assets/colors/${productFound.color}Color.svg`} alt={productFound.color} />
+      </div></div> }
       <h3 className="font-semibold px-3">Product details</h3>
       <div className="p-3">
         <table className="border-collapse table-fixed w-full">

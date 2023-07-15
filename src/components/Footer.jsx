@@ -6,6 +6,7 @@ import twitterIcon from '/assets/social/twitterIcon.svg';
 import { HiLocationMarker } from 'react-icons/hi';
 import { MdEmail } from 'react-icons/md';
 import { BsFillTelephoneFill } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
@@ -82,12 +83,24 @@ function Footer() {
       <div className="m-3">
         <h4 className="font-semibold">Menu</h4>
         <ul className="opacity-80">
-          <li>Home</li>
-          <li>Products</li>
-          <li>Favorites</li>
-          <li>Cart</li>
-          <li>Login</li>
-          <li>Help</li>
+          <li>
+              <Link to='/'>Home</Link>
+          </li>
+          <li>
+              <Link to='/products'>Products</Link>
+          </li>
+          <li>
+              <Link to='/favorites'>Favorites</Link>
+          </li>
+          <li>
+              <Link to='/cart'>Cart</Link>
+          </li>
+          <li>
+              <Link to='/login'>Login</Link>
+          </li>
+          <li>
+              <Link to='/help'>Help</Link>
+          </li>
         </ul>
       </div>
       <div className="bg-background text-white flex justify-center p-2">
