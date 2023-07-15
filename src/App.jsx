@@ -24,7 +24,7 @@ function App() {
       <Newsletter />
       <AppProvider>
         <Navbar />
-        <main className="flex flex-col box-border mt-20">
+        <main className="flex flex-col box-border mt-20 min-h-screen bg-body">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />

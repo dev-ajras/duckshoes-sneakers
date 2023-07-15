@@ -10,8 +10,12 @@ import { BsFillTelephoneFill } from 'react-icons/bs';
 function Footer() {
   return (
     <footer className="bg-body">
-      <h4>We are Duck Shoes</h4>
-      <p>#Sneakers #Jordan #Nike #Hypebeast</p>
+      <div className="m-3 mt-0 pt-3">
+        <h4 className="font-bold text-2xl">
+          We are <span className="text-primaryDark">Duck Shoes</span>
+        </h4>
+        <p className="font-semibold mt-1">#Sneakers #Jordan #Nike #Hypebeast</p>
+      </div>
       <ul className="flex gap-3 m-3">
         <li className="bg-primary p-3 w-10 rounded-full">
           <a
