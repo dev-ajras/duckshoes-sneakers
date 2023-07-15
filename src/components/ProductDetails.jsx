@@ -26,7 +26,9 @@ function ProductDetails() {
 
   return (
     <div className="bg-white">
-      <h2 className="font-semibold p-3 bg-white">{productFound.name} </h2>
+      <h2 className="font-semibold text-lg line-clamp-1 leading-10 p-3 he bg-white">
+        {productFound.name}
+      </h2>
       <img className="bg-white" src={productFound.main_picture_url} alt="" />
       <span className="font-bold text-3xl p-3 bg-white">
         ${productFound.retail_price_cents / 100}

@@ -55,8 +55,8 @@ function Footer() {
         </li>
       </ul>
       <div className="m-3">
-        <h4 className="font-semibold">Company</h4>
-        <ul className="opacity-80">
+        <h4 className="font-semibold mb-1">Company</h4>
+        <ul className="flex flex-col gap-1 opacity-80">
           <li className="flex items-center gap-2">
             <HiLocationMarker />
             <p>397 Sneakers, Duck Shoes</p>
