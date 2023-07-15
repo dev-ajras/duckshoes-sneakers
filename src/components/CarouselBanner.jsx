@@ -1,11 +1,18 @@
 import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay'
 
 import banner1 from '/assets/banners/banner-1.webp';
 import banner2 from '/assets/banners/banner-2.webp';
 import banner3 from '/assets/banners/banner-3.webp';
 
+
+const autoplayOptions = {
+  delay: 3000,
+  stopOnInteraction: false,
+}
+
 function CarouselBanner() {
-  const [emblaRef] = useEmblaCarousel({ loop: true });
+  const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay(autoplayOptions)]);
 
   return (
     <div className="overflow-hidden" ref={emblaRef}>

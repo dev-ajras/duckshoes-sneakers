@@ -67,6 +67,18 @@ function ProductDetails() {
                 {productFound.upper_material}
               </td>
             </tr>
+            <tr className="bg-primaryLight">
+              <td className="w-1/2 rounded-l-lg p-2">Silhouette</td>
+              <td className="w-1/2 rounded-r-lg p-2 text-right">
+                {productFound.silhouette}
+              </td>
+            </tr>
+            <tr>
+              <td className="w-1/2 rounded-l-lg p-2">Gender</td>
+              <td className="w-1/2 rounded-r-lg p-2 text-right">
+                {productFound.gender}
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
