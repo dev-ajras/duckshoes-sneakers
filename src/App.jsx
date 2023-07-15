@@ -36,7 +36,7 @@ function App() {
             <Route path="*" element={<NotFound404 />} />
           </Routes>
         </main>
-        <Footer/>
+        <Footer />
       </AppProvider>
     </div>
   );
