@@ -25,12 +25,27 @@ function ProductsResults() {
       <h3 className="pt-2 mx-3 font-bold text-lg">
         {q ? `Results for "${q}" ` : 'Products'}
       </h3>
-      <div className="grid grid-cols-2 p-3 gap-3">
-        {filteredProducts.slice(0, 20).map((product) => (
-          <ProductCard product={product} key={product.id} />
-        ))}
-        {filteredProducts.length === 0 && <div>No results for "{q}"</div>}
-      </div>
+      {filteredProducts.length === 0 ? (
+        <div className="m-3 flex flex-col items-center">
+          <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2">
+            No results
+          </h5>
+          <p className="font-semibold">There are no matches with your search</p>
+          <img
+            className="w-80 mt-5"
+            src="/assets/illustrations/searchEmpty.svg"
+            alt="favoritesEmpty"
+          />
+        </div>
+      ) : (
+        <>
+          <div className="grid grid-cols-2 p-3 gap-3">
+            {filteredProducts.slice(0, 20).map((product) => (
+              <ProductCard product={product} key={product.id} />
+            ))}
+          </div>
+        </>
+      )}
     </>
   );
 }

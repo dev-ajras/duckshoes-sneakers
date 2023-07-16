@@ -28,14 +28,14 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
         animate={!navbarMenu ? 'inactive' : 'active'}
         variants={navbarMenuVariants}
         transition={{ duration: 0.3 }}
-        className="absolute top-14 right-0 z-40 w-1/2 h-screen drop-shadow-md p-2 bg-white"
+        className="absolute top-14 right-0 z-40 w-1/2 h-screen drop-shadow-md p-3 bg-white text-xl flex flex-col"
       >
         <li>
           <Link
             to="/"
             onClick={() => setNavbarMenu(false)}
             onBlur={() => setNavbarMenu(false)}
-            className="flex gap-2 items-center text-lg my-2"
+            className="flex gap-2 items-center p-2"
           >
             <AiFillHome className="fill-background" />
             <h5 className="text-background font-bold">Home</h5>
@@ -45,7 +45,7 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
           <Link
             to="/products"
             onClick={() => setNavbarMenu(false)}
-            className="flex gap-2 items-center text-lg my-2"
+            className="flex gap-2 items-center p-2"
           >
             <PiSneakerFill className="fill-background" />
             <h5 className="text-background font-bold">Products</h5>
@@ -55,7 +55,7 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
           <Link
             to="/favorites"
             onClick={() => setNavbarMenu(false)}
-            className="flex gap-2 items-center text-lg my-2"
+            className="flex gap-2 items-center p-2"
           >
             <MdFavorite className="fill-background" />
             <h5 className="text-background font-bold">Favorites</h5>
@@ -65,7 +65,7 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
           <Link
             to="/cart"
             onClick={() => setNavbarMenu(false)}
-            className="flex gap-2 items-center text-lg my-2"
+            className="flex gap-2 items-center p-2"
           >
             <RiShoppingBagFill className="fill-background" />
             <h5 className="text-background font-bold">Cart</h5>
@@ -75,7 +75,7 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
           <Link
             to="/login"
             onClick={() => setNavbarMenu(false)}
-            className="flex gap-2 items-center text-lg my-2"
+            className="flex gap-2 items-center p-2"
           >
             <MdAccountCircle className="fill-background" />
             <h5 className="text-background font-bold">Login</h5>
@@ -85,7 +85,7 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
           <Link
             to="/help"
             onClick={() => setNavbarMenu(false)}
-            className="flex gap-2 items-center text-lg my-2"
+            className="flex gap-2 items-center p-2"
           >
             <BiSolidHelpCircle className="fill-background" />
             <h5 className="text-background font-bold">Help</h5>

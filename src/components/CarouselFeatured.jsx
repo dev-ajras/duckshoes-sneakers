@@ -18,7 +18,7 @@ function CarouselFeatured({ from, to, title }) {
 
   return (
     <section>
-      <h3 className="mt-2 mx-3 font-bold text-lg">{title}</h3>
+      <h3 className="mt-2 mx-3 font-bold text-xl">{title}</h3>
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex gap-3 m-3 ">
           {products.slice(from, to).map((product) => {

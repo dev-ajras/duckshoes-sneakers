@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <footer className="bg-body">
-      <div className="m-3 mt-0 pt-3">
+      <div className="m-3 mt-0 pt-4">
         <h4 className="font-bold text-4xl">
           We are <span className="text-primaryDark">Duck Shoes</span>
         </h4>

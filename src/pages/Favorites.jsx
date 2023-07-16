@@ -11,11 +11,18 @@ function Favorites() {
 
   return (
     <section className="bg-body">
-      <h3 className="font-bold text-lg pt-2 mx-3">Favorites</h3>
+      <h3 className="font-bold text-xl m-3">Favorites</h3>
       {!filteredProducts.length && (
-        <div className="m-3">
-          <h5 className="font-semibold">Favorites empty</h5>
-          <p>Add your favorites sneakers!</p>
+        <div className="m-3 flex flex-col items-center">
+          <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2">
+            It's empty
+          </h5>
+          <p className="font-semibold">Please add your favorites sneakers</p>
+          <img
+            className="w-80 mt-5"
+            src="/assets/illustrations/favoritesEmpty.svg"
+            alt="favoritesEmpty"
+          />
         </div>
       )}
       <div className="grid grid-cols-2 p-3 gap-3">
