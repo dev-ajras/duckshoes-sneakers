@@ -14,7 +14,7 @@ function ProductsResults() {
   const [filteredProducts, setFilteredProducts] = useState(products);
 
   useEffect(() => {
-    const qToFilter = q.toLowerCase().trim().split(' ');
+    const qToFilter = q ? q.toLowerCase().trim().split(' ') : [];
     const filtered = q
       ? products.filter((product) =>
           qToFilter.every((syllable) => product.name.toLowerCase().includes(syllable))
