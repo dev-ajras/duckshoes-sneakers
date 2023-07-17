@@ -20,6 +20,12 @@ function ProductsResults() {
     setFilteredProducts(filtered);
   }, [q, products]);
 
+  const resultRe = "OFF-WHITE x         Air Max 90 'Desert Ore'"
+    .toLowerCase()
+    .trim()
+    .split(' ');
+  console.log('resultRe: ' + resultRe);
+
   return (
     <>
       <h3 className="pt-2 mx-3 font-bold text-lg">

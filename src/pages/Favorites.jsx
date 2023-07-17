@@ -19,7 +19,7 @@ function Favorites() {
           </h5>
           <p className="font-semibold">Please add your favorites sneakers</p>
           <img
-            className="w-80 mt-5"
+            className="w-64 mt-5"
             src="/assets/illustrations/favoritesEmpty.svg"
             alt="favoritesEmpty"
           />
