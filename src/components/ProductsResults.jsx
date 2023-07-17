@@ -14,18 +14,14 @@ function ProductsResults() {
   const [filteredProducts, setFilteredProducts] = useState(products);
 
   useEffect(() => {
+    const qToFilter = q.toLowerCase().trim().split(' ');
     const filtered = q
-      ? products.filter((product) => product.name.includes(q))
+      ? products.filter((product) =>
+          qToFilter.every((syllable) => product.name.toLowerCase().includes(syllable))
+        )
       : products;
     setFilteredProducts(filtered);
   }, [q, products]);
-
-  const resultRe = "OFF-WHITE x         Air Max 90 'Desert Ore'"
-    .toLowerCase()
-    .trim()
-    .split(' ');
-  console.log('resultRe: ' + resultRe);
-
   return (
     <>
       <h3 className="pt-2 mx-3 font-bold text-lg">
