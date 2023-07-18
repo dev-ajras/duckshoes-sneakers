@@ -80,9 +80,15 @@ function Footer() {
       <div className="m-3">
         <h4 className="text-xl font-semibold">Service</h4>
         <ul className="opacity-80">
-          <li>How we deliver</li>
-          <li>How to buy</li>
-          <li>Payment methods</li>
+          <li>
+            <Link to='/service/how-we-deliver'>How we deliver</Link>
+          </li>
+          <li>
+            <Link to='/service/how-to-buy'>How to buy</Link>
+          </li>
+          <li>
+            <Link to='/service/payment-methods'>Payment methods</Link>
+          </li>
         </ul>
       </div>
       <div className="m-3">

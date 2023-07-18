@@ -16,6 +16,9 @@ import Help from './pages/Help';
 import NotFound404 from './pages/NotFound404';
 import ScrollToTop from './helpers/ScrollToTop';
 import Footer from './components/Footer';
+import HowWeDeliver from './components/HowWeDeliver';
+import HowToBuy from './components/HowToBuy';
+import PaymentMethods from './components/PaymentMethods';
 
 function App() {
   return (
@@ -33,6 +36,11 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
             <Route path="/help" element={<Help />} />
+            <Route path="/service" >
+              <Route path='/service/how-we-deliver' element={<HowWeDeliver/>} />
+              <Route path='/service/how-to-buy' element={<HowToBuy/>} />
+              <Route path='/service/payment-methods' element={<PaymentMethods/>} />
+            </Route>
             <Route path="*" element={<NotFound404 />} />
           </Routes>
         </main>
