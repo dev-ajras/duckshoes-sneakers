@@ -38,7 +38,7 @@ function CarouselFeatured({ from, to, title }) {
                   <strong>${product.retail_price_cents / 100}</strong>
                   <div className="flex gap-2">
                     <button
-                      className="absolute top-3 right-3"
+                      className="absolute top-5 right-5"
                       onClick={(e) => handleFavorite(e, product.id)}
                     >
                       {isFavorite ? (
