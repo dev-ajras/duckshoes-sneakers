@@ -24,7 +24,7 @@ function CarouselFeatured({ from, to, title }) {
             const isFavorite = favorites.some((fav) => fav === product.id);
             return (
               <Link
-                to={`/products/${product.name}?color=${product.color}`}
+                to={`/products/${product.name}?color=${product.color}&size=${product.size_range[2]}`}
                 className="w-full flex-[0_0_43%] p-3 drop-shadow-md bg-white rounded-md relative"
                 key={product.id}
               >
@@ -36,18 +36,16 @@ function CarouselFeatured({ from, to, title }) {
                 <h3 className="line-clamp-2 h-12">{product.name}</h3>
                 <div className="flex justify-between mt-1 items-center text-xl">
                   <strong>${product.retail_price_cents / 100}</strong>
-                  <div className="flex gap-2">
-                    <button
-                      className="absolute top-3 right-3"
-                      onClick={(e) => handleFavorite(e, product.id)}
-                    >
-                      {isFavorite ? (
-                        <AiFillHeart className="fill-red-500" />
-                      ) : (
-                        <MdFavoriteBorder />
-                      )}
-                    </button>
-                  </div>
+                  <button
+                    className="absolute top-4 right-4"
+                    onClick={(e) => handleFavorite(e, product.id)}
+                  >
+                    {isFavorite ? (
+                      <AiFillHeart className="fill-red-500 scale-125" />
+                    ) : (
+                      <MdFavoriteBorder className="scale-125 opacity-70" />
+                    )}
+                  </button>
                 </div>
               </Link>
             );

@@ -17,24 +17,22 @@ function ProductCard({ product }) {
   };
   return (
     <Link
-      to={`/products/${product.name}?color=${product.color}`}
+      to={`/products/${product.name}?color=${product.color}&size=${product.size_range[2]}`}
       className="drop-shadow-md rounded-md bg-white p-2 relative"
     >
       <img src={product.grid_picture_url} alt={product.name} />
       <div className="flex justify-between mt-1 items-center text-xl">
         <strong>${product.retail_price_cents / 100}</strong>
-        <div className="flex gap-2 items-center">
-          <button
-            className="absolute top-3 right-3"
-            onClick={(e) => handleFavorite(e, product.id)}
-          >
-            {isFavorite ? (
-              <AiFillHeart className="fill-red-500" />
-            ) : (
-              <MdFavoriteBorder />
-            )}
-          </button>
-        </div>
+        <button
+          className="absolute top-4 right-4"
+          onClick={(e) => handleFavorite(e, product.id)}
+        >
+          {isFavorite ? (
+            <AiFillHeart className="fill-red-500 scale-125" />
+          ) : (
+            <MdFavoriteBorder className="scale-125 opacity-70" />
+          )}
+        </button>
       </div>
       <h3 className="line-clamp-2 h-12">{product.name}</h3>
     </Link>
