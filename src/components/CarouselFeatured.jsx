@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 import { MdFavoriteBorder } from 'react-icons/md';
 import { AiFillHeart } from 'react-icons/ai';
-import { AiOutlinePlusCircle } from 'react-icons/ai';
 
 function CarouselFeatured({ from, to, title }) {
   const { favoritesHandler, favorites, products } = useContext(AppContext);
@@ -25,7 +24,7 @@ function CarouselFeatured({ from, to, title }) {
             const isFavorite = favorites.some((fav) => fav === product.id);
             return (
               <Link
-                to={`/products/${product.name}`}
+                to={`/products/${product.name}?color=${product.color}`}
                 className="w-full flex-[0_0_43%] p-3 drop-shadow-md bg-white rounded-md"
                 key={product.id}
               >
@@ -38,15 +37,15 @@ function CarouselFeatured({ from, to, title }) {
                 <div className="flex justify-between mt-1 items-center text-xl">
                   <strong>${product.retail_price_cents / 100}</strong>
                   <div className="flex gap-2">
-                    <button onClick={(e) => handleFavorite(e, product.id)}>
+                    <button
+                      className="absolute top-3 right-3"
+                      onClick={(e) => handleFavorite(e, product.id)}
+                    >
                       {isFavorite ? (
                         <AiFillHeart className="fill-red-500" />
                       ) : (
                         <MdFavoriteBorder />
                       )}
-                    </button>
-                    <button>
-                      <AiOutlinePlusCircle />
                     </button>
                   </div>
                 </div>

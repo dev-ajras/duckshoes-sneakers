@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 import { MdFavoriteBorder } from 'react-icons/md';
 import { AiFillHeart } from 'react-icons/ai';
-import { AiOutlinePlusCircle } from 'react-icons/ai';
 
 function ProductCard({ product }) {
   const { favoritesHandler, favorites } = useContext(AppContext);
@@ -18,26 +17,26 @@ function ProductCard({ product }) {
   };
   return (
     <Link
-      to={`/products/${product.name}`}
+      to={`/products/${product.name}?color=${product.color}`}
       className="drop-shadow-md rounded-md bg-white p-2"
     >
       <img src={product.grid_picture_url} alt={product.name} />
-      <h3 className="line-clamp-2 h-12">{product.name}</h3>
       <div className="flex justify-between mt-1 items-center text-xl">
         <strong>${product.retail_price_cents / 100}</strong>
         <div className="flex gap-2 items-center">
-          <button onClick={(e) => handleFavorite(e, product.id)}>
+          <button
+            className="absolute top-3 right-3"
+            onClick={(e) => handleFavorite(e, product.id)}
+          >
             {isFavorite ? (
               <AiFillHeart className="fill-red-500" />
             ) : (
               <MdFavoriteBorder />
             )}
           </button>
-          <button>
-            <AiOutlinePlusCircle />
-          </button>
         </div>
       </div>
+      <h3 className="line-clamp-2 h-12">{product.name}</h3>
     </Link>
   );
 }

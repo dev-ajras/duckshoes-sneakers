@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import { useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import { AppContext } from '../context/AppProvider';
 
 function ProductsResults() {
   const { products } = useContext(AppContext);
 
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
+  const [searchParams, setSearchParams] = useSearchParams();
   const q = searchParams.get('q');
 
   const [filteredProducts, setFilteredProducts] = useState(products);
@@ -17,7 +16,9 @@ function ProductsResults() {
     const qToFilter = q ? q.toLowerCase().trim().split(' ') : [];
     const filtered = q
       ? products.filter((product) =>
-          qToFilter.every((syllable) => product.name.toLowerCase().includes(syllable))
+          qToFilter.every((syllable) =>
+            product.name.toLowerCase().includes(syllable)
+          )
         )
       : products;
     setFilteredProducts(filtered);

@@ -1,6 +1,5 @@
-import axios from 'axios';
 import { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import CarouselDetails from './CarouselDetails';
 import { AppContext } from '../context/AppProvider';
 
@@ -8,6 +7,8 @@ function ProductDetails() {
   const { products } = useContext(AppContext);
 
   const { productName } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sizeParam = searchParams.get('size');
   const [productFound, setProductFound] = useState({});
 
   useEffect(() => {
@@ -31,14 +32,18 @@ function ProductDetails() {
           <span className="font-bold text-3xl p-3 bg-white">
             ${productFound.retail_price_cents / 100}
           </span>
-          <h3 className="font-semibold bg-white px-3 mt-2">Size:</h3>
+          <h3 className="font-semibold bg-white px-3 mt-2">
+            Size: {sizeParam}
+          </h3>
           <CarouselDetails arrayDetails={productFound.size_range} />
           {productFound.color && (
             <div>
-              <h3 className="font-semibold bg-white px-3 mt-2">Color:</h3>
-              <div className="w-10 m-3 drop-shadow-md">
+              <h3 className="font-semibold bg-white px-3 mt-2">
+                Color: {productFound.color}
+              </h3>
+              <div className="w-10 m-3 rounded-full ring ring-blue-500 ring-offset-2">
                 <img
-                  className=""
+                  className="drop-shadow-md "
                   src={`/assets/colors/${productFound.color}Color.svg`}
                   alt={productFound.color}
                 />
