@@ -9,7 +9,7 @@ function ProductDetails() {
   const { productName } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const sizeParam = searchParams.get('size');
-  const colorParam = searchParams.get('color')
+  const colorParam = searchParams.get('color');
   const [productFound, setProductFound] = useState({});
 
   useEffect(() => {
@@ -17,10 +17,10 @@ function ProductDetails() {
     setProductFound(productNameDetails);
   }, [products, productName]);
 
-  const handleButton = (productId, color, size ) => {
-    console.log('button!')
-    cartAdd({id: productId, color: color, size: size, quantity: 1})
-  }
+  const handleButton = (productId, color, size) => {
+    console.log('button!');
+    cartAdd({ id: productId, color: color, size: size, quantity: 1 });
+  };
 
   return (
     <div className="bg-white">
@@ -56,6 +56,16 @@ function ProductDetails() {
               </div>
             </div>
           )}
+          <div className="flex">
+            <button
+              className="box-border w-full bg-primaryDark text-white text-lg font-bold m-3 p-2 rounded-lg self-"
+              onClick={() =>
+                handleButton(productFound.id, colorParam, sizeParam)
+              }
+            >
+              Add to cart
+            </button>
+          </div>
           <h3 className="font-semibold px-3">Product details</h3>
           <div className="p-3">
             <table className="border-collapse table-fixed w-full">
@@ -103,7 +113,6 @@ function ProductDetails() {
       ) : (
         ''
       )}
-      <button onClick={() => handleButton(productFound.id, colorParam, sizeParam)}>Add to cart</button>
     </div>
   );
 }
