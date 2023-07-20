@@ -18,14 +18,14 @@ function ProductCard({ product }) {
   return (
     <Link
       to={`/products/${product.name}?color=${product.color}`}
-      className="drop-shadow-md rounded-md bg-white p-2"
+      className="drop-shadow-md rounded-md bg-white p-2 relative"
     >
       <img src={product.grid_picture_url} alt={product.name} />
       <div className="flex justify-between mt-1 items-center text-xl">
         <strong>${product.retail_price_cents / 100}</strong>
         <div className="flex gap-2 items-center">
           <button
-            className="absolute top-5 right-5"
+            className="absolute top-3 right-3"
             onClick={(e) => handleFavorite(e, product.id)}
           >
             {isFavorite ? (

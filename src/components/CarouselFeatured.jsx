@@ -25,7 +25,7 @@ function CarouselFeatured({ from, to, title }) {
             return (
               <Link
                 to={`/products/${product.name}?color=${product.color}`}
-                className="w-full flex-[0_0_43%] p-3 drop-shadow-md bg-white rounded-md"
+                className="w-full flex-[0_0_43%] p-3 drop-shadow-md bg-white rounded-md relative"
                 key={product.id}
               >
                 <img
@@ -38,7 +38,7 @@ function CarouselFeatured({ from, to, title }) {
                   <strong>${product.retail_price_cents / 100}</strong>
                   <div className="flex gap-2">
                     <button
-                      className="absolute top-5 right-5"
+                      className="absolute top-3 right-3"
                       onClick={(e) => handleFavorite(e, product.id)}
                     >
                       {isFavorite ? (
