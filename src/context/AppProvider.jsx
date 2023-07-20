@@ -27,11 +27,17 @@ function AppProvider({ children }) {
   }, [favorites]);
 
   const cartAdd = (toCart) => {
-    setCart(...cart, toCart);
+    const found = cart.find((cartOld) => cartOld.id === toCart.id )
+    if(!found) {
+      setCart([...cart, toCart]);
+    } else {
+      const updatedCart = cart.map((cartObj) => cartObj.id === toCart.id ? {...cartObj, quantity: cartObj.quantity + 1 } : cartObj )
+      setCart(updatedCart)
+    }
   };
 
   const cartRemove = (toCart) => {
-    const newCart = cart.filter((oldCart) => oldCart.id !== toCart.id);
+    const newCart = cart.filter((oldCart) => oldCart !== toCart);
     setCart(newCart);
   };
 

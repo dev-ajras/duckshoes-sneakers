@@ -4,17 +4,23 @@ import CarouselDetails from './CarouselDetails';
 import { AppContext } from '../context/AppProvider';
 
 function ProductDetails() {
-  const { products } = useContext(AppContext);
+  const { products, cartAdd } = useContext(AppContext);
 
   const { productName } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const sizeParam = searchParams.get('size');
+  const colorParam = searchParams.get('color')
   const [productFound, setProductFound] = useState({});
 
   useEffect(() => {
     const productNameDetails = products.find((dat) => dat.name === productName);
     setProductFound(productNameDetails);
   }, [products, productName]);
+
+  const handleButton = (productId, color, size ) => {
+    console.log('button!')
+    cartAdd({id: productId, color: color, size: size, quantity: 1})
+  }
 
   return (
     <div className="bg-white">
@@ -97,6 +103,7 @@ function ProductDetails() {
       ) : (
         ''
       )}
+      <button onClick={() => handleButton(productFound.id, colorParam, sizeParam)}>Add to cart</button>
     </div>
   );
 }
