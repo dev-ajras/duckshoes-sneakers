@@ -4,6 +4,9 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import { AppContext } from '../context/AppProvider';
 
+import {MdOutlineNavigateNext} from 'react-icons/md'
+import {MdOutlineNavigateBefore} from 'react-icons/md'
+
 function ProductsResults() {
   const { products } = useContext(AppContext);
 
@@ -54,7 +57,6 @@ function ProductsResults() {
         )
       : products;
     setFilteredProducts(filtered);
-    window.scrollTo(0, 0);
   }, [q, products]);
 
   return (
@@ -81,10 +83,10 @@ function ProductsResults() {
               <ProductCard product={product} key={product.id} />
             ))}
           </div>
-          <div>
-            <button onClick={() => handlePrevPage(1)}>prev</button>
-            <button>{currentPage}</button>
-            <button onClick={() => handleNextPage(1)}>next</button>
+          <div className='mx-3 my-2 flex gap-3 justify-center items-center rounded-md'>
+            <button className='p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark' onClick={() => handlePrevPage(1)}><MdOutlineNavigateBefore/></button>
+            <button className='p-2 text-lg bg-primaryDark rounded-lg text-white font-bold w-12'>{currentPage}</button>
+            <button className='p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark' onClick={() => handleNextPage(1)}><MdOutlineNavigateNext/></button>
           </div>
         </>
       )}
