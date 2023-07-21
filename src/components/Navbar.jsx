@@ -20,7 +20,7 @@ function Navbar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/products?q=${inputSearch}`);
+    navigate(`/products?q=${inputSearch}&page=1`);
   };
 
   useEffect(() => {

@@ -11,11 +11,12 @@ function ProductsResults() {
   const [searchParams, setSearchParams] = useSearchParams();
   const q = searchParams.get('q');
   const pageParam = Number(searchParams.get('page'))
-  console.log(pageParam)
 
 
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [currentPage, setCurrentPage] = useState(pageParam ? pageParam : 1)
+  console.log('param: ' + pageParam)
+  console.log('current: ' + currentPage)
 
   const productsPerPage = 20
   const lastItemIndex = productsPerPage * currentPage
@@ -24,7 +25,7 @@ function ProductsResults() {
   const handleNextPage = (next) => {
     if (currentPage < filteredProducts.length / productsPerPage) {
       setCurrentPage(currentPage + next)
-      q ? navigate(`/products?q=${q}&page=${currentPage}`) : navigate(`/products?page=${currentPage + next}`);
+      q ? navigate(`/products?q=${q}&page=${currentPage + next }`) : navigate(`/products?page=${currentPage + next}`);
       window.scrollTo(0, 0);
     }
   }
@@ -32,10 +33,16 @@ function ProductsResults() {
   const handlePrevPage = (prev) => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - prev)
-      q ? navigate(`/products?q=${q}&page=${currentPage}`) : navigate(`/products?page=${currentPage - prev}`);
+      q ? navigate(`/products?q=${q}&page=${currentPage - prev}`) : navigate(`/products?page=${currentPage - prev}`);
       window.scrollTo(0, 0);
     } 
   }
+
+  useEffect(() => {
+    if (pageParam) {
+      setCurrentPage(pageParam)
+    }
+  }, [pageParam])
 
   useEffect(() => {
     const qToFilter = q ? q.toLowerCase().trim().split(' ') : [];
