@@ -42,6 +42,15 @@ function AppProvider({ children }) {
   };
 
   useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    setCart(storedCart)
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
+
+  useEffect(() => {
     fetchProducts();
   }, []);
 

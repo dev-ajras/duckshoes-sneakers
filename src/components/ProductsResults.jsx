@@ -86,7 +86,7 @@ function ProductsResults() {
           </div>
           <div className='mx-3 my-2 flex gap-3 justify-center items-center rounded-md'>
             <button className='p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark' onClick={() => handlePrevPage(1)}><MdOutlineNavigateBefore/></button>
-            <button className='p-2 text-lg bg-primaryDark rounded-lg text-white font-bold w-12'>{currentPage}</button>
+            <button className='p-2 text-xl bg-primaryDark rounded-lg text-white font-bold w-12'>{currentPage}</button>
             <button className='p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark' onClick={() => handleNextPage(1)}><MdOutlineNavigateNext/></button>
           </div>
         </>
