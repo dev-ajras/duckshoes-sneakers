@@ -10,8 +10,8 @@ import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
-    <footer className="bg-body">
-      <div className="m-3 mt-0 pt-4">
+    <footer className="bg-white mt-3">
+      <div className="p-3">
         <h4 className="font-bold text-4xl">
           We are <span className="text-primaryDark">Duck Shoes</span>
         </h4>
@@ -81,13 +81,13 @@ function Footer() {
         <h4 className="text-xl font-semibold">Service</h4>
         <ul className="opacity-80">
           <li>
-            <Link to='/service/how-we-deliver'>How we deliver</Link>
+            <Link to="/service/how-we-deliver">How we deliver</Link>
           </li>
           <li>
-            <Link to='/service/how-to-buy'>How to buy</Link>
+            <Link to="/service/how-to-buy">How to buy</Link>
           </li>
           <li>
-            <Link to='/service/payment-methods'>Payment methods</Link>
+            <Link to="/service/payment-methods">Payment methods</Link>
           </li>
         </ul>
       </div>

@@ -4,7 +4,7 @@ import secure from '/assets/info/duckSecure.svg';
 
 function Info() {
   return (
-    <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-white my-3">
       <div className="flex flex-col items-center p-8">
         <img className="w-16" src={creditCard} alt="creditCard info" />
         <h4 className="font-semibold text-center mt-3">Payment by card</h4>

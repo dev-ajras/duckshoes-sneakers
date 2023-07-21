@@ -24,8 +24,8 @@ function ProductDetails() {
     cartAdd({ id: productId, color: color, size: size, quantity: 1 });
   };
 
-  function compare (a, b) {
-    return a - b
+  function compare(a, b) {
+    return a - b;
   }
 
   return (
@@ -47,7 +47,11 @@ function ProductDetails() {
           <h3 className="font-semibold bg-white px-3 mt-2">
             Size: {sizeParam}
           </h3>
-          <CarouselDetails arrayDetails={productFound.size_range && productFound.size_range.sort(compare)} />
+          <CarouselDetails
+            arrayDetails={
+              productFound.size_range && productFound.size_range.sort(compare)
+            }
+          />
           {productFound.color && (
             <div>
               <h3 className="font-semibold bg-white px-3 mt-2">
@@ -81,7 +85,7 @@ function ProductDetails() {
               Add favorites
             </button>
             <a
-              href={`https://api.whatsapp.com/send?phone=541138596093&text=Hola! Quería consulta por ${productFound.name} de talle ${sizeParam} y color ${colorParam}`}
+              href={`https://api.whatsapp.com/send?phone=541138596093&text=Hola! Quería consulta por las zapatillas ${productFound.name} | Talle: ${sizeParam} | Color: ${colorParam}`}
               className="w-full bg-primaryLight mx-3 p-1 rounded-md flex justify-center items-center gap-2"
             >
               <BsShare />

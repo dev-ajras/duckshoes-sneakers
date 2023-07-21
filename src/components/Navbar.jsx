@@ -40,13 +40,14 @@ function Navbar() {
   };
 
   return (
-    <header className=" flex flex-col justify-center bg-background p-2 h-14 fixed w-full z-40 top-6">
+    <header className=" flex flex-col justify-center bg-background p-3 h-14 fixed w-full z-40 top-6">
       <NavbarMenu navbarMenu={navbarMenu} setNavbarMenu={setNavbarMenu} />
       <CartMenu cartMenu={cartMenu} setCartMenu={setCartMenu} />
       <nav className="flex justify-between w-full items-center">
         <Link to="/">
-          <h3 className="text-white font-bold text-lg text-center">
-            Duck Shoes
+          <h3 className="text-white font-bold text-xl text-center flex flex-col items-start leading-5">
+            <span>Duck</span>
+            <span>Shoes</span>
           </h3>
         </Link>
         <form onSubmit={handleSubmit}>
@@ -62,7 +63,7 @@ function Navbar() {
             autoFocus
           />
         </form>
-        <div className="flex items-center gap-1 text-2xl">
+        <div className="flex items-center gap-3 text-3xl">
           <button onClick={handleCart}>
             {cartMenu ? (
               <TiTimes className="text-white" />

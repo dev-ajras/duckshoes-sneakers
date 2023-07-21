@@ -22,7 +22,7 @@ import PaymentMethods from './components/PaymentMethods';
 
 function App() {
   return (
-    <div>
+    <div className="bg-body">
       <ScrollToTop />
       <Newsletter />
       <AppProvider>
@@ -36,10 +36,16 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
             <Route path="/help" element={<Help />} />
-            <Route path="/service" >
-              <Route path='/service/how-we-deliver' element={<HowWeDeliver/>} />
-              <Route path='/service/how-to-buy' element={<HowToBuy/>} />
-              <Route path='/service/payment-methods' element={<PaymentMethods/>} />
+            <Route path="/service">
+              <Route
+                path="/service/how-we-deliver"
+                element={<HowWeDeliver />}
+              />
+              <Route path="/service/how-to-buy" element={<HowToBuy />} />
+              <Route
+                path="/service/payment-methods"
+                element={<PaymentMethods />}
+              />
             </Route>
             <Route path="*" element={<NotFound404 />} />
           </Routes>
