@@ -11,7 +11,6 @@ function CarouselDetails({ arrayDetails }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const sizeParam = searchParams.get('size');
   const colorParam = searchParams.get('color');
-  console.log(location);
 
   const handleSize = (detail) => {
     navigate(`${pathname}?color=${colorParam}&size=${detail}`);

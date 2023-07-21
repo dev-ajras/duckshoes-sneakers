@@ -3,8 +3,11 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import CarouselDetails from './CarouselDetails';
 import { AppContext } from '../context/AppProvider';
 
+import { BsShare } from 'react-icons/bs';
+import { MdFavoriteBorder } from 'react-icons/md';
+
 function ProductDetails() {
-  const { products, cartAdd } = useContext(AppContext);
+  const { products, cartAdd, favoritesHandler } = useContext(AppContext);
 
   const { productName } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,7 +21,6 @@ function ProductDetails() {
   }, [products, productName]);
 
   const handleButton = (productId, color, size) => {
-    console.log('button!');
     cartAdd({ id: productId, color: color, size: size, quantity: 1 });
   };
 
@@ -66,23 +68,39 @@ function ProductDetails() {
               Add to cart
             </button>
           </div>
-          <h3 className="font-semibold px-3">Product details</h3>
+          <div className="flex mb-3">
+            <button
+              onClick={() => favoritesHandler(productFound.id)}
+              className="w-full bg-primaryLight mx-3  p-1 rounded-md flex justify-center items-center gap-2"
+            >
+              <MdFavoriteBorder />
+              Add favorites
+            </button>
+            <a
+              href={`https://api.whatsapp.com/send?phone=541138596093&text=Hola! Quería consulta por ${productFound.name} de talle ${sizeParam} y color ${colorParam}`}
+              className="w-full bg-primaryLight mx-3 p-1 rounded-md flex justify-center items-center gap-2"
+            >
+              <BsShare />
+              Share
+            </a>
+          </div>
+          <h3 className="font-semibold px-3">Details</h3>
           <div className="p-3">
             <table className="border-collapse table-fixed w-full">
               <tbody>
-                <tr className="bg-primaryLight">
+                <tr className="bg-body">
                   <td className="w-1/2 rounded-l-lg p-2">Brand</td>
                   <td className="w-1/2 rounded-r-lg p-2 text-right">
                     {productFound.brand_name}
                   </td>
                 </tr>
                 <tr>
-                  <td className="w-1/2 rounded-l-lg p-2">Color</td>
+                  <td className="w-1/2 rounded-l-lg p-2">Nickname</td>
                   <td className="w-1/2 rounded-r-lg p-2 text-right">
-                    {productFound.color}
+                    {productFound.nickname}
                   </td>
                 </tr>
-                <tr className="bg-primaryLight">
+                <tr className="bg-body">
                   <td className="w-1/2 rounded-l-lg p-2">Release year</td>
                   <td className="w-1/2 rounded-r-lg p-2 text-right">
                     {productFound.release_year}
@@ -94,10 +112,11 @@ function ProductDetails() {
                     {productFound.upper_material}
                   </td>
                 </tr>
-                <tr className="bg-primaryLight">
-                  <td className="w-1/2 rounded-l-lg p-2">Silhouette</td>
+
+                <tr className="bg-body">
+                  <td className="w-1/2 rounded-l-lg p-2">Category</td>
                   <td className="w-1/2 rounded-r-lg p-2 text-right">
-                    {productFound.silhouette}
+                    {productFound.category}
                   </td>
                 </tr>
                 <tr>

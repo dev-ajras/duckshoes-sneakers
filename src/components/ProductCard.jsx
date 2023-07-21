@@ -11,10 +11,6 @@ function ProductCard({ product }) {
 
   const isFavorite = favorites.some((fav) => fav === product.id);
 
-  const handleFavorite = (e, productId) => {
-    e.preventDefault();
-    favoritesHandler(productId);
-  };
   return (
     <Link
       to={`/products/${product.name}?color=${product.color}&size=${product.size_range[2]}`}
@@ -25,7 +21,7 @@ function ProductCard({ product }) {
         <strong>${product.retail_price_cents / 100}</strong>
         <button
           className="absolute top-4 right-4"
-          onClick={(e) => handleFavorite(e, product.id)}
+          onClick={() => favoritesHandler(product.id)}
         >
           {isFavorite ? (
             <AiFillHeart className="fill-red-500 scale-125" />

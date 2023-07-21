@@ -5,7 +5,6 @@ import { AppContext } from '../context/AppProvider';
 
 function CartMenu({ cartMenu, setCartMenu }) {
   const { products, cart } = useContext(AppContext);
-  console.log(cart);
 
   const filteredProducts = products.filter((product) =>
     cart.some((cartItem) => cartItem.id === product.id)
