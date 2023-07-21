@@ -24,6 +24,10 @@ function ProductDetails() {
     cartAdd({ id: productId, color: color, size: size, quantity: 1 });
   };
 
+  function compare (a, b) {
+    return a - b
+  }
+
   return (
     <div className="bg-white">
       {productFound ? (
@@ -43,7 +47,7 @@ function ProductDetails() {
           <h3 className="font-semibold bg-white px-3 mt-2">
             Size: {sizeParam}
           </h3>
-          <CarouselDetails arrayDetails={productFound.size_range} />
+          <CarouselDetails arrayDetails={productFound.size_range && productFound.size_range.sort(compare)} />
           {productFound.color && (
             <div>
               <h3 className="font-semibold bg-white px-3 mt-2">

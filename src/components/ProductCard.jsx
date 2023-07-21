@@ -11,9 +11,13 @@ function ProductCard({ product }) {
 
   const isFavorite = favorites.some((fav) => fav === product.id);
 
+  function compare(a, b) {
+    return a - b
+  }
+
   return (
     <Link
-      to={`/products/${product.name}?color=${product.color}&size=${product.size_range[2]}`}
+      to={`/products/${product.name}?color=${product.color}&size=${product.size_range && product.size_range.sort(compare)[2]}`}
       className="drop-shadow-md rounded-md bg-white p-2 relative"
     >
       <img src={product.grid_picture_url} alt={product.name} />

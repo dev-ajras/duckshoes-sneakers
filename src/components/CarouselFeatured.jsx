@@ -15,6 +15,10 @@ function CarouselFeatured({ from, to, title }) {
     favoritesHandler(productId);
   };
 
+  function compare(a, b) {
+    return a - b
+  }
+
   return (
     <section>
       <h3 className="mt-2 mx-3 font-bold text-xl">{title}</h3>
@@ -24,7 +28,7 @@ function CarouselFeatured({ from, to, title }) {
             const isFavorite = favorites.some((fav) => fav === product.id);
             return (
               <Link
-                to={`/products/${product.name}?color=${product.color}&size=${product.size_range[2]}`}
+                to={`/products/${product.name}?color=${product.color}&size=${product.size_range && product.size_range.sort(compare)[2]}`}
                 className="w-full flex-[0_0_43%] p-3 drop-shadow-md bg-white rounded-md relative"
                 key={product.id}
               >

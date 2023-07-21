@@ -16,15 +16,11 @@ function CarouselDetails({ arrayDetails }) {
     navigate(`${pathname}?color=${colorParam}&size=${detail}`);
   };
 
-  function compare(a, b) {
-    return a - b;
-  }
-
   return (
     <div className="overflow-hidden" ref={emblaRef}>
       <ul className="flex gap-3 my-2 px-3">
         {arrayDetails &&
-          arrayDetails.sort(compare).map((detail, idx) => (
+          arrayDetails.map((detail, idx) => (
             <li
               className={
                 detail == sizeParam

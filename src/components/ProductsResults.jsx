@@ -1,16 +1,41 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import { AppContext } from '../context/AppProvider';
 
 function ProductsResults() {
   const { products } = useContext(AppContext);
 
+  const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams();
   const q = searchParams.get('q');
+  const pageParam = Number(searchParams.get('page'))
+  console.log(pageParam)
+
 
   const [filteredProducts, setFilteredProducts] = useState(products);
+  const [currentPage, setCurrentPage] = useState(pageParam ? pageParam : 1)
+
+  const productsPerPage = 20
+  const lastItemIndex = productsPerPage * currentPage
+  const firstItemIndex = lastItemIndex - productsPerPage
+
+  const handleNextPage = (next) => {
+    if (currentPage < filteredProducts.length / productsPerPage) {
+      setCurrentPage(currentPage + next)
+      q ? navigate(`/products?q=${q}&page=${currentPage}`) : navigate(`/products?page=${currentPage + next}`);
+      window.scrollTo(0, 0);
+    }
+  }
+
+  const handlePrevPage = (prev) => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - prev)
+      q ? navigate(`/products?q=${q}&page=${currentPage}`) : navigate(`/products?page=${currentPage - prev}`);
+      window.scrollTo(0, 0);
+    } 
+  }
 
   useEffect(() => {
     const qToFilter = q ? q.toLowerCase().trim().split(' ') : [];
@@ -22,7 +47,9 @@ function ProductsResults() {
         )
       : products;
     setFilteredProducts(filtered);
+    window.scrollTo(0, 0);
   }, [q, products]);
+
   return (
     <>
       <h3 className="pt-2 mx-3 font-bold text-lg">
@@ -43,9 +70,14 @@ function ProductsResults() {
       ) : (
         <>
           <div className="grid grid-cols-2 p-3 gap-3">
-            {filteredProducts.slice(0, 20).map((product) => (
+            {filteredProducts.slice(firstItemIndex, lastItemIndex).map((product) => (
               <ProductCard product={product} key={product.id} />
             ))}
+          </div>
+          <div>
+            <button onClick={() => handlePrevPage(1)}>prev</button>
+            <button>{currentPage}</button>
+            <button onClick={() => handleNextPage(1)}>next</button>
           </div>
         </>
       )}
