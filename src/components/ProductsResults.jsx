@@ -57,6 +57,7 @@ function ProductsResults() {
         )
       : products;
     setFilteredProducts(filtered);
+    window.scrollTo(0, 0)
   }, [q, products]);
 
   return (
