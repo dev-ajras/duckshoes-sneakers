@@ -63,42 +63,42 @@ function ProductsResults() {
 
   return (
     <>
-      <h3 className="pt-2 mx-3 font-bold text-lg">
+      <h3 className='pt-2 mx-3 font-bold text-lg'>
         {q ? `Results for "${q}" ` : 'Products'}
       </h3>
       {filteredProducts.length === 0 ? (
-        <div className="m-3 flex flex-col items-center">
-          <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2">
+        <div className='m-3 flex flex-col items-center'>
+          <h5 className='font-semibold text-lg bg-primaryLight px-3 p-1 mb-2'>
             No results
           </h5>
-          <p className="font-semibold">There are no matches with your search</p>
+          <p className='font-semibold'>There are no matches with your search</p>
           <img
-            className="w-80 mt-5"
-            src="/assets/illustrations/searchEmpty.svg"
-            alt="favoritesEmpty"
+            className='w-80 mt-5'
+            src='/assets/illustrations/searchEmpty.svg'
+            alt='favoritesEmpty'
           />
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-2 p-3 gap-3">
+          <div className='grid grid-cols-2 p-3 gap-3'>
             {filteredProducts
               .slice(firstItemIndex, lastItemIndex)
               .map((product) => (
                 <ProductCard product={product} key={product.id} />
               ))}
           </div>
-          <div className="m-3 flex gap-3 justify-center items-center rounded-md">
+          <div className='m-3 flex gap-3 justify-center items-center rounded-md'>
             <button
-              className="p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark"
+              className='p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark'
               onClick={() => handlePrevPage(1)}
             >
               <MdOutlineNavigateBefore />
             </button>
-            <button className="p-2 text-xl bg-primaryDark rounded-lg text-white font-bold w-12">
+            <button className='p-2 text-xl bg-primaryDark rounded-lg text-white font-bold w-12'>
               {currentPage}
             </button>
             <button
-              className="p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark"
+              className='p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark'
               onClick={() => handleNextPage(1)}
             >
               <MdOutlineNavigateNext />

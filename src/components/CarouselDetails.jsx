@@ -13,12 +13,14 @@ function CarouselDetails({ arrayDetails }) {
   const colorParam = searchParams.get('color');
 
   const handleSize = (detail) => {
-    navigate(`${pathname}?color=${colorParam}&size=${detail}`);
+    navigate(`${pathname}?color=${colorParam}&size=${detail}`, {
+      replace: true,
+    });
   };
 
   return (
-    <div className="overflow-hidden" ref={emblaRef}>
-      <ul className="flex gap-3 my-2 px-3">
+    <div className='overflow-hidden' ref={emblaRef}>
+      <ul className='flex gap-3 my-2 px-3'>
         {arrayDetails &&
           arrayDetails.map((detail, idx) => (
             <li
@@ -30,7 +32,7 @@ function CarouselDetails({ arrayDetails }) {
               key={idx}
               onClick={() => handleSize(detail)}
             >
-              <p className="">{detail}</p>
+              <p className=''>{detail}</p>
             </li>
           ))}
       </ul>
