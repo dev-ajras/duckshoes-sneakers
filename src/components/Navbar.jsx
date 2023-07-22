@@ -43,9 +43,9 @@ function Navbar() {
     <header className=" flex flex-col justify-center bg-background p-3 h-14 fixed w-full z-40 top-6">
       <NavbarMenu navbarMenu={navbarMenu} setNavbarMenu={setNavbarMenu} />
       <CartMenu cartMenu={cartMenu} setCartMenu={setCartMenu} />
-      <nav className="flex justify-between w-full items-center">
+      <nav className="flex gap-3 w-full items-center">
         <Link to="/">
-          <h3 className="text-white font-bold text-xl text-center flex flex-col items-start leading-5">
+          <h3 className="text-white font-bold w-full flex text-lg gap-2">
             <span>Duck</span>
             <span>Shoes</span>
           </h3>
@@ -55,9 +55,9 @@ function Navbar() {
             onClick={() => {
               setCartMenu(false), setNavbarMenu(false);
             }}
-            className="align-middle outline-none border-none rounded p-1 px-2"
+            className="align-middle outline-none border-none rounded p-1 px-2 w-full"
             type="text"
-            placeholder="Buscar producto..."
+            placeholder="search product..."
             value={inputSearch}
             onChange={(e) => setInputSearch(e.target.value)}
             autoFocus

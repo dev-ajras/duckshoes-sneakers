@@ -27,28 +27,32 @@ function AppProvider({ children }) {
   }, [favorites]);
 
   const cartAdd = (toCart) => {
-    const found = cart.find((cartOld) => cartOld.id === toCart.id )
-    if(!found) {
+    const found = cart.find((cartOld) => cartOld.id === toCart.id);
+    if (!found) {
       setCart([...cart, toCart]);
     } else {
-      const updatedCart = cart.map((cartObj) => cartObj.id === toCart.id ? {...cartObj, quantity: cartObj.quantity + 1 } : cartObj )
-      setCart(updatedCart)
+      const updatedCart = cart.map((cartObj) =>
+        cartObj.id === toCart.id
+          ? { ...cartObj, quantity: cartObj.quantity + 1 }
+          : cartObj
+      );
+      setCart(updatedCart);
     }
   };
 
   const cartRemove = (toCart) => {
-    const newCart = cart.filter((oldCart) => oldCart !== toCart);
+    const newCart = cart.filter((oldCart) => oldCart.id !== toCart.id);
     setCart(newCart);
   };
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    setCart(storedCart)
+    setCart(storedCart);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart))
-  }, [cart])
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
 
   useEffect(() => {
     fetchProducts();
