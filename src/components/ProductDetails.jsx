@@ -43,9 +43,9 @@ function ProductDetails() {
             {productFound.name}
           </h2>
           <img
-            className='bg-white'
+            className='bg-white min-h-[375px]'
             src={productFound.main_picture_url}
-            alt=''
+            alt={productFound.nickname}
           />
           <span className='font-bold text-3xl p-3 bg-white'>
             ${productFound.retail_price_cents / 100}
