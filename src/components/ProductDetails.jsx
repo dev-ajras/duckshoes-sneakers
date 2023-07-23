@@ -35,23 +35,24 @@ function ProductDetails() {
   }, []);
 
   return (
-    <div className="bg-white mb-3 pb-3">
+    <div className="bg-white mb-3 pb-3 sm:mb-5 sm:pb-5">
       {productFound ? (
         <>
           {' '}
-          <h2 className="font-semibold text-lg line-clamp-1 leading-10 p-3 he bg-white">
+          <h2 className="font-semibold text-lg line-clamp-1 leading-10 p-3 he bg-white sm:p-5 sm:text-3xl">
             {productFound.name}
           </h2>
           <img
-            className="bg-white min-h-[375px]"
+            className="bg-white min-h-[375px] sm:min-h-[630px]"
             src={productFound.main_picture_url}
             alt={productFound.nickname}
           />
-          <span className="font-bold text-3xl p-3 bg-white">
+          <span className="font-bold text-3xl p-3 bg-white sm:text-5xl sm:p-5">
             ${productFound.retail_price_cents / 100}
           </span>
-          <h3 className="font-semibold bg-white px-3 mt-2">
-            Size: {sizeParam}
+          <h3 className="font-semibold bg-white px-3 mt-2 sm:px-5 sm:mt-3 sm:text-2xl">
+            <span className="opacity-80">Size: </span>
+            {sizeParam}
           </h3>
           <CarouselDetails
             arrayDetails={
@@ -60,10 +61,11 @@ function ProductDetails() {
           />
           {productFound.color && (
             <div>
-              <h3 className="font-semibold bg-white px-3 mt-2">
-                Color: {productFound.color}
+              <h3 className="font-semibold bg-white px-3 mt-2 sm:px-5 sm:mt-3 sm:text-2xl">
+                <span className="opacity-80">Color: </span>
+                {productFound.color}
               </h3>
-              <div className="w-10 m-3 rounded-full ring ring-blue-500 ring-offset-2">
+              <div className="w-10 m-3 rounded-full ring ring-blue-500 ring-offset-2 sm:m-5 sm:w-16 sm:ring-offset-4">
                 <img
                   className="drop-shadow-md "
                   src={`/assets/colors/${productFound.color}Color.svg`}
@@ -74,7 +76,7 @@ function ProductDetails() {
           )}
           <div className="flex">
             <button
-              className="box-border w-full bg-primaryDark text-white text-lg font-bold m-3 p-2 rounded-lg self-"
+              className="box-border w-full bg-primaryDark text-white text-lg font-bold m-3 p-2 rounded-lg sm:text-3xl sm:m-5 sm:p-3"
               onClick={() =>
                 handleButton(productFound.id, colorParam, sizeParam)
               }
@@ -82,53 +84,55 @@ function ProductDetails() {
               Add to cart
             </button>
           </div>
-          <div className="flex mb-3">
+          <div className="flex mb-3 sm:mb-5">
             <button
               onClick={() => favoritesHandler(productFound.id)}
-              className="w-full bg-primaryLight mx-3  p-1 rounded-md flex justify-center items-center gap-2"
+              className="w-full bg-primaryLight mx-3 p-1 rounded-md flex justify-center items-center gap-2 sm:mx-5 sm:p-2 sm:gap-3 sm:text-2xl"
             >
               <MdFavoriteBorder />
               Add favorites
             </button>
             <a
               href={`https://api.whatsapp.com/send?phone=541138596093&text=Hola! Quería consulta por las zapatillas ${productFound.name} | Talle: ${sizeParam} | Color: ${colorParam}`}
-              className="w-full bg-primaryLight mx-3 p-1 rounded-md flex justify-center items-center gap-2"
+              className="w-full bg-primaryLight mx-3 p-1 rounded-md flex justify-center items-center gap-2 sm:mx-5 sm:p-2 sm:gap-3 sm:text-2xl"
             >
               <BsShare />
               Share
             </a>
           </div>
-          <h3 className="font-semibold px-3">Details</h3>
-          <div className="p-3">
-            <table className="border-collapse table-fixed w-full">
+          <h3 className="font-semibold px-3 sm:px-5 sm:text-2xl opacity-80">
+            Details:
+          </h3>
+          <div className="p-3 sm:p-5">
+            <table className="border-collapse table-fixed w-full sm:text-2xl">
               <tbody>
                 <tr className="bg-body">
-                  <td className="w-1/2 p-2 rounded-tl-lg">Brand</td>
-                  <td className="w-1/2 p-2 rounded-tr-lg text-right">
+                  <td className="w-1/2 p-2 rounded-tl-lg sm:p-3">Brand</td>
+                  <td className="w-1/2 p-2 rounded-tr-lg text-right sm:p-3">
                     {productFound.brand_name}
                   </td>
                 </tr>
                 <tr>
-                  <td className="w-1/2 p-2">Nickname</td>
-                  <td className="w-1/2 p-2 text-right">
+                  <td className="w-1/2 p-2 sm:p-3">Nickname</td>
+                  <td className="w-1/2 p-2 text-right sm:p-3">
                     {productFound.nickname}
                   </td>
                 </tr>
                 <tr className="bg-body">
-                  <td className="w-1/2 p-2">Release year</td>
-                  <td className="w-1/2 p-2 text-right">
+                  <td className="w-1/2 p-2 sm:p-3">Release year</td>
+                  <td className="w-1/2 p-2 text-right sm:p-3">
                     {productFound.release_year}
                   </td>
                 </tr>
                 <tr>
-                  <td className="w-1/2 p-2">Category</td>
-                  <td className="w-1/2 p-2 text-right">
+                  <td className="w-1/2 p-2 sm:p-3">Category</td>
+                  <td className="w-1/2 p-2 text-right sm:p-3">
                     {productFound.category}
                   </td>
                 </tr>
                 <tr className="bg-body">
-                  <td className="w-1/2 p-2 rounded-bl-lg">Gender</td>
-                  <td className="w-1/2 p-2 rounded-br-lg text-right">
+                  <td className="w-1/2 p-2 rounded-bl-lg sm:p-3">Gender</td>
+                  <td className="w-1/2 p-2 rounded-br-lg text-right sm:p-3">
                     {productFound.gender}
                   </td>
                 </tr>

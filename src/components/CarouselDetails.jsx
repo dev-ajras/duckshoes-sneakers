@@ -19,20 +19,20 @@ function CarouselDetails({ arrayDetails }) {
   };
 
   return (
-    <div className='overflow-hidden' ref={emblaRef}>
-      <ul className='flex gap-3 my-2 px-3'>
+    <div className="overflow-hidden" ref={emblaRef}>
+      <ul className="flex gap-3 my-2 px-3 sm:gap-5 sm:my-3 sm:px-5">
         {arrayDetails &&
           arrayDetails.map((detail, idx) => (
             <li
               className={
                 detail == sizeParam
-                  ? 'p-3 bg-white border-black border ring ring-blue-500 ring-offset-2 rounded-md border-opacity-30'
-                  : 'p-3 bg-white border-black border rounded-md border-opacity-30'
+                  ? 'p-3 bg-white border-black border ring ring-blue-500 ring-offset-2 rounded-md border-opacity-30 sm:p-5 sm:text-2xl sm:ring-offset-4'
+                  : 'p-3 bg-white border-black border rounded-md border-opacity-30 sm:p-5 sm:text-2xl'
               }
               key={idx}
               onClick={() => handleSize(detail)}
             >
-              <p className=''>{detail}</p>
+              <p className="">{detail}</p>
             </li>
           ))}
       </ul>

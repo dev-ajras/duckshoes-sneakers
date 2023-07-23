@@ -11,7 +11,9 @@ function Favorites() {
 
   return (
     <section className="bg-body">
-      <h3 className="font-bold text-xl m-3">Favorites</h3>
+      <h3 className="font-bold text-xl m-3 sm:text-3xl sm:mt-3 sm:mx-5">
+        Favorites
+      </h3>
       {!filteredProducts.length && (
         <div className="m-3 flex flex-col items-center">
           <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2">
@@ -25,7 +27,7 @@ function Favorites() {
           />
         </div>
       )}
-      <div className="grid grid-cols-2 p-3 gap-3">
+      <div className="grid grid-cols-2 p-3 gap-3 sm:p-5 sm:gap-5">
         {filteredProducts.map((filteredProduct) => (
           <ProductCard product={filteredProduct} key={filteredProduct.id} />
         ))}

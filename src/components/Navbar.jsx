@@ -40,22 +40,22 @@ function Navbar() {
   };
 
   return (
-    <header className=" flex flex-col justify-center bg-background p-3 h-14 fixed w-full z-40 top-6">
+    <header className=" flex flex-col justify-center bg-background px-3 h-14 fixed w-full z-40 top-6 sm:px-5 ">
       <NavbarMenu navbarMenu={navbarMenu} setNavbarMenu={setNavbarMenu} />
       <CartMenu cartMenu={cartMenu} setCartMenu={setCartMenu} />
-      <nav className="flex gap-3 w-full items-center">
+      <nav className="flex gap-3 w-full justify-between items-center sm:gap-5">
         <Link to="/">
-          <h3 className="text-white font-bold w-full flex text-lg gap-2">
+          <h3 className="text-white font-bold w-full flex text-lg gap-2 sm:text-2xl">
             <span>Duck</span>
             <span>Shoes</span>
           </h3>
         </Link>
-        <form onSubmit={handleSubmit}>
+        <form className="w-full flex justify-center" onSubmit={handleSubmit}>
           <input
             onClick={() => {
               setCartMenu(false), setNavbarMenu(false);
             }}
-            className="align-middle outline-none border-none rounded p-1 px-2 w-full"
+            className="align-middle outline-none border-none rounded p-1 px-2 w-full sm:max-w-md sm:text-xl"
             type="text"
             placeholder="search product..."
             value={inputSearch}
