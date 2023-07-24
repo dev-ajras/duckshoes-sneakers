@@ -1,10 +1,10 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { motion } from 'framer-motion';
 import { AppContext } from '../context/AppProvider';
 
 function CartMenu({ cartMenu, setCartMenu }) {
-  const { products, cart, cartRemove } = useContext(AppContext);
+  const { products, cart, cartRemove, cartAdd } = useContext(AppContext);
 
   const filteredProducts = products.filter((product) =>
     cart.some((cartItem) => cartItem.id === product.id)
@@ -24,6 +24,10 @@ function CartMenu({ cartMenu, setCartMenu }) {
     e.preventDefault();
     cartRemove({ id: productId });
   };
+
+  useEffect(() => {
+    console.log('cart change:' + cartAdd);
+  }, [cartAdd]);
 
   return (
     <>

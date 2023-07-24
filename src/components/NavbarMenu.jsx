@@ -28,7 +28,7 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
         animate={!navbarMenu ? 'inactive' : 'active'}
         variants={navbarMenuVariants}
         transition={{ duration: 0.3 }}
-        className="absolute top-14 right-0 z-40 w-1/2 h-screen drop-shadow-md p-3 bg-white text-xl flex flex-col sm:p-5 sm:text-3xl"
+        className="absolute top-14 right-0 z-40 w-1/2 h-screen drop-shadow-md p-3 bg-white text-xl flex flex-col sm:p-5 sm:text-3xl md:flex-row md:h-12 md:left-0 md:w-full"
       >
         <li>
           <Link
