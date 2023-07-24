@@ -22,32 +22,32 @@ import PaymentMethods from './components/PaymentMethods';
 
 function App() {
   return (
-    <div className="bg-body">
+    <div className='bg-body flex flex-col items-center'>
       <ScrollToTop />
       <Newsletter />
       <AppProvider>
         <Navbar />
-        <main className="flex flex-col box-border mt-20 min-h-screen bg-body">
+        <main className='flex flex-col box-border mt-24 min-h-screen bg-body w-full md:mt-26 lg:max-w-6xl'>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/:productName" element={<ProductDetails />} />
-            <Route path="/favorites" element={<Favorites />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/help" element={<Help />} />
-            <Route path="/service">
+            <Route path='/' element={<Home />} />
+            <Route path='/products' element={<Products />} />
+            <Route path='/products/:productName' element={<ProductDetails />} />
+            <Route path='/favorites' element={<Favorites />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/help' element={<Help />} />
+            <Route path='/service'>
               <Route
-                path="/service/how-we-deliver"
+                path='/service/how-we-deliver'
                 element={<HowWeDeliver />}
               />
-              <Route path="/service/how-to-buy" element={<HowToBuy />} />
+              <Route path='/service/how-to-buy' element={<HowToBuy />} />
               <Route
-                path="/service/payment-methods"
+                path='/service/payment-methods'
                 element={<PaymentMethods />}
               />
             </Route>
-            <Route path="*" element={<NotFound404 />} />
+            <Route path='*' element={<NotFound404 />} />
           </Routes>
         </main>
         <Footer />
