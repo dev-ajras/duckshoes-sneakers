@@ -3,12 +3,17 @@ import ProductCard from '../components/ProductCard';
 import { AppContext } from '../context/AppProvider';
 
 function Cart() {
-  const { products, cart } = useContext(AppContext);
+  const { products, cart, cartRemove } = useContext(AppContext);
   console.log(cart);
 
   const filteredProducts = products.filter((product) =>
     cart.some((cartItem) => cartItem.id === product.id)
   );
+
+  const handleRemove = (e, productId) => {
+    e.preventDefault();
+    cartRemove({ id: productId });
+  };
 
   return (
     <section className="bg-white">
@@ -23,7 +28,7 @@ function Cart() {
                   alt={filteredProduct.name}
                 />
               </div>
-              <div>
+              <div className="w-full">
                 <h4 className="font-semibold text-lg line-clamp-2 leading-6 sm:text-3xl sm:leading-10">
                   {filteredProduct.name}
                 </h4>
