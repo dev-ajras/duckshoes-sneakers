@@ -35,7 +35,7 @@ function ProductCard({ product }) {
       </div>
       <h3 className="line-clamp-2 h-12 sm:text-2xl sm:h-16">{product.name}</h3>
       <button
-        className="absolute top-4 right-4 sm:top-9 sm:right-9"
+        className="absolute top-4 right-4 sm:top-9 sm:right-9 md:top-5 md:right-5"
         onClick={(e) => handleFavorite(e, product.id)}
       >
         {isFavorite ? (
