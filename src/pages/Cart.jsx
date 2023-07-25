@@ -21,8 +21,8 @@ function Cart() {
       <div>
         {filteredProducts.map((filteredProduct) => (
           <div key={filteredProduct.id}>
-            <div className="flex gap-3 my-3 p-3">
-              <div className="w-28 sm:w-36">
+            <div className="flex gap-3 my-3 p-3 md:gap-5 md:my-5">
+              <div className="w-28 sm:w-36 md:w-48">
                 <img
                   src={filteredProduct.grid_picture_url}
                   alt={filteredProduct.name}

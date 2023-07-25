@@ -10,7 +10,7 @@ import { BiSolidHelpCircle } from 'react-icons/bi';
 
 import { motion } from 'framer-motion';
 
-function NavbarMenu({ navbarMenu, setNavbarMenu }) {
+function NavbarMenu({ navbarMenu, setNavbarMenu, setCartMenu }) {
   const menuVariants = {
     active: { opacity: 0.4 },
     inactive: { opacity: 0 },
@@ -21,12 +21,17 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
     inactive: { x: '100%' },
   };
 
+  const navAndCartOff = () => {
+    setNavbarMenu(false);
+    setCartMenu(false);
+  };
+
   console.log(navbarMenu);
 
   return (
     <div onBlur={() => setNavbarMenu(false)} tabIndex={0}>
       <motion.ul
-        initial='inactive'
+        initial="inactive"
         animate={!navbarMenu ? 'inactive' : 'active'}
         variants={navbarMenuVariants}
         transition={{ duration: 0.3 }}
@@ -36,80 +41,80 @@ function NavbarMenu({ navbarMenu, setNavbarMenu }) {
       >
         <li>
           <Link
-            to='/'
-            onClick={() => setNavbarMenu(false)}
+            to="/"
+            onClick={() => navAndCartOff()}
             onBlur={() => setNavbarMenu(false)}
-            className='flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1'
+            className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1"
           >
-            <AiFillHome className='fill-background md:hidden' />
-            <h5 className='text-background font-bold md:text-white md:font-semibold'>
+            <AiFillHome className="fill-background md:hidden" />
+            <h5 className="text-background font-bold md:text-white md:font-semibold">
               Home
             </h5>
           </Link>
         </li>
         <li>
           <Link
-            to='/products'
-            onClick={() => setNavbarMenu(false)}
-            className='flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1'
+            to="/products"
+            onClick={() => navAndCartOff()}
+            className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1"
           >
-            <PiSneakerFill className='fill-background md:hidden' />
-            <h5 className='text-background font-bold md:text-white md:font-semibold'>
+            <PiSneakerFill className="fill-background md:hidden" />
+            <h5 className="text-background font-bold md:text-white md:font-semibold">
               Products
             </h5>
           </Link>
         </li>
         <li>
           <Link
-            to='/favorites'
-            onClick={() => setNavbarMenu(false)}
-            className='flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1'
+            to="/favorites"
+            onClick={() => navAndCartOff()}
+            className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1"
           >
-            <MdFavorite className='fill-background md:hidden' />
-            <h5 className='text-background font-bold md:text-white md:font-semibold'>
+            <MdFavorite className="fill-background md:hidden" />
+            <h5 className="text-background font-bold md:text-white md:font-semibold">
               Favorites
             </h5>
           </Link>
         </li>
         <li>
           <Link
-            to='/cart'
-            onClick={() => setNavbarMenu(false)}
-            className='flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1'
+            to="/cart"
+            onClick={() => navAndCartOff()}
+            className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1"
           >
-            <RiShoppingBagFill className='fill-background md:hidden' />
-            <h5 className='text-background font-bold md:text-white md:font-semibold'>
+            <RiShoppingBagFill className="fill-background md:hidden" />
+            <h5 className="text-background font-bold md:text-white md:font-semibold">
               Cart
             </h5>
           </Link>
         </li>
         <li>
           <Link
-            to='/login'
-            onClick={() => setNavbarMenu(false)}
-            className='flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1'
+            to="/login"
+            onClick={() => navAndCartOff()}
+            className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1"
           >
-            <MdAccountCircle className='fill-background md:hidden' />
-            <h5 className='text-background font-bold md:text-white md:font-semibold'>
+            <MdAccountCircle className="fill-background md:hidden" />
+            <h5 className="text-background font-bold md:text-white md:font-semibold">
               Login
             </h5>
           </Link>
         </li>
         <li>
           <Link
-            to='/help'
-            onClick={() => setNavbarMenu(false)}
-            className='flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1'
+            to="/help"
+            onClick={() => navAndCartOff()}
+            className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1"
           >
-            <BiSolidHelpCircle className='fill-background md:hidden' />
-            <h5 className='text-background font-bold md:text-white md:font-semibold'>
+            <BiSolidHelpCircle className="fill-background md:hidden" />
+            <h5 className="text-background font-bold md:text-white md:font-semibold">
               Help
             </h5>
           </Link>
         </li>
       </motion.ul>
       <motion.div
-        initial='inactive'
+        initial="inactive"
         animate={!navbarMenu ? 'inactive' : 'active'}
         variants={menuVariants}
         transition={{ duration: 0.3 }}
