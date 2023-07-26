@@ -18,13 +18,13 @@ function CarouselBanner() {
   return (
     <div className='overflow-hidden' ref={emblaRef}>
       <div className='flex'>
-        <div className='flex-[0_0_80%] py-2 px-1 sm:p-3 sm:flex-[0_0_70%] md:flex-[0_0_60%] md:px-3 md:py-6'>
+        <div className='flex-[0_0_80%] py-2 px-1 sm:p-3 sm:flex-[0_0_70%] md:flex-[0_0_55%] md:px-3 md:py-6'>
           <img className='rounded-md' src={banner1} alt={banner1} />
         </div>
-        <div className='flex-[0_0_80%] py-2 px-1 sm:p-3 sm:flex-[0_0_70%] md:flex-[0_0_60%] md:px-3 md:py-6'>
+        <div className='flex-[0_0_80%] py-2 px-1 sm:p-3 sm:flex-[0_0_70%] md:flex-[0_0_55%] md:px-3 md:py-6'>
           <img className='rounded-md' src={banner2} alt={banner2} />
         </div>
-        <div className='flex-[0_0_80%] py-2 px-1 sm:p-3 sm:flex-[0_0_70%] md:flex-[0_0_60%] md:px-3 md:py-6'>
+        <div className='flex-[0_0_80%] py-2 px-1 sm:p-3 sm:flex-[0_0_70%] md:flex-[0_0_55%] md:px-3 md:py-6'>
           <img className='rounded-md' src={banner3} alt={banner3} />
         </div>
       </div>
