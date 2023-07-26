@@ -70,7 +70,7 @@ function Navbar() {
             autoFocus
           />
         </form>
-        <div className='flex items-center gap-3 text-3xl md:basis-1/3 md:justify-end'>
+        <div className='flex items-center gap-3 text-3xl md:basis-1/3 md:justify-end md:gap-0'>
           <button onClick={handleCart}>
             {cartMenu ? (
               <TiTimes className='text-white' />

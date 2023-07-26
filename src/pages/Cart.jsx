@@ -17,8 +17,8 @@ function Cart() {
 
   return (
     <section className='bg-white flex justify-center'>
-      <div className='max-w-6xl'>
-        <h3 className='font-bold text-lg m-3 sm:m-5 sm:text-3xl'>Cart</h3>
+      <div className='max-w-6xl w-full m-3 sm:m-5'>
+        <h3 className='font-bold text-lg mb-3 sm:mb-5 sm:text-3xl'>Cart</h3>
         <div>
           {filteredProducts.map((filteredProduct) => (
             <div key={filteredProduct.id}>

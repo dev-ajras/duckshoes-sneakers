@@ -11,8 +11,8 @@ import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <footer className='flex flex-col items-center bg-white mt-3 w-full sm:mt-5'>
-      <div className='lg:max-w-6xl w-full lg:flex lg:py-5'>
-        <div className='m-3 mt-0 pt-4 sm:m-5 sm:pt-6 lg:pt-0'>
+      <div className='lg:max-w-6xl w-full lg:flex lg:py-8 lg:m-5 lg:gap-10'>
+        <div className='m-3 mt-0 pt-4 sm:m-5 sm:pt-6 lg:pt-0 lg:m-0 '>
           <h4 className='font-bold text-4xl sm:text-5xl lg:text-4xl'>
             We are <span className='text-primaryDark'>Duck Shoes</span>
           </h4>
@@ -65,7 +65,7 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div className='m-3 sm:m-5'>
+        <div className='m-3 sm:m-5 lg:m-0'>
           <h4 className='text-lg font-semibold mb-1 sm:text-2xl'>Company</h4>
           <ul className='flex flex-col gap-1 opacity-80 sm:gap-2'>
             <li className='flex items-center gap-2'>
@@ -82,7 +82,7 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div className='m-3 sm:m-5'>
+        <div className='m-3 sm:m-5 lg:m-0'>
           <h4 className='text-xl font-semibold mb-1 sm:text-2xl'>Service</h4>
           <ul className='flex flex-col gap-0.5 opacity-80 sm:text-2xl sm:gap-1 lg:text-xl'>
             <li>
@@ -96,7 +96,7 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div className='m-3 sm:m-5'>
+        <div className='m-3 sm:m-5 lg:m-0'>
           <h4 className='text-xl font-semibold mb-1 sm:text-2xl'>Menu</h4>
           <ul className='flex flex-col gap-0.5 opacity-80 sm:text-2xl sm:gap-1 lg:text-xl'>
             <li>
