@@ -62,7 +62,7 @@ function ProductsResults() {
   }, [q, products]);
 
   return (
-    <>
+    <article className='max-w-6xl mx-auto'>
       <h3 className='mt-2 mx-3 font-bold text-lg sm:text-3xl sm:mt-3 sm:mx-5'>
         {q ? `Results for "${q}" ` : 'Products'}
       </h3>
@@ -114,7 +114,7 @@ function ProductsResults() {
           </div>
         </>
       )}
-    </>
+    </article>
   );
 }
 
