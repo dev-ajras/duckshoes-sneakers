@@ -20,7 +20,7 @@ function CarouselDetails({ arrayDetails }) {
 
   return (
     <div className="overflow-hidden" ref={emblaRef}>
-      <ul className="flex gap-3 my-2 px-3 sm:gap-5 sm:my-3 sm:px-5">
+      <ul className="flex gap-3 my-2 sm:gap-5 sm:my-3">
         {arrayDetails &&
           arrayDetails.map((detail, idx) => (
             <li
