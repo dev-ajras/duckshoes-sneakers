@@ -35,19 +35,19 @@ function ProductDetails() {
   }, []);
 
   return (
-    <article className="flex justify-center w-full">
-      <div className="w-full">
-        <div className="m-3 sm:m-5 lg:max-w-6xl">
+    <article className="flex justify-center">
+      <div className="flex flex-col items-center w-full">
+        <div className=" lg:max-w-6xl w-full m-3 sm:m-5 ">
           <h3 className="font-bold text-lg mb-3 sm:mb-5 sm:text-3xl">
             Product Details
           </h3>
           {productFound ? (
-            <div className="p-3 sm:p-5 bg-white rounded-md">
+            <div className="p-3 sm:p-5 bg-white rounded-md ">
               <h2 className="font-semibold text-lg line-clamp-1 leading-10 bg-white sm:text-3xl">
                 {productFound.name}
               </h2>
               <img
-                className="bg-white min-h-[375px] max-w-md sm:max-w-xl w-full object-contain mx-auto"
+                className="bg-white min-h-[375px] object-contain mx-auto"
                 src={productFound.main_picture_url}
                 alt={productFound.nickname}
               />
