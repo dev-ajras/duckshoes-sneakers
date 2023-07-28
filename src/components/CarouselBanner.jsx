@@ -22,14 +22,26 @@ function CarouselBanner() {
         ref={emblaRef}
       >
         <div className="flex">
-          <div className="flex-[0_0_100%] my-2 mx-1 sm:m-3 md:mx-3 md:my-6 ">
-            <img className="rounded-md" src={banner1} alt={banner1} />
+          <div className="flex-[0_0_100%] mx-3 sm:mx-5">
+            <img
+              className="rounded-md object-fill"
+              src={banner1}
+              alt={banner1}
+            />
           </div>
-          <div className="flex-[0_0_100%] my-2 mx-1 sm:m-3 md:mx-3 md:my-6">
-            <img className="rounded-md" src={banner2} alt={banner2} />
+          <div className="flex-[0_0_100%] mx-3 sm:mx-5">
+            <img
+              className="rounded-md object-fill"
+              src={banner2}
+              alt={banner2}
+            />
           </div>
-          <div className="flex-[0_0_100%] my-2 mx-1 sm:m-3 md:mx-3 md:my-6">
-            <img className="rounded-md" src={banner3} alt={banner3} />
+          <div className="flex-[0_0_100%] mx-3 sm:mx-5">
+            <img
+              className="rounded-md object-fill"
+              src={banner3}
+              alt={banner3}
+            />
           </div>
         </div>
       </div>
