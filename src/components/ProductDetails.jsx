@@ -37,8 +37,8 @@ function ProductDetails() {
   return (
     <article className="flex justify-center">
       <div className="flex flex-col items-center w-full">
-        <div className="w-full flex justify-center">
-          <div className="m-3 sm:m-5 lg:max-w-6xl w-full">
+        <div className="w-full flex justify-center p-3 sm:p-5">
+          <div className="lg:max-w-6xl w-full">
             <h3 className="font-bold text-lg mb-3 sm:mb-5 sm:text-3xl">
               Product Details
             </h3>

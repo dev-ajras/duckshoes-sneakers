@@ -18,7 +18,7 @@ function CarouselBanner() {
   return (
     <div className="flex justify-center">
       <div
-        className="overflow-hidden max-w-6xl w-full m-3 sm:m-5"
+        className="overflow-hidden max-w-6xl w-full m-3 sm:m-5 rounded-md"
         ref={emblaRef}
       >
         <div className="flex">

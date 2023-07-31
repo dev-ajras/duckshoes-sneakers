@@ -93,7 +93,7 @@ function ProductsResults() {
                   <ProductCard product={product} key={product.id} />
                 ))}
             </div>
-            <div className="m-3 flex gap-3 justify-center items-center rounded-md sm:m-5 sm:gap-5">
+            <div className="m-3 mt-6 flex gap-3 justify-center items-center rounded-md sm:m-5 sm:mt-10 sm:gap-5">
               <button
                 className={`${
                   currentPage === 1 && 'opacity-0 pointer-events-none'
