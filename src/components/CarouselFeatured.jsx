@@ -20,7 +20,7 @@ function CarouselFeatured({ from, to, title }) {
   }
 
   return (
-    <article className="flex justify-center">
+    <article className="flex justify-center w-full">
       <div className="max-w-6xl m-3 sm:m-5 overflow-hidden pb-3">
         <h3 className="mb-3 font-bold text-xl sm:text-3xl sm:mb-5">{title}</h3>
         <div ref={emblaRef}>
