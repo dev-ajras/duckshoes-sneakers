@@ -60,9 +60,6 @@ function ProductsResults() {
     setFilteredProducts(filtered);
     window.scrollTo(0, 0);
   }, [q, products]);
-  currentPage === filteredProducts.length / productsPerPage;
-  console.log('filteredLength: ' + filteredProducts.length);
-  console.log('productsPerPage: ' + productsPerPage);
 
   return (
     <article className="flex justify-center">
