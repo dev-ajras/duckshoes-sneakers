@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
@@ -7,6 +7,7 @@ import { HiMenu } from 'react-icons/hi';
 import { TiTimes } from 'react-icons/ti';
 import NavbarMenu from './NavbarMenu';
 import CartMenu from './CartMenu';
+import { AppContext } from '../context/AppProvider';
 
 function Navbar() {
   const location = useLocation();
@@ -17,6 +18,9 @@ function Navbar() {
   const [navbarMenu, setNavbarMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
   const navigate = useNavigate();
+
+  const { cart } = useContext(AppContext);
+  console.log(cart.length);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -74,7 +78,12 @@ function Navbar() {
             {cartMenu ? (
               <TiTimes className="text-white" />
             ) : (
-              <RiShoppingBagLine className="text-white" />
+              <div className="relative">
+                <RiShoppingBagLine className="text-white" />
+                <span className="text-base font-bold absolute -bottom-2 -right-2 bg-primaryLight rounded-full w-6 h-6 flex justify-center items-center ">
+                  {cart.length}
+                </span>
+              </div>
             )}
           </button>
           <button onClick={handleMenu}>

@@ -26,8 +26,6 @@ function NavbarMenu({ navbarMenu, setNavbarMenu, setCartMenu }) {
     setCartMenu(false);
   };
 
-  console.log(navbarMenu);
-
   return (
     <div onBlur={() => setNavbarMenu(false)} tabIndex={0}>
       <motion.ul

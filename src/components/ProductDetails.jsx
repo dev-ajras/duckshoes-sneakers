@@ -9,10 +9,9 @@ import CarouselFeatured from './CarouselFeatured';
 import { BsShare } from 'react-icons/bs';
 import { MdFavoriteBorder } from 'react-icons/md';
 import { AiFillHeart } from 'react-icons/ai';
-import { BsFillCartCheckFill } from 'react-icons/bs';
 
 function ProductDetails() {
-  const { products, favorites, cartAdd, favoritesHandler } =
+  const { products, favorites, cart, cartAdd, favoritesHandler } =
     useContext(AppContext);
 
   const { productName } = useParams();
@@ -21,7 +20,6 @@ function ProductDetails() {
   const colorParam = searchParams.get('color');
   const [productFound, setProductFound] = useState({});
   const [randomNum, setRandomNum] = useState(20);
-  console.log(favorites.includes(235806));
 
   useEffect(() => {
     const productNameDetails = products.find((dat) => dat.name === productName);
@@ -42,22 +40,25 @@ function ProductDetails() {
 
   const addToCartRef = useRef(null);
 
-  const addToCartMessage = ({ closeToast, toastProps }) => (
-    <div>
-      Lorem, ipsum dolor. {toastProps.position}
-      <button>Retry</button>
-      <button onClick={closeToast}>Close</button>
-    </div>
-  );
-
-  const addedToCart = () => {
-    if (!toast.isActive(addToCartRef.current)) {
-      addToCartRef.current = toast.success('Added to Cart!', {
-        autoClose: 2000,
-        hideProgressBar: true,
-        pauseOnFocusLoss: false,
-        pauseOnHover: false,
-      });
+  const addedToCart = (productId) => {
+    if (cart.find((cartItem) => cartItem.id === productId)) {
+      if (!toast.isActive(addToCartRef.current)) {
+        addToCartRef.current = toast.info('Already added!', {
+          autoClose: 2000,
+          hideProgressBar: true,
+          pauseOnFocusLoss: false,
+          pauseOnHover: false,
+        });
+      }
+    } else {
+      if (!toast.isActive(addToCartRef.current)) {
+        addToCartRef.current = toast.success('Added to Cart!', {
+          autoClose: 2000,
+          hideProgressBar: true,
+          pauseOnFocusLoss: false,
+          pauseOnHover: false,
+        });
+      }
     }
   };
 
@@ -111,7 +112,7 @@ function ProductDetails() {
                   <button
                     className="box-border w-full bg-primaryDark text-white text-lg font-bold my-3 p-2 rounded-lg sm:text-3xl sm:my-5 sm:p-3"
                     onClick={() => {
-                      addedToCart(),
+                      addedToCart(productFound.id),
                         handleButton(productFound.id, colorParam, sizeParam);
                     }}
                   >
