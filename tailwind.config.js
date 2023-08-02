@@ -13,6 +13,9 @@ export default {
         grayDuck: '#4C4B4B',
         body: '#EFEFEF',
       },
+      fontFamily: {
+        outfit: ['Outfit'],
+      },
     },
   },
   plugins: [],
