@@ -72,136 +72,159 @@ function ProductDetails() {
             </h3>
             {productFound ? (
               <div className="p-3 sm:p-5 bg-white rounded-md ">
-                <div className="md:grid md:grid-cols-5 md:gap-20">
-                  <div className="relative clip-custom col-span-3">
+                <div className="md:flex md:gap-10">
+                  <div className="relative md:basis-2/3">
                     <img
                       className="bg-white h-56 sm:h-96 md:h-[550px] object-contain mx-auto -scale-x-100 -rotate-[60deg] [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
                       src={productFound.main_picture_url}
                       alt={productFound.nickname}
                     />
+                    <div>
+                      <h3 className="font-semibold sm:text-xl opacity-80">
+                        Details:
+                      </h3>
+                      <div>
+                        <div className="pt-3 sm:pt-5">
+                          <table className="border-collapse table-fixed w-full sm:text-lg">
+                            <tbody>
+                              <tr className="bg-body">
+                                <td className="w-1/2 p-2 rounded-tl-lg sm:p-3">
+                                  Brand
+                                </td>
+                                <td className="w-1/2 p-2 rounded-tr-lg sm:p-3">
+                                  {productFound.brand_name}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="w-1/2 p-2 sm:p-3">Nickname</td>
+                                <td className="w-1/2 p-2 sm:p-3">
+                                  {productFound.nickname}
+                                </td>
+                              </tr>
+                              <tr className="bg-body">
+                                <td className="w-1/2 p-2 sm:p-3">
+                                  Release year
+                                </td>
+                                <td className="w-1/2 p-2 sm:p-3">
+                                  {productFound.release_year}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="w-1/2 p-2 sm:p-3">Category</td>
+                                <td className="w-1/2 p-2 sm:p-3">
+                                  {productFound.category}
+                                </td>
+                              </tr>
+                              <tr className="bg-body">
+                                <td className="w-1/2 p-2 rounded-bl-lg sm:p-3">
+                                  Gender
+                                </td>
+                                <td className="w-1/2 p-2 rounded-br-lg sm:p-3">
+                                  {productFound.gender}
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div></div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="md:p-5 col-span-2">
-                    <h2 className="font-semibold text-lg line-clamp-1 leading-10 sm:text-2xl">
-                      {productFound.name}
-                    </h2>
-                    <p>
-                      {productFound.story_html &&
-                        productFound.story_html.substring(
-                          3,
-                          productFound.story_html.length - 5
-                        )}
-                    </p>
-                    <span className="font-semibold text-3xl sm:text-4xl">
-                      ${productFound.retail_price_cents / 100}
-                    </span>
-                    <h3 className="font-semibold mt-2  sm:mt-3 sm:text-lg">
-                      <span className="opacity-80">Size: </span>
-                      {sizeParam}
-                    </h3>
-                    <CarouselDetails
+                  <div className="md:basis-1/3  md:w-full">
+                    <div className="sticky top-32">
+                      <h4 className=" font-bold opacity-50">
+                        {productFound.brand_name}
+                      </h4>
+                      <h2 className="font-semibold text-lg line-clamp-2 sm:text-2xl">
+                        {productFound.name && productFound.name.toUpperCase()}
+                      </h2>
+                      <p className="my-3">
+                        {productFound.story_html &&
+                          productFound.story_html
+                            .substring(3, productFound.story_html.length - 5)
+                            .split('.', 1)}
+                        .
+                      </p>
+                      <span className="block my-3 font-semibold text-3xl sm:text-4xl">
+                        ${productFound.retail_price_cents / 100}
+                      </span>
+                      <div className="font-semibold mt-2 my-3 sm:text-lg">
+                        <span className="opacity-80">Size: </span>
+                        <select
+                          className="bg-body py-1 px-2 rounded-sm text-center"
+                          name="sizeDrop"
+                          id="sizeDrop"
+                        >
+                          {productFound.size_range &&
+                            productFound.size_range
+                              .sort(compare)
+                              .map((size, idx) => (
+                                <option key={idx} value={size}>
+                                  {size}
+                                </option>
+                              ))}
+                        </select>
+                      </div>
+
+                      {/* <CarouselDetails
                       arrayDetails={
                         productFound.size_range &&
                         productFound.size_range.sort(compare)
                       }
-                    />
-                    {productFound.color && (
-                      <div>
-                        <h3 className="font-semibold mt-2 sm:text-lg">
-                          <span className="opacity-80">Color: </span>
-                          {productFound.color}
-                        </h3>
-                        <div className="w-10 rounded-full ring ring-blue-500 ring-offset-2 my-3 sm:ring-offset-4">
-                          <img
-                            className="drop-shadow-md "
-                            src={`/assets/colors/${productFound.color}Color.svg`}
-                            alt={productFound.color}
-                          />
+                    /> */}
+                      {productFound.color && (
+                        <div>
+                          <h3 className="font-semibold mt-2 sm:text-lg">
+                            <span className="opacity-80">Color: </span>
+                            {productFound.color}
+                          </h3>
+                          <div className="w-10 rounded-full ring ring-blue-500 ring-offset-2 my-3 sm:ring-offset-4">
+                            <img
+                              className="drop-shadow-md "
+                              src={`/assets/colors/${productFound.color}Color.svg`}
+                              alt={productFound.color}
+                            />
+                          </div>
                         </div>
+                      )}
+                      <div className="flex">
+                        <button
+                          className="box-border w-full bg-primaryDark text-white text-lg font-bold my-3 p-2 sm:my-5 sm:p-3 rounded-sm"
+                          onClick={() => {
+                            addedToCart(productFound.id),
+                              handleButton(
+                                productFound.id,
+                                colorParam,
+                                sizeParam
+                              );
+                          }}
+                        >
+                          Add to cart
+                        </button>
+                        <ToastContainer className="mt-24" />
                       </div>
-                    )}
-                    <div className="flex">
-                      <button
-                        className="box-border w-full bg-primaryDark text-white text-lg font-bold my-3 p-2 sm:my-5 sm:p-3 rounded-sm"
-                        onClick={() => {
-                          addedToCart(productFound.id),
-                            handleButton(
-                              productFound.id,
-                              colorParam,
-                              sizeParam
-                            );
-                        }}
-                      >
-                        Add to cart
-                      </button>
-                      <ToastContainer className="mt-24" />
-                    </div>
-                    <div className="flex mb-3 gap-3 sm:gap-5 sm:mb-5">
-                      <button
-                        onClick={() => favoritesHandler(productFound.id)}
-                        className="w-full bg-primaryLight p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm"
-                      >
-                        {favorites.includes(productFound.id) ? (
-                          <AiFillHeart className="fill-red-600 sm:w-5 sm:h-5" />
-                        ) : (
-                          <MdFavoriteBorder className="sm:w-5 sm:h-5 " />
-                        )}
-                        <span className="opacity-80">Favorites</span>
-                      </button>
-                      <a
-                        href={`https://api.whatsapp.com/send?phone=541138596093&text=Hola! Quería consulta por las zapatillas ${productFound.name} | Talle: ${sizeParam} | Color: ${colorParam}`}
-                        className="w-full bg-primaryLight p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm"
-                      >
-                        <BsShare className="sm:w-5 sm:h-5" />
-                        <span className="opacity-80">Share</span>
-                      </a>
+                      <div className="flex mb-3 gap-3 sm:gap-5">
+                        <button
+                          onClick={() => favoritesHandler(productFound.id)}
+                          className="w-full bg-primaryLight p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm"
+                        >
+                          {favorites.includes(productFound.id) ? (
+                            <AiFillHeart className="fill-red-600 sm:w-5 sm:h-5" />
+                          ) : (
+                            <MdFavoriteBorder className="sm:w-5 sm:h-5 " />
+                          )}
+                          <span className="opacity-80">Favorites</span>
+                        </button>
+                        <a
+                          href={`https://api.whatsapp.com/send?phone=541138596093&text=Hola! Quería consulta por las zapatillas ${productFound.name} | Talle: ${sizeParam} | Color: ${colorParam}`}
+                          className="w-full bg-primaryLight p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm"
+                        >
+                          <BsShare className="sm:w-5 sm:h-5" />
+                          <span className="opacity-80">Share</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <h3 className="font-semibold sm:text-xl opacity-80">
-                  Details:
-                </h3>
-                <div className="md:grid grid-cols-2">
-                  <div className="pt-3 sm:pt-5">
-                    <table className="border-collapse table-fixed w-full sm:text-lg">
-                      <tbody>
-                        <tr className="bg-body">
-                          <td className="w-1/2 p-2 rounded-tl-lg sm:p-3">
-                            Brand
-                          </td>
-                          <td className="w-1/2 p-2 rounded-tr-lg sm:p-3">
-                            {productFound.brand_name}
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="w-1/2 p-2 sm:p-3">Nickname</td>
-                          <td className="w-1/2 p-2 sm:p-3">
-                            {productFound.nickname}
-                          </td>
-                        </tr>
-                        <tr className="bg-body">
-                          <td className="w-1/2 p-2 sm:p-3">Release year</td>
-                          <td className="w-1/2 p-2 sm:p-3">
-                            {productFound.release_year}
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="w-1/2 p-2 sm:p-3">Category</td>
-                          <td className="w-1/2 p-2 sm:p-3">
-                            {productFound.category}
-                          </td>
-                        </tr>
-                        <tr className="bg-body">
-                          <td className="w-1/2 p-2 rounded-bl-lg sm:p-3">
-                            Gender
-                          </td>
-                          <td className="w-1/2 p-2 rounded-br-lg sm:p-3">
-                            {productFound.gender}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div></div>
                 </div>
               </div>
             ) : (
