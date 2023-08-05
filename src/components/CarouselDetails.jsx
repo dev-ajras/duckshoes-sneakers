@@ -20,7 +20,7 @@ function CarouselDetails({ arrayDetails }) {
 
   return (
     <div className="flex justify-start w-full ">
-      <div className="pt-3 overflow-hidden " ref={emblaRef}>
+      <div className="pt-3 px-2 overflow-hidden " ref={emblaRef}>
         <ul className="flex gap-3 my-2 sm:gap-4 sm:my-3 ">
           {arrayDetails &&
             arrayDetails.map((detail, idx) => (

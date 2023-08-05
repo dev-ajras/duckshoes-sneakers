@@ -17,7 +17,7 @@ function Footer() {
             <h4 className="font-bold text-4xl sm:text-5xl lg:text-4xl">
               We are <span className="text-primaryDark">Duck Shoes</span>
             </h4>
-            <ul className="font-semibold flex gap-2 sm:gap-3 sm:text-2xl sm:mt-2 lg:text-xl">
+            <ul className="font-medium flex gap-2 sm:gap-3 sm:text-2xl sm:mt-2 lg:text-xl">
               <li>#Sneakers</li>
               <li>#Jordan</li>
               <li>#Nike</li>
@@ -75,7 +75,7 @@ function Footer() {
             </ul>
           </div>
           <div className="my-3 sm:my-5 lg:m-0">
-            <h4 className="text-lg font-semibold mb-1 sm:text-2xl">Company</h4>
+            <h4 className="text-lg font-medium mb-1 sm:text-2xl">Company</h4>
             <ul className="flex flex-col gap-1 opacity-80 sm:gap-2">
               <li className="flex items-center gap-2">
                 <HiLocationMarker className="text-xl sm:text-3xl lg:text-2xl" />
@@ -94,7 +94,7 @@ function Footer() {
             </ul>
           </div>
           <div className="my-3 sm:my-5 lg:m-0">
-            <h4 className="text-xl font-semibold mb-1 sm:text-2xl">Service</h4>
+            <h4 className="text-xl font-medium mb-1 sm:text-2xl">Service</h4>
             <ul className="flex flex-col gap-0.5 opacity-80 sm:text-2xl sm:gap-1 lg:text-xl">
               <li>
                 <Link to="/service/how-we-deliver">How we deliver</Link>
@@ -108,7 +108,7 @@ function Footer() {
             </ul>
           </div>
           <div className="my-3 sm:my-5 lg:m-0">
-            <h4 className="text-xl font-semibold mb-1 sm:text-2xl">Menu</h4>
+            <h4 className="text-xl font-medium mb-1 sm:text-2xl">Menu</h4>
             <ul className="flex flex-col gap-0.5 opacity-80 sm:text-2xl sm:gap-1 lg:text-xl">
               <li>
                 <Link to="/">Home</Link>

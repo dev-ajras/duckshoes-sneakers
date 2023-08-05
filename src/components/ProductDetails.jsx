@@ -72,18 +72,25 @@ function ProductDetails() {
             </h3>
             {productFound ? (
               <div className="p-3 sm:p-5 bg-white rounded-md ">
-                <div className="md:grid md:grid-cols-2 md:gap-20">
-                  <div className="relative clip-custom">
+                <div className="md:grid md:grid-cols-5 md:gap-20">
+                  <div className="relative clip-custom col-span-3">
                     <img
                       className="bg-white h-56 sm:h-96 md:h-[550px] object-contain mx-auto -scale-x-100 -rotate-[60deg] [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
                       src={productFound.main_picture_url}
                       alt={productFound.nickname}
                     />
                   </div>
-                  <div className="md:p-5">
+                  <div className="md:p-5 col-span-2">
                     <h2 className="font-semibold text-lg line-clamp-1 leading-10 sm:text-2xl">
                       {productFound.name}
                     </h2>
+                    <p>
+                      {productFound.story_html &&
+                        productFound.story_html.substring(
+                          3,
+                          productFound.story_html.length - 5
+                        )}
+                    </p>
                     <span className="font-semibold text-3xl sm:text-4xl">
                       ${productFound.retail_price_cents / 100}
                     </span>
@@ -114,7 +121,7 @@ function ProductDetails() {
                     )}
                     <div className="flex">
                       <button
-                        className="box-border w-full bg-primaryDark text-white text-lg font-bold my-3 p-2 rounded-lg sm:my-5 sm:p-3"
+                        className="box-border w-full bg-primaryDark text-white text-lg font-bold my-3 p-2 sm:my-5 sm:p-3 rounded-sm"
                         onClick={() => {
                           addedToCart(productFound.id),
                             handleButton(
@@ -131,7 +138,7 @@ function ProductDetails() {
                     <div className="flex mb-3 gap-3 sm:gap-5 sm:mb-5">
                       <button
                         onClick={() => favoritesHandler(productFound.id)}
-                        className="w-full bg-primaryLight p-1 rounded-md flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold"
+                        className="w-full bg-primaryLight p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm"
                       >
                         {favorites.includes(productFound.id) ? (
                           <AiFillHeart className="fill-red-600 sm:w-5 sm:h-5" />
@@ -142,7 +149,7 @@ function ProductDetails() {
                       </button>
                       <a
                         href={`https://api.whatsapp.com/send?phone=541138596093&text=Hola! Quería consulta por las zapatillas ${productFound.name} | Talle: ${sizeParam} | Color: ${colorParam}`}
-                        className="w-full bg-primaryLight p-1 rounded-md flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold"
+                        className="w-full bg-primaryLight p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm"
                       >
                         <BsShare className="sm:w-5 sm:h-5" />
                         <span className="opacity-80">Share</span>

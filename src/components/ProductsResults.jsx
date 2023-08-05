@@ -58,13 +58,13 @@ function ProductsResults() {
         )
       : products;
     setFilteredProducts(filtered);
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   }, [q, products]);
 
   return (
     <article className="flex justify-center">
       <div className="m-3 sm:m-5 lg:max-w-6xl">
-        <h3 className="self-start mb-3 sm:mb-5 font-bold text-lg sm:text-3xl">
+        <h3 className="self-start mb-3 sm:mb-5 font-bold text-lg sm:text-2xl">
           {q ? `Results for "${q}" ` : 'Products'}
         </h3>
         {filteredProducts.length === 0 ? (
@@ -94,12 +94,12 @@ function ProductsResults() {
               <button
                 className={`${
                   currentPage === 1 && 'opacity-0 pointer-events-none'
-                } p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:p-3 sm:text-3xl`}
+                } p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:text-3xl`}
                 onClick={() => handlePrevPage(1)}
               >
                 <MdOutlineNavigateBefore />
               </button>
-              <div className="flex justify-center p-2 text-xl bg-primaryDark rounded-lg text-white font-bold w-16 sm:p-3 sm:text-3xl sm:w-20">
+              <div className="flex justify-center p-2 text-xl bg-primaryDark rounded-lg text-white font-bold w-16 sm:p-3 sm:text-2xl sm:w-20">
                 {currentPage}/
                 {Math.ceil(filteredProducts.length / productsPerPage)}
               </div>
@@ -108,7 +108,7 @@ function ProductsResults() {
                   currentPage ===
                     Math.ceil(filteredProducts.length / productsPerPage) &&
                   'opacity-0 pointer-events-none'
-                } p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:p-3 sm:text-3xl`}
+                } p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:text-3xl`}
                 onClick={() => handleNextPage(1)}
               >
                 <MdOutlineNavigateNext />

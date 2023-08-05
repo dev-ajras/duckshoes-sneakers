@@ -18,7 +18,7 @@ function Cart() {
   return (
     <section className="flex justify-center">
       <div className="max-w-6xl w-full m-3 sm:m-5">
-        <h3 className="font-bold text-lg mb-3 sm:mb-5 sm:text-3xl">Cart</h3>
+        <h3 className="font-bold text-lg mb-3 sm:mb-5 sm:text-2xl">Cart</h3>
         <div className="bg-white rounded-md">
           {filteredProducts.map((filteredProduct) => (
             <div key={filteredProduct.id}>
@@ -30,10 +30,10 @@ function Cart() {
                   />
                 </div>
                 <div className="w-full">
-                  <h4 className="font-semibold text-lg line-clamp-2 leading-6 sm:text-3xl sm:leading-10">
+                  <h4 className="font-semibold text-lg line-clamp-2 leading-6 sm:text-2xl sm:leading-10">
                     {filteredProduct.name}
                   </h4>
-                  <div className="flex gap-2 font-semibold text-sm my-1 sm:gap-3 sm:text-xl">
+                  <div className="flex gap-2 font-semibold text-sm my-1 sm:gap-3 sm:text-lg">
                     <p>
                       <span className="opacity-70">Color: </span>
                       <span>{filteredProduct.color}</span>

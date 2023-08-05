@@ -29,11 +29,11 @@ function ProductCard({ product }) {
     >
       <img src={product.grid_picture_url} alt={product.nickname} />
       <div className="flex justify-between mt-1 items-center text-xl">
-        <strong className="sm:text-3xl sm:mb-2">
+        <strong className="sm:text-2xl sm:mb-2">
           ${product.retail_price_cents / 100}
         </strong>
       </div>
-      <h3 className="line-clamp-2 h-12 sm:text-xl sm:h-14">{product.name}</h3>
+      <h3 className="line-clamp-2 h-12 sm:text-lg sm:h-14">{product.name}</h3>
       <button
         className="absolute top-4 right-4 sm:top-9 sm:right-9 md:top-5 md:right-5"
         onClick={(e) => handleFavorite(e, product.id)}
