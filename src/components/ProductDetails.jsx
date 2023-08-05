@@ -67,126 +67,134 @@ function ProductDetails() {
       <div className="flex flex-col items-center w-full">
         <div className="w-full flex justify-center p-3 sm:p-5">
           <div className="lg:max-w-6xl w-full">
-            <h3 className="font-bold text-lg mb-3 sm:mb-5 sm:text-3xl">
+            <h3 className="font-bold text-lg mb-3 sm:mb-5 sm:text-2xl">
               Product Details
             </h3>
             {productFound ? (
               <div className="p-3 sm:p-5 bg-white rounded-md ">
-                <h2 className="font-semibold text-lg line-clamp-1 leading-10 bg-white sm:text-3xl">
-                  {productFound.name}
-                </h2>
-                <img
-                  className="bg-white h-72 sm:h-96 md:h-[550px] object-contain mx-auto "
-                  src={productFound.main_picture_url}
-                  alt={productFound.nickname}
-                />
-                <span className="font-bold text-3xl bg-white sm:text-5xl">
-                  ${productFound.retail_price_cents / 100}
-                </span>
-                <h3 className="font-semibold bg-white mt-2  sm:mt-3 sm:text-2xl">
-                  <span className="opacity-80">Size: </span>
-                  {sizeParam}
-                </h3>
-                <CarouselDetails
-                  arrayDetails={
-                    productFound.size_range &&
-                    productFound.size_range.sort(compare)
-                  }
-                />
-                {productFound.color && (
-                  <div>
-                    <h3 className="font-semibold bg-white mt-2 sm:text-2xl">
-                      <span className="opacity-80">Color: </span>
-                      {productFound.color}
+                <div className="md:grid md:grid-cols-2 md:gap-20">
+                  <div className="relative clip-custom">
+                    <img
+                      className="bg-white h-56 sm:h-96 md:h-[550px] object-contain mx-auto -scale-x-100 -rotate-[60deg] [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
+                      src={productFound.main_picture_url}
+                      alt={productFound.nickname}
+                    />
+                  </div>
+                  <div className="md:p-5">
+                    <h2 className="font-semibold text-lg line-clamp-1 leading-10 sm:text-2xl">
+                      {productFound.name}
+                    </h2>
+                    <span className="font-semibold text-3xl sm:text-4xl">
+                      ${productFound.retail_price_cents / 100}
+                    </span>
+                    <h3 className="font-semibold mt-2  sm:mt-3 sm:text-lg">
+                      <span className="opacity-80">Size: </span>
+                      {sizeParam}
                     </h3>
-                    <div className="w-10 rounded-full ring ring-blue-500 ring-offset-2 my-3 sm:my-5 sm:w-16 sm:ring-offset-4">
-                      <img
-                        className="drop-shadow-md "
-                        src={`/assets/colors/${productFound.color}Color.svg`}
-                        alt={productFound.color}
-                      />
+                    <CarouselDetails
+                      arrayDetails={
+                        productFound.size_range &&
+                        productFound.size_range.sort(compare)
+                      }
+                    />
+                    {productFound.color && (
+                      <div>
+                        <h3 className="font-semibold mt-2 sm:text-lg">
+                          <span className="opacity-80">Color: </span>
+                          {productFound.color}
+                        </h3>
+                        <div className="w-10 rounded-full ring ring-blue-500 ring-offset-2 my-3 sm:ring-offset-4">
+                          <img
+                            className="drop-shadow-md "
+                            src={`/assets/colors/${productFound.color}Color.svg`}
+                            alt={productFound.color}
+                          />
+                        </div>
+                      </div>
+                    )}
+                    <div className="flex">
+                      <button
+                        className="box-border w-full bg-primaryDark text-white text-lg font-bold my-3 p-2 rounded-lg sm:my-5 sm:p-3"
+                        onClick={() => {
+                          addedToCart(productFound.id),
+                            handleButton(
+                              productFound.id,
+                              colorParam,
+                              sizeParam
+                            );
+                        }}
+                      >
+                        Add to cart
+                      </button>
+                      <ToastContainer className="mt-24" />
+                    </div>
+                    <div className="flex mb-3 gap-3 sm:gap-5 sm:mb-5">
+                      <button
+                        onClick={() => favoritesHandler(productFound.id)}
+                        className="w-full bg-primaryLight p-1 rounded-md flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold"
+                      >
+                        {favorites.includes(productFound.id) ? (
+                          <AiFillHeart className="fill-red-600 sm:w-5 sm:h-5" />
+                        ) : (
+                          <MdFavoriteBorder className="sm:w-5 sm:h-5 " />
+                        )}
+                        <span className="opacity-80">Favorites</span>
+                      </button>
+                      <a
+                        href={`https://api.whatsapp.com/send?phone=541138596093&text=Hola! Quería consulta por las zapatillas ${productFound.name} | Talle: ${sizeParam} | Color: ${colorParam}`}
+                        className="w-full bg-primaryLight p-1 rounded-md flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold"
+                      >
+                        <BsShare className="sm:w-5 sm:h-5" />
+                        <span className="opacity-80">Share</span>
+                      </a>
                     </div>
                   </div>
-                )}
-                <div className="flex">
-                  <button
-                    className="box-border w-full bg-primaryDark text-white text-lg font-bold my-3 p-2 rounded-lg sm:text-3xl sm:my-5 sm:p-3"
-                    onClick={() => {
-                      addedToCart(productFound.id),
-                        handleButton(productFound.id, colorParam, sizeParam);
-                    }}
-                  >
-                    Add to cart
-                  </button>
-                  <ToastContainer className="mt-24" />
                 </div>
-                <div className="flex mb-3 gap-3 sm:gap-5 sm:mb-5">
-                  <button
-                    onClick={() => favoritesHandler(productFound.id)}
-                    className="w-full bg-primaryLight p-1 rounded-md flex justify-center items-center gap-2 sm:p-2 sm:gap-3 sm:text-2xl"
-                  >
-                    {favorites.includes(productFound.id) ? (
-                      <>
-                        <AiFillHeart className="fill-red-600" />
-                        Added to Favorites
-                      </>
-                    ) : (
-                      <>
-                        <MdFavoriteBorder />
-                        Add to favorites
-                      </>
-                    )}
-                  </button>
-                  <a
-                    href={`https://api.whatsapp.com/send?phone=541138596093&text=Hola! Quería consulta por las zapatillas ${productFound.name} | Talle: ${sizeParam} | Color: ${colorParam}`}
-                    className="w-full bg-primaryLight p-1 rounded-md flex justify-center items-center gap-2 sm:p-2 sm:gap-3 sm:text-2xl"
-                  >
-                    <BsShare />
-                    Share
-                  </a>
-                </div>
-                <h3 className="font-semibold sm:text-2xl opacity-80">
+                <h3 className="font-semibold sm:text-xl opacity-80">
                   Details:
                 </h3>
-                <div className="py-3 sm:py-5">
-                  <table className="border-collapse table-fixed w-full sm:text-2xl">
-                    <tbody>
-                      <tr className="bg-body">
-                        <td className="w-1/2 p-2 rounded-tl-lg sm:p-3">
-                          Brand
-                        </td>
-                        <td className="w-1/2 p-2 rounded-tr-lg text-right sm:p-3">
-                          {productFound.brand_name}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="w-1/2 p-2 sm:p-3">Nickname</td>
-                        <td className="w-1/2 p-2 text-right sm:p-3">
-                          {productFound.nickname}
-                        </td>
-                      </tr>
-                      <tr className="bg-body">
-                        <td className="w-1/2 p-2 sm:p-3">Release year</td>
-                        <td className="w-1/2 p-2 text-right sm:p-3">
-                          {productFound.release_year}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="w-1/2 p-2 sm:p-3">Category</td>
-                        <td className="w-1/2 p-2 text-right sm:p-3">
-                          {productFound.category}
-                        </td>
-                      </tr>
-                      <tr className="bg-body">
-                        <td className="w-1/2 p-2 rounded-bl-lg sm:p-3">
-                          Gender
-                        </td>
-                        <td className="w-1/2 p-2 rounded-br-lg text-right sm:p-3">
-                          {productFound.gender}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <div className="md:grid grid-cols-2">
+                  <div className="pt-3 sm:pt-5">
+                    <table className="border-collapse table-fixed w-full sm:text-lg">
+                      <tbody>
+                        <tr className="bg-body">
+                          <td className="w-1/2 p-2 rounded-tl-lg sm:p-3">
+                            Brand
+                          </td>
+                          <td className="w-1/2 p-2 rounded-tr-lg sm:p-3">
+                            {productFound.brand_name}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="w-1/2 p-2 sm:p-3">Nickname</td>
+                          <td className="w-1/2 p-2 sm:p-3">
+                            {productFound.nickname}
+                          </td>
+                        </tr>
+                        <tr className="bg-body">
+                          <td className="w-1/2 p-2 sm:p-3">Release year</td>
+                          <td className="w-1/2 p-2 sm:p-3">
+                            {productFound.release_year}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="w-1/2 p-2 sm:p-3">Category</td>
+                          <td className="w-1/2 p-2 sm:p-3">
+                            {productFound.category}
+                          </td>
+                        </tr>
+                        <tr className="bg-body">
+                          <td className="w-1/2 p-2 rounded-bl-lg sm:p-3">
+                            Gender
+                          </td>
+                          <td className="w-1/2 p-2 rounded-br-lg sm:p-3">
+                            {productFound.gender}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div></div>
                 </div>
               </div>
             ) : (
@@ -196,7 +204,7 @@ function ProductDetails() {
         </div>
 
         <CarouselFeatured
-          title={'Recommended'}
+          title={'Related Products'}
           from={randomNum}
           to={randomNum + 10}
         />

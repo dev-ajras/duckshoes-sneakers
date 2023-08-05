@@ -10,6 +10,8 @@ function CartMenu({ cartMenu, setCartMenu }) {
     cart.some((cartItem) => cartItem.id === product.id)
   );
 
+  console.log(filteredProducts);
+
   const cartMenuBgVariants = {
     active: { opacity: 0.4 },
     inactive: { opacity: 0 },
@@ -32,7 +34,7 @@ function CartMenu({ cartMenu, setCartMenu }) {
         animate={!cartMenu ? 'inactive' : 'active'}
         variants={cartMenuVariants}
         transition={{ duration: 0.3 }}
-        className="absolute top-14 right-0 z-40 w-3/4 h-screen drop-shadow-md p-2 bg-white sm:p-3 md:top-24 md:w-1/2 lg:w-96"
+        className="overflow-y-auto scroll-pb-5 absolute top-14 right-0 z-40 w-3/4 h-screen drop-shadow-md p-2 bg-white sm:p-3 md:top-24 md:w-1/2 lg:w-96"
       >
         <h3 className="font-bold text-xl p-1 sm:p-2 sm:text-3xl">Cart</h3>
         {cart.length === 0 ? (

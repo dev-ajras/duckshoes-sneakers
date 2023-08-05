@@ -20,7 +20,7 @@ function Navbar() {
   const navigate = useNavigate();
 
   const { cart } = useContext(AppContext);
-  console.log(cart.length);
+  console.log(cart);
 
   const handleSubmit = (e) => {
     e.preventDefault();

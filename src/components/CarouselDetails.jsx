@@ -20,20 +20,20 @@ function CarouselDetails({ arrayDetails }) {
 
   return (
     <div className="flex justify-start w-full ">
-      <div className="p-3 sm:p-5 overflow-hidden " ref={emblaRef}>
-        <ul className="flex gap-3 my-2 sm:gap-5 sm:my-3 ">
+      <div className="pt-3 overflow-hidden " ref={emblaRef}>
+        <ul className="flex gap-3 my-2 sm:gap-4 sm:my-3 ">
           {arrayDetails &&
             arrayDetails.map((detail, idx) => (
               <li
                 className={
                   detail == sizeParam
-                    ? 'p-3 bg-white border-black border ring ring-blue-500 ring-offset-2 rounded-md border-opacity-30 sm:p-5 sm:text-2xl sm:ring-offset-4 cursor-pointer'
-                    : 'p-3 bg-white border-black border rounded-md border-opacity-30 sm:p-5 sm:text-2xl cursor-pointer'
+                    ? 'py-2 px-3 bg-white border-black border ring ring-blue-500 ring-offset-2 rounded-md border-opacity-30  sm:text-lg sm:ring-offset-4 cursor-pointer w-20 h-10'
+                    : 'py-2 px-3 bg-white border-black border rounded-md border-opacity-30  sm:text-lg cursor-pointer w-20 h-10'
                 }
                 key={idx}
                 onClick={() => handleSize(detail)}
               >
-                {detail}
+                <p> {detail}</p>
               </li>
             ))}
         </ul>
