@@ -72,14 +72,14 @@ function ProductDetails() {
             </h3>
             {productFound ? (
               <div className="p-3 sm:p-5 bg-white rounded-md ">
-                <div className="md:flex md:gap-10">
+                <div className="flex flex-col md:flex-row md:gap-10">
                   <div className="relative md:basis-2/3">
                     <img
-                      className="bg-white h-56 sm:h-96 md:h-[550px] object-contain mx-auto -scale-x-100 -rotate-[60deg] [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
+                      className="bg-white ml-9 h-56 sm:h-96 md:h-[550px] object-contain mx-auto -scale-x-100 -rotate-[60deg] [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
                       src={productFound.main_picture_url}
                       alt={productFound.nickname}
                     />
-                    <div>
+                    <div className="hidden md:block">
                       <h3 className="font-semibold sm:text-xl opacity-80">
                         Details:
                       </h3>
@@ -126,13 +126,12 @@ function ProductDetails() {
                             </tbody>
                           </table>
                         </div>
-                        <div></div>
                       </div>
                     </div>
                   </div>
                   <div className="md:basis-1/3  md:w-full">
-                    <div className="sticky top-32">
-                      <h4 className=" font-bold opacity-50">
+                    <div className="md:sticky md:top-28 my-3">
+                      <h4 className=" font-bold opacity-40">
                         {productFound.brand_name}
                       </h4>
                       <h2 className="font-semibold text-lg line-clamp-2 sm:text-2xl">
@@ -165,7 +164,6 @@ function ProductDetails() {
                               ))}
                         </select>
                       </div>
-
                       {/* <CarouselDetails
                       arrayDetails={
                         productFound.size_range &&
@@ -187,6 +185,7 @@ function ProductDetails() {
                           </div>
                         </div>
                       )}
+
                       <div className="flex">
                         <button
                           className="box-border w-full bg-primaryDark text-white text-lg font-bold my-3 p-2 sm:my-5 sm:p-3 rounded-sm"
@@ -223,6 +222,55 @@ function ProductDetails() {
                           <span className="opacity-80">Share</span>
                         </a>
                       </div>
+                      <div className="md:hidden">
+                        <h3 className="font-semibold sm:text-xl opacity-80">
+                          Details:
+                        </h3>
+                        <div>
+                          <div className="pt-3 sm:pt-5">
+                            <table className="border-collapse table-fixed w-full sm:text-lg">
+                              <tbody>
+                                <tr className="bg-body">
+                                  <td className="w-1/2 p-2 rounded-tl-lg sm:p-3">
+                                    Brand
+                                  </td>
+                                  <td className="w-1/2 p-2 rounded-tr-lg sm:p-3">
+                                    {productFound.brand_name}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td className="w-1/2 p-2 sm:p-3">Nickname</td>
+                                  <td className="w-1/2 p-2 sm:p-3">
+                                    {productFound.nickname}
+                                  </td>
+                                </tr>
+                                <tr className="bg-body">
+                                  <td className="w-1/2 p-2 sm:p-3">
+                                    Release year
+                                  </td>
+                                  <td className="w-1/2 p-2 sm:p-3">
+                                    {productFound.release_year}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td className="w-1/2 p-2 sm:p-3">Category</td>
+                                  <td className="w-1/2 p-2 sm:p-3">
+                                    {productFound.category}
+                                  </td>
+                                </tr>
+                                <tr className="bg-body">
+                                  <td className="w-1/2 p-2 rounded-bl-lg sm:p-3">
+                                    Gender
+                                  </td>
+                                  <td className="w-1/2 p-2 rounded-br-lg sm:p-3">
+                                    {productFound.gender}
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -232,7 +280,6 @@ function ProductDetails() {
             )}
           </div>
         </div>
-
         <CarouselFeatured
           title={'Related Products'}
           from={randomNum}
