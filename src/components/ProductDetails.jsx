@@ -29,15 +29,23 @@ function ProductDetails() {
   useEffect(() => {
     switch (principalImage) {
       case 1:
-        setPrincipalImageCss('scale-x-100 0deg');
+        setPrincipalImageCss(
+          'scale-x-100 0deg pl-14 sm:pl-16 md:-translate-y-10'
+        );
         break;
       case 2:
-        setPrincipalImageCss('scale-x-100 rotate-[25deg] mr-2');
+        setPrincipalImageCss(
+          'scale-x-100 rotate-[25deg] pl-14 sm:pl-16 md:mr-2 md:-translate-y-10 '
+        );
         break;
       case 3:
-        setPrincipalImageCss('-scale-x-100 -rotate-[60deg] ml-9');
+        setPrincipalImageCss(
+          '-scale-x-100 -rotate-[60deg] pl-14 sm:pl-16 md:ml-9 md:-translate-y-10 '
+        );
       default:
-        setPrincipalImageCss('-scale-x-100 -rotate-[60deg] ml-9');
+        setPrincipalImageCss(
+          '-scale-x-100 -rotate-[60deg] pl-14 sm:pl-16 md:ml-9 md:-translate-y-10 '
+        );
         break;
     }
   }, [principalImage]);
@@ -94,7 +102,7 @@ function ProductDetails() {
               <div className="p-3 sm:p-5 bg-white rounded-md relative">
                 <div className="absolute top-3 left-3 sm:top-5 sm:left-5 flex flex-col gap-3 sm:gap-5 z-10">
                   <button
-                    className={`rounded-sm ${
+                    className={`rounded-sm bg-white ${
                       principalImage == 1
                         ? 'ring-blue-500 ring-2'
                         : 'ring-gray-500 ring-1 '
@@ -103,13 +111,13 @@ function ProductDetails() {
                     onClick={() => setPrincipalImage(1)}
                   >
                     <img
-                      className="bg-white h-16 object-contain mx-auto [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
+                      className="bg-white h-12 sm:h-16 object-contain mx-auto [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
                       src={productFound.main_picture_url}
                       alt={productFound.nickname}
                     />
                   </button>
                   <button
-                    className={`rounded-sm ${
+                    className={`rounded-sm bg-white ${
                       principalImage == 2
                         ? 'ring-blue-500 ring-2'
                         : 'ring-gray-500 ring-1 '
@@ -118,13 +126,13 @@ function ProductDetails() {
                     onClick={() => setPrincipalImage(2)}
                   >
                     <img
-                      className="bg-white h-16  object-contain mx-auto rotate-[25deg] [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
+                      className="bg-white h-12 sm:h-16  object-contain mx-auto rotate-[25deg] [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
                       src={productFound.main_picture_url}
                       alt={productFound.nickname}
                     />
                   </button>
                   <button
-                    className={`rounded-sm pr-2 ${
+                    className={`rounded-sm pr-2 bg-white ${
                       principalImage == 3
                         ? 'ring-blue-500 ring-2'
                         : 'ring-gray-500 ring-1 '
@@ -133,7 +141,7 @@ function ProductDetails() {
                     onClick={() => setPrincipalImage(3)}
                   >
                     <img
-                      className="bg-white h-16 object-contain mx-auto -scale-x-100 -rotate-[60deg] [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
+                      className="bg-white h-12 sm:h-16 object-contain mx-auto -scale-x-100 -rotate-[60deg] [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
                       src={productFound.main_picture_url}
                       alt={productFound.nickname}
                     />
