@@ -10,8 +10,6 @@ function CartMenu({ cartMenu, setCartMenu }) {
     cart.some((cartItem) => cartItem.id === product.id)
   );
 
-  console.log(filteredProducts);
-
   const cartMenuBgVariants = {
     active: { opacity: 0.4 },
     inactive: { opacity: 0 },

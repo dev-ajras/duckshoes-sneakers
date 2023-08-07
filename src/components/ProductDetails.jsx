@@ -19,7 +19,28 @@ function ProductDetails() {
   const sizeParam = searchParams.get('size');
   const colorParam = searchParams.get('color');
   const [productFound, setProductFound] = useState({});
-  const [randomNum, setRandomNum] = useState(20);
+
+  const [principalImage, setPrincipalImage] = useState(3);
+
+  const [principalImageCss, setPrincipalImageCss] = useState('');
+
+  console.log(principalImage);
+
+  useEffect(() => {
+    switch (principalImage) {
+      case 1:
+        setPrincipalImageCss('scale-x-100 0deg');
+        break;
+      case 2:
+        setPrincipalImageCss('scale-x-100 rotate-[25deg] mr-2');
+        break;
+      case 3:
+        setPrincipalImageCss('-scale-x-100 -rotate-[60deg] ml-9');
+      default:
+        setPrincipalImageCss('-scale-x-100 -rotate-[60deg] ml-9');
+        break;
+    }
+  }, [principalImage]);
 
   useEffect(() => {
     const productNameDetails = products.find((dat) => dat.name === productName);
@@ -34,9 +55,8 @@ function ProductDetails() {
     return a - b;
   }
 
-  useEffect(() => {
-    setRandomNum(Math.floor(Math.random() * (70 - 20 + 1)) + 20);
-  }, []);
+  const startIndex = productFound && Math.floor(productFound.id / 7857);
+  // 550.000 -  7857
 
   const addToCartRef = useRef(null);
 
@@ -71,11 +91,58 @@ function ProductDetails() {
               Product Details
             </h3>
             {productFound ? (
-              <div className="p-3 sm:p-5 bg-white rounded-md ">
+              <div className="p-3 sm:p-5 bg-white rounded-md relative">
+                <div className="absolute top-3 left-3 sm:top-5 sm:left-5 flex flex-col gap-3 sm:gap-5 z-10">
+                  <button
+                    className={`rounded-sm ${
+                      principalImage == 1
+                        ? 'ring-blue-500 ring-2'
+                        : 'ring-gray-500 ring-1 '
+                    }`}
+                    onMouseEnter={() => setPrincipalImage(1)}
+                    onClick={() => setPrincipalImage(1)}
+                  >
+                    <img
+                      className="bg-white h-16 object-contain mx-auto [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
+                      src={productFound.main_picture_url}
+                      alt={productFound.nickname}
+                    />
+                  </button>
+                  <button
+                    className={`rounded-sm ${
+                      principalImage == 2
+                        ? 'ring-blue-500 ring-2'
+                        : 'ring-gray-500 ring-1 '
+                    }`}
+                    onMouseEnter={() => setPrincipalImage(2)}
+                    onClick={() => setPrincipalImage(2)}
+                  >
+                    <img
+                      className="bg-white h-16  object-contain mx-auto rotate-[25deg] [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
+                      src={productFound.main_picture_url}
+                      alt={productFound.nickname}
+                    />
+                  </button>
+                  <button
+                    className={`rounded-sm pr-2 ${
+                      principalImage == 3
+                        ? 'ring-blue-500 ring-2'
+                        : 'ring-gray-500 ring-1 '
+                    }`}
+                    onMouseEnter={() => setPrincipalImage(3)}
+                    onClick={() => setPrincipalImage(3)}
+                  >
+                    <img
+                      className="bg-white h-16 object-contain mx-auto -scale-x-100 -rotate-[60deg] [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
+                      src={productFound.main_picture_url}
+                      alt={productFound.nickname}
+                    />
+                  </button>
+                </div>
                 <div className="flex flex-col md:flex-row md:gap-10">
                   <div className="relative md:basis-2/3">
                     <img
-                      className="bg-white ml-9 h-56 sm:h-96 md:h-[550px] object-contain mx-auto -scale-x-100 -rotate-[60deg] [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
+                      className={`bg-white h-56 sm:h-96 md:h-[550px] object-contain mx-auto -scale-x-100 ${principalImageCss} [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image`}
                       src={productFound.main_picture_url}
                       alt={productFound.nickname}
                     />
@@ -130,7 +197,7 @@ function ProductDetails() {
                     </div>
                   </div>
                   <div className="md:basis-1/3  md:w-full">
-                    <div className="md:sticky md:top-28 my-3">
+                    <div className="md:sticky md:top-28 my-3 md:mb-0">
                       <h4 className=" font-bold opacity-40">
                         {productFound.brand_name}
                       </h4>
@@ -282,8 +349,8 @@ function ProductDetails() {
         </div>
         <CarouselFeatured
           title={'Related Products'}
-          from={randomNum}
-          to={randomNum + 10}
+          from={startIndex}
+          to={startIndex + 10}
         />
       </div>
     </article>
