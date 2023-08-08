@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 
 import { motion } from 'framer-motion';
 import { AppContext } from '../context/AppProvider';
+import AddRemoveButtons from './AddRemoveButtons';
 
 function CartMenu({ cartMenu, setCartMenu }) {
   const { products, cart, cartRemove, cartAdd } = useContext(AppContext);
@@ -76,19 +77,7 @@ function CartMenu({ cartMenu, setCartMenu }) {
                     <div className="font-bold text-xl mt-1 mb-3 sm:text-2xl sm:mt-2 sm:mb-5">
                       <span>${filteredProduct.retail_price_cents / 100}</span>
                     </div>
-                    <div className="flex justify-evenly">
-                      <div className="flex gap-3 px-3 py-1 outline outline-2 outline-body bg-white rounded-md font-semibold sm:gap-5 sm:px-5 sm:py-2 sm:text-xl">
-                        <span>-</span>
-                        <span>1</span>
-                        <span>+</span>
-                      </div>
-                      <button
-                        onClick={(e) => handleRemove(e, filteredProduct.id)}
-                        className="flex items-center gap-3 px-3 py-1 outline outline-2 outline-body rounded-md bg-red-500 text-white sm:gap-5 sm:px-5 sm:text-xl"
-                      >
-                        Delete
-                      </button>
-                    </div>
+                    <AddRemoveButtons filteredProductId={filteredProduct.id} />
                   </div>
                 </div>
                 <hr />

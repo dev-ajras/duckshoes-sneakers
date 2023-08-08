@@ -33,7 +33,10 @@ function AppProvider({ children }) {
     } else {
       const updatedCart = cart.map((cartObj) =>
         cartObj.id === toCart.id
-          ? { ...cartObj, quantity: cartObj.quantity + 1 }
+          ? {
+              ...cartObj,
+              quantity: cartObj.quantity + 1,
+            }
           : cartObj
       );
       setCart(updatedCart);
@@ -41,6 +44,24 @@ function AppProvider({ children }) {
   };
 
   const cartRemove = (toCart) => {
+    const foundQ = cart.find((cartOld) => cartOld.id === toCart.id).quantity;
+    if (foundQ === 1) {
+      const newCart = cart.filter((oldCart) => oldCart.id !== toCart.id);
+      setCart(newCart);
+    } else {
+      const updatedCart = cart.map((cartObj) =>
+        cartObj.id === toCart.id
+          ? {
+              ...cartObj,
+              quantity: cartObj.quantity - 1,
+            }
+          : cartObj
+      );
+      setCart(updatedCart);
+    }
+  };
+
+  const cartRemoveAll = (toCart) => {
     const newCart = cart.filter((oldCart) => oldCart.id !== toCart.id);
     setCart(newCart);
   };
@@ -74,6 +95,7 @@ function AppProvider({ children }) {
     favoritesHandler,
     cartAdd,
     cartRemove,
+    cartRemoveAll,
   };
 
   return (

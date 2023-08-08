@@ -1,9 +1,10 @@
 import { useEffect, useState, useContext, useRef } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
-import CarouselDetails from './CarouselDetails';
 import { AppContext } from '../context/AppProvider';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import CarouselFeatured from './CarouselFeatured';
 import { BsShare } from 'react-icons/bs';
@@ -30,12 +31,12 @@ function ProductDetails() {
         setPrincipalImageCss('scale-x-100 0deg');
         break;
       case 2:
-        setPrincipalImageCss('scale-x-100 rotate-[25deg]');
+        setPrincipalImageCss('scale-x-100 rotate-[25deg] translate-x-5');
         break;
       case 3:
-        setPrincipalImageCss('-scale-x-100 -rotate-[60deg]');
+        setPrincipalImageCss('-scale-x-100 -rotate-[60deg] translate-x-5');
       default:
-        setPrincipalImageCss('-scale-x-100 -rotate-[60deg] -translate-x-5');
+        setPrincipalImageCss('-scale-x-100 -rotate-[60deg] translate-x-5');
         break;
     }
   }, [principalImage]);
@@ -62,7 +63,7 @@ function ProductDetails() {
     if (cart.find((cartItem) => cartItem.id === productId)) {
       if (!toast.isActive(addToCartRef.current)) {
         addToCartRef.current = toast.info('Already added!', {
-          autoClose: 2000,
+          autoClose: 1000,
           hideProgressBar: true,
           pauseOnFocusLoss: false,
           pauseOnHover: false,
@@ -71,7 +72,7 @@ function ProductDetails() {
     } else {
       if (!toast.isActive(addToCartRef.current)) {
         addToCartRef.current = toast.success('Added to Cart!', {
-          autoClose: 2000,
+          autoClose: 1000,
           hideProgressBar: true,
           pauseOnFocusLoss: false,
           pauseOnHover: false,
@@ -80,9 +81,15 @@ function ProductDetails() {
     }
   };
 
-  const handleSelect = (e) => {
-    console.log(e.target.value);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const handleSize = (e) => {
+    const size = e.target.value;
+    navigate(`${pathname}?color=${colorParam}&size=${size}`, { replace: true });
   };
+
+  console.log(cart);
 
   return (
     <article className="flex justify-center">
@@ -142,9 +149,9 @@ function ProductDetails() {
                   </button>
                 </div>
                 <div className="flex flex-col md:flex-row md:gap-10">
-                  <div className="bg-left relative md:basis-2/3">
+                  <div className="bg-left relative md:basis-2/3 -translate-y-8 md:-translate-y-20 lg:-translate-y-16">
                     <img
-                      className={`bg-left h-56 sm:h-96 md:h-[550px] object-contain mx-auto -scale-x-100 md:-translate-y-8 pl-16 ${principalImageCss} clip-path-image`}
+                      className={`bg-left h-56 sm:h-96 md:h-[550px] object-contain mx-auto -scale-x-100  pl-16 ${principalImageCss} clip-path-image`}
                       src={productFound.main_picture_url}
                       alt={productFound.nickname}
                     />
@@ -222,7 +229,7 @@ function ProductDetails() {
                           className="bg-body py-1 px-2 rounded-sm text-center"
                           name="sizeDrop"
                           id="sizeDrop"
-                          onChange={(e) => handleSelect(e)}
+                          onChange={(e) => handleSize(e)}
                         >
                           {productFound.size_range &&
                             productFound.size_range
@@ -234,12 +241,6 @@ function ProductDetails() {
                               ))}
                         </select>
                       </div>
-                      {/* <CarouselDetails
-                      arrayDetails={
-                        productFound.size_range &&
-                        productFound.size_range.sort(compare)
-                      }
-                    /> */}
                       {productFound.color && (
                         <div>
                           <h3 className="font-semibold mt-2 sm:text-lg">
