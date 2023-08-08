@@ -11,12 +11,12 @@ function Favorites() {
 
   return (
     <section className="bg-body flex justify-center">
-      <div className="lg:max-w-6xl m-3 sm:m-5">
+      <div className="lg:max-w-6xl m-3 sm:m-5 w-full">
         <h3 className="font-bold text-xl mb-3 sm:text-2xl sm:mb-5">
           Favorites
         </h3>
         {!filteredProducts.length && (
-          <div className="m-3 flex flex-col items-center">
+          <div className="m-3 flex flex-col items-center sm:mt-12">
             <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2">
               It's empty
             </h5>

@@ -37,10 +37,10 @@ function CartMenu({ cartMenu, setCartMenu }) {
         <h3 className="font-bold text-xl p-1 sm:p-2 sm:text-2xl">Cart</h3>
         {cart.length === 0 ? (
           <div className="flex flex-col items-center m-2 sm:m-3">
-            <h5 className="bg-primaryLight text-lg font-semibold px-2 py-1 mb-1 sm:px-3 sm:py-2 sm:mb-2 sm:text-2xl">
+            <h5 className="bg-primaryLight text-lg font-semibold px-2 py-1 mb-1 sm:px-3 sm:py-2 sm:mb-2">
               It's empty
             </h5>
-            <p className="font-semibold sm:text-xl">Add products (+)</p>
+            <p className="font-semibold">Add products (+)</p>
             <img
               className="my-5 w-40 sm:my-8 sm:w-64"
               src="/assets/illustrations/cartEmpty.svg"

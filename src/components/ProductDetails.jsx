@@ -24,28 +24,18 @@ function ProductDetails() {
 
   const [principalImageCss, setPrincipalImageCss] = useState('');
 
-  console.log(principalImage);
-
   useEffect(() => {
     switch (principalImage) {
       case 1:
-        setPrincipalImageCss(
-          'scale-x-100 0deg pl-14 sm:pl-16 md:-translate-y-10'
-        );
+        setPrincipalImageCss('scale-x-100 0deg');
         break;
       case 2:
-        setPrincipalImageCss(
-          'scale-x-100 rotate-[25deg] pl-14 sm:pl-16 md:mr-2 md:-translate-y-10 '
-        );
+        setPrincipalImageCss('scale-x-100 rotate-[25deg]');
         break;
       case 3:
-        setPrincipalImageCss(
-          '-scale-x-100 -rotate-[60deg] pl-14 sm:pl-16 md:ml-9 md:-translate-y-10 '
-        );
+        setPrincipalImageCss('-scale-x-100 -rotate-[60deg]');
       default:
-        setPrincipalImageCss(
-          '-scale-x-100 -rotate-[60deg] pl-14 sm:pl-16 md:ml-9 md:-translate-y-10 '
-        );
+        setPrincipalImageCss('-scale-x-100 -rotate-[60deg] -translate-x-5');
         break;
     }
   }, [principalImage]);
@@ -88,6 +78,10 @@ function ProductDetails() {
         });
       }
     }
+  };
+
+  const handleSelect = (e) => {
+    console.log(e.target.value);
   };
 
   return (
@@ -148,9 +142,9 @@ function ProductDetails() {
                   </button>
                 </div>
                 <div className="flex flex-col md:flex-row md:gap-10">
-                  <div className="relative md:basis-2/3">
+                  <div className="bg-left relative md:basis-2/3">
                     <img
-                      className={`bg-white h-56 sm:h-96 md:h-[550px] object-contain mx-auto -scale-x-100 ${principalImageCss} [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image`}
+                      className={`bg-left h-56 sm:h-96 md:h-[550px] object-contain mx-auto -scale-x-100 md:-translate-y-8 pl-16 ${principalImageCss} clip-path-image`}
                       src={productFound.main_picture_url}
                       alt={productFound.nickname}
                     />
@@ -228,6 +222,7 @@ function ProductDetails() {
                           className="bg-body py-1 px-2 rounded-sm text-center"
                           name="sizeDrop"
                           id="sizeDrop"
+                          onChange={(e) => handleSelect(e)}
                         >
                           {productFound.size_range &&
                             productFound.size_range

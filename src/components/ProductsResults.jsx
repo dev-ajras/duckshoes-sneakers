@@ -63,17 +63,17 @@ function ProductsResults() {
 
   return (
     <article className="flex justify-center">
-      <div className="m-3 sm:m-5 lg:max-w-6xl">
+      <div className="m-3 sm:m-5 lg:max-w-6xl w-full">
         <h3 className="self-start mb-3 sm:mb-5 font-bold text-lg sm:text-2xl">
           {q ? `Results for "${q}" ` : 'Products'}
         </h3>
         {filteredProducts.length === 0 ? (
-          <div className="m-3 flex flex-col items-center sm:m-5">
-            <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2 sm:px-5 sm:p-2 sm:mb-3 sm:text-2xl">
+          <div className="m-3 flex flex-col items-center sm:m-5 sm:mt-12">
+            <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2 sm:px-5 sm:p-2 sm:mb-3">
               No results
             </h5>
-            <p className="font-semibold sm:text-xl">
-              There are no matches with your search
+            <p className="font-semibold">
+              There are no matches for your search
             </p>
             <img
               className="w-80 mt-5 sm:mt-8 sm:w-96"

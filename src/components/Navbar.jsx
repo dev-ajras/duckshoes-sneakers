@@ -79,9 +79,11 @@ function Navbar() {
             ) : (
               <div className="relative">
                 <RiShoppingBagLine className="text-white" />
-                <span className="text-base font-bold absolute -bottom-2 -right-2 bg-primaryLight rounded-full w-6 h-6 flex justify-center items-center ">
-                  {cart.length}
-                </span>
+                {cart.length > 0 && (
+                  <span className="text-base font-bold absolute -bottom-2 -right-2 bg-primaryLight rounded-full w-6 h-6 flex justify-center items-center ">
+                    {cart.length}
+                  </span>
+                )}
               </div>
             )}
           </button>
