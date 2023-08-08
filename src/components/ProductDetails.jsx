@@ -89,8 +89,6 @@ function ProductDetails() {
     navigate(`${pathname}?color=${colorParam}&size=${size}`, { replace: true });
   };
 
-  console.log(cart);
-
   return (
     <article className="flex justify-center">
       <div className="flex flex-col items-center w-full">

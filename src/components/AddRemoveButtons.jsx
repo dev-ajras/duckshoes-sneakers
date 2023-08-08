@@ -24,8 +24,6 @@ export default function AddRemoveButtons({ filteredProductId }) {
     cartRemoveAll({ id: productId });
   };
 
-  console.log(cart);
-
   return (
     <div className="flex gap-3 sm:gap-5">
       <div className="flex justify-center items-center gap-3 px-3 py-1 outline outline-2 outline-body bg-white rounded-md font-semibold sm:gap-5 sm:px-5 sm:text-xl">

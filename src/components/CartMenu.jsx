@@ -1,11 +1,11 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 import { motion } from 'framer-motion';
 import { AppContext } from '../context/AppProvider';
 import AddRemoveButtons from './AddRemoveButtons';
 
 function CartMenu({ cartMenu, setCartMenu }) {
-  const { products, cart, cartRemove, cartAdd } = useContext(AppContext);
+  const { products, cart } = useContext(AppContext);
 
   const filteredProducts = products.filter((product) =>
     cart.some((cartItem) => cartItem.id === product.id)
@@ -19,11 +19,6 @@ function CartMenu({ cartMenu, setCartMenu }) {
   const cartMenuVariants = {
     active: { x: 0 },
     inactive: { x: '100%' },
-  };
-
-  const handleRemove = (e, productId) => {
-    e.preventDefault();
-    cartRemove({ id: productId });
   };
 
   return (
