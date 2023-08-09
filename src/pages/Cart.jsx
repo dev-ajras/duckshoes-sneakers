@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { AppContext } from '../context/AppProvider';
 import AddRemoveButtons from '../components/AddRemoveButtons';
+import TotalCart from '../components/TotalCart';
 
 function Cart() {
   const { products, cart } = useContext(AppContext);
@@ -8,20 +9,6 @@ function Cart() {
   const filteredProducts = products.filter((product) =>
     cart.some((cartItem) => cartItem.id === product.id)
   );
-
-  const calculateTotal = (products) => {
-    let total = 0;
-    for (let i = 0; i < products.length; i++) {
-      const product = products[i];
-      const cartItem = cart.find((item) => item.id === product.id);
-      if (cartItem) {
-        total += (Number(product.retail_price_cents) / 100) * cartItem.quantity;
-      }
-    }
-    return total;
-  };
-
-  const total = calculateTotal(filteredProducts);
 
   return (
     <section className="flex justify-center">
@@ -75,24 +62,7 @@ function Cart() {
                   <hr />
                 </div>
               ))}
-              <div className="flex flex-col items-end p-10 sm:text-lg">
-                <div>
-                  <span className="font-semibold">Subtotal: </span>
-                  <span>${total}</span>
-                </div>
-                <div>
-                  <span className="font-semibold">Shipping: </span>
-                  <span>Free</span>
-                </div>
-                <div>
-                  <span className="font-semibold">Discount: </span>
-                  <span>$0</span>
-                </div>
-                <div>
-                  <span className="font-semibold">Total: </span>
-                  <span>${total}</span>
-                </div>
-              </div>
+              <TotalCart filteredProducts={filteredProducts} />
             </>
           ) : (
             <div className="flex flex-col items-center m-2 sm:m-3 sm:mt-12">

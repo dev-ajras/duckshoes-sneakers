@@ -35,7 +35,7 @@ function NavbarMenu({ navbarMenu, setNavbarMenu, setCartMenu }) {
         transition={{ duration: 0.3 }}
         className={`${
           !navbarMenu ? 'md:left-[-100%]' : ''
-        } absolute top-14 right-0 z-40 w-1/2 h-screen drop-shadow-md p-3 bg-white text-xl flex flex-col sm:p-5 sm:text-3xl md:flex-row md:h-10 md:left-0 md:w-full md:text-xl md:justify-center md:items-center md:bg-backgroundv2 md:p-0 md:gap-4`}
+        } absolute top-14 right-0 z-40 w-1/2 h-screen drop-shadow-md p-3 bg-white text-xl flex flex-col sm:p-5 sm:text-2xl md:flex-row md:h-10 md:left-0 md:w-full md:text-xl md:justify-center md:items-center md:bg-backgroundv2 md:p-0 md:gap-4`}
       >
         <li>
           <Link

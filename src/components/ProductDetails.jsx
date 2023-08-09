@@ -28,10 +28,12 @@ function ProductDetails() {
   useEffect(() => {
     switch (principalImage) {
       case 1:
-        setPrincipalImageCss('scale-x-100 0deg');
+        setPrincipalImageCss('scale-x-100 0deg translate-y-5');
         break;
       case 2:
-        setPrincipalImageCss('scale-x-100 rotate-[25deg] translate-x-5');
+        setPrincipalImageCss(
+          'scale-x-100 rotate-[25deg] translate-x-5 translate-y-5'
+        );
         break;
       case 3:
         setPrincipalImageCss('-scale-x-100 -rotate-[60deg] translate-x-5');
