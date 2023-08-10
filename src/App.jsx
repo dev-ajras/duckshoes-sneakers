@@ -20,6 +20,7 @@ import Footer from './components/Footer';
 import HowWeDeliver from './components/HowWeDeliver';
 import HowToBuy from './components/HowToBuy';
 import PaymentMethods from './components/PaymentMethods';
+import Payment from './pages/Payment';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="/products/:productName" element={<ProductDetails />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/payment" element={<Payment />} />
             <Route path="/login" element={<Login />} />
             <Route path="/help" element={<Help />} />
             <Route path="/service">

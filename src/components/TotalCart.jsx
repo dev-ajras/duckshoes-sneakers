@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { AppContext } from '../context/AppProvider';
+import { Link } from 'react-router-dom';
 
 function TotalCart({ filteredProducts }) {
   const { cart } = useContext(AppContext);
@@ -19,22 +20,31 @@ function TotalCart({ filteredProducts }) {
   const total = calculateTotal(filteredProducts);
 
   return (
-    <div className="flex flex-col items-end p-10 sm:text-lg">
-      <div>
-        <span className="font-semibold">Subtotal: </span>
-        <span>${total}</span>
-      </div>
-      <div>
-        <span className="font-semibold">Shipping: </span>
-        <span>Free</span>
-      </div>
-      <div>
-        <span className="font-semibold">Discount: </span>
-        <span>$0</span>
-      </div>
-      <div>
-        <span className="font-semibold">Total: </span>
-        <span>${total}</span>
+    <div className="p-3 sm:p-5">
+      <h3 className="font-semibold text-lg sm:text-xl">Your order</h3>
+      <div className="flex flex-col mt-2">
+        <div className="flex justify-between">
+          <span className="font-semibold opacity-60">Subtotal</span>
+          <span className="font-semibold text-lg">${total}</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="font-semibold opacity-60">Shipping</span>
+          <span className="font-semibold text-lg">Free</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="font-semibold opacity-60">Discount</span>
+          <span className="font-semibold text-lg">$0</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="font-semibold opacity-60">Total</span>
+          <span className="font-semibold text-lg">${total}</span>
+        </div>
+        <Link
+          to="/payment"
+          className="bg-primaryDark font-semibold text-white p-3 rounded-sm mt-2 text-center text-lg"
+        >
+          Payment
+        </Link>
       </div>
     </div>
   );

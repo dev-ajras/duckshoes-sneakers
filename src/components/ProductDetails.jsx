@@ -49,7 +49,9 @@ function ProductDetails() {
   }, [products, productName]);
 
   const handleButton = (productId, color, size) => {
-    cartAdd({ id: productId, color: color, size: size, quantity: 1 });
+    if (!cart.find((cartItem) => cartItem.id === productId)) {
+      cartAdd({ id: productId, color: color, size: size, quantity: 1 });
+    }
   };
 
   function compare(a, b) {
@@ -259,7 +261,7 @@ function ProductDetails() {
 
                       <div className="flex">
                         <button
-                          className="box-border w-full bg-primaryDark text-white text-lg font-bold my-3 p-2 sm:my-5 sm:p-3 rounded-sm"
+                          className="box-border w-full bg-primaryDark text-white text-lg font-semibold my-3 p-2 sm:my-5 sm:p-3 rounded-sm"
                           onClick={() => {
                             addedToCart(productFound.id),
                               handleButton(

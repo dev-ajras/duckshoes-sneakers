@@ -62,11 +62,11 @@ function CartMenu({ cartMenu, setCartMenu }) {
                     </h4>
                     <div className="flex gap-2 font-semibold text-xs my-1 sm:gap-3 sm:text-base sm:my-2">
                       <p>
-                        <span className="opacity-70">Color: </span>
+                        <span className="opacity-60">Color: </span>
                         <span>{filteredProduct.color}</span>
                       </p>
                       <p>
-                        <span className="opacity-70">Size: </span>
+                        <span className="opacity-60">Size: </span>
                         <span>5</span>
                       </p>
                     </div>

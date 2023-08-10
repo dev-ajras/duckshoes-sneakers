@@ -17,12 +17,12 @@ function Favorites() {
         </h3>
         {!filteredProducts.length && (
           <div className="m-3 flex flex-col items-center sm:mt-12">
-            <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2">
+            <h5 className="font-semibold text-lg bg-primaryLight px-2 py-1 sm:px-3 sm:py-2 mb-1 sm:mb-2">
               It's empty
             </h5>
             <p className="font-semibold">Please add your favorites sneakers</p>
             <img
-              className="w-64 mt-5"
+              className="w-80 mt-5 sm:w-96"
               src="/assets/illustrations/favoritesEmpty.svg"
               alt="favoritesEmpty"
             />
