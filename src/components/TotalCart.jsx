@@ -25,19 +25,19 @@ function TotalCart({ filteredProducts }) {
       <div className="flex flex-col mt-2">
         <div className="flex justify-between">
           <span className="font-semibold opacity-60">Subtotal</span>
-          <span className="font-semibold text-lg">${total}</span>
+          <span className="font-semibold sm:text-lg">${total}</span>
         </div>
         <div className="flex justify-between">
           <span className="font-semibold opacity-60">Shipping</span>
-          <span className="font-semibold text-lg">Free</span>
+          <span className="font-semibold sm:text-lg">Free</span>
         </div>
         <div className="flex justify-between">
           <span className="font-semibold opacity-60">Discount</span>
-          <span className="font-semibold text-lg">$0</span>
+          <span className="font-semibold sm:text-lg">$0</span>
         </div>
         <div className="flex justify-between">
           <span className="font-semibold opacity-60">Total</span>
-          <span className="font-semibold text-lg">${total}</span>
+          <span className="font-semibold sm:text-lg">${total}</span>
         </div>
         <Link
           to="/payment"
