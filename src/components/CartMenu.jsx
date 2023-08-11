@@ -85,12 +85,16 @@ function CartMenu({ cartMenu, setCartMenu }) {
             </div>
           )}
         </div>
-        <div className="bg-white">
-          <TotalCart
-            filteredProducts={filteredProducts}
-            setCartMenu={setCartMenu}
-          />
-        </div>
+        {filteredProducts.length > 0 ? (
+          <div className="bg-white">
+            <TotalCart
+              filteredProducts={filteredProducts}
+              setCartMenu={setCartMenu}
+            />
+          </div>
+        ) : (
+          ''
+        )}
       </motion.div>
       <motion.div
         initial="inactive"

@@ -3,7 +3,7 @@ import { AppContext } from '../context/AppProvider';
 import { Link } from 'react-router-dom';
 
 function TotalCart({ filteredProducts, setCartMenu }) {
-  const { cart } = useContext(AppContext);
+  const { cart, cartFullClear } = useContext(AppContext);
 
   const calculateTotal = (products) => {
     let total = 0;
@@ -18,6 +18,11 @@ function TotalCart({ filteredProducts, setCartMenu }) {
   };
 
   const total = calculateTotal(filteredProducts);
+
+  const handlePayment = () => {
+    setCartMenu(false);
+    cartFullClear();
+  };
 
   return (
     <div className="p-3 sm:p-5 ">
@@ -42,7 +47,7 @@ function TotalCart({ filteredProducts, setCartMenu }) {
         <Link
           to="/payment"
           className="bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors font-semibold text-white p-3 rounded-sm mt-2 text-center text-lg"
-          onClick={() => setCartMenu(false)}
+          onClick={() => handlePayment()}
         >
           Payment
         </Link>

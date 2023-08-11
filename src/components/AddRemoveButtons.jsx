@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { AppContext } from '../context/AppProvider';
 
 export default function AddRemoveButtons({ filteredProductId }) {
-  const { cart, cartAdd, cartRemove, cartRemoveAll } = useContext(AppContext);
+  const { cart, cartAdd, cartRemove, cartDelete } = useContext(AppContext);
 
   const handleAdd = (e, productId) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ export default function AddRemoveButtons({ filteredProductId }) {
 
   const handleRemoveAll = (e, productId) => {
     e.preventDefault();
-    cartRemoveAll({ id: productId });
+    cartDelete({ id: productId });
   };
 
   return (

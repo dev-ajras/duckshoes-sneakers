@@ -61,9 +61,13 @@ function AppProvider({ children }) {
     }
   };
 
-  const cartRemoveAll = (toCart) => {
+  const cartDelete = (toCart) => {
     const newCart = cart.filter((oldCart) => oldCart.id !== toCart.id);
     setCart(newCart);
+  };
+
+  const cartFullClear = () => {
+    setCart([]);
   };
 
   useEffect(() => {
@@ -95,7 +99,8 @@ function AppProvider({ children }) {
     favoritesHandler,
     cartAdd,
     cartRemove,
-    cartRemoveAll,
+    cartDelete,
+    cartFullClear,
   };
 
   return (
