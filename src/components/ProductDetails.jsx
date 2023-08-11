@@ -261,7 +261,7 @@ function ProductDetails() {
 
                       <div className="flex">
                         <button
-                          className="box-border w-full bg-primaryDark text-white text-lg font-semibold my-3 p-2 sm:my-5 sm:p-3 rounded-sm"
+                          className="box-border w-full bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors text-white text-lg font-semibold my-3 p-2 sm:my-5 sm:p-3 rounded-sm"
                           onClick={() => {
                             addedToCart(productFound.id),
                               handleButton(
@@ -278,7 +278,7 @@ function ProductDetails() {
                       <div className="flex mb-3 gap-3 sm:gap-5">
                         <button
                           onClick={() => favoritesHandler(productFound.id)}
-                          className="w-full bg-primaryLight p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm"
+                          className="w-full bg-primaryLight md:hover:bg-primary md:transition-colors p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm"
                         >
                           {favorites.includes(productFound.id) ? (
                             <AiFillHeart className="fill-red-600 sm:w-5 sm:h-5" />
@@ -289,7 +289,7 @@ function ProductDetails() {
                         </button>
                         <a
                           href={`https://api.whatsapp.com/send?phone=541138596093&text=Hola! Quería consulta por las zapatillas ${productFound.name} | Talle: ${sizeParam} | Color: ${colorParam}`}
-                          className="w-full bg-primaryLight p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm"
+                          className="w-full bg-primaryLight md:hover:bg-primary md:transition-colors p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm"
                         >
                           <BsShare className="sm:w-5 sm:h-5" />
                           <span className="opacity-80">Share</span>

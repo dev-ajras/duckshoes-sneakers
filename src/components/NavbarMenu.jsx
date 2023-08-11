@@ -45,7 +45,7 @@ function NavbarMenu({ navbarMenu, setNavbarMenu, setCartMenu }) {
             className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1"
           >
             <AiFillHome className="fill-background md:hidden" />
-            <h5 className="text-background font-bold md:text-white md:font-normal">
+            <h5 className="text-background font-bold md:text-white md:font-normal md:hover:text-primaryLight transition-colors">
               Home
             </h5>
           </Link>
@@ -57,7 +57,7 @@ function NavbarMenu({ navbarMenu, setNavbarMenu, setCartMenu }) {
             className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1"
           >
             <PiSneakerFill className="fill-background md:hidden" />
-            <h5 className="text-background font-bold md:text-white md:font-normal">
+            <h5 className="text-background font-bold md:text-white md:font-normal md:hover:text-primaryLight transition-colors">
               Products
             </h5>
           </Link>
@@ -69,7 +69,7 @@ function NavbarMenu({ navbarMenu, setNavbarMenu, setCartMenu }) {
             className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1"
           >
             <MdFavorite className="fill-background md:hidden" />
-            <h5 className="text-background font-bold md:text-white md:font-normal">
+            <h5 className="text-background font-bold md:text-white md:font-normal md:hover:text-primaryLight transition-colors">
               Favorites
             </h5>
           </Link>
@@ -81,7 +81,7 @@ function NavbarMenu({ navbarMenu, setNavbarMenu, setCartMenu }) {
             className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1"
           >
             <RiShoppingBagFill className="fill-background md:hidden" />
-            <h5 className="text-background font-bold md:text-white md:font-normal">
+            <h5 className="text-background font-bold md:text-white md:font-normal md:hover:text-primaryLight transition-colors">
               Cart
             </h5>
           </Link>
@@ -93,7 +93,7 @@ function NavbarMenu({ navbarMenu, setNavbarMenu, setCartMenu }) {
             className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1"
           >
             <MdAccountCircle className="fill-background md:hidden" />
-            <h5 className="text-background font-bold md:text-white md:font-normal">
+            <h5 className="text-background font-bold md:text-white md:font-normal md:hover:text-primaryLight transition-colors">
               Login
             </h5>
           </Link>
@@ -105,7 +105,7 @@ function NavbarMenu({ navbarMenu, setNavbarMenu, setCartMenu }) {
             className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1"
           >
             <BiSolidHelpCircle className="fill-background md:hidden" />
-            <h5 className="text-background font-bold md:text-white md:font-normal">
+            <h5 className="text-background font-bold md:text-white md:font-normal md:hover:text-primaryLight transition-colors">
               Help
             </h5>
           </Link>

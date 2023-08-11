@@ -41,7 +41,7 @@ function TotalCart({ filteredProducts, setCartMenu }) {
         </div>
         <Link
           to="/payment"
-          className="bg-primaryDark font-semibold text-white p-3 rounded-sm mt-2 text-center text-lg"
+          className="bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors font-semibold text-white p-3 rounded-sm mt-2 text-center text-lg"
           onClick={() => setCartMenu(false)}
         >
           Payment

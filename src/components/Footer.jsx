@@ -23,59 +23,47 @@ function Footer() {
               <li>#Nike</li>
               <li>#Hypebeast</li>
             </ul>
-            <ul className="flex gap-3 mt-3 sm:gap-5 sm:mt-5">
-              <li className="bg-primary p-2.5 w-10 rounded-full sm:w-16 sm:p-4 lg:w-14">
-                <a
-                  href="https://www.whatsapp.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    className="w-full"
-                    src={whatsappIcon}
-                    alt="whatsappIcon"
-                  />
-                </a>
-              </li>
-              <li className="bg-primary p-2.5 w-10 rounded-full sm:w-16 sm:p-4 lg:w-14">
-                <a
-                  href="https://www.instagram.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    className="w-full"
-                    src={instagramIcon}
-                    alt="instagramIcon"
-                  />
-                </a>
-              </li>
-              <li className="bg-primary p-2.5 w-10 rounded-full sm:w-16 sm:p-4 lg:w-14">
-                <a
-                  href="https://www.facebook.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    className="w-full"
-                    src={facebookIcon}
-                    alt="facebookIcon"
-                  />
-                </a>
-              </li>
-              <li className="bg-primary p-2.5 w-10 rounded-full sm:w-16 sm:p-4 lg:w-14">
-                <a
-                  href="https://www.twitter.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img className="w-full" src={twitterIcon} alt="twitterIcon" />
-                </a>
-              </li>
-            </ul>
+            <div className="flex gap-3 mt-3 sm:gap-5 sm:mt-5">
+              <a
+                className="bg-primary md:hover:bg-primaryDark md:transition-colors p-2.5 w-10 rounded-full sm:w-16 sm:p-4 lg:w-14"
+                href="https://www.whatsapp.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img className="w-full" src={whatsappIcon} alt="whatsappIcon" />
+              </a>
+              <a
+                className="bg-primary md:hover:bg-primaryDark md:transition-colors p-2.5 w-10 rounded-full sm:w-16 sm:p-4 lg:w-14"
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  className="w-full"
+                  src={instagramIcon}
+                  alt="instagramIcon"
+                />
+              </a>
+              <a
+                className="bg-primary md:hover:bg-primaryDark md:transition-colors p-2.5 w-10 rounded-full sm:w-16 sm:p-4 lg:w-14"
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img className="w-full" src={facebookIcon} alt="facebookIcon" />
+              </a>
+              <a
+                className="bg-primary md:hover:bg-primaryDark md:transition-colors p-2.5 w-10 rounded-full sm:w-16 sm:p-4 lg:w-14"
+                href="https://www.twitter.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img className="w-full" src={twitterIcon} alt="twitterIcon" />
+              </a>
+            </div>
           </div>
-          <div className="my-3 sm:my-5 lg:m-0">
-            <h4 className="text-lg font-medium mb-1 sm:text-2xl">Company</h4>
+          <div className="my-3 sm:my-5 lg:m-0 font-medium">
+            <h4 className="text-lg mb-1 sm:text-2xl">Company</h4>
             <ul className="flex flex-col gap-1 opacity-80 sm:gap-2">
               <li className="flex items-center gap-2">
                 <HiLocationMarker className="text-xl sm:text-3xl lg:text-2xl" />
@@ -93,40 +81,85 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div className="my-3 sm:my-5 lg:m-0">
-            <h4 className="text-xl font-medium mb-1 sm:text-2xl">Service</h4>
-            <ul className="flex flex-col gap-0.5 opacity-80 sm:text-2xl sm:gap-1 lg:text-xl">
+          <div className="my-3 sm:my-5 lg:m-0 font-medium">
+            <h4 className="text-xl mb-1 sm:text-2xl">Service</h4>
+            <ul className="flex flex-col gap-0.5 opacity-80 sm:text-2xl sm:gap-1 lg:text-xl font-medium ">
               <li>
-                <Link to="/service/how-we-deliver">How we deliver</Link>
+                <Link
+                  to="/service/how-we-deliver"
+                  className="md:hover:text-primaryExtraDark transition-colors"
+                >
+                  How we deliver
+                </Link>
               </li>
               <li>
-                <Link to="/service/how-to-buy">How to buy</Link>
+                <Link
+                  to="/service/how-to-buy"
+                  className="md:hover:text-primaryExtraDark transition-colors"
+                >
+                  How to buy
+                </Link>
               </li>
               <li>
-                <Link to="/service/payment-methods">Payment methods</Link>
+                <Link
+                  to="/service/payment-methods"
+                  className="md:hover:text-primaryExtraDark transition-colors"
+                >
+                  Payment methods
+                </Link>
               </li>
             </ul>
           </div>
-          <div className="my-3 sm:my-5 lg:m-0">
-            <h4 className="text-xl font-medium mb-1 sm:text-2xl">Menu</h4>
+          <div className="my-3 sm:my-5 lg:m-0 font-medium">
+            <h4 className="text-xl mb-1 sm:text-2xl">Menu</h4>
             <ul className="flex flex-col gap-0.5 opacity-80 sm:text-2xl sm:gap-1 lg:text-xl">
               <li>
-                <Link to="/">Home</Link>
+                <Link
+                  to="/"
+                  className="md:hover:text-primaryExtraDark transition-colors"
+                >
+                  Home
+                </Link>
               </li>
               <li>
-                <Link to="/products">Products</Link>
+                <Link
+                  to="/products"
+                  className="md:hover:text-primaryExtraDark transition-colors"
+                >
+                  Products
+                </Link>
               </li>
               <li>
-                <Link to="/favorites">Favorites</Link>
+                <Link
+                  to="/favorites"
+                  className="md:hover:text-primaryExtraDark transition-colors"
+                >
+                  Favorites
+                </Link>
               </li>
               <li>
-                <Link to="/cart">Cart</Link>
+                <Link
+                  to="/cart"
+                  className="md:hover:text-primaryExtraDark transition-colors"
+                >
+                  Cart
+                </Link>
               </li>
               <li>
-                <Link to="/login">Login</Link>
+                <Link
+                  to="/login"
+                  className="md:hover:text-primaryExtraDark transition-colors"
+                >
+                  Login
+                </Link>
               </li>
               <li>
-                <Link to="/help">Help</Link>
+                <Link
+                  to="/help"
+                  className="md:hover:text-primaryExtraDark transition-colors"
+                >
+                  Help
+                </Link>
               </li>
             </ul>
           </div>

@@ -35,7 +35,7 @@ export default function AddRemoveButtons({ filteredProductId }) {
       </div>
       <button
         onClick={(e) => handleRemoveAll(e, filteredProductId)}
-        className="flex items-center gap-3 px-3 py-1 outline outline-2 outline-body rounded-md bg-red-500  text-white sm:gap-4 sm:px-4  sm:text-lg"
+        className="flex items-center gap-3 px-3 py-1 outline outline-2 outline-body rounded-md bg-red-500 md:hover:bg-red-600 md:transition-colors text-white sm:gap-4 sm:px-4  sm:text-lg"
       >
         Delete
       </button>

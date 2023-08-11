@@ -32,7 +32,7 @@ function CarouselFeatured({ from, to, title }) {
                   to={`/products/${product.name}?color=${product.color}&size=${
                     product.size_range && product.size_range.sort(compare)[2]
                   }`}
-                  className="w-full flex-[0_0_40%] p-3 drop-shadow-md bg-white rounded-md relative sm:p-5 sm:flex-[0_0_30%] md:flex-[0_0_25%] lg:flex-[0_0_21%]"
+                  className="w-full flex-[0_0_40%] p-3 shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow bg-white rounded-md relative sm:p-5 sm:flex-[0_0_30%] md:flex-[0_0_25%] lg:flex-[0_0_21%]"
                   key={product.id}
                 >
                   <img

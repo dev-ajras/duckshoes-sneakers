@@ -25,7 +25,7 @@ function ProductCard({ product }) {
       to={`/products/${product.name}?color=${product.color}&size=${
         product.size_range && product.size_range.sort(compare)[2]
       }`}
-      className="drop-shadow-md rounded-md bg-white p-3 relative sm:p-5"
+      className="shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow rounded-md bg-white p-3 relative sm:p-5"
     >
       <img src={product.grid_picture_url} alt={product.nickname} />
       <div className="flex justify-between mt-1 items-center text-xl">
