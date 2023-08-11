@@ -86,7 +86,10 @@ function CartMenu({ cartMenu, setCartMenu }) {
           )}
         </div>
         <div className="bg-white w-full">
-          <TotalCart filteredProducts={filteredProducts} />
+          <TotalCart
+            filteredProducts={filteredProducts}
+            setCartMenu={setCartMenu}
+          />
         </div>
       </motion.div>
       <motion.div
