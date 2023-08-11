@@ -29,7 +29,7 @@ function CartMenu({ cartMenu, setCartMenu }) {
         animate={!cartMenu ? 'inactive' : 'active'}
         variants={cartMenuVariants}
         transition={{ duration: 0.3 }}
-        className="absolute top-14 pb-24 right-0 z-40 w-3/4 h-[100svh] drop-shadow-md p-2 bg-white sm:p-3 md:top-24 sm:pb-24 md:w-1/2 lg:w-96 flex flex-col"
+        className="absolute top-14 pb-24 right-0 z-40 w-3/4 h-[100dvh] drop-shadow-md p-2 bg-white sm:p-3 md:top-24 sm:pb-24 md:w-1/2 lg:w-96 flex flex-col"
       >
         <h3 className="font-bold text-xl p-1 sm:p-2 sm:text-2xl">Cart</h3>
         <div className="  overflow-y-auto">
