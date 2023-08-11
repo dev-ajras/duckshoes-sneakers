@@ -18,7 +18,7 @@ function ProductsResults() {
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [currentPage, setCurrentPage] = useState(pageParam ? pageParam : 1);
 
-  const productsPerPage = 20;
+  const productsPerPage = 24;
   const lastItemIndex = productsPerPage * currentPage;
   const firstItemIndex = lastItemIndex - productsPerPage;
 
@@ -58,7 +58,7 @@ function ProductsResults() {
         )
       : products;
     setFilteredProducts(filtered);
-    // window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }, [q, products]);
 
   return (
@@ -83,7 +83,7 @@ function ProductsResults() {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-3 lg:grid-cols-4">
               {filteredProducts
                 .slice(firstItemIndex, lastItemIndex)
                 .map((product) => (

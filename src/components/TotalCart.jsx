@@ -20,7 +20,7 @@ function TotalCart({ filteredProducts, setCartMenu }) {
   const total = calculateTotal(filteredProducts);
 
   return (
-    <div className="p-3 sm:p-5">
+    <div className="p-3 sm:p-5 ">
       <h3 className="font-semibold text-lg sm:text-xl">Your order</h3>
       <div className="flex flex-col mt-2">
         <div className="flex justify-between">
