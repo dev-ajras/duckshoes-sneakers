@@ -20,8 +20,8 @@ function TotalCart({ filteredProducts, setCartMenu }) {
   const total = calculateTotal(filteredProducts);
 
   const handlePayment = () => {
-    setCartMenu(false);
     cartFullClear();
+    setCartMenu(false);
   };
 
   return (
