@@ -1,33 +1,36 @@
-import 'tailwindcss/tailwind.css';
-import './app.css';
+import "tailwindcss/tailwind.css";
+import "./app.css";
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 
-import { AppProvider } from './context/AppProvider';
+import { AppProvider } from "./context/AppProvider";
+import PrivateRoute from "./context/PrivateRoute";
 
-import Home from './pages/Home';
-import Products from './pages/Products';
-import Cart from './pages/Cart';
-import Navbar from './components/Navbar';
-import Newsletter from './components/Newsletter';
-import ProductDetails from './components/ProductDetails';
-import Favorites from './pages/Favorites';
-import Login from './pages/Login';
-import Help from './pages/Help';
-import NotFound404 from './pages/NotFound404';
-import ScrollToTop from './helpers/ScrollToTop';
-import Footer from './components/Footer';
-import HowWeDeliver from './components/HowWeDeliver';
-import HowToBuy from './components/HowToBuy';
-import PaymentMethods from './components/PaymentMethods';
-import Payment from './pages/Payment';
+import Home from "./pages/Home";
+import Products from "./pages/Products";
+import Cart from "./pages/Cart";
+import Navbar from "./components/Navbar";
+import Newsletter from "./components/Newsletter";
+import ProductDetails from "./components/ProductDetails";
+import Favorites from "./pages/Favorites";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Help from "./pages/Help";
+import NotFound404 from "./pages/NotFound404";
+import ScrollToTop from "./helpers/ScrollToTop";
+import Footer from "./components/Footer";
+import HowWeDeliver from "./components/HowWeDeliver";
+import HowToBuy from "./components/HowToBuy";
+import PaymentMethods from "./components/PaymentMethods";
+import Payment from "./pages/Payment";
+import User from "./pages/User";
 
 function App() {
   return (
-    <div className="bg-body flex flex-col items-center font-outfit">
-      <ScrollToTop />
-      <Newsletter />
-      <AppProvider>
+    <AppProvider>
+      <div className="bg-body flex flex-col items-center font-outfit">
+        <ScrollToTop />
+        <Newsletter />
         <Navbar />
         <main className="flex flex-col box-border mt-20 min-h-screen bg-body w-full md:mt-24">
           <Routes>
@@ -37,7 +40,11 @@ function App() {
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/payment" element={<Payment />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/user" element={<PrivateRoute />}>
+              <Route index element={<User />} />
+            </Route>
             <Route path="/help" element={<Help />} />
             <Route path="/service">
               <Route
@@ -54,8 +61,8 @@ function App() {
           </Routes>
         </main>
         <Footer />
-      </AppProvider>
-    </div>
+      </div>
+    </AppProvider>
   );
 }
 
