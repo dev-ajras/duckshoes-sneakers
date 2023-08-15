@@ -7,7 +7,7 @@ function AppProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [cart, setCart] = useState([]);
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(localStorage.getItem("token") || "");
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token") || "";

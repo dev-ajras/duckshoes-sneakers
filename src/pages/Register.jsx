@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Register() {
@@ -34,12 +34,14 @@ function Register() {
   return (
     <section className="flex justify-center m-7 sm:m-14">
       <article className=" bg-white rounded-md shadow p-10 w-96">
-        <div className="mb-5">
-          <h3 className="font-medium text-3xl">Registrarse</h3>
-          <h4 className="font text-xl">Crear cuenta</h4>
+        <div className="mb-5 border-b-2 pb-2 border-primaryDark">
+          <h3 className="font-medium text-3xl text-primaryDark">Registrarse</h3>
+          <h4 className="font text-lg">Crear cuenta</h4>
         </div>
         <form onSubmit={handleForm} className="flex flex-col">
-          <label htmlFor="email">email</label>
+          <label className="text-sm" htmlFor="email">
+            email
+          </label>
           <input
             value={formData.email}
             onChange={(e) => {
@@ -49,9 +51,11 @@ function Register() {
             id="email"
             type="email"
             placeholder="Correo electrónico"
-            className="mb-5 border-b"
+            className="mb-5 border-b outline-none py-1"
           />
-          <label htmlFor="password">contraseña</label>
+          <label className="text-sm" htmlFor="password">
+            contraseña
+          </label>
           <input
             value={formData.password}
             onChange={(e) => {
@@ -61,9 +65,11 @@ function Register() {
             id="password"
             type="password"
             placeholder="Contraseña"
-            className="mb-5 border-b"
+            className="mb-5 border-b outline-none py-1"
           />
-          <label htmlFor="repeatPassword">repetir contraseña</label>
+          <label className="text-sm" htmlFor="repeatPassword">
+            repetir contraseña
+          </label>
           <input
             value={formData.repeatPassword}
             onChange={(e) => {
@@ -73,12 +79,18 @@ function Register() {
             id="repeatPassword"
             type="password"
             placeholder="Repetir contraseña"
-            className="mb-5 border-b"
+            className="mb-5 border-b outline-none py-1"
           />
-          <button className="bg-primaryDark p-2 text-white rounded">
+          <button className="bg-primaryDark p-2 text-white rounded font-normal">
             Crear cuenta
           </button>
         </form>
+        <p className="font-light mt-2">
+          ¿Ya estas registrado?{" "}
+          <Link to="/login" className="font-normal">
+            Ingresar
+          </Link>
+        </p>
       </article>
     </section>
   );

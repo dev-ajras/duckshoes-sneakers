@@ -28,7 +28,7 @@ import User from "./pages/User";
 function App() {
   return (
     <AppProvider>
-      <div className="bg-body flex flex-col items-center font-outfit">
+      <div className="bg-body flex flex-col items-center font-outfit font-light">
         <ScrollToTop />
         <Newsletter />
         <Navbar />
