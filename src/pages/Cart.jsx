@@ -1,7 +1,7 @@
-import { useContext } from 'react';
-import { AppContext } from '../context/AppProvider';
-import AddRemoveButtons from '../components/AddRemoveButtons';
-import TotalCart from '../components/TotalCart';
+import { useContext } from "react";
+import { AppContext } from "../context/AppProvider";
+import AddRemoveButtons from "../components/AddRemoveButtons";
+import TotalCart from "../components/TotalCart";
 
 function Cart() {
   const { products, cart } = useContext(AppContext);
@@ -13,7 +13,7 @@ function Cart() {
   return (
     <section className="flex justify-center">
       <div className="max-w-6xl w-full m-3 sm:m-5">
-        <h3 className="font-bold text-lg mb-3 sm:mb-5 sm:text-2xl">Cart</h3>
+        <h3 className="font-medium text-lg mb-3 sm:mb-5 sm:text-2xl">Cart</h3>
         <div>
           {filteredProducts.length > 0 ? (
             <div className="flex flex-col md:flex-row md:gap-5">

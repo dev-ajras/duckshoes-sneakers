@@ -1,9 +1,9 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 
-import { motion } from 'framer-motion';
-import { AppContext } from '../context/AppProvider';
-import AddRemoveButtons from './AddRemoveButtons';
-import TotalCart from './TotalCart';
+import { motion } from "framer-motion";
+import { AppContext } from "../context/AppProvider";
+import AddRemoveButtons from "./AddRemoveButtons";
+import TotalCart from "./TotalCart";
 
 function CartMenu({ cartMenu, setCartMenu }) {
   const { products, cart } = useContext(AppContext);
@@ -19,26 +19,26 @@ function CartMenu({ cartMenu, setCartMenu }) {
 
   const cartMenuVariants = {
     active: { x: 0 },
-    inactive: { x: '100%' },
+    inactive: { x: "100%" },
   };
 
   return (
     <>
       <motion.div
         initial="inactive"
-        animate={!cartMenu ? 'inactive' : 'active'}
+        animate={!cartMenu ? "inactive" : "active"}
         variants={cartMenuVariants}
         transition={{ duration: 0.3 }}
         className="absolute top-14 pb-24 right-0 z-40 w-3/4 h-[100dvh] drop-shadow-md p-2 bg-white sm:p-3 md:top-24 sm:pb-24 md:w-1/2 lg:w-96 flex flex-col"
       >
-        <h3 className="font-bold text-xl p-1 sm:p-2 sm:text-2xl">Cart</h3>
+        <h3 className="font-medium text-xl p-1 sm:p-2 sm:text-2xl">Cart</h3>
         <div className="  overflow-y-auto">
           {cart.length === 0 ? (
             <div className="flex flex-col items-center m-2 sm:m-3">
-              <h5 className="bg-primaryLight text-lg font-semibold px-2 py-1 mb-1 sm:px-3 sm:py-2 sm:mb-2">
+              <h5 className="bg-primaryLight text-lg font-normal px-2 py-1 mb-1 sm:px-3 sm:py-2 sm:mb-2">
                 It's empty
               </h5>
-              <p className="font-semibold">Add products (+)</p>
+              <p className="font-normal">Add products (+)</p>
               <img
                 className="my-5 w-40 sm:my-8 sm:w-64"
                 src="/assets/illustrations/cartEmpty.svg"
@@ -93,16 +93,16 @@ function CartMenu({ cartMenu, setCartMenu }) {
             />
           </div>
         ) : (
-          ''
+          ""
         )}
       </motion.div>
       <motion.div
         initial="inactive"
-        animate={!cartMenu ? 'inactive' : 'active'}
+        animate={!cartMenu ? "inactive" : "active"}
         variants={cartMenuBgVariants}
         transition={{ duration: 0.3 }}
         className={`absolute bg-black h-screen w-screen top-14 left-0 md:top-24 ${
-          !cartMenu && 'pointer-events-none'
+          !cartMenu && "pointer-events-none"
         }`}
         onClick={() => setCartMenu(false)}
       ></motion.div>

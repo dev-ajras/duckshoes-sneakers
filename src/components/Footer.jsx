@@ -1,12 +1,12 @@
-import whatsappIcon from '/assets/social/whatsappIcon.svg';
-import instagramIcon from '/assets/social/instagramIcon.svg';
-import facebookIcon from '/assets/social/facebookIcon.svg';
-import twitterIcon from '/assets/social/twitterIcon.svg';
+import whatsappIcon from "/assets/social/whatsappIcon.svg";
+import instagramIcon from "/assets/social/instagramIcon.svg";
+import facebookIcon from "/assets/social/facebookIcon.svg";
+import twitterIcon from "/assets/social/twitterIcon.svg";
 
-import { HiLocationMarker } from 'react-icons/hi';
-import { MdEmail } from 'react-icons/md';
-import { BsFillTelephoneFill } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { HiLocationMarker } from "react-icons/hi";
+import { MdEmail } from "react-icons/md";
+import { BsFillTelephoneFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -14,10 +14,10 @@ function Footer() {
       <div className="p-3 sm:p-5 flex justify-center">
         <div className="w-full lg:flex lg:py-8 lg:my-5 lg:gap-14 lg:max-w-6xl">
           <div className="my-3 mt-0 pt-4 sm:my-5 sm:pt-6 lg:pt-0 lg:m-0">
-            <h4 className="font-bold text-4xl sm:text-5xl lg:text-4xl">
+            <h4 className="font-semibold text-4xl sm:text-5xl lg:text-4xl">
               We are <span className="text-primaryDark">Duck Shoes</span>
             </h4>
-            <ul className="font-medium flex gap-2 sm:gap-3 sm:text-2xl sm:mt-2 lg:text-xl">
+            <ul className="font-normal flex gap-2 sm:gap-3 sm:text-2xl sm:mt-2 lg:text-xl">
               <li>#Sneakers</li>
               <li>#Jordan</li>
               <li>#Nike</li>
@@ -62,7 +62,7 @@ function Footer() {
               </a>
             </div>
           </div>
-          <div className="my-3 sm:my-5 lg:m-0 font-medium">
+          <div className="my-3 sm:my-5 lg:m-0 font-normal">
             <h4 className="text-lg mb-1 sm:text-2xl">Company</h4>
             <ul className="flex flex-col gap-1 opacity-80 sm:gap-2">
               <li className="flex items-center gap-2">
@@ -81,7 +81,7 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div className="my-3 sm:my-5 lg:m-0 font-medium">
+          <div className="my-3 sm:my-5 lg:m-0 font-normal">
             <h4 className="text-xl mb-1 sm:text-2xl">Service</h4>
             <ul className="flex flex-col gap-0.5 opacity-80 sm:text-2xl sm:gap-1 lg:text-xl font-medium ">
               <li>
@@ -110,7 +110,7 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div className="my-3 sm:my-5 lg:m-0 font-medium">
+          <div className="my-3 sm:my-5 lg:m-0 font-normal">
             <h4 className="text-xl mb-1 sm:text-2xl">Menu</h4>
             <ul className="flex flex-col gap-0.5 opacity-80 sm:text-2xl sm:gap-1 lg:text-xl">
               <li>

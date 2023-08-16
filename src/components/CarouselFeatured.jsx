@@ -1,10 +1,10 @@
-import { useContext } from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
-import { AppContext } from '../context/AppProvider';
-import { Link } from 'react-router-dom';
+import { useContext } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { AppContext } from "../context/AppProvider";
+import { Link } from "react-router-dom";
 
-import { MdFavoriteBorder } from 'react-icons/md';
-import { AiFillHeart } from 'react-icons/ai';
+import { MdFavoriteBorder } from "react-icons/md";
+import { AiFillHeart } from "react-icons/ai";
 
 function CarouselFeatured({ from, to, title }) {
   const { favoritesHandler, favorites, products } = useContext(AppContext);
@@ -22,7 +22,9 @@ function CarouselFeatured({ from, to, title }) {
   return (
     <article className="flex justify-center w-full">
       <div className="max-w-6xl m-3 sm:m-5 overflow-hidden pb-3">
-        <h3 className="mb-3 font-bold text-xl sm:text-2xl sm:mb-5">{title}</h3>
+        <h3 className="mb-3 font-medium text-xl sm:text-2xl sm:mb-5">
+          {title}
+        </h3>
         <div ref={emblaRef}>
           <div className="flex gap-3 sm:gap-5">
             {products.slice(from, to).map((product) => {

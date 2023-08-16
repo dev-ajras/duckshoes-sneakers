@@ -11,9 +11,15 @@ function Register() {
 
   const [formData, setFormData] = useState(initialState);
 
+  const [isEmailValid, setIsEmailValid] = useState(false);
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [isRepeatPasswordValid, setIsRepeatPasswordValid] = useState(false);
+
   const handleForm = (e) => {
     e.preventDefault();
-    userRegister();
+    if (isEmailValid && isPasswordValid && isRepeatPasswordValid) {
+      userRegister();
+    }
   };
 
   const baseUrl = "https://conexachallenge-elnd-dev.fl0.io/";
@@ -31,6 +37,59 @@ function Register() {
     response.data && navigate("/login");
   };
 
+  const validateEmail = (input) => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailRegex.test(input);
+  };
+
+  const handleEmail = (e) => {
+    const currentEmail = e.target.value;
+    setFormData({ ...formData, email: currentEmail });
+    setIsEmailValid(validateEmail(currentEmail));
+  };
+
+  const validatePassword = (input) => {
+    const minLength = 6;
+    const maxLength = 128;
+    const haveUppercase = /[A-Z]/.test(input);
+    const haveLowercase = /[a-z]/.test(input);
+    const haveNumber = /[0-9]/.test(input);
+    const haveSpecialChar = /[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]/.test(input);
+
+    return (
+      input.length >= minLength &&
+      input.length <= maxLength &&
+      haveUppercase &&
+      haveLowercase &&
+      haveNumber &&
+      !haveSpecialChar
+    );
+  };
+
+  const handlePassword = (e) => {
+    const currentPassword = e.target.value;
+    setFormData({ ...formData, password: currentPassword });
+    setIsPasswordValid(validatePassword(currentPassword));
+  };
+
+  const validateRepeatPassword = (input) => {
+    return formData.password === input;
+  };
+
+  const handleRepeatPassword = (e) => {
+    const currentRepeatPassword = e.target.value;
+    setFormData({ ...formData, repeatPassword: currentRepeatPassword });
+    setIsRepeatPasswordValid(validateRepeatPassword(currentRepeatPassword));
+  };
+
+  // console.log("ísEmailValid: " + isEmailValid);
+  // console.log("isPasswordValid: " + isPasswordValid);
+  // console.log("isPasswordRepeatValid: " + isRepeatPasswordValid);
+
+  const [onBlurEmail, setOnBlurEmail] = useState(false);
+  const [onBlurPassword, setOnBlurPassword] = useState(false);
+  const [onBlurRepeatPassword, setOnBlurRepeatPassword] = useState(false);
+
   return (
     <section className="flex justify-center m-7 sm:m-14">
       <article className=" bg-white rounded-md shadow p-10 w-96">
@@ -45,43 +104,70 @@ function Register() {
           <input
             value={formData.email}
             onChange={(e) => {
-              setFormData({ ...formData, email: e.target.value });
+              handleEmail(e);
             }}
             required
             id="email"
             type="email"
             placeholder="Correo electrónico"
-            className="mb-5 border-b outline-none py-1"
+            className="border-b outline-none py-1"
+            onBlur={() => {
+              setOnBlurEmail(true);
+            }}
           />
-          <label className="text-sm" htmlFor="password">
+          {!isEmailValid && onBlurEmail && formData.email && (
+            <p className="text-sm mt-1 text-red-600">
+              Ingresar dirección de correo electrónico válida, por ejemplo:
+              ejemplo@dominio.com{" "}
+            </p>
+          )}
+          <label className="text-sm mt-5" htmlFor="password">
             contraseña
           </label>
           <input
             value={formData.password}
             onChange={(e) => {
-              setFormData({ ...formData, password: e.target.value });
+              handlePassword(e);
             }}
             required
             id="password"
             type="password"
             placeholder="Contraseña"
-            className="mb-5 border-b outline-none py-1"
+            className="border-b outline-none py-1"
+            onBlur={() => setOnBlurPassword(true)}
           />
-          <label className="text-sm" htmlFor="repeatPassword">
+          {!isPasswordValid && onBlurPassword && formData.password && (
+            <p className="text-sm mt-1 text-red-600">
+              Debe tener entre 6 y 128 caracteres, al menos una mayúscula, una
+              minúscula y un número. Evita caracteres especiales !@#$%^&*()_+
+              {}[]:;<>,.?~/-.</>
+            </p>
+          )}
+          <label className="text-sm mt-5" htmlFor="repeatPassword">
             repetir contraseña
           </label>
           <input
             value={formData.repeatPassword}
             onChange={(e) => {
-              setFormData({ ...formData, repeatPassword: e.target.value });
+              handleRepeatPassword(e);
             }}
             required
             id="repeatPassword"
             type="password"
             placeholder="Repetir contraseña"
-            className="mb-5 border-b outline-none py-1"
+            className="border-b outline-none py-1"
+            onBlur={() => {
+              setOnBlurRepeatPassword(true);
+            }}
           />
-          <button className="bg-primaryDark p-2 text-white rounded font-normal">
+          {!isRepeatPasswordValid &&
+            onBlurRepeatPassword &&
+            formData.repeatPassword && (
+              <p className="text-sm mt-1 text-red-600">
+                Las contraseñas no coinciden
+              </p>
+            )}
+          <button className="bg-primaryDark p-2 mt-5 text-white rounded font-normal">
             Crear cuenta
           </button>
         </form>

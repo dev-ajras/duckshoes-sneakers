@@ -1,20 +1,20 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from "react";
 
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
-import { RiShoppingBagLine } from 'react-icons/ri';
-import { HiMenu } from 'react-icons/hi';
-import { TiTimes } from 'react-icons/ti';
-import NavbarMenu from './NavbarMenu';
-import CartMenu from './CartMenu';
-import { AppContext } from '../context/AppProvider';
+import { RiShoppingBagLine } from "react-icons/ri";
+import { HiMenu } from "react-icons/hi";
+import { TiTimes } from "react-icons/ti";
+import NavbarMenu from "./NavbarMenu";
+import CartMenu from "./CartMenu";
+import { AppContext } from "../context/AppProvider";
 
 function Navbar() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const q = searchParams.get('q');
+  const q = searchParams.get("q");
 
-  const [inputSearch, setInputSearch] = useState(q ?? '');
+  const [inputSearch, setInputSearch] = useState(q ?? "");
   const [navbarMenu, setNavbarMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ function Navbar() {
 
   useEffect(() => {
     if (q !== inputSearch) {
-      setInputSearch('');
+      setInputSearch("");
     }
   }, [q]);
 
@@ -52,7 +52,7 @@ function Navbar() {
       <CartMenu cartMenu={cartMenu} setCartMenu={setCartMenu} />
       <nav className="flex gap-3 w-full justify-between items-center sm:gap-5 lg:max-w-6xl mx-auto">
         <Link className="md:basis-1/3" to="/">
-          <h3 className="text-white font-bold w-full flex text-lg gap-2 sm:text-2xl">
+          <h3 className="text-white font-semibold w-full flex text-lg gap-2 sm:text-2xl">
             <span>Duck</span>
             <span>Shoes</span>
           </h3>

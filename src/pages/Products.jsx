@@ -1,5 +1,4 @@
-import React from 'react';
-import ProductsResults from '../components/ProductsResults';
+import ProductsResults from "../components/ProductsResults";
 
 function Products() {
   return (
