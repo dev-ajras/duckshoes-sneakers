@@ -2,8 +2,13 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function Register() {
   const initialState = {
+    name: "",
+    phone: "",
     email: "",
     password: "",
     repeatPassword: "",
@@ -11,9 +16,11 @@ function Register() {
 
   const [formData, setFormData] = useState(initialState);
 
+  const [isNameValid, setIsNameValid] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
   const [isRepeatPasswordValid, setIsRepeatPasswordValid] = useState(false);
+  const [isPhoneValid, setIsPhoneValid] = useState(false);
 
   const handleForm = (e) => {
     e.preventDefault();
@@ -22,19 +29,39 @@ function Register() {
     }
   };
 
-  const baseUrl = "https://conexachallenge-elnd-dev.fl0.io/";
+  const baseUrl = "https://www.api.duckshoes.com.ar/";
 
   const navigate = useNavigate();
 
   const userRegister = async () => {
-    const { email, password } = formData;
+    const { name, email, password, phone } = formData;
     const response = await axios.post(baseUrl + "users/register", {
+      name,
       email,
       password,
+      phone,
     });
     console.log(response);
-    setFormData(initialState);
-    response.data && navigate("/login");
+    response.data && userRegistered();
+    setTimeout(() => {
+      response.data && navigate("/login");
+    }, 3000);
+  };
+
+  const validateName = (input) => {
+    const minlength = 3;
+    const maxLength = 32;
+    const haveSpecialChar = /[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]/.test(input);
+
+    return (
+      input.length >= minlength && input.length <= maxLength && !haveSpecialChar
+    );
+  };
+
+  const handleName = (e) => {
+    const currentName = e.target.value;
+    setFormData({ ...formData, name: currentName });
+    setIsNameValid(validateName(currentName));
   };
 
   const validateEmail = (input) => {
@@ -82,13 +109,39 @@ function Register() {
     setIsRepeatPasswordValid(validateRepeatPassword(currentRepeatPassword));
   };
 
+  const validatePhone = (input) => {
+    const minlength = 10;
+    const maxlength = 16;
+    const haveSpecialChar = /[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]/.test(input);
+
+    return (
+      input.length >= minlength && input.length <= maxlength && !haveSpecialChar
+    );
+  };
+
+  const handlePhone = (e) => {
+    const currentPhone = e.target.value;
+    setFormData({ ...formData, phone: currentPhone });
+    setIsPhoneValid(validatePhone(currentPhone));
+  };
+
   // console.log("ísEmailValid: " + isEmailValid);
   // console.log("isPasswordValid: " + isPasswordValid);
   // console.log("isPasswordRepeatValid: " + isRepeatPasswordValid);
 
+  const [onBlurName, setOnBlurName] = useState(false);
   const [onBlurEmail, setOnBlurEmail] = useState(false);
   const [onBlurPassword, setOnBlurPassword] = useState(false);
   const [onBlurRepeatPassword, setOnBlurRepeatPassword] = useState(false);
+  const [onBlurPhone, setOnBlurPhone] = useState(false);
+
+  const userRegistered = () =>
+    toast.success("Cuenta creada exitosamente!", {
+      autoClose: 1000,
+      hideProgressBar: true,
+      pauseOnFocusLoss: false,
+      pauseOnHover: false,
+    });
 
   return (
     <section className="flex justify-center m-7 sm:m-14">
@@ -97,8 +150,33 @@ function Register() {
           <h3 className="font-medium text-3xl text-primaryDark">Registrarse</h3>
           <h4 className="font text-lg">Crear cuenta</h4>
         </div>
+        <ToastContainer />
         <form onSubmit={handleForm} className="flex flex-col">
-          <label className="text-sm" htmlFor="email">
+          <label className="text-sm" htmlFor="name">
+            nombre
+          </label>
+          <input
+            value={formData.name}
+            onChange={(e) => {
+              handleName(e);
+            }}
+            required
+            id="name"
+            type="text"
+            placeholder="Nombre de usuario"
+            className="border-b outline-none py-1"
+            onBlur={() => {
+              setOnBlurName(true);
+            }}
+          />
+          {!isNameValid && onBlurName && formData.name && (
+            <p className="text-sm mt-1 text-red-600">
+              Debe tener entre 3 y 32 caracteres. Evita caracteres especiales
+              !@#$%^&*()_+
+              {}[]:;<>,.?~/-.</>
+            </p>
+          )}
+          <label className="text-sm mt-5" htmlFor="email">
             email
           </label>
           <input
@@ -167,6 +245,28 @@ function Register() {
                 Las contraseñas no coinciden
               </p>
             )}
+          <label className="text-sm mt-5" htmlFor="phone">
+            teléfono
+          </label>
+          <input
+            value={formData.phone}
+            onChange={(e) => {
+              handlePhone(e);
+            }}
+            required
+            id="phone"
+            type="text"
+            placeholder="Número de celular"
+            className="border-b outline-none py-1"
+            onBlur={() => {
+              setOnBlurPhone(true);
+            }}
+          />
+          {!isPhoneValid && onBlurPhone && formData.phone && (
+            <p className="text-sm mt-1 text-red-600">
+              Debe tener entre 10 y 16 números, por ejemplo: 1122334455
+            </p>
+          )}
           <button className="bg-primaryDark p-2 mt-5 text-white rounded font-normal">
             Crear cuenta
           </button>

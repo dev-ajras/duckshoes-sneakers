@@ -1,15 +1,15 @@
-import { useEffect, useState, useContext, useRef } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
-import { AppContext } from '../context/AppProvider';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useEffect, useState, useContext, useRef } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
+import { AppContext } from "../context/AppProvider";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from "react-router-dom";
 
-import CarouselFeatured from './CarouselFeatured';
-import { BsShare } from 'react-icons/bs';
-import { MdFavoriteBorder } from 'react-icons/md';
-import { AiFillHeart } from 'react-icons/ai';
+import CarouselFeatured from "./CarouselFeatured";
+import { BsShare } from "react-icons/bs";
+import { MdFavoriteBorder } from "react-icons/md";
+import { AiFillHeart } from "react-icons/ai";
 
 function ProductDetails() {
   const { products, favorites, cart, cartAdd, favoritesHandler } =
@@ -17,28 +17,29 @@ function ProductDetails() {
 
   const { productName } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-  const sizeParam = searchParams.get('size');
-  const colorParam = searchParams.get('color');
+  const sizeParam = searchParams.get("size");
+  const colorParam = searchParams.get("color");
   const [productFound, setProductFound] = useState({});
 
   const [principalImage, setPrincipalImage] = useState(3);
 
-  const [principalImageCss, setPrincipalImageCss] = useState('');
+  const [principalImageCss, setPrincipalImageCss] = useState("");
 
   useEffect(() => {
     switch (principalImage) {
       case 1:
-        setPrincipalImageCss('scale-x-100 0deg translate-y-5');
+        setPrincipalImageCss("scale-x-100 0deg translate-y-5");
         break;
       case 2:
         setPrincipalImageCss(
-          'scale-x-100 rotate-[25deg] translate-x-5 translate-y-5'
+          "scale-x-100 rotate-[25deg] translate-x-5 translate-y-5"
         );
         break;
       case 3:
-        setPrincipalImageCss('-scale-x-100 -rotate-[60deg] translate-x-5');
+        setPrincipalImageCss("-scale-x-100 -rotate-[60deg] translate-x-5");
+        break;
       default:
-        setPrincipalImageCss('-scale-x-100 -rotate-[60deg] translate-x-5');
+        setPrincipalImageCss("-scale-x-100 -rotate-[60deg] translate-x-5");
         break;
     }
   }, [principalImage]);
@@ -66,7 +67,7 @@ function ProductDetails() {
   const addedToCart = (productId) => {
     if (cart.find((cartItem) => cartItem.id === productId)) {
       if (!toast.isActive(addToCartRef.current)) {
-        addToCartRef.current = toast.info('Already added!', {
+        addToCartRef.current = toast.info("Already added!", {
           autoClose: 1000,
           hideProgressBar: true,
           pauseOnFocusLoss: false,
@@ -75,7 +76,7 @@ function ProductDetails() {
       }
     } else {
       if (!toast.isActive(addToCartRef.current)) {
-        addToCartRef.current = toast.success('Added to Cart!', {
+        addToCartRef.current = toast.success("Added to Cart!", {
           autoClose: 1000,
           hideProgressBar: true,
           pauseOnFocusLoss: false,
@@ -107,8 +108,8 @@ function ProductDetails() {
                   <button
                     className={`rounded-sm bg-white ${
                       principalImage == 1
-                        ? 'ring-blue-500 ring-2'
-                        : 'ring-gray-500 ring-1 '
+                        ? "ring-blue-500 ring-2"
+                        : "ring-gray-500 ring-1 "
                     }`}
                     onMouseEnter={() => setPrincipalImage(1)}
                     onClick={() => setPrincipalImage(1)}
@@ -122,8 +123,8 @@ function ProductDetails() {
                   <button
                     className={`rounded-sm bg-white ${
                       principalImage == 2
-                        ? 'ring-blue-500 ring-2'
-                        : 'ring-gray-500 ring-1 '
+                        ? "ring-blue-500 ring-2"
+                        : "ring-gray-500 ring-1 "
                     }`}
                     onMouseEnter={() => setPrincipalImage(2)}
                     onClick={() => setPrincipalImage(2)}
@@ -137,8 +138,8 @@ function ProductDetails() {
                   <button
                     className={`rounded-sm pr-2 bg-white ${
                       principalImage == 3
-                        ? 'ring-blue-500 ring-2'
-                        : 'ring-gray-500 ring-1 '
+                        ? "ring-blue-500 ring-2"
+                        : "ring-gray-500 ring-1 "
                     }`}
                     onMouseEnter={() => setPrincipalImage(3)}
                     onClick={() => setPrincipalImage(3)}
@@ -219,7 +220,7 @@ function ProductDetails() {
                         {productFound.story_html &&
                           productFound.story_html
                             .substring(3, productFound.story_html.length - 5)
-                            .split('.', 1)}
+                            .split(".", 1)}
                         .
                       </p>
                       <span className="block my-3 font-semibold text-3xl sm:text-4xl">
@@ -349,12 +350,12 @@ function ProductDetails() {
                 </div>
               </div>
             ) : (
-              ''
+              ""
             )}
           </div>
         </div>
         <CarouselFeatured
-          title={'Related Products'}
+          title={"Related Products"}
           from={startIndex}
           to={startIndex + 10}
         />

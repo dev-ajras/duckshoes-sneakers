@@ -7,16 +7,17 @@ function AppProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [cart, setCart] = useState([]);
-  const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const [token, setToken] = useState(
+    JSON.parse(localStorage.getItem("token")) || ""
+  );
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token") || "";
+    const storedToken = JSON.parse(localStorage.getItem("token")) || "";
     setToken(storedToken);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("token", token);
-    console.log("token" + token);
+    localStorage.setItem("token", JSON.stringify(token));
   }, [token]);
 
   const favoritesHandler = (toFavorite) => {

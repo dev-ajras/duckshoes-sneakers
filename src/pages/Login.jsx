@@ -18,9 +18,9 @@ function Login() {
     userRegister();
   };
 
-  const baseUrl = "https://conexachallenge-elnd-dev.fl0.io/";
+  const baseUrl = "https://www.api.duckshoes.com.ar/";
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const userRegister = async () => {
     const { email, password } = formData;
@@ -32,6 +32,7 @@ function Login() {
     setFormData(initialState);
     if (response.status === 200) {
       setToken(response.data.token);
+      navigate("/user");
     }
   };
 
