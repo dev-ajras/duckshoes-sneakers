@@ -83,7 +83,7 @@ function Footer() {
           </div>
           <div className="my-3 sm:my-5 lg:m-0 font-normal">
             <h4 className="text-xl mb-1 sm:text-2xl">Service</h4>
-            <ul className="flex flex-col gap-0.5 opacity-80 sm:text-2xl sm:gap-1 lg:text-xl font-medium ">
+            <ul className="flex flex-col gap-0.5 opacity-80 sm:text-2xl sm:gap-1 lg:text-xl ">
               <li>
                 <Link
                   to="/service/how-we-deliver"

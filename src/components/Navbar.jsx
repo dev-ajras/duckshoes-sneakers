@@ -5,6 +5,8 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { RiShoppingBagLine } from "react-icons/ri";
 import { HiMenu } from "react-icons/hi";
 import { TiTimes } from "react-icons/ti";
+import { BiSolidUserCircle } from "react-icons/bi";
+
 import NavbarMenu from "./NavbarMenu";
 import CartMenu from "./CartMenu";
 import { AppContext } from "../context/AppProvider";
@@ -17,9 +19,11 @@ function Navbar() {
   const [inputSearch, setInputSearch] = useState(q ?? "");
   const [navbarMenu, setNavbarMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
+  const [logMenu, setLogMenu] = useState(false);
+
   const navigate = useNavigate();
 
-  const { cart } = useContext(AppContext);
+  const { token, cart } = useContext(AppContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,6 +44,10 @@ function Navbar() {
   const handleCart = () => {
     setNavbarMenu(false);
     setCartMenu(!cartMenu);
+  };
+
+  const handleLogMenu = () => {
+    setLogMenu(!logMenu);
   };
 
   return (
@@ -72,7 +80,7 @@ function Navbar() {
             onChange={(e) => setInputSearch(e.target.value)}
           />
         </form>
-        <div className="flex items-center gap-3 text-3xl md:basis-1/3 md:justify-end md:gap-0">
+        <div className="flex items-center gap-3 text-3xl md:basis-1/3 md:justify-end md:gap-2">
           <button onClick={handleCart}>
             {cartMenu ? (
               <TiTimes className="text-white" />
@@ -94,6 +102,40 @@ function Navbar() {
               <HiMenu className="font-bold text-white md:hidden" />
             )}
           </button>
+          {token ? (
+            <Link to="/user">
+              <div className="text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full">
+                {token.username.slice(0, 1).toUpperCase()}
+              </div>
+            </Link>
+          ) : (
+            // <button className="relative" onClick={handleLogMenu}>
+            //   <div className="text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full">
+            //     {token.username.slice(0, 1).toUpperCase()}
+            //   </div>
+            //   {logMenu && (
+            //     <div className="absolute text-lg rounded shadow-md w-56 z-40 bg-white right-0 mt-1 text-start p-5">
+            //       <ul className="flex flex-col gap-2">
+            //         <li>
+            //           <Link to="/user/mi-pefil">Mi perfil</Link>
+            //         </li>
+            //         <li>
+            //           <Link to="/user/pedidos">Pedidos</Link>
+            //         </li>
+            //         <li>
+            //           <Link>Mi cuenta</Link>
+            //         </li>
+            //         <li>
+            //           <Link>Salir</Link>
+            //         </li>
+            //       </ul>
+            //     </div>
+            //   )}
+            // </button>
+            <Link to="/register">
+              <BiSolidUserCircle className="text-white " />
+            </Link>
+          )}
         </div>
       </nav>
     </header>

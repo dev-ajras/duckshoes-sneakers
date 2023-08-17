@@ -1,6 +1,6 @@
-import { useContext } from 'react';
-import { AppContext } from '../context/AppProvider';
-import { Link } from 'react-router-dom';
+import { useContext } from "react";
+import { AppContext } from "../context/AppProvider";
+import { Link } from "react-router-dom";
 
 function TotalCart({ filteredProducts, setCartMenu }) {
   const { cart, cartFullClear } = useContext(AppContext);
@@ -26,23 +26,23 @@ function TotalCart({ filteredProducts, setCartMenu }) {
 
   return (
     <div className="p-3 sm:p-5 ">
-      <h3 className="font-semibold text-lg sm:text-xl">Your order</h3>
+      <h3 className="font-medium text-lg sm:text-xl">Your order</h3>
       <div className="flex flex-col mt-2">
         <div className="flex justify-between">
-          <span className="font-semibold opacity-60">Subtotal</span>
-          <span className="font-semibold sm:text-lg">${total}</span>
+          <span className="font-medium opacity-60">Subtotal</span>
+          <span className="font-medium sm:text-lg">${total}</span>
         </div>
         <div className="flex justify-between">
-          <span className="font-semibold opacity-60">Shipping</span>
-          <span className="font-semibold sm:text-lg">Free</span>
+          <span className="font-medium opacity-60">Shipping</span>
+          <span className="font-medium sm:text-lg">Free</span>
         </div>
         <div className="flex justify-between">
-          <span className="font-semibold opacity-60">Discount</span>
-          <span className="font-semibold sm:text-lg">$0</span>
+          <span className="font-medium opacity-60">Discount</span>
+          <span className="font-medium sm:text-lg">$0</span>
         </div>
         <div className="flex justify-between">
-          <span className="font-semibold opacity-60">Total</span>
-          <span className="font-semibold sm:text-lg">${total}</span>
+          <span className="font-medium opacity-60">Total</span>
+          <span className="font-medium sm:text-lg">${total}</span>
         </div>
         <Link
           to="/payment"

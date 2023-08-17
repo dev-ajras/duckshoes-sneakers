@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 import { AppContext } from "../context/AppProvider";
 
 function Login() {
-  const { setToken } = useContext(AppContext);
+  const { token, setToken } = useContext(AppContext);
 
   const initialState = {
     email: "",
@@ -35,6 +35,10 @@ function Login() {
       navigate("/user");
     }
   };
+
+  if (token) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <section className="flex justify-center m-7 sm:m-14">

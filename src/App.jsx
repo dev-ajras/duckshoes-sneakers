@@ -23,7 +23,7 @@ import HowWeDeliver from "./components/HowWeDeliver";
 import HowToBuy from "./components/HowToBuy";
 import PaymentMethods from "./components/PaymentMethods";
 import Payment from "./pages/Payment";
-import User from "./pages/User";
+import User from "./pages/User/User";
 
 function App() {
   return (

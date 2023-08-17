@@ -68,10 +68,10 @@ function Cart() {
             </div>
           ) : (
             <div className="flex flex-col items-center m-2 sm:m-3 sm:mt-12">
-              <h5 className="bg-primaryLight text-lg font-semibold px-2 py-1 mb-1 sm:px-3 sm:py-2 sm:mb-2">
+              <h5 className="bg-primaryLight text-lg font-medium px-2 py-1 mb-1 sm:px-3 sm:py-2 sm:mb-2">
                 It's empty
               </h5>
-              <p className="font-semibold">Add products (+)</p>
+              <p className="font-medium">Add products (+)</p>
               <img
                 className="my-5 w-80 sm:my-8 sm:w-96"
                 src="/assets/illustrations/cartEmpty.svg"

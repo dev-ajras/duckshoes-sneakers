@@ -1,11 +1,14 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AppContext } from "../context/AppProvider";
 
 function Register() {
+  const { token } = useContext(AppContext);
+
   const initialState = {
     name: "",
     phone: "",
@@ -142,6 +145,10 @@ function Register() {
       pauseOnFocusLoss: false,
       pauseOnHover: false,
     });
+
+  if (token) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <section className="flex justify-center m-7 sm:m-14">
