@@ -4,7 +4,7 @@ import axios from "axios";
 import { AppContext } from "../context/AppProvider";
 
 function Login() {
-  const { token, setToken } = useContext(AppContext);
+  const { user, setUser } = useContext(AppContext);
 
   const initialState = {
     email: "",
@@ -30,13 +30,16 @@ function Login() {
     });
     console.log(response);
     setFormData(initialState);
-    if (response.status === 200) {
-      setToken(response.data.token);
+    if (response.data.role === 0) {
+      setUser(response.data);
       navigate("/user");
+    } else if (response.data.role === 1) {
+      setUser(response.data);
+      navigate("/admin");
     }
   };
 
-  if (token) {
+  if (user) {
     return <Navigate to="/" replace />;
   }
 

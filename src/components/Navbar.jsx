@@ -23,7 +23,7 @@ function Navbar() {
 
   const navigate = useNavigate();
 
-  const { token, cart } = useContext(AppContext);
+  const { user, cart } = useContext(AppContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,9 +46,9 @@ function Navbar() {
     setCartMenu(!cartMenu);
   };
 
-  const handleLogMenu = () => {
-    setLogMenu(!logMenu);
-  };
+  // const handleLogMenu = () => {
+  //   setLogMenu(!logMenu);
+  // };
 
   return (
     <header className=" flex flex-col justify-center bg-background px-3 h-14 fixed w-full z-40 top-6 sm:px-5 md:top-0">
@@ -102,16 +102,16 @@ function Navbar() {
               <HiMenu className="font-bold text-white md:hidden" />
             )}
           </button>
-          {token ? (
+          {user ? (
             <Link to="/user">
               <div className="text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full">
-                {token.username.slice(0, 1).toUpperCase()}
+                {user.username.slice(0, 1).toUpperCase()}
               </div>
             </Link>
           ) : (
             // <button className="relative" onClick={handleLogMenu}>
             //   <div className="text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full">
-            //     {token.username.slice(0, 1).toUpperCase()}
+            //     {user.username.slice(0, 1).toUpperCase()}
             //   </div>
             //   {logMenu && (
             //     <div className="absolute text-lg rounded shadow-md w-56 z-40 bg-white right-0 mt-1 text-start p-5">
@@ -132,7 +132,7 @@ function Navbar() {
             //     </div>
             //   )}
             // </button>
-            <Link to="/register">
+            <Link to="/login">
               <BiSolidUserCircle className="text-white " />
             </Link>
           )}

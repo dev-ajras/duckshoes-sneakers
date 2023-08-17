@@ -6,12 +6,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AppContext } from "../context/AppProvider";
 
-function Register() {
+function RegisterAdmin() {
   const { user } = useContext(AppContext);
 
   const initialState = {
     name: "",
     email: "",
+    key: "",
     password: "",
     repeatPassword: "",
     phone: "",
@@ -21,6 +22,7 @@ function Register() {
 
   const [isNameValid, setIsNameValid] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
+  const [isKeyValid, setIsKeyValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
   const [isRepeatPasswordValid, setIsRepeatPasswordValid] = useState(false);
   const [isPhoneValid, setIsPhoneValid] = useState(false);
@@ -37,10 +39,11 @@ function Register() {
   const navigate = useNavigate();
 
   const userRegister = async () => {
-    const { name, email, password, phone } = formData;
-    const response = await axios.post(baseUrl + "users/register", {
+    const { name, email, key, password, phone } = formData;
+    const response = await axios.post(baseUrl + "users/register-admin", {
       name,
       email,
+      key,
       password,
       phone,
     });
@@ -76,6 +79,22 @@ function Register() {
     const currentEmail = e.target.value;
     setFormData({ ...formData, email: currentEmail });
     setIsEmailValid(validateEmail(currentEmail));
+  };
+
+  const validateKey = (input) => {
+    const minlength = 3;
+    const maxLength = 32;
+    const haveSpecialChar = /[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]/.test(input);
+
+    return (
+      input.length >= minlength && input.length <= maxLength && !haveSpecialChar
+    );
+  };
+
+  const handleKey = (e) => {
+    const currentKey = e.target.value;
+    setFormData({ ...formData, key: currentKey });
+    setIsKeyValid(validateKey(currentKey));
   };
 
   const validatePassword = (input) => {
@@ -134,6 +153,7 @@ function Register() {
 
   const [onBlurName, setOnBlurName] = useState(false);
   const [onBlurEmail, setOnBlurEmail] = useState(false);
+  const [onBlurKey, setOnBlurKey] = useState(false);
   const [onBlurPassword, setOnBlurPassword] = useState(false);
   const [onBlurRepeatPassword, setOnBlurRepeatPassword] = useState(false);
   const [onBlurPhone, setOnBlurPhone] = useState(false);
@@ -204,6 +224,30 @@ function Register() {
             <p className="text-sm mt-1 text-red-600">
               Ingresar dirección de correo electrónico válida, por ejemplo:
               ejemplo@dominio.com{" "}
+            </p>
+          )}
+          <label className="text-sm mt-5" htmlFor="key">
+            admin key
+          </label>
+          <input
+            value={formData.key}
+            onChange={(e) => {
+              handleKey(e);
+            }}
+            required
+            id="key"
+            type="password"
+            placeholder="Clave de admin"
+            className="border-b outline-none py-1"
+            onBlur={() => {
+              setOnBlurKey(true);
+            }}
+          />
+          {!isKeyValid && onBlurKey && formData.key && (
+            <p className="text-sm mt-1 text-red-600">
+              Clave secreta. Tiene entre 3 y 32 caracteres, sin caracteres
+              especiales !@#$%^&*()_+
+              {}[]:;<>,.?~/-.</>
             </p>
           )}
           <label className="text-sm mt-5" htmlFor="password">
@@ -289,4 +333,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default RegisterAdmin;

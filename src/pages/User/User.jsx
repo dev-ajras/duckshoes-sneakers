@@ -3,7 +3,7 @@ import { AppContext } from "../../context/AppProvider";
 import { Link } from "react-router-dom";
 
 function User() {
-  const { token, cart, products } = useContext(AppContext);
+  const { user, cart, products } = useContext(AppContext);
 
   const ordersFiltered = products.filter((cartItem) =>
     cart.some((productItem) => productItem.id === cartItem.id)
@@ -30,17 +30,28 @@ function User() {
           </ul>
         </article>
         <article>
-          <ul>
-            {ordersFiltered.map((order) => (
-              <li key={order.id}>
-                <img
-                  className="w-36"
-                  src={order.grid_picture_url}
-                  alt={order.name}
-                />
-              </li>
-            ))}
-          </ul>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th>Medio de pago</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ordersFiltered.map((order) => (
+                <tr className="text-center" key={order.id}>
+                  <td>#{order.id}</td>
+                  <td>{order.nickname}</td>
+                  <td>${order.retail_price_cents}</td>
+                  <td>Efectivo</td>
+                  <td>Pendiente</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </article>
       </div>
     </section>

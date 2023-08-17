@@ -4,7 +4,7 @@ import "./app.css";
 import { Routes, Route } from "react-router-dom";
 
 import { AppProvider } from "./context/AppProvider";
-import PrivateRoute from "./context/PrivateRoute";
+import UserRoute from "./context/UserRoute";
 
 import Home from "./pages/Home";
 import Products from "./pages/Products";
@@ -24,6 +24,9 @@ import HowToBuy from "./components/HowToBuy";
 import PaymentMethods from "./components/PaymentMethods";
 import Payment from "./pages/Payment";
 import User from "./pages/User/User";
+import RegisterAdmin from "./pages/RegisterAdmin";
+import AdminRoute from "./context/AdminRoute";
+import Admin from "./pages/Admin/Admin";
 
 function App() {
   return (
@@ -41,9 +44,13 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/register" element={<Register />} />
+            <Route path="register-admin" element={<RegisterAdmin />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/user" element={<PrivateRoute />}>
+            <Route path="/user" element={<UserRoute />}>
               <Route index element={<User />} />
+            </Route>
+            <Route path="/admin" element={<AdminRoute />}>
+              <Route index element={<Admin />} />
             </Route>
             <Route path="/help" element={<Help />} />
             <Route path="/service">

@@ -7,18 +7,18 @@ function AppProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [cart, setCart] = useState([]);
-  const [token, setToken] = useState(
-    JSON.parse(localStorage.getItem("token")) || ""
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || ""
   );
 
   useEffect(() => {
-    const storedToken = JSON.parse(localStorage.getItem("token")) || "";
-    setToken(storedToken);
+    const storedUser = JSON.parse(localStorage.getItem("user")) || "";
+    setUser(storedUser);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("token", JSON.stringify(token));
-  }, [token]);
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
 
   const favoritesHandler = (toFavorite) => {
     const found = favorites.find((fav) => fav === toFavorite);
@@ -113,8 +113,8 @@ function AppProvider({ children }) {
     cartRemove,
     cartDelete,
     cartFullClear,
-    token,
-    setToken,
+    user,
+    setUser,
   };
 
   return (
