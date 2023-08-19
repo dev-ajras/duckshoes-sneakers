@@ -50,7 +50,8 @@ function App() {
               <Route index element={<User />} />
             </Route>
             <Route path="/admin" element={<AdminRoute />}>
-              <Route index element={<Admin />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/admin/*" element={<Admin />} />
             </Route>
             <Route path="/help" element={<Help />} />
             <Route path="/service">
