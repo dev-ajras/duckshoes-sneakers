@@ -9,7 +9,6 @@ function AddProduct() {
   const { user } = useContext(AppContext);
 
   const initialState = {
-    productName: "",
     sku: "",
     color: "",
     temporada: "",
@@ -20,11 +19,6 @@ function AddProduct() {
 
   const [productData, setProductData] = useState(initialState);
   const [previewImages, setPreviewImages] = useState([]);
-
-  const handleProductName = (e) => {
-    const currentProductName = e.target.value;
-    setProductData({ ...productData, productName: currentProductName });
-  };
 
   const handleSku = (e) => {
     const currentSku = e.target.value;
@@ -104,17 +98,6 @@ function AddProduct() {
   return (
     <form onSubmit={handleForm} className="grid grid-cols-2 gap-3">
       <div className="flex flex-col bg-white p-5 rounded shadow">
-        <label htmlFor="productName" className="mb-2">
-          Nombre de producto
-        </label>
-        <input
-          value={productData.productName}
-          onChange={(e) => handleProductName(e)}
-          type="text"
-          id="productName"
-          placeholder="nombre de producto"
-          className="p-2 outline-none border rounded"
-        />
         <label htmlFor="sku" className="mt-5 mb-2">
           SKU
         </label>

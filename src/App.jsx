@@ -49,8 +49,7 @@ function App() {
             <Route path="/user" element={<UserRoute />}>
               <Route index element={<User />} />
             </Route>
-            <Route path="/admin" element={<AdminRoute />}>
-              <Route path="/admin" element={<Admin />} />
+            <Route element={<AdminRoute />}>
               <Route path="/admin/*" element={<Admin />} />
             </Route>
             <Route path="/help" element={<Help />} />

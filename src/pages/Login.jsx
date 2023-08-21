@@ -39,7 +39,7 @@ function Login() {
     }
   };
 
-  if (user) {
+  if (user.role) {
     return <Navigate to="/" replace />;
   }
 

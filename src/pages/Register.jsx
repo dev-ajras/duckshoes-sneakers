@@ -146,7 +146,7 @@ function Register() {
       pauseOnHover: false,
     });
 
-  if (user) {
+  if (user.role) {
     return <Navigate to="/" replace />;
   }
 
