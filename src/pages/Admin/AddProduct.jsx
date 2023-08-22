@@ -2,11 +2,14 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { AppContext } from "../../context/AppProvider";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { BiImageAdd } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
 
 function AddProduct() {
-  const { user } = useContext(AppContext);
+  const { user, setUser } = useContext(AppContext);
 
   const initialState = {
     sku: "",
@@ -79,26 +82,58 @@ function AddProduct() {
     addProduct();
   };
 
+  const tokenExpired = () =>
+    toast.error("Tu token expiró, volvé a logearte", {
+      autoClose: 2000,
+      hideProgressBar: true,
+      pauseOnFocusLoss: false,
+      pauseOnHover: false,
+    });
+
+  const productCreated = (message) =>
+    toast.success(message, {
+      autoClose: 2000,
+      hideProgressBar: true,
+      pauseOnFocusLoss: false,
+      pauseOnHover: false,
+    });
+
   const baseUrl = "https://www.api.duckshoes.com.ar/";
 
   const addProduct = async () => {
-    const response = await axios.post(
-      baseUrl + "products/create",
-      formDataProducts,
-      {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-          "Content-Type": "multipart/form-data",
-        },
+    try {
+      const response = await axios.post(
+        baseUrl + "products/create",
+        formDataProducts,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response);
+      if (response.status === 201) {
+        productCreated(response.data.message);
+        setProductData(initialState);
+        setPreviewImages([]);
       }
-    );
-    console.log(response);
+    } catch (error) {
+      if (error.response.status === 403) {
+        tokenExpired();
+        setTimeout(() => {
+          localStorage.removeItem("token");
+          setUser("");
+        }, 4000);
+      }
+    }
   };
 
   return (
     <form onSubmit={handleForm} className="grid grid-cols-2 gap-3">
       <div className="flex flex-col bg-white p-5 rounded shadow">
-        <label htmlFor="sku" className="mt-5 mb-2">
+        <ToastContainer />
+        <label htmlFor="sku" className="mb-2">
           SKU
         </label>
         <input

@@ -128,10 +128,6 @@ function Register() {
     setIsPhoneValid(validatePhone(currentPhone));
   };
 
-  // console.log("ísEmailValid: " + isEmailValid);
-  // console.log("isPasswordValid: " + isPasswordValid);
-  // console.log("isPasswordRepeatValid: " + isRepeatPasswordValid);
-
   const [onBlurName, setOnBlurName] = useState(false);
   const [onBlurEmail, setOnBlurEmail] = useState(false);
   const [onBlurPassword, setOnBlurPassword] = useState(false);

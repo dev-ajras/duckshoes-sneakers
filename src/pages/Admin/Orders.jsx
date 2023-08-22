@@ -1,7 +1,9 @@
-import React from "react";
-
 function Orders() {
-  return <div></div>;
+  return (
+    <div>
+      <h3>Pedidos</h3>
+    </div>
+  );
 }
 
 export default Orders;

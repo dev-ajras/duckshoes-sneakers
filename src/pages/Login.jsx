@@ -3,6 +3,9 @@ import { Link, useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 import { AppContext } from "../context/AppProvider";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function Login() {
   const { user, setUser } = useContext(AppContext);
 
@@ -22,20 +25,35 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const userRegister = async () => {
-    const { email, password } = formData;
-    const response = await axios.post(baseUrl + "users/login", {
-      email,
-      password,
+  const userWrong = (message) =>
+    toast.error(message, {
+      autoClose: 2000,
+      hideProgressBar: true,
+      pauseOnFocusLoss: false,
+      pauseOnHover: false,
     });
-    console.log(response);
-    setFormData(initialState);
-    if (response.data.role === 0) {
-      setUser(response.data);
-      navigate("/user");
-    } else if (response.data.role === 1) {
-      setUser(response.data);
-      navigate("/admin");
+
+  const userRegister = async () => {
+    try {
+      const { email, password } = formData;
+      const response = await axios.post(baseUrl + "users/login", {
+        email,
+        password,
+      });
+      console.log(response);
+      setFormData(initialState);
+      if (response.data.role === 0) {
+        setUser(response.data);
+        navigate("/user");
+      } else if (response.data.role === 1) {
+        setUser(response.data);
+        navigate("/admin");
+      }
+    } catch (error) {
+      if (error.response.status === 400) {
+        userWrong(error.response.data.error);
+      }
+      console.log(error);
     }
   };
 
@@ -46,6 +64,7 @@ function Login() {
   return (
     <section className="flex justify-center m-7 sm:m-14">
       <article className=" bg-white rounded-md shadow p-10 w-96">
+        <ToastContainer />
         <div className="mb-5 border-b-2 pb-2 border-primaryDark">
           <h3 className="font-medium text-3xl text-primaryDark">Ingresar</h3>
           <h4 className="font text-lg">Introducir cuenta</h4>

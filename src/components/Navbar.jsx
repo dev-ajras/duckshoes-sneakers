@@ -82,7 +82,7 @@ function Navbar() {
               onClick={() => setLogMenu(!logMenu)}
               className="relative cursor-pointer"
             >
-              <div className="text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full">
+              <div className="select-none text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full">
                 {user.username.slice(0, 1).toUpperCase()}
               </div>
             </div>
@@ -91,23 +91,29 @@ function Navbar() {
               className="relative cursor-pointer"
               onClick={() => setLogMenu(!logMenu)}
             >
-              <div className="text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full">
+              <div className="select-none text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full">
                 {user.username.slice(0, 1).toUpperCase()}
               </div>
               {logMenu && (
                 <div className="absolute text-lg w-56 z-40 right-0 text-start ">
                   <ul className="flex flex-col gap-2 rounded shadow-md bg-white p-5 mt-2">
                     <li>
-                      <Link to="/admin">Mi perfil</Link>
+                      <Link to="/admin/profile">Mi perfil</Link>
                     </li>
                     <li>
                       <Link to="/admin">Admin</Link>
                     </li>
                     <li>
-                      <Link>Configuración</Link>
+                      <Link to="/admin/configuration">Configuración</Link>
                     </li>
                     <li>
-                      <button onClick={() => setUser(null)}>Salir</button>
+                      <button
+                        onClick={() => {
+                          setUser(""), localStorage.removeItem("token");
+                        }}
+                      >
+                        Salir
+                      </button>
                     </li>
                   </ul>
                 </div>

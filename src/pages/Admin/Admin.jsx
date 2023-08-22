@@ -73,7 +73,10 @@ function Admin() {
               <Routes>
                 <Route index element={<AddProduct />} />
                 <Route path="agregar-producto" element={<AddProduct />} />
-                <Route path="editar-producto" element={<EditProduct />} />
+                <Route
+                  path="editar-producto/:productId"
+                  element={<EditProduct />}
+                />
                 <Route path="todos-productos" element={<AllProducts />} />
                 <Route path="pedidos" element={<Orders />} />
                 <Route path="configuracion" element={<Configuration />} />
