@@ -33,16 +33,6 @@ function Admin() {
                       ? "text-primaryDark border-l-2 border-primaryDark pl-2"
                       : "pl-2 border-l-2 border-gray-300 hover:text-primaryDark hover:border-l-2 hover:border-primaryDark"
                   }
-                  to="/admin/editar-producto"
-                >
-                  Editar Producto
-                </NavLink>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-primaryDark border-l-2 border-primaryDark pl-2"
-                      : "pl-2 border-l-2 border-gray-300 hover:text-primaryDark hover:border-l-2 hover:border-primaryDark"
-                  }
                   to="/admin/todos-productos"
                 >
                   Todos los Productos
