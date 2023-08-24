@@ -1,22 +1,22 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from 'react';
 
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
-import { RiShoppingBagLine } from "react-icons/ri";
-import { HiMenu } from "react-icons/hi";
-import { TiTimes } from "react-icons/ti";
-import { BiSolidUserCircle } from "react-icons/bi";
+import { RiShoppingBagLine } from 'react-icons/ri';
+import { HiMenu } from 'react-icons/hi';
+import { TiTimes } from 'react-icons/ti';
+import { BiSolidUserCircle } from 'react-icons/bi';
 
-import NavbarMenu from "./NavbarMenu";
-import CartMenu from "./CartMenu";
-import { AppContext } from "../context/AppProvider";
+import NavbarMenu from './NavbarMenu';
+import CartMenu from './CartMenu';
+import { AppContext } from '../context/AppProvider';
 
 function Navbar() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const q = searchParams.get("q");
+  const q = searchParams.get('q');
 
-  const [inputSearch, setInputSearch] = useState(q ?? "");
+  const [inputSearch, setInputSearch] = useState(q ?? '');
   const [navbarMenu, setNavbarMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
   const [logMenu, setLogMenu] = useState(false);
@@ -32,7 +32,7 @@ function Navbar() {
 
   useEffect(() => {
     if (q !== inputSearch) {
-      setInputSearch("");
+      setInputSearch('');
     }
   }, [q]);
 
@@ -96,26 +96,25 @@ function Navbar() {
               </div>
               {logMenu && (
                 <div className="absolute text-lg w-56 z-40 right-0 text-start ">
-                  <ul className="flex flex-col gap-2 rounded shadow-md bg-white p-5 mt-2">
-                    <li>
-                      <Link to="/admin/profile">Mi perfil</Link>
-                    </li>
-                    <li>
-                      <Link to="/admin">Admin</Link>
-                    </li>
-                    <li>
-                      <Link to="/admin/configuration">Configuración</Link>
-                    </li>
-                    <li>
-                      <button
-                        onClick={() => {
-                          setUser(""), localStorage.removeItem("token");
-                        }}
-                      >
-                        Salir
-                      </button>
-                    </li>
-                  </ul>
+                  <div className="flex flex-col rounded shadow-md bg-white mt-2">
+                    <Link className="py-2 px-3" to="/admin/profile">
+                      Mi perfil
+                    </Link>
+                    <Link className="py-2 px-3" to="/admin">
+                      Admin
+                    </Link>
+                    <Link className="py-2 px-3" to="/admin/configuration">
+                      Configuración
+                    </Link>
+                    <button
+                      className="py-2 px-3 text-start"
+                      onClick={() => {
+                        setUser(''), localStorage.removeItem('token');
+                      }}
+                    >
+                      Salir
+                    </button>
+                  </div>
                 </div>
               )}
             </div>

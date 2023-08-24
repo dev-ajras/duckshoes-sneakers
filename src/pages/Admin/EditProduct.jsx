@@ -1,32 +1,29 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { BiImageAdd } from "react-icons/bi";
-import { IoClose } from "react-icons/io5";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function EditProduct() {
   const { productId } = useParams();
 
   const initialState = {
-    sku: "",
-    color: "",
-    temporada: "",
-    description: "",
-    images: [],
+    sku: '',
+    color: '',
+    temporada: '',
+    description: '',
     price: 0,
   };
 
   const [productOne, setProductOne] = useState(initialState);
 
-  const baseUrl = "https://www.api.duckshoes.com.ar/";
+  const baseUrl = 'https://www.api.duckshoes.com.ar/';
 
   useEffect(() => {
     try {
       const getProductOne = async () => {
-        const response = await axios.get(baseUrl + "products/" + productId);
+        const response = await axios.get(baseUrl + 'products/' + productId);
         console.log(response);
         setProductOne(response.data);
       };
@@ -35,8 +32,6 @@ function EditProduct() {
       console.log(error);
     }
   }, [productId]);
-
-  const [previewImages, setPreviewImages] = useState([]);
 
   const handleSku = (e) => {
     const currentSku = e.target.value;
@@ -56,23 +51,6 @@ function EditProduct() {
   const handleDescription = (e) => {
     const currentDescription = e.target.value;
     setProductOne({ ...productOne, description: currentDescription });
-  };
-
-  const handleImages = (e) => {
-    const currentImages = Array.from(e.target.files);
-    setProductOne({ ...productOne, images: currentImages });
-
-    const newPreviewImages = currentImages.map((image) =>
-      URL.createObjectURL(image)
-    );
-    setPreviewImages([...previewImages, ...newPreviewImages]);
-  };
-
-  const handleRemoveImage = (index) => {
-    const updatedImages = productOne.images.filter((_, i) => i !== index);
-    const updatedPreview = previewImages.filter((_, i) => i !== index);
-    setProductOne({ ...productOne, images: updatedImages });
-    setPreviewImages(updatedPreview);
   };
 
   const handlePrice = (e) => {
@@ -144,41 +122,7 @@ function EditProduct() {
         />
       </div>
       <div className="flex flex-col bg-white rounded shadow p-5">
-        <h4>Images</h4>
-        <div className="flex mt-2 gap-3">
-          <label
-            htmlFor="images"
-            className="w-24 h-24 min-w-[96px] border-2 border-dashed border-primary flex justify-center items-center"
-          >
-            <div className="flex flex-col justify-center items-center text-center text-primary text-xs">
-              <BiImageAdd className="w-8 h-8" />
-              Agregar fotos
-            </div>
-          </label>
-          <input
-            onChange={(e) => handleImages(e)}
-            type="file"
-            multiple
-            id="images"
-            accept="/image/*"
-            className="hidden"
-          />
-          <div className="flex gap-3 overflow-auto">
-            <img
-              className="object-contain max-w-[100px] max-h-[100px] p-2 border h-full"
-              key={productOne.id}
-              src={productOne.images.red}
-              alt={`Preview ${productOne.sku}`}
-            />
-            <button
-              onClick={() => handleRemoveImage(productOne.id)}
-              className="absolute top-1.5 right-1.5 bg-red-400 text-white p-1 w-5 h-5 rounded-full flex justify-center items-center"
-            >
-              <IoClose />
-            </button>
-          </div>
-        </div>
-        <label htmlFor="price" className="mt-5 mb-2">
+        <label htmlFor="price" className="mb-2">
           Precio
         </label>
         <input
