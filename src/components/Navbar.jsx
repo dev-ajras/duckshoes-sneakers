@@ -79,19 +79,21 @@ function Navbar() {
         <div className="flex items-center gap-3 text-3xl md:basis-2/5 md:justify-end">
           {user.role === 0 ? (
             <div
-              onClick={() => setLogMenu(!logMenu)}
               className="relative cursor-pointer"
+              onMouseEnter={() => setLogMenu(true)}
+              onMouseLeave={() => setLogMenu(false)}
             >
-              <div className="select-none text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full">
+              <div className="select-none text-white bg-primaryDark w-7 h-7 text-base font-medium p-2 flex justify-center items-center rounded-full">
                 {user.username.slice(0, 1).toUpperCase()}
               </div>
             </div>
           ) : user.role === 1 ? (
             <div
               className="relative cursor-pointer"
-              onClick={() => setLogMenu(!logMenu)}
+              onMouseEnter={() => setLogMenu(true)}
+              onMouseLeave={() => setLogMenu(false)}
             >
-              <div className="select-none text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full">
+              <div className="select-none text-white bg-primaryDark w-7 h-7 text-base font-medium p-2 flex justify-center items-center rounded-full">
                 {user.username.slice(0, 1).toUpperCase()}
               </div>
               {logMenu && (

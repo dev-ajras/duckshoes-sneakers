@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AppContext } from '../../context/AppProvider';
 
 function EditProduct() {
+  const { user } = useContext(AppContext);
+
   const { productId } = useParams();
 
   const initialState = {
@@ -17,6 +20,7 @@ function EditProduct() {
   };
 
   const [productOne, setProductOne] = useState(initialState);
+  const [productOneConstant, setProductOneConstant] = useState({});
 
   const baseUrl = 'https://www.api.duckshoes.com.ar/';
 
@@ -24,8 +28,8 @@ function EditProduct() {
     try {
       const getProductOne = async () => {
         const response = await axios.get(baseUrl + 'products/' + productId);
-        console.log(response);
         setProductOne(response.data);
+        setProductOneConstant(response.data);
       };
       getProductOne();
     } catch (error) {
@@ -66,8 +70,64 @@ function EditProduct() {
       pauseOnHover: false,
     });
 
+  const productNoEdited = (message) =>
+    toast.warning(message, {
+      autoClose: 2000,
+      hideProgressBar: true,
+      pauseOnFocusLoss: false,
+      pauseOnHover: false,
+    });
+
+  const compareObjects = () => {
+    const productDifferences = {};
+
+    const keys = Object.keys(productOne);
+
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      if (productOne[key] !== productOneConstant[key]) {
+        productDifferences[key] = productOne[key];
+      }
+    }
+    return productDifferences;
+  };
+
+  const editProduct = (productDifferences) => {
+    if (Object.keys(productDifferences).length === 0) {
+      productNoEdited('No estas realizando cambios');
+    } else {
+      editProductServer(productDifferences);
+    }
+  };
+
+  console.log(user.token);
+
+  const editProductServer = async (productDifferences) => {
+    console.log('differences: ', productDifferences);
+    try {
+      const response = await axios.put(
+        baseUrl + 'products/update/' + productId,
+        productDifferences,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      productEdited('Producto editado con éxito');
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  console.log('productOne: ', productOne);
+  console.log('productOneConstant', productOneConstant);
+
   const handleForm = (e) => {
     e.preventDefault();
+    const productDifferences = compareObjects();
+    editProduct(productDifferences);
   };
 
   return (
