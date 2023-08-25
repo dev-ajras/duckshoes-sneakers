@@ -5,6 +5,9 @@ import { MdDelete } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { AppContext } from '../../context/AppProvider';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function AllProducts() {
   const { user } = useContext(AppContext);
 
@@ -21,6 +24,14 @@ function AllProducts() {
     fetchProducts();
   }, []);
 
+  const productDeleted = () =>
+    toast.success('Producto Eliminado', {
+      autoClose: 2000,
+      hideProgressBar: true,
+      pauseOnFocusLoss: false,
+      pauseOnHover: false,
+    });
+
   const deleteProduct = async (productId) => {
     try {
       const response = await axios.delete(baseUrl + 'products/' + productId, {
@@ -33,6 +44,7 @@ function AllProducts() {
         setAdminProducts(
           adminProducts.filter((product) => product.id !== productId)
         );
+        productDeleted();
       }
     } catch (error) {
       console.log(error);
@@ -41,6 +53,7 @@ function AllProducts() {
 
   return (
     <div className="shadow">
+      <ToastContainer />
       <div className="grid grid-cols-9 bg-gray-50 p-5 font-normal">
         <div className="text-center col-span-2">Imágen</div>
         <div className="text-center col-span-2">Sku</div>

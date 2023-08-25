@@ -16,36 +16,44 @@ function CarouselBanner() {
   ]);
 
   return (
-    <div className="flex justify-center">
-      <div
-        className="overflow-hidden max-w-6xl w-full m-3 sm:m-5 rounded-md"
-        ref={emblaRef}
-      >
-        <div className="flex">
-          <div className="flex-[0_0_100%] mx-3 sm:mx-5">
-            <img
-              className="rounded-md object-fill"
-              src={banner1}
-              alt={banner1}
-            />
+    <section className="flex justify-center">
+      <div className="flex items-center gap-10 max-w-6xl w-full m-3 sm:m-5">
+        <article className="w-1/2">
+          <h2 className="text-6xl font-medium mb-3">Gestiona tu pedido!</h2>
+          <p className="text-xl font-medium">
+            Simplicamos y optimizamos tu proceso de compra
+          </p>
+          <button className="bg-primaryDark p-3 rounded text-white mt-5 font-normal">
+            Realizar pedido
+          </button>
+        </article>
+        <article className="overflow-hidden w-1/2" ref={emblaRef}>
+          <div className="flex items-center">
+            <div className="flex-[0_0_100%] mx-3 sm:mx-5">
+              <img
+                className="rounded-md object-fill"
+                src={banner1}
+                alt={banner1}
+              />
+            </div>
+            <div className="flex-[0_0_100%] mx-3 sm:mx-5">
+              <img
+                className="rounded-md object-fill"
+                src={banner2}
+                alt={banner2}
+              />
+            </div>
+            <div className="flex-[0_0_100%] mx-3 sm:mx-5">
+              <img
+                className="rounded-md object-fill"
+                src={banner3}
+                alt={banner3}
+              />
+            </div>
           </div>
-          <div className="flex-[0_0_100%] mx-3 sm:mx-5">
-            <img
-              className="rounded-md object-fill"
-              src={banner2}
-              alt={banner2}
-            />
-          </div>
-          <div className="flex-[0_0_100%] mx-3 sm:mx-5">
-            <img
-              className="rounded-md object-fill"
-              src={banner3}
-              alt={banner3}
-            />
-          </div>
-        </div>
+        </article>
       </div>
-    </div>
+    </section>
   );
 }
 
