@@ -1,33 +1,33 @@
-import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { AppContext } from '../../context/AppProvider';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { AppContext } from "../../context/AppProvider";
 
 function EditProduct() {
-  const { user } = useContext(AppContext);
+  const { user, setUser } = useContext(AppContext);
 
   const { productId } = useParams();
 
   const initialState = {
-    sku: '',
-    color: '',
-    temporada: '',
-    description: '',
+    sku: "",
+    color: "",
+    temporada: "",
+    description: "",
     price: 0,
   };
 
   const [productOne, setProductOne] = useState(initialState);
   const [productOneConstant, setProductOneConstant] = useState({});
 
-  const baseUrl = 'https://www.api.duckshoes.com.ar/';
+  const baseUrl = "https://www.api.duckshoes.com.ar/";
 
   useEffect(() => {
     try {
       const getProductOne = async () => {
-        const response = await axios.get(baseUrl + 'products/' + productId);
+        const response = await axios.get(baseUrl + "products/" + productId);
         setProductOne(response.data);
         setProductOneConstant(response.data);
       };
@@ -78,6 +78,14 @@ function EditProduct() {
       pauseOnHover: false,
     });
 
+  const tokenExpired = () =>
+    toast.error("Tu token expiró, volvé a logearte", {
+      autoClose: 2000,
+      hideProgressBar: true,
+      pauseOnFocusLoss: false,
+      pauseOnHover: false,
+    });
+
   const compareObjects = () => {
     const productDifferences = {};
 
@@ -94,7 +102,7 @@ function EditProduct() {
 
   const editProduct = (productDifferences) => {
     if (Object.keys(productDifferences).length === 0) {
-      productNoEdited('No estas realizando cambios');
+      productNoEdited("No estas realizando cambios");
     } else {
       editProductServer(productDifferences);
     }
@@ -103,10 +111,10 @@ function EditProduct() {
   console.log(user.token);
 
   const editProductServer = async (productDifferences) => {
-    console.log('differences: ', productDifferences);
+    console.log("differences: ", productDifferences);
     try {
       const response = await axios.put(
-        baseUrl + 'products/update/' + productId,
+        baseUrl + "products/update/" + productId,
         productDifferences,
         {
           headers: {
@@ -114,15 +122,21 @@ function EditProduct() {
           },
         }
       );
-      productEdited('Producto editado con éxito');
+      productEdited("Producto editado con éxito");
       console.log(response);
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 403) {
+        tokenExpired();
+        setTimeout(() => {
+          localStorage.removeItem("token");
+          setUser("");
+        }, 4000);
+      }
     }
   };
 
-  console.log('productOne: ', productOne);
-  console.log('productOneConstant', productOneConstant);
+  console.log("productOne: ", productOne);
+  console.log("productOneConstant", productOneConstant);
 
   const handleForm = (e) => {
     e.preventDefault();
