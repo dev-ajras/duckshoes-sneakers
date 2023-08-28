@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -108,7 +108,7 @@ function EditProduct() {
     }
   };
 
-  console.log(user.token);
+  const navigate = useNavigate();
 
   const editProductServer = async (productDifferences) => {
     console.log('differences: ', productDifferences);
@@ -122,7 +122,16 @@ function EditProduct() {
           },
         }
       );
+
       if (response.status === 201) {
+        productEdited('Producto editado con éxito');
+        setProductOne(initialState);
+        setTimeout(() => {
+          navigate('/admin/todos-productos');
+        }, 1000);
+      }
+
+      if (response.status === 200) {
         productEdited('Producto editado con éxito');
         setProductOne(initialState);
         setTimeout(() => {
@@ -137,6 +146,8 @@ function EditProduct() {
           localStorage.removeItem('token');
           setUser('');
         }, 3000);
+      } else {
+        console.log(error);
       }
     }
   };
@@ -151,43 +162,43 @@ function EditProduct() {
   };
 
   return (
-    <form onSubmit={handleForm} className="grid grid-cols-2 gap-3">
-      <div className="flex flex-col bg-white p-5 rounded shadow">
+    <form onSubmit={handleForm} className='grid grid-cols-2 gap-3'>
+      <div className='flex flex-col bg-white p-5 rounded shadow'>
         <ToastContainer />
-        <label htmlFor="sku" className="mb-2">
+        <label htmlFor='sku' className='mb-2'>
           SKU
         </label>
         <input
           value={productOne.sku}
           onChange={(e) => handleSku(e)}
-          type="text"
-          id="sku"
-          placeholder="sku"
-          className="p-2 outline-none border rounded"
+          type='text'
+          id='sku'
+          placeholder='sku'
+          className='p-2 outline-none border rounded'
         />
-        <label htmlFor="color" className="mt-5 mb-2">
+        <label htmlFor='color' className='mt-5 mb-2'>
           Color
         </label>
         <input
           value={productOne.color}
           onChange={(e) => handleColor(e)}
-          type="text"
-          id="color"
-          placeholder="color"
-          className="p-2 outline-none border rounded"
+          type='text'
+          id='color'
+          placeholder='color'
+          className='p-2 outline-none border rounded'
         />
-        <label htmlFor="temporada" className="mt-5 mb-2">
+        <label htmlFor='temporada' className='mt-5 mb-2'>
           Temporada
         </label>
         <select
           onChange={(e) => handleTemporada(e)}
-          id="temporada"
-          className="p-2 outline-none border rounded"
+          id='temporada'
+          className='p-2 outline-none border rounded'
         >
-          <option value="verano">Verano</option>
-          <option value="invierno">Invierno</option>
+          <option value='verano'>Verano</option>
+          <option value='invierno'>Invierno</option>
         </select>
-        <label htmlFor="description" className="mt-5 mb-2">
+        <label htmlFor='description' className='mt-5 mb-2'>
           Descripción
         </label>
         <textarea
@@ -195,27 +206,27 @@ function EditProduct() {
           onChange={(e) => handleDescription(e)}
           maxLength={500}
           rows={4}
-          type="text"
-          id="description"
-          placeholder="descripción"
-          className="p-2 outline-none border rounded max-h-96"
+          type='text'
+          id='description'
+          placeholder='descripción'
+          className='p-2 outline-none border rounded max-h-96'
         />
       </div>
-      <div className="flex flex-col bg-white rounded shadow p-5">
-        <label htmlFor="price" className="mb-2">
+      <div className='flex flex-col bg-white rounded shadow p-5'>
+        <label htmlFor='price' className='mb-2'>
           Precio
         </label>
         <input
           value={productOne.price}
           onChange={(e) => handlePrice(e)}
           min={0}
-          type="number"
-          id="price"
-          placeholder="precio"
+          type='number'
+          id='price'
+          placeholder='precio'
           maxLength={10}
-          className="p-2 outline-none border rounded"
+          className='p-2 outline-none border rounded'
         />
-        <button className="bg-primaryDark text-white p-3 font-normal rounded mt-5">
+        <button className='bg-primaryDark text-white p-3 font-normal rounded mt-5'>
           Editar Producto
         </button>
       </div>
