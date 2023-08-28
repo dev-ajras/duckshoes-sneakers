@@ -1,5 +1,5 @@
-import { createContext, useState, useEffect } from "react";
-import axios from "axios";
+import { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 const AppContext = createContext();
 
@@ -8,16 +8,16 @@ function AppProvider({ children }) {
   const [favorites, setFavorites] = useState([]);
   const [cart, setCart] = useState([]);
   const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user")) || ""
+    JSON.parse(localStorage.getItem('user')) || ''
   );
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user")) || "";
+    const storedUser = JSON.parse(localStorage.getItem('user')) || '';
     setUser(storedUser);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
   }, [user]);
 
   const favoritesHandler = (toFavorite) => {
@@ -30,12 +30,12 @@ function AppProvider({ children }) {
   };
 
   useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setFavorites(storedFavorites);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+    localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites]);
 
   const cartAdd = (toCart) => {
@@ -83,22 +83,24 @@ function AppProvider({ children }) {
   };
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
     setCart(storedCart);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
+  const baseUrl = 'https://www.api.duckshoes.com.ar/';
+
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("/sneakers.json");
-      setProducts(response.data);
+      const response = await axios.get(baseUrl + 'products');
+      setProducts(response.data.products);
     } catch (error) {
       console.log(error);
     }

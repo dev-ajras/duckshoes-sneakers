@@ -1,22 +1,24 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from 'react';
 
-import { useSearchParams, useNavigate } from "react-router-dom";
-import ProductCard from "./ProductCard";
-import { AppContext } from "../context/AppProvider";
+import { useSearchParams, useNavigate } from 'react-router-dom';
+import ProductCard from './ProductCard';
+import { AppContext } from '../context/AppProvider';
 
-import { MdOutlineNavigateNext } from "react-icons/md";
-import { MdOutlineNavigateBefore } from "react-icons/md";
+import { MdOutlineNavigateNext } from 'react-icons/md';
+import { MdOutlineNavigateBefore } from 'react-icons/md';
 
 function ProductsResults() {
   const { products } = useContext(AppContext);
 
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const q = searchParams.get("q");
-  const pageParam = Number(searchParams.get("page"));
+  const q = searchParams.get('q');
+  const pageParam = Number(searchParams.get('page'));
 
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [currentPage, setCurrentPage] = useState(pageParam ? pageParam : 1);
+
+  console.log(products);
 
   const productsPerPage = 24;
   const lastItemIndex = productsPerPage * currentPage;
@@ -49,11 +51,11 @@ function ProductsResults() {
   }, [pageParam]);
 
   useEffect(() => {
-    const qToFilter = q ? q.toLowerCase().trim().split(" ") : [];
+    const qToFilter = q ? q.toLowerCase().trim().split(' ') : [];
     const filtered = q
       ? products.filter((product) =>
           qToFilter.every((syllable) =>
-            product.name.toLowerCase().includes(syllable)
+            product.sku.toLowerCase().includes(syllable)
           )
         )
       : products;
@@ -65,7 +67,7 @@ function ProductsResults() {
     <article className="flex justify-center">
       <div className="m-3 sm:m-5 lg:max-w-6xl w-full">
         <h3 className="self-start mb-3 sm:mb-5 font-medium text-lg sm:text-2xl">
-          {q ? `Results for "${q}" ` : "Products"}
+          {q ? `Results for "${q}" ` : 'Products'}
         </h3>
         {filteredProducts.length === 0 ? (
           <div className="m-3 flex flex-col items-center sm:m-5 sm:mt-12">
@@ -93,7 +95,7 @@ function ProductsResults() {
             <div className="m-3 mt-6 flex gap-3 justify-center items-center rounded-md sm:m-5 sm:mt-10 sm:gap-5">
               <button
                 className={`${
-                  currentPage === 1 && "opacity-0 pointer-events-none"
+                  currentPage === 1 && 'opacity-0 pointer-events-none'
                 } p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:text-3xl`}
                 onClick={() => handlePrevPage(1)}
               >
@@ -107,7 +109,7 @@ function ProductsResults() {
                 className={`${
                   currentPage ===
                     Math.ceil(filteredProducts.length / productsPerPage) &&
-                  "opacity-0 pointer-events-none"
+                  'opacity-0 pointer-events-none'
                 } p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:text-3xl`}
                 onClick={() => handleNextPage(1)}
               >

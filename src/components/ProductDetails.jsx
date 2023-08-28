@@ -1,53 +1,53 @@
-import { useEffect, useState, useContext, useRef } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
-import { AppContext } from "../context/AppProvider";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useEffect, useState, useContext, useRef } from 'react';
+import { useParams, useSearchParams } from 'react-router-dom';
+import { AppContext } from '../context/AppProvider';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from 'react-router-dom';
 
-import CarouselFeatured from "./CarouselFeatured";
-import { BsShare } from "react-icons/bs";
-import { MdFavoriteBorder } from "react-icons/md";
-import { AiFillHeart } from "react-icons/ai";
+import CarouselFeatured from './CarouselFeatured';
+import { BsShare } from 'react-icons/bs';
+import { MdFavoriteBorder } from 'react-icons/md';
+import { AiFillHeart } from 'react-icons/ai';
 
 function ProductDetails() {
   const { products, favorites, cart, cartAdd, favoritesHandler } =
     useContext(AppContext);
 
-  const { productName } = useParams();
+  const { productSku } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-  const sizeParam = searchParams.get("size");
-  const colorParam = searchParams.get("color");
+  const sizeParam = searchParams.get('size');
+  const colorParam = searchParams.get('color');
   const [productFound, setProductFound] = useState({});
 
   const [principalImage, setPrincipalImage] = useState(3);
 
-  const [principalImageCss, setPrincipalImageCss] = useState("");
+  const [principalImageCss, setPrincipalImageCss] = useState('');
 
   useEffect(() => {
     switch (principalImage) {
       case 1:
-        setPrincipalImageCss("scale-x-100 0deg translate-y-5");
+        setPrincipalImageCss('scale-x-100 0deg translate-y-5');
         break;
       case 2:
         setPrincipalImageCss(
-          "scale-x-100 rotate-[25deg] translate-x-5 translate-y-5"
+          'scale-x-100 rotate-[25deg] translate-x-5 translate-y-5'
         );
         break;
       case 3:
-        setPrincipalImageCss("-scale-x-100 -rotate-[60deg] translate-x-5");
+        setPrincipalImageCss('-scale-x-100 -rotate-[60deg] translate-x-5');
         break;
       default:
-        setPrincipalImageCss("-scale-x-100 -rotate-[60deg] translate-x-5");
+        setPrincipalImageCss('-scale-x-100 -rotate-[60deg] translate-x-5');
         break;
     }
   }, [principalImage]);
 
   useEffect(() => {
-    const productNameDetails = products.find((dat) => dat.name === productName);
-    setProductFound(productNameDetails);
-  }, [products, productName]);
+    const productSkuDetails = products.find((dat) => dat.sku === productSku);
+    setProductFound(productSkuDetails);
+  }, [products, productSku]);
 
   const handleButton = (productId, color, size) => {
     if (!cart.find((cartItem) => cartItem.id === productId)) {
@@ -67,7 +67,7 @@ function ProductDetails() {
   const addedToCart = (productId) => {
     if (cart.find((cartItem) => cartItem.id === productId)) {
       if (!toast.isActive(addToCartRef.current)) {
-        addToCartRef.current = toast.info("Already added!", {
+        addToCartRef.current = toast.info('Already added!', {
           autoClose: 1000,
           hideProgressBar: true,
           pauseOnFocusLoss: false,
@@ -76,7 +76,7 @@ function ProductDetails() {
       }
     } else {
       if (!toast.isActive(addToCartRef.current)) {
-        addToCartRef.current = toast.success("Added to Cart!", {
+        addToCartRef.current = toast.success('Added to Cart!', {
           autoClose: 1000,
           hideProgressBar: true,
           pauseOnFocusLoss: false,
@@ -108,55 +108,55 @@ function ProductDetails() {
                   <button
                     className={`rounded-sm bg-white ${
                       principalImage == 1
-                        ? "ring-blue-500 ring-2"
-                        : "ring-gray-500 ring-1 "
+                        ? 'ring-blue-500 ring-2'
+                        : 'ring-gray-500 ring-1'
                     }`}
                     onMouseEnter={() => setPrincipalImage(1)}
                     onClick={() => setPrincipalImage(1)}
                   >
                     <img
-                      className="bg-white h-12 sm:h-16 object-contain mx-auto [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
-                      src={productFound.main_picture_url}
-                      alt={productFound.nickname}
+                      className="bg-white h-12 sm:h-16 w-12 sm:w-16 object-contain mx-auto -z-20"
+                      src={productFound.image}
+                      alt={productFound.sku}
                     />
                   </button>
                   <button
                     className={`rounded-sm bg-white ${
                       principalImage == 2
-                        ? "ring-blue-500 ring-2"
-                        : "ring-gray-500 ring-1 "
+                        ? 'ring-blue-500 ring-2 z-50'
+                        : 'ring-gray-500 ring-1 z-50'
                     }`}
                     onMouseEnter={() => setPrincipalImage(2)}
                     onClick={() => setPrincipalImage(2)}
                   >
                     <img
-                      className="bg-white h-12 sm:h-16  object-contain mx-auto rotate-[25deg] [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
-                      src={productFound.main_picture_url}
-                      alt={productFound.nickname}
+                      className="bg-white h-12 sm:h-16 w-12 sm:w-16 object-contain mx-auto rotate-[25deg] -z-20"
+                      src={productFound.image}
+                      alt={productFound.sku}
                     />
                   </button>
                   <button
                     className={`rounded-sm pr-2 bg-white ${
                       principalImage == 3
-                        ? "ring-blue-500 ring-2"
-                        : "ring-gray-500 ring-1 "
+                        ? 'ring-blue-500 ring-2 z-50'
+                        : 'ring-gray-500 ring-1 z-50'
                     }`}
                     onMouseEnter={() => setPrincipalImage(3)}
                     onClick={() => setPrincipalImage(3)}
                   >
                     <img
-                      className="bg-white h-12 sm:h-16 object-contain mx-auto -scale-x-100 -rotate-[60deg] [clip-path:polygon(19% 18%, 21% 69%, 67% 76%, 88% 22%, 63% 9%, 30% 7%)] clip-path-image"
-                      src={productFound.main_picture_url}
-                      alt={productFound.nickname}
+                      className="bg-white h-12 sm:h-16 w-12 sm:w-16 object-contain mx-auto -scale-x-100 -rotate-[60deg] -z-20"
+                      src={productFound.image}
+                      alt={productFound.sku}
                     />
                   </button>
                 </div>
                 <div className="flex flex-col md:flex-row md:gap-10">
-                  <div className="bg-left relative md:basis-2/3 -translate-y-8 md:-translate-y-20 lg:-translate-y-16">
+                  <div className="bg-left relative md:basis-2/3">
                     <img
-                      className={`bg-left h-56 sm:h-96 md:h-[550px] object-contain mx-auto -scale-x-100  pl-16 ${principalImageCss} clip-path-image`}
-                      src={productFound.main_picture_url}
-                      alt={productFound.nickname}
+                      className={`bg-left h-56 sm:h-80 object-contain my-20 mx-auto -scale-x-100 pl-16 ${principalImageCss}`}
+                      src={productFound.image}
+                      alt={productFound.sku}
                     />
                     <div className="hidden md:block">
                       <h3 className="font-semibold sm:text-xl opacity-80">
@@ -210,40 +210,16 @@ function ProductDetails() {
                   </div>
                   <div className="md:basis-1/3  md:w-full">
                     <div className="md:sticky md:top-28 my-3 md:mb-0">
-                      <h4 className=" font-bold opacity-40">
-                        {productFound.brand_name}
-                      </h4>
                       <h2 className="font-semibold text-lg line-clamp-2 sm:text-2xl">
-                        {productFound.name && productFound.name.toUpperCase()}
+                        {productFound.sku && productFound.sku.toUpperCase()}
                       </h2>
                       <p className="my-3">
-                        {productFound.story_html &&
-                          productFound.story_html
-                            .substring(3, productFound.story_html.length - 5)
-                            .split(".", 1)}
-                        .
+                        {productFound.description && productFound.description}
                       </p>
                       <span className="block my-3 font-semibold text-3xl sm:text-4xl">
-                        ${productFound.retail_price_cents / 100}
+                        ${productFound.price}
                       </span>
-                      <div className="font-semibold mt-2 my-3 sm:text-lg">
-                        <span className="opacity-80">Size: </span>
-                        <select
-                          className="bg-body py-1 px-2 rounded-sm text-center"
-                          name="sizeDrop"
-                          id="sizeDrop"
-                          onChange={(e) => handleSize(e)}
-                        >
-                          {productFound.size_range &&
-                            productFound.size_range
-                              .sort(compare)
-                              .map((size, idx) => (
-                                <option key={idx} value={size}>
-                                  {size}
-                                </option>
-                              ))}
-                        </select>
-                      </div>
+
                       {productFound.color && (
                         <div>
                           <h3 className="font-semibold mt-2 sm:text-lg">
@@ -259,7 +235,6 @@ function ProductDetails() {
                           </div>
                         </div>
                       )}
-
                       <div className="flex">
                         <button
                           className="box-border w-full bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors text-white text-lg font-semibold my-3 p-2 sm:my-5 sm:p-3 rounded-sm"
@@ -350,12 +325,12 @@ function ProductDetails() {
                 </div>
               </div>
             ) : (
-              ""
+              ''
             )}
           </div>
         </div>
         <CarouselFeatured
-          title={"Related Products"}
+          title={'Related Products'}
           from={startIndex}
           to={startIndex + 10}
         />

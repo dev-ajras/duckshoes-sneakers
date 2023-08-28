@@ -22,26 +22,26 @@ function ProductCard({ product }) {
 
   return (
     <Link
-      to={`/products/${product.name}?color=${product.color}&size=${
+      to={`/products/${product.sku}?color=${product.color}&size=${
         product.size_range && product.size_range.sort(compare)[2]
       }`}
       className="shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow rounded-md bg-white p-3 relative sm:p-5"
     >
-      <img src={product.grid_picture_url} alt={product.nickname} />
-      <div className="flex justify-between mt-1 items-center text-xl">
-        <strong className="sm:text-2xl sm:mb-2">
-          ${product.retail_price_cents / 100}
-        </strong>
+      <div className="flex items-center h-64">
+        <img src={product.image} alt={product.sku} />
       </div>
-      <h3 className="line-clamp-2 h-12 sm:text-lg sm:h-14">{product.name}</h3>
+      <div className="flex justify-between mt-1 items-center text-xl">
+        <strong className="sm:text-2xl sm:mb-2">${product.price}</strong>
+      </div>
+      <h3 className="line-clamp-2 h-8 sm:text-lg sm:h-10">{product.sku}</h3>
       <button
         className="absolute top-4 right-4 sm:top-9 sm:right-9 md:top-5 md:right-5"
         onClick={(e) => handleFavorite(e, product.id)}
       >
         {isFavorite ? (
-          <AiFillHeart className="fill-red-500 w-6 h-6 sm:w-9 sm:h-9" />
+          <AiFillHeart className="fill-red-500 w-5 h-5 sm:w-7 sm:h-7" />
         ) : (
-          <MdFavoriteBorder className="w-6 h-6 opacity-70 sm:w-9 sm:h-9" />
+          <MdFavoriteBorder className="w-5 h-5 opacity-70 sm:w-7 sm:h-7" />
         )}
       </button>
     </Link>

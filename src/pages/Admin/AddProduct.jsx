@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useContext, useState } from 'react';
 import { AppContext } from '../../context/AppProvider';
+import { useNavigate } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -98,6 +99,8 @@ function AddProduct() {
       pauseOnHover: false,
     });
 
+  const navigate = useNavigate();
+
   const baseUrl = 'https://www.api.duckshoes.com.ar/';
 
   const addProduct = async () => {
@@ -117,6 +120,9 @@ function AddProduct() {
         productCreated(response.data.message);
         setProductData(initialState);
         setPreviewImages([]);
+        setTimeout(() => {
+          navigate('/admin/todos-productos');
+        }, 1000);
       }
     } catch (error) {
       if (error.response.status === 403) {
@@ -124,8 +130,9 @@ function AddProduct() {
         setTimeout(() => {
           localStorage.removeItem('token');
           setUser('');
-        }, 4000);
+        }, 3000);
       }
+      console.log(error);
     }
   };
 
@@ -229,6 +236,7 @@ function AddProduct() {
           type="number"
           id="price"
           placeholder="precio"
+          maxLength={10}
           className="p-2 outline-none border rounded"
         />
         <button className="bg-primaryDark text-white p-3 font-normal rounded mt-5">

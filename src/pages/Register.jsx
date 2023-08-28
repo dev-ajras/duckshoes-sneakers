@@ -1,20 +1,20 @@
-import { useContext, useState } from "react";
-import { Link, useNavigate, Navigate } from "react-router-dom";
-import axios from "axios";
+import { useContext, useState } from 'react';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
+import axios from 'axios';
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { AppContext } from "../context/AppProvider";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { AppContext } from '../context/AppProvider';
 
 function Register() {
   const { user } = useContext(AppContext);
 
   const initialState = {
-    name: "",
-    email: "",
-    password: "",
-    repeatPassword: "",
-    phone: "",
+    name: '',
+    email: '',
+    password: '',
+    repeatPassword: '',
+    phone: '',
   };
 
   const [formData, setFormData] = useState(initialState);
@@ -32,13 +32,13 @@ function Register() {
     }
   };
 
-  const baseUrl = "https://www.api.duckshoes.com.ar/";
+  const baseUrl = 'https://www.api.duckshoes.com.ar/';
 
   const navigate = useNavigate();
 
   const userRegister = async () => {
     const { name, email, password, phone } = formData;
-    const response = await axios.post(baseUrl + "users/register", {
+    const response = await axios.post(baseUrl + 'users/register', {
       name,
       email,
       password,
@@ -47,8 +47,8 @@ function Register() {
     console.log(response);
     response.data && userRegistered();
     setTimeout(() => {
-      response.data && navigate("/login");
-    }, 3000);
+      response.data && navigate('/login');
+    }, 2000);
   };
 
   const validateName = (input) => {
@@ -135,7 +135,7 @@ function Register() {
   const [onBlurPhone, setOnBlurPhone] = useState(false);
 
   const userRegistered = () =>
-    toast.success("Cuenta creada exitosamente!", {
+    toast.success('Cuenta creada exitosamente!', {
       autoClose: 1000,
       hideProgressBar: true,
       pauseOnFocusLoss: false,
@@ -199,7 +199,7 @@ function Register() {
           {!isEmailValid && onBlurEmail && formData.email && (
             <p className="text-sm mt-1 text-red-600">
               Ingresar dirección de correo electrónico válida, por ejemplo:
-              ejemplo@dominio.com{" "}
+              ejemplo@dominio.com{' '}
             </p>
           )}
           <label className="text-sm mt-5" htmlFor="password">
@@ -275,7 +275,7 @@ function Register() {
           </button>
         </form>
         <p className="font-light mt-2">
-          ¿Ya estas registrado?{" "}
+          ¿Ya estas registrado?{' '}
           <Link to="/login" className="font-normal">
             Ingresar
           </Link>

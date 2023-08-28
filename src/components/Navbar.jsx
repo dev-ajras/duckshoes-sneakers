@@ -47,91 +47,98 @@ function Navbar() {
   };
 
   return (
-    <header className=' flex flex-col justify-center bg-background px-3 h-24 fixed w-full z-40 sm:px-5 '>
+    <header className=" flex flex-col justify-center bg-background px-3 h-24 fixed w-full z-40 sm:px-5 ">
       <CartMenu cartMenu={cartMenu} setCartMenu={setCartMenu} />
-      <nav className='flex gap-x-3 gap-y-2 w-full items-center lg:max-w-6xl mx-auto gridNavbar h-full md:py-3'>
-        <div className=''>
-          <Link to='/'>
-            <h3 className='text-white font-semibold w-full flex text-lg gap-2 sm:text-2xl'>
+      <nav className="flex gap-x-3 gap-y-2 w-full items-center lg:max-w-6xl mx-auto gridNavbar h-full md:py-3">
+        <div className="">
+          <Link to="/">
+            <h3 className="text-white font-semibold w-full flex text-lg gap-2 sm:text-2xl">
               <span>Duck</span>
               <span>Shoes</span>
             </h3>
           </Link>
         </div>
-        <form className='w-full flex' onSubmit={handleSubmit}>
+        <form className="w-full flex" onSubmit={handleSubmit}>
           <input
             onClick={() => {
               setCartMenu(false), setNavbarMenu(false);
             }}
-            className='align-middle outline-none border-none rounded p-1 px-2 w-full sm:max-w-md sm:text-xl'
-            type='text'
-            placeholder='search product...'
+            className="align-middle outline-none border-none rounded p-1 px-2 w-full sm:max-w-md sm:text-xl"
+            type="text"
+            placeholder="search product..."
             value={inputSearch}
             onChange={(e) => setInputSearch(e.target.value)}
           />
         </form>
-        <div className='flex items-center gap-3 text-3xl justify-end'>
+        <div className="flex items-center gap-3 text-3xl justify-end">
           {user.role === 0 ? (
             <div
-              onClick={() => setLogMenu(!logMenu)}
-              className='relative cursor-pointer'
+              className="relative cursor-pointer"
+              onMouseEnter={() => setLogMenu(true)}
+              onMouseLeave={() => setLogMenu(false)}
             >
-              <div className='select-none text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full'>
+              <div className="select-none text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full">
                 {user.username.slice(0, 1).toUpperCase()}
               </div>
             </div>
           ) : user.role === 1 ? (
             <div
-              className='relative cursor-pointer'
-              onClick={() => setLogMenu(!logMenu)}
+              className="relative cursor-pointer"
+              onMouseEnter={() => setLogMenu(true)}
+              onMouseLeave={() => setLogMenu(false)}
             >
-              <div className='select-none text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full'>
+              <div className="select-none text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full">
                 {user.username.slice(0, 1).toUpperCase()}
               </div>
               {logMenu && (
-                <div className='absolute text-lg w-56 z-40 right-0 text-start '>
-                  <ul className='flex flex-col gap-2 rounded shadow-md bg-white p-5 mt-2'>
-                    <li>
-                      <Link to='/admin/profile'>Mi perfil</Link>
-                    </li>
-                    <li>
-                      <Link to='/admin'>Admin</Link>
-                    </li>
-                    <li>
-                      <Link to='/admin/configuration'>Configuración</Link>
-                    </li>
-                    <li>
-                      <button
-                        onClick={() => {
-                          setUser(''), localStorage.removeItem('token');
-                        }}
-                      >
-                        Salir
-                      </button>
-                    </li>
+                <div className="absolute text-lg w-56 z-40 right-0 text-start ">
+                  <ul className="flex flex-col gap-2 rounded shadow-md bg-white p-5 mt-2">
+                    <Link
+                      className="hover:text-primaryDark"
+                      to="/admin/profile"
+                    >
+                      Mi perfil
+                    </Link>
+                    <Link className="hover:text-primaryDark" to="/admin">
+                      Admin
+                    </Link>
+                    <Link
+                      className="hover:text-primaryDark"
+                      to="/admin/configuration"
+                    >
+                      Configuración
+                    </Link>
+                    <button
+                      className="text-start hover:text-primaryDark"
+                      onClick={() => {
+                        setUser(''), localStorage.removeItem('token');
+                      }}
+                    >
+                      Salir
+                    </button>
                   </ul>
                 </div>
               )}
             </div>
           ) : (
-            <span className='hidden md:flex gap-2'>
-              <Link to='/register' className='text-base text-white'>
+            <span className="hidden md:flex gap-2">
+              <Link to="/register" className="text-base text-white">
                 Registrarse
               </Link>
-              <span className='text-base text-white'>/</span>
-              <Link to='/login' className='text-base text-white'>
+              <span className="text-base text-white">/</span>
+              <Link to="/login" className="text-base text-white">
                 Ingresar
               </Link>
             </span>
           )}
           <button onClick={handleCart}>
             {cartMenu ? (
-              <TiTimes className='text-white' />
+              <TiTimes className="text-white" />
             ) : (
-              <div className='relative'>
-                <RiShoppingBagLine className='text-white' />
+              <div className="relative">
+                <RiShoppingBagLine className="text-white" />
                 {cart.length > 0 && (
-                  <span className='text-base font-bold absolute -bottom-2 -right-2 bg-primaryLight rounded-full w-6 h-6 flex justify-center items-center '>
+                  <span className="text-base font-bold absolute -bottom-2 -right-2 bg-primaryLight rounded-full w-6 h-6 flex justify-center items-center ">
                     {cart.length}
                   </span>
                 )}
@@ -140,13 +147,13 @@ function Navbar() {
           </button>
           <button onClick={handleMenu}>
             {navbarMenu ? (
-              <TiTimes className='text-white md:hidden' />
+              <TiTimes className="text-white md:hidden" />
             ) : (
-              <HiMenu className='font-bold text-white md:hidden' />
+              <HiMenu className="font-bold text-white md:hidden" />
             )}
           </button>
         </div>
-        <div className='text-white overflow-hidden'>Lomas</div>
+        <div className="text-white overflow-hidden">Lomas</div>
         <NavbarMenu
           navbarMenu={navbarMenu}
           setNavbarMenu={setNavbarMenu}

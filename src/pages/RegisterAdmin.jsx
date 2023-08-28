@@ -1,21 +1,21 @@
-import { useContext, useState } from "react";
-import { Link, useNavigate, Navigate } from "react-router-dom";
-import axios from "axios";
+import { useContext, useState } from 'react';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
+import axios from 'axios';
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { AppContext } from "../context/AppProvider";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { AppContext } from '../context/AppProvider';
 
 function RegisterAdmin() {
   const { user } = useContext(AppContext);
 
   const initialState = {
-    name: "",
-    email: "",
-    key: "",
-    password: "",
-    repeatPassword: "",
-    phone: "",
+    name: '',
+    email: '',
+    key: '',
+    password: '',
+    repeatPassword: '',
+    phone: '',
   };
 
   const [formData, setFormData] = useState(initialState);
@@ -34,13 +34,13 @@ function RegisterAdmin() {
     }
   };
 
-  const baseUrl = "https://www.api.duckshoes.com.ar/";
+  const baseUrl = 'https://www.api.duckshoes.com.ar/';
 
   const navigate = useNavigate();
 
   const userRegister = async () => {
     const { name, email, key, password, phone } = formData;
-    const response = await axios.post(baseUrl + "users/register-admin", {
+    const response = await axios.post(baseUrl + 'users/register-admin', {
       name,
       email,
       key,
@@ -50,8 +50,8 @@ function RegisterAdmin() {
     console.log(response);
     response.data && userRegistered();
     setTimeout(() => {
-      response.data && navigate("/login");
-    }, 3000);
+      response.data && navigate('/login');
+    }, 2000);
   };
 
   const validateName = (input) => {
@@ -159,7 +159,7 @@ function RegisterAdmin() {
   const [onBlurPhone, setOnBlurPhone] = useState(false);
 
   const userRegistered = () =>
-    toast.success("Cuenta creada exitosamente!", {
+    toast.success('Cuenta creada exitosamente!', {
       autoClose: 1000,
       hideProgressBar: true,
       pauseOnFocusLoss: false,
@@ -223,7 +223,7 @@ function RegisterAdmin() {
           {!isEmailValid && onBlurEmail && formData.email && (
             <p className="text-sm mt-1 text-red-600">
               Ingresar dirección de correo electrónico válida, por ejemplo:
-              ejemplo@dominio.com{" "}
+              ejemplo@dominio.com{' '}
             </p>
           )}
           <label className="text-sm mt-5" htmlFor="key">
@@ -323,7 +323,7 @@ function RegisterAdmin() {
           </button>
         </form>
         <p className="font-light mt-2">
-          ¿Ya estas registrado?{" "}
+          ¿Ya estas registrado?{' '}
           <Link to="/login" className="font-normal">
             Ingresar
           </Link>

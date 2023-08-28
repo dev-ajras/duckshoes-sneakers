@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { AppContext } from "../../context/AppProvider";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { AppContext } from '../../context/AppProvider';
 
 function EditProduct() {
   const { user, setUser } = useContext(AppContext);
@@ -12,22 +12,22 @@ function EditProduct() {
   const { productId } = useParams();
 
   const initialState = {
-    sku: "",
-    color: "",
-    temporada: "",
-    description: "",
+    sku: '',
+    color: '',
+    temporada: '',
+    description: '',
     price: 0,
   };
 
   const [productOne, setProductOne] = useState(initialState);
   const [productOneConstant, setProductOneConstant] = useState({});
 
-  const baseUrl = "https://www.api.duckshoes.com.ar/";
+  const baseUrl = 'https://www.api.duckshoes.com.ar/';
 
   useEffect(() => {
     try {
       const getProductOne = async () => {
-        const response = await axios.get(baseUrl + "products/" + productId);
+        const response = await axios.get(baseUrl + 'products/' + productId);
         setProductOne(response.data);
         setProductOneConstant(response.data);
       };
@@ -58,7 +58,7 @@ function EditProduct() {
   };
 
   const handlePrice = (e) => {
-    const currentPrice = e.target.value;
+    const currentPrice = parseFloat(e.target.value);
     setProductOne({ ...productOne, price: currentPrice });
   };
 
@@ -79,7 +79,7 @@ function EditProduct() {
     });
 
   const tokenExpired = () =>
-    toast.error("Tu token expiró, volvé a logearte", {
+    toast.error('Tu token expiró, volvé a logearte', {
       autoClose: 2000,
       hideProgressBar: true,
       pauseOnFocusLoss: false,
@@ -102,7 +102,7 @@ function EditProduct() {
 
   const editProduct = (productDifferences) => {
     if (Object.keys(productDifferences).length === 0) {
-      productNoEdited("No estas realizando cambios");
+      productNoEdited('No estas realizando cambios');
     } else {
       editProductServer(productDifferences);
     }
@@ -111,10 +111,10 @@ function EditProduct() {
   console.log(user.token);
 
   const editProductServer = async (productDifferences) => {
-    console.log("differences: ", productDifferences);
+    console.log('differences: ', productDifferences);
     try {
       const response = await axios.put(
-        baseUrl + "products/update/" + productId,
+        baseUrl + 'products/update/' + productId,
         productDifferences,
         {
           headers: {
@@ -122,21 +122,27 @@ function EditProduct() {
           },
         }
       );
-      productEdited("Producto editado con éxito");
+      if (response.status === 201) {
+        productEdited('Producto editado con éxito');
+        setProductOne(initialState);
+        setTimeout(() => {
+          navigate('/admin/todos-productos');
+        }, 1000);
+      }
       console.log(response);
     } catch (error) {
       if (error.response.status === 403) {
         tokenExpired();
         setTimeout(() => {
-          localStorage.removeItem("token");
-          setUser("");
-        }, 4000);
+          localStorage.removeItem('token');
+          setUser('');
+        }, 3000);
       }
     }
   };
 
-  console.log("productOne: ", productOne);
-  console.log("productOneConstant", productOneConstant);
+  console.log('productOne: ', productOne);
+  console.log('productOneConstant', productOneConstant);
 
   const handleForm = (e) => {
     e.preventDefault();
@@ -206,6 +212,7 @@ function EditProduct() {
           type="number"
           id="price"
           placeholder="precio"
+          maxLength={10}
           className="p-2 outline-none border rounded"
         />
         <button className="bg-primaryDark text-white p-3 font-normal rounded mt-5">
