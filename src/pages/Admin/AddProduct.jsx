@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { BiImageAdd } from 'react-icons/bi';
 import { IoClose } from 'react-icons/io5';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
 function AddProduct() {
   const { user, setUser } = useContext(AppContext);
@@ -54,7 +55,8 @@ function AddProduct() {
     setPreviewImages([...previewImages, ...newPreviewImages]);
   };
 
-  const handleRemoveImage = (index) => {
+  const handleRemoveImage = (e, index) => {
+    e.preventDefault();
     const updatedImages = productData.images.filter((_, i) => i !== index);
     const updatedPreview = previewImages.filter((_, i) => i !== index);
     setProductData({ ...productData, images: updatedImages });
@@ -136,6 +138,22 @@ function AddProduct() {
     }
   };
 
+  const handleOnDragEnd = (result) => {
+    if (!result.destination) return;
+    const items = Array.from(previewImages);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setPreviewImages(items);
+
+    const updatedImages = Array.from(productData.images);
+    updatedImages.splice(
+      result.destination.index,
+      0,
+      updatedImages.splice(result.source.index, 1)[0]
+    );
+    setProductData({ ...productData, images: updatedImages });
+  };
+
   return (
     <form onSubmit={handleForm} className="grid grid-cols-2 gap-3">
       <div className="flex flex-col bg-white p-5 rounded shadow">
@@ -207,24 +225,48 @@ function AddProduct() {
             accept="/image/*"
             className="hidden"
           />
-          <div className="flex gap-3 overflow-auto">
-            {previewImages.map((previewImage, index) => (
-              <div key={index} className="relative">
-                <img
-                  className="object-contain max-w-[100px] max-h-[100px] p-2 border h-full"
-                  key={index}
-                  src={previewImage}
-                  alt={`Preview ${index}`}
-                />
-                <button
-                  onClick={() => handleRemoveImage(index)}
-                  className="absolute top-1.5 right-1.5 bg-red-400 text-white p-1 w-5 h-5 rounded-full flex justify-center items-center"
+          <DragDropContext onDragEnd={handleOnDragEnd}>
+            <Droppable droppableId="images" direction="horizontal">
+              {(provided) => (
+                <div
+                  className="flex overflow-auto"
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
                 >
-                  <IoClose />
-                </button>
-              </div>
-            ))}
-          </div>
+                  {previewImages.map((previewImage, index) => (
+                    <Draggable
+                      key={index}
+                      draggableId={`image-${index}`}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <div
+                          className="relative mr-3"
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          ref={provided.innerRef}
+                        >
+                          <img
+                            className="object-contain max-w-[100px] max-h-[100px] p-2 border h-full"
+                            key={index}
+                            src={previewImage}
+                            alt={`Preview ${index}`}
+                          />
+                          <button
+                            onClick={(e) => handleRemoveImage(e, index)}
+                            className="absolute top-1.5 right-1.5 bg-red-400 text-white p-1 w-5 h-5 rounded-full flex justify-center items-center"
+                          >
+                            <IoClose />
+                          </button>
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
         </div>
         <label htmlFor="price" className="mt-5 mb-2">
           Precio
