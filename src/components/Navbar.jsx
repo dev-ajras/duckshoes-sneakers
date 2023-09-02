@@ -1,22 +1,22 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from "react";
 
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
-import { RiShoppingBagLine } from 'react-icons/ri';
-import { HiMenu } from 'react-icons/hi';
-import { TiTimes } from 'react-icons/ti';
-import { BiSolidUserCircle } from 'react-icons/bi';
+import { RiShoppingBagLine } from "react-icons/ri";
+import { HiMenu } from "react-icons/hi";
+import { TiTimes } from "react-icons/ti";
+import { IoLocationSharp } from "react-icons/io5";
 
-import NavbarMenu from './NavbarMenu';
-import CartMenu from './CartMenu';
-import { AppContext } from '../context/AppProvider';
+import NavbarMenu from "./NavbarMenu";
+import CartMenu from "./CartMenu";
+import { AppContext } from "../context/AppProvider";
 
 function Navbar() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const q = searchParams.get('q');
+  const q = searchParams.get("q");
 
-  const [inputSearch, setInputSearch] = useState(q ?? '');
+  const [inputSearch, setInputSearch] = useState(q ?? "");
   const [navbarMenu, setNavbarMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
   const [logMenu, setLogMenu] = useState(false);
@@ -32,7 +32,7 @@ function Navbar() {
 
   useEffect(() => {
     if (q !== inputSearch) {
-      setInputSearch('');
+      setInputSearch("");
     }
   }, [q]);
 
@@ -111,7 +111,7 @@ function Navbar() {
                     <button
                       className="text-start hover:text-primaryDark"
                       onClick={() => {
-                        setUser(''), localStorage.removeItem('token');
+                        setUser(""), localStorage.removeItem("token");
                       }}
                     >
                       Salir
@@ -153,7 +153,10 @@ function Navbar() {
             )}
           </button>
         </div>
-        <div className="text-white overflow-hidden">Lomas</div>
+        <div className="text-white overflow-hidden flex items-center gap-1">
+          <IoLocationSharp />
+          <h5>Lomas</h5>
+        </div>
         <NavbarMenu
           navbarMenu={navbarMenu}
           setNavbarMenu={setNavbarMenu}

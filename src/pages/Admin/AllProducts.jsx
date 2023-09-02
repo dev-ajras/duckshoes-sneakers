@@ -38,7 +38,6 @@ function AllProducts() {
     });
 
   const deleteProduct = async (productId) => {
-<<<<<<< HEAD
     const response = await axios.delete(baseUrl + "products/" + productId, {
       headers: {
         Authorization: `Bearer ${user.token}`,
@@ -49,23 +48,6 @@ function AllProducts() {
         adminProducts.filter((product) => product.id !== productId)
       );
       productDeleted();
-=======
-    try {
-      const response = await axios.delete(baseUrl + "products/" + productId, {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
-      console.log(response);
-      if (response.status === 200) {
-        setAdminProducts(
-          adminProducts.filter((product) => product.id !== productId)
-        );
-        productDeleted();
-      }
-    } catch (error) {
-      console.log(error);
->>>>>>> da4ab7a0723401c73dae2ad191c2405ea5522e5e
     }
   };
 
@@ -78,7 +60,6 @@ function AllProducts() {
         <div className="text-center col-span-2">Precio</div>
         <div className="text-center col-span-2">Estado</div>
       </div>
-<<<<<<< HEAD
       {adminProducts.length > 0 ? (
         adminProducts.map((product) => (
           <div
@@ -123,43 +104,6 @@ function AllProducts() {
           </Link>
         </div>
       )}
-=======
-      {adminProducts
-        ? adminProducts.map((product) => (
-            <div
-              key={product.id}
-              className="grid grid-cols-9 place-items-center bg-white p-2 mb-0.5"
-            >
-              <div className="flex justify-center items-center col-span-2">
-                <img
-                  className="w-20 h-20 object-contain"
-                  src={product.image}
-                  alt={product.sku}
-                />
-              </div>
-              <div className="text-center col-span-2">{product.sku}</div>
-              <div className="text-center col-span-2">{product.price}</div>
-              <div className="text-center col-span-2">
-                {product.active && (
-                  <div className="flex justify-evenly items-center">
-                    <span className="bg-green-100 p-3 text-green-800 rounded">
-                      Publicado
-                    </span>
-                  </div>
-                )}
-              </div>
-              <div className="flex gap-3">
-                <Link to={`/admin/editar-producto/${product.id}`}>
-                  <BiSolidEdit className="w-7 h-7" />
-                </Link>
-                <button onClick={() => deleteProduct(product.id)}>
-                  <MdDelete className="w-7 h-7 fill-red-600" />
-                </button>
-              </div>
-            </div>
-          ))
-        : ""}
->>>>>>> da4ab7a0723401c73dae2ad191c2405ea5522e5e
     </div>
   );
 }

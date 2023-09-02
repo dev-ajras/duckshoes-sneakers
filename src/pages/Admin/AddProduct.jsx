@@ -121,9 +121,6 @@ function AddProduct() {
         productCreated(response.data.message);
         setProductData(initialState);
         setPreviewImages([]);
-        setTimeout(() => {
-          navigate("/admin/todos-productos");
-        }, 1000);
       }
     } catch (error) {
       if (error.response.status === 403) {

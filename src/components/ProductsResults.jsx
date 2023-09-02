@@ -1,35 +1,46 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 import { useSearchParams, useNavigate } from "react-router-dom";
 import ProductCard from "./ProductCard";
-import { AppContext } from "../context/AppProvider";
 
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { MdOutlineNavigateBefore } from "react-icons/md";
+import { ImSpinner8 } from "react-icons/im";
 
 function ProductsResults() {
-  const { products } = useContext(AppContext);
-
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const q = searchParams.get("q");
   const pageParam = Number(searchParams.get("page"));
 
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(pageParam ? pageParam : 1);
 
-  const productsPerPage = 24;
-  const lastItemIndex = productsPerPage * currentPage;
-  const firstItemIndex = lastItemIndex - productsPerPage;
+  const productsPerPage = 16;
+
+  const baseUrl = "https://www.api.duckshoes.com.ar/";
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      const response = await axios.get(
+        `${baseUrl}products?page=${currentPage}&pageSize=${productsPerPage}`
+      );
+      console.log(response);
+      setLoading(false);
+      setProducts(response.data.products);
+    };
+    fetchProducts();
+  }, [currentPage]);
 
   const handleNextPage = (next) => {
-    if (currentPage < filteredProducts.length / productsPerPage) {
-      setCurrentPage(currentPage + next);
-      q
-        ? navigate(`/products?q=${q}&page=${currentPage + next}`)
-        : navigate(`/products?page=${currentPage + next}`);
-      window.scrollTo(0, 0);
-    }
+    setCurrentPage(currentPage + next);
+    q
+      ? navigate(`/products?q=${q}&page=${currentPage + next}`)
+      : navigate(`/products?page=${currentPage + next}`);
+    window.scrollTo(0, 0);
   };
 
   const handlePrevPage = (prev) => {
@@ -48,26 +59,17 @@ function ProductsResults() {
     }
   }, [pageParam]);
 
-  useEffect(() => {
-    const qToFilter = q ? q.toLowerCase().trim().split(" ") : [];
-    const filtered = q
-      ? products.filter((product) =>
-          qToFilter.every((syllable) =>
-            product.sku.toLowerCase().includes(syllable)
-          )
-        )
-      : products;
-    setFilteredProducts(filtered);
-    window.scrollTo(0, 0);
-  }, [q, products]);
-
   return (
     <article className="flex justify-center">
       <div className="m-3 sm:m-5 lg:max-w-6xl w-full">
         <h3 className="self-start mb-3 sm:mb-5 font-medium text-lg sm:text-2xl">
-          {q ? `Results for "${q}" ` : "Products"}
+          Productos
         </h3>
-        {filteredProducts.length === 0 ? (
+        {loading === true ? (
+          <div className="flex justify-center">
+            <ImSpinner8 className="animate-spin w-12 h-12 mt-12 fill-primaryExtraDark" />
+          </div>
+        ) : products.length === 0 ? (
           <div className="m-3 flex flex-col items-center sm:m-5 sm:mt-12">
             <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2 sm:px-5 sm:p-2 sm:mb-3">
               No results
@@ -84,11 +86,9 @@ function ProductsResults() {
         ) : (
           <>
             <div className="grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-3 lg:grid-cols-4">
-              {filteredProducts
-                .slice(firstItemIndex, lastItemIndex)
-                .map((product) => (
-                  <ProductCard product={product} key={product.id} />
-                ))}
+              {products.map((product) => (
+                <ProductCard product={product} key={product.id} />
+              ))}
             </div>
             <div className="m-3 mt-6 flex gap-3 justify-center items-center rounded-md sm:m-5 sm:mt-10 sm:gap-5">
               <button
@@ -100,15 +100,10 @@ function ProductsResults() {
                 <MdOutlineNavigateBefore />
               </button>
               <div className="flex justify-center p-2 text-xl bg-primaryDark rounded-lg text-white font-bold w-16 sm:p-3 sm:text-2xl sm:w-20">
-                {currentPage}/
-                {Math.ceil(filteredProducts.length / productsPerPage)}
+                {currentPage}
               </div>
               <button
-                className={`${
-                  currentPage ===
-                    Math.ceil(filteredProducts.length / productsPerPage) &&
-                  "hidden pointer-events-none"
-                } p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:text-3xl`}
+                className={`p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:text-3xl`}
                 onClick={() => handleNextPage(1)}
               >
                 <MdOutlineNavigateNext />

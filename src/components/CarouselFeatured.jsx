@@ -1,10 +1,10 @@
-import { useContext } from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
-import { AppContext } from '../context/AppProvider';
-import { Link } from 'react-router-dom';
+import { useContext } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { AppContext } from "../context/AppProvider";
+import { Link } from "react-router-dom";
 
-import { MdFavoriteBorder } from 'react-icons/md';
-import { AiFillHeart } from 'react-icons/ai';
+import { MdFavoriteBorder } from "react-icons/md";
+import { AiFillHeart } from "react-icons/ai";
 
 function CarouselFeatured({ from, to, title }) {
   const { favoritesHandler, favorites, products } = useContext(AppContext);
@@ -15,7 +15,7 @@ function CarouselFeatured({ from, to, title }) {
     favoritesHandler(productId);
   };
 
-  console.log('productsFeatured', products);
+  console.log("productsFeatured", products);
 
   return (
     <article className="flex justify-center w-full">
@@ -32,7 +32,7 @@ function CarouselFeatured({ from, to, title }) {
                   );
                   return (
                     <Link
-                      to={`/products/${product.sku}?color=${product.color}`}
+                      to={`/products/${product.sku}/${product.id}?color=${product.color}`}
                       className="w-full flex-[0_0_40%] p-3 shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow bg-white rounded-md relative sm:p-5 sm:flex-[0_0_30%] md:flex-[0_0_25%] lg:flex-[0_0_21%]"
                       key={product.id}
                     >
@@ -62,7 +62,7 @@ function CarouselFeatured({ from, to, title }) {
                     </Link>
                   );
                 })
-              : ''}
+              : ""}
           </div>
         </div>
       </div>
