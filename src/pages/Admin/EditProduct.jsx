@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -58,7 +58,7 @@ function EditProduct() {
   };
 
   const handlePrice = (e) => {
-    const currentPrice = parseFloat(e.target.value);
+    const currentPrice = e.target.value;
     setProductOne({ ...productOne, price: currentPrice });
   };
 
@@ -108,7 +108,7 @@ function EditProduct() {
     }
   };
 
-  const navigate = useNavigate();
+  console.log(user.token);
 
   const editProductServer = async (productDifferences) => {
     console.log("differences: ", productDifferences);
@@ -122,29 +122,15 @@ function EditProduct() {
           },
         }
       );
-
-      if (response.status === 201) {
-        productEdited("Producto editado con éxito");
-        setProductOne(initialState);
-        setTimeout(() => {
-          navigate("/admin/todos-productos");
-        }, 1000);
-      }
-
-      if (response.status === 200) {
-        productEdited("Producto editado con éxito");
-        setProductOne(initialState);
-        setTimeout(() => {
-          navigate("/admin/todos-productos");
-        }, 1000);
-      }
+      productEdited("Producto editado con éxito");
+      console.log(response);
     } catch (error) {
       if (error.response.status === 403) {
         tokenExpired();
         setTimeout(() => {
           localStorage.removeItem("token");
           setUser("");
-        }, 3000);
+        }, 4000);
       }
     }
   };
@@ -220,7 +206,6 @@ function EditProduct() {
           type="number"
           id="price"
           placeholder="precio"
-          maxLength={10}
           className="p-2 outline-none border rounded"
         />
         <button className="bg-primaryDark text-white p-3 font-normal rounded mt-5">

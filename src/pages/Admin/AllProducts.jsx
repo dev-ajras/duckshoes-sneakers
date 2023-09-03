@@ -1,8 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { BiSolidEdit } from "react-icons/bi";
-import { MdDelete } from "react-icons/md";
-import { Link } from "react-router-dom";
+import {
+  MdDelete,
+  MdOutlineNavigateBefore,
+  MdOutlineNavigateNext,
+} from "react-icons/md";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { AppContext } from "../../context/AppProvider";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -11,23 +15,72 @@ import "react-toastify/dist/ReactToastify.css";
 function AllProducts() {
   const { user } = useContext(AppContext);
 
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const pageParam = Number(searchParams.get("page"));
+
   const [adminProducts, setAdminProducts] = useState([]);
+  const [adminNextProducts, setAdminNextProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(pageParam ? pageParam : 1);
+
+  const productsPerPage = 16;
 
   const baseUrl = "https://www.api.duckshoes.com.ar/";
 
   useEffect(() => {
-    try {
-      const fetchProducts = async () => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      const response = await axios.get(
+        `${baseUrl}products?page=${currentPage}&pageSize=${productsPerPage}`
+      );
+      console.log(response);
+      setLoading(false);
+      setAdminProducts(response.data.products);
+    };
+    fetchProducts();
+  }, [currentPage]);
+
+  useEffect(() => {
+    const fetchNextProducts = async () => {
+      setLoading(true);
+      try {
         const response = await axios.get(
-          baseUrl + "products?page=1&pageSize=16"
+          `${baseUrl}products?page=${
+            currentPage + 1
+          }&pageSize=${productsPerPage}`
         );
-        setAdminProducts(response.data.products);
-      };
-      fetchProducts();
-    } catch (error) {
-      console.log(error.response.status);
+        if (response.status === 200) {
+          setAdminNextProducts(response.data.products);
+        } else {
+          console.log(response);
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          setAdminNextProducts([]);
+        } else {
+          console.log(error);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchNextProducts();
+  }, [currentPage]);
+
+  const handleNextPage = (next) => {
+    setCurrentPage(currentPage + next);
+    navigate(`/admin/todos-productos?page=${currentPage + next}`);
+    window.scrollTo(0, 0);
+  };
+
+  const handlePrevPage = (prev) => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - prev);
+      navigate(`/admin/todos-productos?page=${currentPage - prev}`);
+      window.scrollTo(0, 0);
     }
-  }, []);
+  };
 
   const productDeleted = () =>
     toast.success("Producto Eliminado", {
@@ -104,6 +157,27 @@ function AllProducts() {
           </Link>
         </div>
       )}
+      <div className="bg-gray-50 p-5 flex gap-3 justify-center items-center sm:gap-5">
+        <button
+          className={`${
+            currentPage === 1 && "hidden pointer-events-none"
+          } p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:text-3xl`}
+          onClick={() => handlePrevPage(1)}
+        >
+          <MdOutlineNavigateBefore />
+        </button>
+        <div className="flex justify-center p-2 text-xl bg-white rounded-lg ring-1 ring-primaryDark font-bold w-16 sm:p-3 sm:text-2xl">
+          {currentPage}
+        </div>
+        <button
+          className={`${
+            adminNextProducts.length === 0 && "hidden"
+          } p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:text-3xl`}
+          onClick={() => handleNextPage(1)}
+        >
+          <MdOutlineNavigateNext />
+        </button>
+      </div>
     </div>
   );
 }

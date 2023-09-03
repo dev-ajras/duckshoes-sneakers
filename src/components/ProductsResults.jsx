@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 import { useSearchParams, useNavigate } from "react-router-dom";
@@ -11,11 +11,10 @@ import { ImSpinner8 } from "react-icons/im";
 function ProductsResults() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const q = searchParams.get("q");
   const pageParam = Number(searchParams.get("page"));
 
   const [products, setProducts] = useState([]);
-  const [nextProduct, setNextProducts] = useState([]);
+  const [nextProducts, setNextProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(pageParam ? pageParam : 1);
 
@@ -37,43 +36,42 @@ function ProductsResults() {
   }, [currentPage]);
 
   useEffect(() => {
-    try {
-      const fetchNextProducts = async () => {
-        setLoading(true);
+    const fetchNextProducts = async () => {
+      setLoading(true);
+      try {
         const response = await axios.get(
           `${baseUrl}products?page=${
             currentPage + 1
           }&pageSize=${productsPerPage}`
         );
-        setNextProducts(response.data.products);
-        console.log(response.status);
-        if (response.status === 404) {
-          console.log("40404040!");
+        if (response.status === 200) {
+          setNextProducts(response.data.products);
+        } else {
+          console.log(response);
         }
-      };
-      fetchNextProducts();
-    } catch (error) {
-      console.log(error);
-      if (error.response && error.response.status === 404) {
-        console.log("40404040!");
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          setNextProducts([]);
+        } else {
+          console.log(error);
+        }
+      } finally {
+        setLoading(false);
       }
-    }
+    };
+    fetchNextProducts();
   }, [currentPage]);
 
   const handleNextPage = (next) => {
     setCurrentPage(currentPage + next);
-    q
-      ? navigate(`/products?q=${q}&page=${currentPage + next}`)
-      : navigate(`/products?page=${currentPage + next}`);
+    navigate(`/products?page=${currentPage + next}`);
     window.scrollTo(0, 0);
   };
 
   const handlePrevPage = (prev) => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - prev);
-      q
-        ? navigate(`/products?q=${q}&page=${currentPage - prev}`)
-        : navigate(`/products?page=${currentPage - prev}`);
+      navigate(`/products?page=${currentPage - prev}`);
       window.scrollTo(0, 0);
     }
   };
@@ -129,8 +127,8 @@ function ProductsResults() {
               </div>
               <button
                 className={`${
-                  nextProduct.length <= 0 && "hidden"
-                }p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:text-3xl`}
+                  nextProducts.length === 0 && "hidden"
+                } p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:text-3xl`}
                 onClick={() => handleNextPage(1)}
               >
                 <MdOutlineNavigateNext />
