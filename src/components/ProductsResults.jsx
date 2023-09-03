@@ -15,6 +15,7 @@ function ProductsResults() {
   const pageParam = Number(searchParams.get("page"));
 
   const [products, setProducts] = useState([]);
+  const [nextProduct, setNextProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(pageParam ? pageParam : 1);
 
@@ -33,6 +34,30 @@ function ProductsResults() {
       setProducts(response.data.products);
     };
     fetchProducts();
+  }, [currentPage]);
+
+  useEffect(() => {
+    try {
+      const fetchNextProducts = async () => {
+        setLoading(true);
+        const response = await axios.get(
+          `${baseUrl}products?page=${
+            currentPage + 1
+          }&pageSize=${productsPerPage}`
+        );
+        setNextProducts(response.data.products);
+        console.log(response.status);
+        if (response.status === 404) {
+          console.log("40404040!");
+        }
+      };
+      fetchNextProducts();
+    } catch (error) {
+      console.log(error);
+      if (error.response && error.response.status === 404) {
+        console.log("40404040!");
+      }
+    }
   }, [currentPage]);
 
   const handleNextPage = (next) => {
@@ -103,7 +128,9 @@ function ProductsResults() {
                 {currentPage}
               </div>
               <button
-                className={`p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:text-3xl`}
+                className={`${
+                  nextProduct.length <= 0 && "hidden"
+                }p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:text-3xl`}
                 onClick={() => handleNextPage(1)}
               >
                 <MdOutlineNavigateNext />
