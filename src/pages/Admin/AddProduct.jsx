@@ -16,7 +16,7 @@ function AddProduct() {
   const initialState = {
     sku: "",
     color: "",
-    temporada: "",
+    temporada: "verano",
     description: "",
     images: [],
     price: 0,
@@ -64,7 +64,7 @@ function AddProduct() {
   };
 
   const handlePrice = (e) => {
-    const currentPrice = e.target.value;
+    const currentPrice = parseFloat(e.target.value);
     setProductData({ ...productData, price: currentPrice });
   };
 

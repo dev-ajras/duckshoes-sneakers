@@ -22,9 +22,7 @@ function ProductCard({ product }) {
 
   return (
     <Link
-      to={`/products/${product.sku}/${product.id}?color=${product.color}&size=${
-        product.size_range && product.size_range.sort(compare)[2]
-      }`}
+      to={`/products/${product.sku}/${product.id}?color=${product.color}`}
       className="shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow rounded-md bg-white p-3 relative sm:p-5"
     >
       <div className="flex items-center h-64">

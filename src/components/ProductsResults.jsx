@@ -92,21 +92,7 @@ function ProductsResults() {
           <div className="flex justify-center">
             <ImSpinner8 className="animate-spin w-12 h-12 mt-12 fill-primaryExtraDark" />
           </div>
-        ) : products.length === 0 ? (
-          <div className="m-3 flex flex-col items-center sm:m-5 sm:mt-12">
-            <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2 sm:px-5 sm:p-2 sm:mb-3">
-              No results
-            </h5>
-            <p className="font-semibold">
-              There are no matches for your search
-            </p>
-            <img
-              className="w-80 mt-5 sm:mt-8 sm:w-96"
-              src="/assets/illustrations/searchEmpty.svg"
-              alt="favoritesEmpty"
-            />
-          </div>
-        ) : (
+        ) : products.length > 0 ? (
           <>
             <div className="grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-3 lg:grid-cols-4">
               {products.map((product) => (
@@ -135,6 +121,20 @@ function ProductsResults() {
               </button>
             </div>
           </>
+        ) : (
+          <div className="m-3 flex flex-col items-center sm:m-5 sm:mt-12">
+            <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2 sm:px-5 sm:p-2 sm:mb-3">
+              No results
+            </h5>
+            <p className="font-semibold">
+              There are no matches for your search
+            </p>
+            <img
+              className="w-80 mt-5 sm:mt-8 sm:w-96"
+              src="/assets/illustrations/searchEmpty.svg"
+              alt="favoritesEmpty"
+            />
+          </div>
         )}
       </div>
     </article>

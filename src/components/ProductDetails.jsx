@@ -2,6 +2,7 @@ import { useEffect, useState, useContext, useRef } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { AppContext } from "../context/AppProvider";
 import { toast, ToastContainer } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 
 import { useNavigate, useLocation } from "react-router-dom";
@@ -19,7 +20,6 @@ function ProductDetails() {
 
   const { productId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-  const sizeParam = searchParams.get("size");
   const colorParam = searchParams.get("color");
   const [productFound, setProductFound] = useState({});
   const [principalImage, setPrincipalImage] = useState(0);
@@ -40,9 +40,9 @@ function ProductDetails() {
 
   const startIndex = productFound && Math.floor(productFound.id / 7857);
 
-  const handleButton = (productId, color, size) => {
-    if (!cart.find((cartItem) => cartItem.id === productId)) {
-      cartAdd({ id: productId, color: color, size: size, quantity: 1 });
+  const handleButton = (productToCart) => {
+    if (!cart.find((cartItem) => cartItem.id === productToCart.id)) {
+      cartAdd({ ...productToCart, quantity: 1 });
     }
   };
 
@@ -118,9 +118,11 @@ function ProductDetails() {
                             color
                           ].find((imageUrl, idx) => idx === principalImage);
                           return (
-                            <div className="flex justify-center sm:mb-3 md:mb-5 ml-16">
+                            <div
+                              key={colorIdx}
+                              className="flex justify-center sm:mb-3 md:mb-5 ml-16"
+                            >
                               <img
-                                key={colorIdx}
                                 className="bg-left h-56 sm:h-80 object-contain px-5 sm:px-20 md:px-14 lg:px-20"
                                 src={productFoundOne}
                                 alt={productFoundOne}
@@ -175,11 +177,7 @@ function ProductDetails() {
                           className="box-border w-full bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors text-white text-lg font-semibold my-3 p-2 sm:my-5 sm:p-3 rounded-sm"
                           onClick={() => {
                             addedToCart(productFound.id),
-                              handleButton(
-                                productFound.id,
-                                colorParam,
-                                sizeParam
-                              );
+                              handleButton(productFound);
                           }}
                         >
                           Add to cart
@@ -199,7 +197,7 @@ function ProductDetails() {
                           <span className="opacity-80">Favorites</span>
                         </button>
                         <a
-                          href={`https://api.whatsapp.com/send?phone=541138596093&text=Hola! Quería consulta por las zapatillas ${productFound.name} | Talle: ${sizeParam} | Color: ${colorParam}`}
+                          href={`https://api.whatsapp.com/send?phone=541138596093&text=Hola! Quería consulta por las zapatillas ${productFound.sku} | Color: ${colorParam}`}
                           className="w-full bg-primaryLight md:hover:bg-primary md:transition-colors p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm"
                         >
                           <BsShare className="sm:w-5 sm:h-5" />

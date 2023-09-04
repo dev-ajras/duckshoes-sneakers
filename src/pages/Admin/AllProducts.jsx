@@ -11,6 +11,7 @@ import { AppContext } from "../../context/AppProvider";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ImSpinner8 } from "react-icons/im";
 
 function AllProducts() {
   const { user } = useContext(AppContext);
@@ -113,7 +114,11 @@ function AllProducts() {
         <div className="text-center col-span-2">Precio</div>
         <div className="text-center col-span-2">Estado</div>
       </div>
-      {adminProducts.length > 0 ? (
+      {loading ? (
+        <div className="flex justify-center bg-white min-h-screen">
+          <ImSpinner8 className="animate-spin w-12 h-12 mt-12 fill-primaryExtraDark" />
+        </div>
+      ) : adminProducts.length > 0 ? (
         adminProducts.map((product) => (
           <div
             key={product.id}
