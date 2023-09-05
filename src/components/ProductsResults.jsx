@@ -124,10 +124,10 @@ function ProductsResults() {
         ) : (
           <div className="m-3 flex flex-col items-center sm:m-5 sm:mt-12">
             <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2 sm:px-5 sm:p-2 sm:mb-3">
-              No results
+              No hay productos
             </h5>
             <p className="font-semibold">
-              There are no matches for your search
+              Por favor volvé a intentarlo más tarde
             </p>
             <img
               className="w-80 mt-5 sm:mt-8 sm:w-96"

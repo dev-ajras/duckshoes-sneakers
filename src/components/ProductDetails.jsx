@@ -123,7 +123,7 @@ function ProductDetails() {
                               className="flex justify-center sm:mb-3 md:mb-5 ml-16"
                             >
                               <img
-                                className="bg-left h-56 sm:h-80 object-contain px-5 sm:px-20 md:px-14 lg:px-20"
+                                className="bg-left h-56 sm:h-80 object-contain px-5 sm:px-20 md:px-14 lg:px-28"
                                 src={productFoundOne}
                                 alt={productFoundOne}
                               />
@@ -166,7 +166,7 @@ function ProductDetails() {
                           <div className="w-10 rounded-full ring ring-blue-500 ring-offset-2 my-3 sm:ring-offset-4">
                             <img
                               className="drop-shadow-md "
-                              src={`/assets/colors/${productFound.color}Color.svg`}
+                              src={`/assets/colors/${productFound.color.toLowerCase()}Color.svg`}
                               alt={productFound.color}
                             />
                           </div>

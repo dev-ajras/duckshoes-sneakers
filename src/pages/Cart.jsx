@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppProvider";
 import AddRemoveButtons from "../components/AddRemoveButtons";
 import TotalCart from "../components/TotalCart";
+import { ToastContainer, toast } from "react-toastify";
 
 function Cart() {
   const { cart, setCartMenu } = useContext(AppContext);
@@ -29,8 +30,17 @@ function Cart() {
 
   console.log("AB ", cart);
 
+  const userReject = () =>
+    toast.error("Esta función es solo para clientes", {
+      autoClose: 2000,
+      hideProgressBar: true,
+      pauseOnFocusLoss: false,
+      pauseOnHover: false,
+    });
+
   return (
     <section className="flex justify-center">
+      <ToastContainer className="mt-20" />
       <div className="max-w-6xl w-full m-3 sm:m-5">
         <h3 className="font-medium text-lg mb-3 sm:mb-5 sm:text-2xl">Cart</h3>
         <div>
@@ -82,7 +92,7 @@ function Cart() {
                 ))}
               </div>
               <div className="bg-white rounded-b-md md:rounded-md h-full md:w-64 lg:w-96 md:sticky md:top-28">
-                <TotalCart setCartMenu={setCartMenu} />
+                <TotalCart userReject={userReject} />
               </div>
             </div>
           ) : (

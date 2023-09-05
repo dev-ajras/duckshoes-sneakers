@@ -6,11 +6,7 @@ import AddRemoveButtons from "./AddRemoveButtons";
 import TotalCart from "./TotalCart";
 
 function CartMenu({ cartMenu, setCartMenu }) {
-  const { products, cart } = useContext(AppContext);
-
-  const filteredProducts = products.filter((product) =>
-    cart.some((cartItem) => cartItem.id === product.id)
-  );
+  const { cart } = useContext(AppContext);
 
   const cartMenuBgVariants = {
     active: { opacity: 0.4 },
@@ -47,15 +43,23 @@ function CartMenu({ cartMenu, setCartMenu }) {
             </div>
           ) : (
             <div>
-              {filteredProducts.map((filteredProduct) => (
+              {cart.map((filteredProduct) => (
                 <div key={filteredProduct.id}>
                   <div className="flex gap-3 sm:gap-5 my-3 sm:my-5">
                     <div className="sm:w-36">
-                      <img
-                        className="w-24"
-                        src={filteredProduct.grid_picture_url}
-                        alt={filteredProduct.name}
-                      />
+                      {filteredProduct.images &&
+                        Object.keys(filteredProduct.images).map(
+                          (color, colorIdx) => {
+                            const image0 = filteredProduct.images[color][0];
+                            return (
+                              <img
+                                key={colorIdx}
+                                src={image0}
+                                alt={filteredProduct.name}
+                              />
+                            );
+                          }
+                        )}
                     </div>
                     <div className="w-full">
                       <h4 className="font-semibold text-md line-clamp-2 leading-6 sm:text-xl sm:leading-8">
@@ -72,7 +76,7 @@ function CartMenu({ cartMenu, setCartMenu }) {
                         </p>
                       </div>
                       <div className="font-bold text-xl mt-1 mb-3 sm:text-2xl sm:mt-2 sm:mb-5">
-                        <span>${filteredProduct.retail_price_cents / 100}</span>
+                        <span>${filteredProduct.price}</span>
                       </div>
                       <AddRemoveButtons
                         filteredProductId={filteredProduct.id}
@@ -85,12 +89,9 @@ function CartMenu({ cartMenu, setCartMenu }) {
             </div>
           )}
         </div>
-        {filteredProducts.length > 0 ? (
+        {cart.length > 0 ? (
           <div className="bg-white">
-            <TotalCart
-              filteredProducts={filteredProducts}
-              setCartMenu={setCartMenu}
-            />
+            <TotalCart filteredProducts={cart} setCartMenu={setCartMenu} />
           </div>
         ) : (
           ""

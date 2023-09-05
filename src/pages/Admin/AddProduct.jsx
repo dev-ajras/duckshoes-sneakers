@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { BiImageAdd } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { ImSpinner8 } from "react-icons/im";
 
 function AddProduct() {
   const { user, setUser } = useContext(AppContext);
@@ -24,6 +25,7 @@ function AddProduct() {
 
   const [productData, setProductData] = useState(initialState);
   const [previewImages, setPreviewImages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleSku = (e) => {
     const currentSku = e.target.value;
@@ -106,6 +108,7 @@ function AddProduct() {
   const baseUrl = "https://www.api.duckshoes.com.ar/";
 
   const addProduct = async () => {
+    setLoading(true);
     try {
       const response = await axios.post(
         baseUrl + "products/create",
@@ -130,6 +133,8 @@ function AddProduct() {
           setUser("");
         }, 3000);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -276,8 +281,12 @@ function AddProduct() {
           maxLength={10}
           className="p-2 outline-none border rounded"
         />
-        <button className="bg-primaryDark text-white p-3 font-normal rounded mt-5">
-          Agregar Producto
+        <button className="flex  justify-center items-center bg-primaryDark text-white p-3 font-normal rounded mt-5">
+          {loading ? (
+            <ImSpinner8 className="animate-spin" />
+          ) : (
+            "Agregar Producto"
+          )}
         </button>
       </div>
     </form>

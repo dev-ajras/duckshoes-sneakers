@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { AppContext } from "../context/AppProvider";
-import { Link } from "react-router-dom";
+import axios from "axios";
 
-function TotalCart({ setCartMenu }) {
-  const { cart, cartFullClear } = useContext(AppContext);
+function TotalCart({ userReject }) {
+  const { user, cart, cartFullClear } = useContext(AppContext);
 
   const calculateTotal = (products) => {
     let total = 0;
@@ -22,13 +22,29 @@ function TotalCart({ setCartMenu }) {
     quantity: cartItem.quantity,
   }));
 
-  console.log(cartToOrder);
+  console.log("aa", cartToOrder);
+
+  const baseUrl = "https://www.api.duckshoes.com.ar/";
+
+  const postOrder = async () => {
+    const response = await axios.post(`${baseUrl}orders/create`, cartToOrder, {
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    console.log(response);
+  };
 
   const total = calculateTotal(cart);
 
   const handleOrder = () => {
-    cartFullClear();
-    setCartMenu(false);
+    if (user.role !== 0) {
+      console.log("reject");
+      userReject();
+    } else {
+      postOrder();
+      // cartFullClear();
+    }
   };
 
   return (
@@ -51,13 +67,12 @@ function TotalCart({ setCartMenu }) {
           <span className="font-medium opacity-60">Total</span>
           <span className="font-medium sm:text-lg">${total}</span>
         </div>
-        <Link
-          to="/payment"
+        <button
           className="bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors font-semibold text-white p-3 rounded-sm mt-2 text-center text-lg"
           onClick={() => handleOrder()}
         >
           Encargar
-        </Link>
+        </button>
       </div>
     </div>
   );
