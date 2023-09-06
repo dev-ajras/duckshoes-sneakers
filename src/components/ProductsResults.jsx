@@ -1,36 +1,42 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-import { useSearchParams, useNavigate } from "react-router-dom";
-import ProductCard from "./ProductCard";
+import { useSearchParams, useNavigate } from 'react-router-dom';
+import ProductCard from './ProductCard';
 
-import { MdOutlineNavigateNext } from "react-icons/md";
-import { MdOutlineNavigateBefore } from "react-icons/md";
-import { ImSpinner8 } from "react-icons/im";
+import { MdOutlineNavigateNext } from 'react-icons/md';
+import { MdOutlineNavigateBefore } from 'react-icons/md';
+import { ImSpinner8 } from 'react-icons/im';
+import SkeletonProductsResults from './Skeletons/SkeletonProductsResults';
 
 function ProductsResults() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const pageParam = Number(searchParams.get("page"));
+  const pageParam = Number(searchParams.get('page'));
 
   const [products, setProducts] = useState([]);
   const [nextProducts, setNextProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(pageParam ? pageParam : 1);
 
   const productsPerPage = 16;
 
-  const baseUrl = "https://www.api.duckshoes.com.ar/";
+  const baseUrl = 'https://www.api.duckshoes.com.ar/';
 
   useEffect(() => {
     const fetchProducts = async () => {
-      setLoading(true);
-      const response = await axios.get(
-        `${baseUrl}products?page=${currentPage}&pageSize=${productsPerPage}`
-      );
-      console.log(response);
-      setLoading(false);
-      setProducts(response.data.products);
+      try {
+        const response = await axios.get(
+          `${baseUrl}products?page=${currentPage}&pageSize=${productsPerPage}`
+        );
+        console.log(response);
+        setProducts(response.data.products);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchProducts();
   }, [currentPage]);
@@ -55,8 +61,6 @@ function ProductsResults() {
         } else {
           console.log(error);
         }
-      } finally {
-        setLoading(false);
       }
     };
     fetchNextProducts();
@@ -83,37 +87,35 @@ function ProductsResults() {
   }, [pageParam]);
 
   return (
-    <article className="flex justify-center">
-      <div className="m-3 sm:m-5 lg:max-w-6xl w-full">
-        <h3 className="self-start mb-3 sm:mb-5 font-medium text-lg sm:text-2xl">
+    <article className='flex justify-center'>
+      <div className='m-3 sm:m-5 lg:max-w-6xl w-full'>
+        <h3 className='self-start mb-3 sm:mb-5 font-medium text-lg sm:text-2xl'>
           Productos
         </h3>
         {loading === true ? (
-          <div className="flex justify-center">
-            <ImSpinner8 className="animate-spin w-12 h-12 mt-12 fill-primaryExtraDark" />
-          </div>
+          <SkeletonProductsResults />
         ) : products.length > 0 ? (
           <>
-            <div className="grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-3 lg:grid-cols-4">
+            <div className='grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-3 lg:grid-cols-4'>
               {products.map((product) => (
                 <ProductCard product={product} key={product.id} />
               ))}
             </div>
-            <div className="m-3 mt-6 flex gap-3 justify-center items-center rounded-md sm:m-5 sm:mt-10 sm:gap-5">
+            <div className='m-3 mt-6 flex gap-3 justify-center items-center rounded-md sm:m-5 sm:mt-10 sm:gap-5'>
               <button
                 className={`${
-                  currentPage === 1 && "hidden pointer-events-none"
+                  currentPage === 1 && 'hidden pointer-events-none'
                 } p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:text-3xl`}
                 onClick={() => handlePrevPage(1)}
               >
                 <MdOutlineNavigateBefore />
               </button>
-              <div className="flex justify-center p-2 text-xl bg-primaryDark rounded-lg text-white font-bold w-16 sm:p-3 sm:text-2xl sm:w-20">
+              <div className='flex justify-center p-2 text-xl bg-primaryDark rounded-lg text-white font-bold w-16 sm:p-3 sm:text-2xl sm:w-20'>
                 {currentPage}
               </div>
               <button
                 className={`${
-                  nextProducts.length === 0 && "hidden"
+                  nextProducts.length === 0 && 'hidden'
                 } p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:text-3xl`}
                 onClick={() => handleNextPage(1)}
               >
@@ -122,17 +124,17 @@ function ProductsResults() {
             </div>
           </>
         ) : (
-          <div className="m-3 flex flex-col items-center sm:m-5 sm:mt-12">
-            <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2 sm:px-5 sm:p-2 sm:mb-3">
+          <div className='m-3 flex flex-col items-center sm:m-5 sm:mt-12'>
+            <h5 className='font-semibold text-lg bg-primaryLight px-3 p-1 mb-2 sm:px-5 sm:p-2 sm:mb-3'>
               No hay productos
             </h5>
-            <p className="font-semibold">
+            <p className='font-semibold'>
               Por favor volvé a intentarlo más tarde
             </p>
             <img
-              className="w-80 mt-5 sm:mt-8 sm:w-96"
-              src="/assets/illustrations/searchEmpty.svg"
-              alt="favoritesEmpty"
+              className='w-80 mt-5 sm:mt-8 sm:w-96'
+              src='/assets/illustrations/searchEmpty.svg'
+              alt='favoritesEmpty'
             />
           </div>
         )}
