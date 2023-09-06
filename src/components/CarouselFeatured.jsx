@@ -47,7 +47,9 @@ function CarouselFeatured({ from, to, title }) {
                         {product.sku}
                       </h3>
                       <div className="flex justify-between  items-center text-xl sm:text-2xl">
-                        <strong>${product.price}</strong>
+                        <strong>
+                          ${parseFloat(product.price).toLocaleString("es-ES")}
+                        </strong>
                         <button
                           className="absolute top-4 right-4 sm:top-5 sm:right-5"
                           onClick={(e) => handleFavorite(e, product.id)}

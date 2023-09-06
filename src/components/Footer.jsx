@@ -63,7 +63,7 @@ function Footer() {
             </div>
           </div>
           <div className="my-3 sm:my-5 lg:m-0 font-normal">
-            <h4 className="text-lg mb-1 sm:text-2xl">Company</h4>
+            <h4 className="text-lg mb-1 sm:text-2xl">Empresa</h4>
             <ul className="flex flex-col gap-1 opacity-80 sm:gap-2">
               <li className="flex items-center gap-2">
                 <HiLocationMarker className="text-xl sm:text-3xl lg:text-2xl" />
@@ -82,14 +82,14 @@ function Footer() {
             </ul>
           </div>
           <div className="my-3 sm:my-5 lg:m-0 font-normal">
-            <h4 className="text-xl mb-1 sm:text-2xl">Service</h4>
+            <h4 className="text-xl mb-1 sm:text-2xl">Servicio</h4>
             <ul className="flex flex-col gap-0.5 opacity-80 sm:text-2xl sm:gap-1 lg:text-xl ">
               <li>
                 <Link
                   to="/service/how-we-deliver"
                   className="md:hover:text-primaryExtraDark transition-colors"
                 >
-                  How we deliver
+                  Envío
                 </Link>
               </li>
               <li>
@@ -97,7 +97,7 @@ function Footer() {
                   to="/service/how-to-buy"
                   className="md:hover:text-primaryExtraDark transition-colors"
                 >
-                  How to buy
+                  Cómo Comprar
                 </Link>
               </li>
               <li>
@@ -105,7 +105,7 @@ function Footer() {
                   to="/service/payment-methods"
                   className="md:hover:text-primaryExtraDark transition-colors"
                 >
-                  Payment methods
+                  Métodos de pago
                 </Link>
               </li>
             </ul>
@@ -118,7 +118,7 @@ function Footer() {
                   to="/"
                   className="md:hover:text-primaryExtraDark transition-colors"
                 >
-                  Home
+                  Inicio
                 </Link>
               </li>
               <li>
@@ -126,7 +126,7 @@ function Footer() {
                   to="/products"
                   className="md:hover:text-primaryExtraDark transition-colors"
                 >
-                  Products
+                  Productos
                 </Link>
               </li>
               <li>
@@ -134,7 +134,7 @@ function Footer() {
                   to="/favorites"
                   className="md:hover:text-primaryExtraDark transition-colors"
                 >
-                  Favorites
+                  Favoritos
                 </Link>
               </li>
               <li>
@@ -142,7 +142,7 @@ function Footer() {
                   to="/cart"
                   className="md:hover:text-primaryExtraDark transition-colors"
                 >
-                  Cart
+                  Carrito
                 </Link>
               </li>
               <li>
@@ -150,15 +150,7 @@ function Footer() {
                   to="/login"
                   className="md:hover:text-primaryExtraDark transition-colors"
                 >
-                  Login
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/help"
-                  className="md:hover:text-primaryExtraDark transition-colors"
-                >
-                  Help
+                  Ingresar
                 </Link>
               </li>
             </ul>

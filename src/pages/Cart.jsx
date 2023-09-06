@@ -9,25 +9,6 @@ function Cart() {
 
   console.log(cart);
 
-  // const baseUrl = "https://www.api.duckshoes.com.ar/";
-
-  // useEffect(() => {
-  //   const fetchCartProducts = async () => {
-  //     const newCartProducts = [];
-
-  //     for (const cartProduct of cart) {
-  //       const response = await axios.get(
-  //         `${baseUrl}/products/${cartProduct.id}`
-  //       );
-  //       newCartProducts.push(response.data);
-  //     }
-
-  //     setCartProducts([...newCartProducts]);
-  //   };
-
-  //   fetchCartProducts();
-  // }, [cart]);
-
   console.log("AB ", cart);
 
   const userReject = () =>
@@ -92,7 +73,7 @@ function Cart() {
                 ))}
               </div>
               <div className="bg-white rounded-b-md md:rounded-md h-full md:w-64 lg:w-96 md:sticky md:top-28">
-                <TotalCart userReject={userReject} />
+                <TotalCart cartTo={0} userReject={userReject} />
               </div>
             </div>
           ) : (

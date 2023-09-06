@@ -29,7 +29,9 @@ function ProductCard({ product }) {
         <img src={product.image} alt={product.sku} />
       </div>
       <div className="flex justify-between mt-1 items-center text-xl">
-        <strong className="sm:text-2xl sm:mb-2">${product.price}</strong>
+        <strong className="sm:text-2xl sm:mb-2">
+          ${parseFloat(product.price).toLocaleString("es-ES")}
+        </strong>
       </div>
       <h3 className="line-clamp-2 h-8 sm:text-lg sm:h-10">{product.sku}</h3>
       <button

@@ -25,16 +25,16 @@ function CartMenu({ cartMenu, setCartMenu }) {
         animate={!cartMenu ? "inactive" : "active"}
         variants={cartMenuVariants}
         transition={{ duration: 0.3 }}
-        className="absolute top-14 pb-24 right-0 z-40 w-3/4 h-[100dvh] drop-shadow-md p-2 bg-white sm:p-3 md:top-24 sm:pb-24 md:w-1/2 lg:w-96 flex flex-col"
+        className="absolute top-20 pb-24 right-0 z-40 w-3/4 h-[100dvh] drop-shadow-md p-2 bg-white sm:p-3 md:top-24 sm:pb-24 md:w-1/2 lg:w-96 flex flex-col"
       >
-        <h3 className="font-medium text-xl p-1 sm:p-2 sm:text-2xl">Cart</h3>
+        <h3 className="font-medium text-xl p-1 sm:p-2 sm:text-2xl">Carrito</h3>
         <div className="  overflow-y-auto">
           {cart.length === 0 ? (
             <div className="flex flex-col items-center m-2 sm:m-3">
               <h5 className="bg-primaryLight text-lg font-normal px-2 py-1 mb-1 sm:px-3 sm:py-2 sm:mb-2">
                 It's empty
               </h5>
-              <p className="font-normal">Add products (+)</p>
+              <p className="font-normal">Agregar productos (+)</p>
               <img
                 className="my-5 w-40 sm:my-8 sm:w-64"
                 src="/assets/illustrations/cartEmpty.svg"
@@ -70,10 +70,6 @@ function CartMenu({ cartMenu, setCartMenu }) {
                           <span className="opacity-60">Color: </span>
                           <span>{filteredProduct.color}</span>
                         </p>
-                        <p>
-                          <span className="opacity-60">Size: </span>
-                          <span>5</span>
-                        </p>
                       </div>
                       <div className="font-bold text-xl mt-1 mb-3 sm:text-2xl sm:mt-2 sm:mb-5">
                         <span>${filteredProduct.price}</span>
@@ -91,7 +87,11 @@ function CartMenu({ cartMenu, setCartMenu }) {
         </div>
         {cart.length > 0 ? (
           <div className="bg-white">
-            <TotalCart filteredProducts={cart} setCartMenu={setCartMenu} />
+            <TotalCart
+              cartTo={1}
+              filteredProducts={cart}
+              setCartMenu={setCartMenu}
+            />
           </div>
         ) : (
           ""
@@ -102,7 +102,7 @@ function CartMenu({ cartMenu, setCartMenu }) {
         animate={!cartMenu ? "inactive" : "active"}
         variants={cartMenuBgVariants}
         transition={{ duration: 0.3 }}
-        className={`absolute bg-black h-screen w-screen top-14 left-0 md:top-24 ${
+        className={`absolute bg-black h-screen w-screen top-20 left-0 md:top-24 ${
           !cartMenu && "pointer-events-none"
         }`}
         onClick={() => setCartMenu(false)}

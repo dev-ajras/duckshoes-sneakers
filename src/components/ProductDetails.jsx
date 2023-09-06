@@ -77,8 +77,8 @@ function ProductDetails() {
       <div className="flex flex-col items-center w-full">
         <div className="w-full flex justify-center p-3 sm:p-5">
           <div className="lg:max-w-6xl w-full">
-            <h3 className="font-bold text-lg mb-3 sm:mb-5 sm:text-2xl">
-              Product Details
+            <h3 className="font-medium text-lg mb-3 sm:mb-5 sm:text-2xl">
+              Detalles
             </h3>
             {loading === true ? (
               <div className="flex justify-center">
@@ -147,7 +147,8 @@ function ProductDetails() {
                         </span>
                       </h2>
                       <span className="block my-3 font-semibold text-3xl sm:text-4xl">
-                        ${productFound.price}
+                        $
+                        {parseFloat(productFound.price).toLocaleString("es-ES")}
                       </span>
                       <div className="my-3 font-semibold sm:text-lg">
                         <span>Temporada: </span>
@@ -263,7 +264,7 @@ function ProductDetails() {
           </div>
         </div>
         <CarouselFeatured
-          title={"Related Products"}
+          title={"Productos Relacionados"}
           from={startIndex}
           to={startIndex + 10}
         />

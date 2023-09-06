@@ -10,6 +10,8 @@ function AppProvider({ children }) {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || ""
   );
+  const [navbarMenu, setNavbarMenu] = useState(false);
+  const [cartMenu, setCartMenu] = useState(false);
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user")) || "";
@@ -115,6 +117,10 @@ function AppProvider({ children }) {
     cartFullClear,
     user,
     setUser,
+    navbarMenu,
+    setNavbarMenu,
+    cartMenu,
+    setCartMenu,
   };
 
   return (
