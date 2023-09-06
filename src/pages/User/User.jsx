@@ -34,9 +34,9 @@ function Admin() {
                       ? "text-primaryDark border-l-2 border-primaryDark pl-2"
                       : "pl-2 border-l-2 border-gray-300 hover:text-primaryDark hover:border-l-2 hover:border-primaryDark"
                   }
-                  to="/user/todos-pedidos"
+                  to="/user/mis-pedidos"
                 >
-                  Todos los Pedidos
+                  Mis Pedidos
                 </NavLink>
                 <NavLink
                   className={({ isActive }) =>
@@ -62,7 +62,7 @@ function Admin() {
               <Routes>
                 <Route index element={<Order />} />
                 <Route path="pedido" element={<Order />} />
-                <Route path="todos-pedidos" element={<AllOrders />} />
+                <Route path="mis-pedidos" element={<AllOrders />} />
                 <Route path="configuracion" element={<Configuration />} />
               </Routes>
               <Outlet />

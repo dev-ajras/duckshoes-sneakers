@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { BiSolidEdit } from "react-icons/bi";
 import { MdOutlineNavigateBefore, MdOutlineNavigateNext } from "react-icons/md";
 import { FiMoreVertical } from "react-icons/fi";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
@@ -11,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ImSpinner8 } from "react-icons/im";
 
 function AllOrders() {
-  const { user } = useContext(AppContext);
+  const { user, setUser } = useContext(AppContext);
 
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -19,12 +18,18 @@ function AllOrders() {
 
   const [orders, setOrders] = useState([]);
   const [ordersNext, setOrdersNext] = useState([]);
-  const [adminProducts, setAdminProducts] = useState([]);
-  const [adminNextProducts, setAdminNextProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(pageParam ? pageParam : 1);
 
   const productsPerPage = 16;
+
+  const tokenExpired = () =>
+    toast.error("Tu token expiró, volvé a logearte", {
+      autoClose: 2000,
+      hideProgressBar: true,
+      pauseOnFocusLoss: false,
+      pauseOnHover: false,
+    });
 
   const baseUrl = "https://www.api.duckshoes.com.ar/";
 
@@ -41,9 +46,17 @@ function AllOrders() {
           }
         );
         console.log(response);
+
         setOrders(response.data.orders);
       } catch (error) {
         console.log(error);
+        if (error.response.status === 403) {
+          tokenExpired();
+          setTimeout(() => {
+            localStorage.removeItem("token");
+            setUser("");
+          }, 3000);
+        }
       } finally {
         setLoading(false);
       }
@@ -167,10 +180,10 @@ function AllOrders() {
       ) : (
         <div className="p-3 flex flex-col items-center sm:p-5 sm:py-12 bg-white">
           <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2 sm:px-5 sm:p-2 sm:mb-3">
-            No hay productos
+            No hay pedidos
           </h5>
           <Link to="/admin/agregar-producto" className="font-semibold">
-            Añadir producto +
+            Añadir pedido +
           </Link>
         </div>
       )}
