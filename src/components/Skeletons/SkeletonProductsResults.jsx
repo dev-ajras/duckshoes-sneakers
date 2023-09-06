@@ -1,7 +1,6 @@
 import React from 'react';
 
 const skelentonQuantity = Array.from({ length: 16 });
-console.log(skelentonQuantity);
 
 function SkeletonProductsResults() {
   return (

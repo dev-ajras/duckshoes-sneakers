@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { AppContext } from "../../context/AppProvider";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { AppContext } from '../../context/AppProvider';
 
 function EditProduct() {
   const { user, setUser } = useContext(AppContext);
@@ -12,22 +12,22 @@ function EditProduct() {
   const { productId } = useParams();
 
   const initialState = {
-    sku: "",
-    color: "",
-    temporada: "",
-    description: "",
+    sku: '',
+    color: '',
+    temporada: '',
+    description: '',
     price: 0,
   };
 
   const [productOne, setProductOne] = useState(initialState);
   const [productOneConstant, setProductOneConstant] = useState({});
 
-  const baseUrl = "https://www.api.duckshoes.com.ar/";
+  const baseUrl = 'https://www.api.duckshoes.com.ar/';
 
   useEffect(() => {
     try {
       const getProductOne = async () => {
-        const response = await axios.get(baseUrl + "products/" + productId);
+        const response = await axios.get(baseUrl + 'products/' + productId);
         setProductOne(response.data);
         setProductOneConstant(response.data);
       };
@@ -79,7 +79,7 @@ function EditProduct() {
     });
 
   const tokenExpired = () =>
-    toast.error("Tu token expiró, volvé a logearte", {
+    toast.error('Tu token expiró, volvé a logearte', {
       autoClose: 2000,
       hideProgressBar: true,
       pauseOnFocusLoss: false,
@@ -102,19 +102,16 @@ function EditProduct() {
 
   const editProduct = (productDifferences) => {
     if (Object.keys(productDifferences).length === 0) {
-      productNoEdited("No estas realizando cambios");
+      productNoEdited('No estas realizando cambios');
     } else {
       editProductServer(productDifferences);
     }
   };
 
-  console.log(user.token);
-
   const editProductServer = async (productDifferences) => {
-    console.log("differences: ", productDifferences);
     try {
       const response = await axios.put(
-        baseUrl + "products/update/" + productId,
+        baseUrl + 'products/update/' + productId,
         productDifferences,
         {
           headers: {
@@ -122,21 +119,18 @@ function EditProduct() {
           },
         }
       );
-      productEdited("Producto editado con éxito");
+      productEdited('Producto editado con éxito');
       console.log(response);
     } catch (error) {
       if (error.response.status === 403) {
         tokenExpired();
         setTimeout(() => {
-          localStorage.removeItem("token");
-          setUser("");
+          localStorage.removeItem('token');
+          setUser('');
         }, 4000);
       }
     }
   };
-
-  console.log("productOne: ", productOne);
-  console.log("productOneConstant", productOneConstant);
 
   const handleForm = (e) => {
     e.preventDefault();
@@ -145,43 +139,43 @@ function EditProduct() {
   };
 
   return (
-    <form onSubmit={handleForm} className="grid grid-cols-2 gap-3">
-      <div className="flex flex-col bg-white p-5 rounded shadow">
+    <form onSubmit={handleForm} className='grid grid-cols-2 gap-3'>
+      <div className='flex flex-col bg-white p-5 rounded shadow'>
         <ToastContainer />
-        <label htmlFor="sku" className="mb-2">
+        <label htmlFor='sku' className='mb-2'>
           SKU
         </label>
         <input
           value={productOne.sku}
           onChange={(e) => handleSku(e)}
-          type="text"
-          id="sku"
-          placeholder="sku"
-          className="p-2 outline-none border rounded"
+          type='text'
+          id='sku'
+          placeholder='sku'
+          className='p-2 outline-none border rounded'
         />
-        <label htmlFor="color" className="mt-5 mb-2">
+        <label htmlFor='color' className='mt-5 mb-2'>
           Color
         </label>
         <input
           value={productOne.color}
           onChange={(e) => handleColor(e)}
-          type="text"
-          id="color"
-          placeholder="color"
-          className="p-2 outline-none border rounded"
+          type='text'
+          id='color'
+          placeholder='color'
+          className='p-2 outline-none border rounded'
         />
-        <label htmlFor="temporada" className="mt-5 mb-2">
+        <label htmlFor='temporada' className='mt-5 mb-2'>
           Temporada
         </label>
         <select
           onChange={(e) => handleTemporada(e)}
-          id="temporada"
-          className="p-2 outline-none border rounded"
+          id='temporada'
+          className='p-2 outline-none border rounded'
         >
-          <option value="verano">Verano</option>
-          <option value="invierno">Invierno</option>
+          <option value='verano'>Verano</option>
+          <option value='invierno'>Invierno</option>
         </select>
-        <label htmlFor="description" className="mt-5 mb-2">
+        <label htmlFor='description' className='mt-5 mb-2'>
           Descripción
         </label>
         <textarea
@@ -189,26 +183,26 @@ function EditProduct() {
           onChange={(e) => handleDescription(e)}
           maxLength={500}
           rows={4}
-          type="text"
-          id="description"
-          placeholder="descripción"
-          className="p-2 outline-none border rounded max-h-96"
+          type='text'
+          id='description'
+          placeholder='descripción'
+          className='p-2 outline-none border rounded max-h-96'
         />
       </div>
-      <div className="flex flex-col bg-white rounded shadow p-5">
-        <label htmlFor="price" className="mb-2">
+      <div className='flex flex-col bg-white rounded shadow p-5'>
+        <label htmlFor='price' className='mb-2'>
           Precio
         </label>
         <input
           value={productOne.price}
           onChange={(e) => handlePrice(e)}
           min={0}
-          type="number"
-          id="price"
-          placeholder="precio"
-          className="p-2 outline-none border rounded"
+          type='number'
+          id='price'
+          placeholder='precio'
+          className='p-2 outline-none border rounded'
         />
-        <button className="bg-primaryDark text-white p-3 font-normal rounded mt-5">
+        <button className='bg-primaryDark text-white p-3 font-normal rounded mt-5'>
           Editar Producto
         </button>
       </div>

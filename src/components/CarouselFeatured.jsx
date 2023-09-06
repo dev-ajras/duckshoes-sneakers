@@ -1,23 +1,43 @@
-import { useContext, useEffect } from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
+import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppProvider';
 import { Link } from 'react-router-dom';
+import SkeletonCarouselFeatured from './Skeletons/SkeletonCarouselFeatured';
 
+import axios from 'axios';
+
+import useEmblaCarousel from 'embla-carousel-react';
 import { MdFavoriteBorder } from 'react-icons/md';
 import { AiFillHeart } from 'react-icons/ai';
 
-function CarouselFeatured({ from, to, title }) {
-  const { favoritesHandler, favorites, products } = useContext(AppContext);
+function CarouselFeatured({ title }) {
+  const { favoritesHandler, favorites } = useContext(AppContext);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [emblaRef] = useEmblaCarousel({ dragFree: true });
 
-  useEffect(() => {});
+  const baseUrl = 'https://www.api.duckshoes.com.ar/';
+
+  useEffect(() => {
+    const fecthProducts = async () => {
+      try {
+        const response = await axios.get(
+          `${baseUrl}products?page=1&pageSize=10`
+        );
+        console.log(response);
+        setProducts(response.data.products);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fecthProducts();
+  }, []);
 
   const handleFavorite = (e, productId) => {
     e.preventDefault();
     favoritesHandler(productId);
   };
-
-  console.log('productsFeatured', products);
 
   return (
     <article className='flex justify-center w-full'>
@@ -27,28 +47,27 @@ function CarouselFeatured({ from, to, title }) {
         </h3>
         <div ref={emblaRef}>
           <div className='flex gap-3 sm:gap-5'>
-            {products
-              ? products.slice(from, to).map((product) => {
-                  const isFavorite = favorites.some(
-                    (fav) => fav === product.id
-                  );
-                  return (
-                    <Link
-                      to={`/products/${product.sku}/${product.id}?color=${product.color}`}
-                      className='w-full flex-[0_0_40%] p-3 shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow bg-white rounded-md relative sm:p-5 sm:flex-[0_0_30%] md:flex-[0_0_25%] lg:flex-[0_0_21%]'
-                      key={product.id}
-                    >
-                      <div className='flex items-center h-64'>
-                        <img
-                          className='w-full'
-                          src={product.image}
-                          alt={product.sku}
-                        />
-                      </div>
-                      <h3 className='line-clamp-2 h-8 sm:text-lg'>
+            {loading ? (
+              <SkeletonCarouselFeatured />
+            ) : products.length > 0 ? (
+              products.map((product) => {
+                const isFavorite = favorites.some((fav) => fav === product.id);
+                return (
+                  <Link
+                    to={`/products/${product.sku}/${product.id}?color=${product.color}`}
+                    className='w-full flex-[0_0_40%] p-3 shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow bg-white rounded-md relative sm:p-5 sm:flex-[0_0_30%] md:flex-[0_0_25%] lg:flex-[0_0_21%]'
+                    key={product.id}
+                  >
+                    <div className='flex flex-col w-full h-full'>
+                      <img
+                        className='object-contain py-5 h-full'
+                        src={product.image}
+                        alt={product.sku}
+                      />
+                      <h3 className='line-clamp-1 h-8 sm:text-lg'>
                         {product.sku}
                       </h3>
-                      <div className='flex justify-between  items-center text-xl sm:text-2xl'>
+                      <div className=' flex mt-1 items-center text-xl sm:text-2xl sm:mt-3'>
                         <strong>
                           ${parseFloat(product.price).toLocaleString('es-ES')}
                         </strong>
@@ -63,10 +82,13 @@ function CarouselFeatured({ from, to, title }) {
                           )}
                         </button>
                       </div>
-                    </Link>
-                  );
-                })
-              : ''}
+                    </div>
+                  </Link>
+                );
+              })
+            ) : (
+              <div>vacio</div>
+            )}
           </div>
         </div>
       </div>

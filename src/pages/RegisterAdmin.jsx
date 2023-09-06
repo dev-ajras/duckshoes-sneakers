@@ -147,10 +147,6 @@ function RegisterAdmin() {
     setIsPhoneValid(validatePhone(currentPhone));
   };
 
-  // console.log("ísEmailValid: " + isEmailValid);
-  // console.log("isPasswordValid: " + isPasswordValid);
-  // console.log("isPasswordRepeatValid: " + isRepeatPasswordValid);
-
   const [onBlurName, setOnBlurName] = useState(false);
   const [onBlurEmail, setOnBlurEmail] = useState(false);
   const [onBlurKey, setOnBlurKey] = useState(false);
@@ -167,19 +163,19 @@ function RegisterAdmin() {
     });
 
   if (user.role) {
-    return <Navigate to="/" replace />;
+    return <Navigate to='/' replace />;
   }
 
   return (
-    <section className="flex justify-center m-7 sm:m-14">
-      <article className=" bg-white rounded-md shadow p-10 w-96">
-        <div className="mb-5 border-b-2 pb-2 border-primaryDark">
-          <h3 className="font-medium text-3xl text-primaryDark">Registrarse</h3>
-          <h4 className="font text-lg">Crear cuenta</h4>
+    <section className='flex justify-center m-7 sm:m-14'>
+      <article className=' bg-white rounded-md shadow p-10 w-96'>
+        <div className='mb-5 border-b-2 pb-2 border-primaryDark'>
+          <h3 className='font-medium text-3xl text-primaryDark'>Registrarse</h3>
+          <h4 className='font text-lg'>Crear cuenta</h4>
         </div>
         <ToastContainer />
-        <form onSubmit={handleForm} className="flex flex-col">
-          <label className="text-sm" htmlFor="name">
+        <form onSubmit={handleForm} className='flex flex-col'>
+          <label className='text-sm' htmlFor='name'>
             nombre
           </label>
           <input
@@ -188,22 +184,22 @@ function RegisterAdmin() {
               handleName(e);
             }}
             required
-            id="name"
-            type="text"
-            placeholder="Nombre de usuario"
-            className="border-b outline-none py-1"
+            id='name'
+            type='text'
+            placeholder='Nombre de usuario'
+            className='border-b outline-none py-1'
             onBlur={() => {
               setOnBlurName(true);
             }}
           />
           {!isNameValid && onBlurName && formData.name && (
-            <p className="text-sm mt-1 text-red-600">
+            <p className='text-sm mt-1 text-red-600'>
               Debe tener entre 3 y 32 caracteres. Evita caracteres especiales
               !@#$%^&*()_+
               {}[]:;<>,.?~/-.</>
             </p>
           )}
-          <label className="text-sm mt-5" htmlFor="email">
+          <label className='text-sm mt-5' htmlFor='email'>
             email
           </label>
           <input
@@ -212,21 +208,21 @@ function RegisterAdmin() {
               handleEmail(e);
             }}
             required
-            id="email"
-            type="email"
-            placeholder="Correo electrónico"
-            className="border-b outline-none py-1"
+            id='email'
+            type='email'
+            placeholder='Correo electrónico'
+            className='border-b outline-none py-1'
             onBlur={() => {
               setOnBlurEmail(true);
             }}
           />
           {!isEmailValid && onBlurEmail && formData.email && (
-            <p className="text-sm mt-1 text-red-600">
+            <p className='text-sm mt-1 text-red-600'>
               Ingresar dirección de correo electrónico válida, por ejemplo:
               ejemplo@dominio.com{' '}
             </p>
           )}
-          <label className="text-sm mt-5" htmlFor="key">
+          <label className='text-sm mt-5' htmlFor='key'>
             admin key
           </label>
           <input
@@ -235,22 +231,22 @@ function RegisterAdmin() {
               handleKey(e);
             }}
             required
-            id="key"
-            type="password"
-            placeholder="Clave de admin"
-            className="border-b outline-none py-1"
+            id='key'
+            type='password'
+            placeholder='Clave de admin'
+            className='border-b outline-none py-1'
             onBlur={() => {
               setOnBlurKey(true);
             }}
           />
           {!isKeyValid && onBlurKey && formData.key && (
-            <p className="text-sm mt-1 text-red-600">
+            <p className='text-sm mt-1 text-red-600'>
               Clave secreta. Tiene entre 3 y 32 caracteres, sin caracteres
               especiales !@#$%^&*()_+
               {}[]:;<>,.?~/-.</>
             </p>
           )}
-          <label className="text-sm mt-5" htmlFor="password">
+          <label className='text-sm mt-5' htmlFor='password'>
             contraseña
           </label>
           <input
@@ -259,20 +255,20 @@ function RegisterAdmin() {
               handlePassword(e);
             }}
             required
-            id="password"
-            type="password"
-            placeholder="Contraseña"
-            className="border-b outline-none py-1"
+            id='password'
+            type='password'
+            placeholder='Contraseña'
+            className='border-b outline-none py-1'
             onBlur={() => setOnBlurPassword(true)}
           />
           {!isPasswordValid && onBlurPassword && formData.password && (
-            <p className="text-sm mt-1 text-red-600">
+            <p className='text-sm mt-1 text-red-600'>
               Debe tener entre 6 y 128 caracteres, al menos una mayúscula, una
               minúscula y un número. Evita caracteres especiales !@#$%^&*()_+
               {}[]:;<>,.?~/-.</>
             </p>
           )}
-          <label className="text-sm mt-5" htmlFor="repeatPassword">
+          <label className='text-sm mt-5' htmlFor='repeatPassword'>
             repetir contraseña
           </label>
           <input
@@ -281,10 +277,10 @@ function RegisterAdmin() {
               handleRepeatPassword(e);
             }}
             required
-            id="repeatPassword"
-            type="password"
-            placeholder="Repetir contraseña"
-            className="border-b outline-none py-1"
+            id='repeatPassword'
+            type='password'
+            placeholder='Repetir contraseña'
+            className='border-b outline-none py-1'
             onBlur={() => {
               setOnBlurRepeatPassword(true);
             }}
@@ -292,11 +288,11 @@ function RegisterAdmin() {
           {!isRepeatPasswordValid &&
             onBlurRepeatPassword &&
             formData.repeatPassword && (
-              <p className="text-sm mt-1 text-red-600">
+              <p className='text-sm mt-1 text-red-600'>
                 Las contraseñas no coinciden
               </p>
             )}
-          <label className="text-sm mt-5" htmlFor="phone">
+          <label className='text-sm mt-5' htmlFor='phone'>
             teléfono
           </label>
           <input
@@ -305,26 +301,26 @@ function RegisterAdmin() {
               handlePhone(e);
             }}
             required
-            id="phone"
-            type="text"
-            placeholder="Número de celular"
-            className="border-b outline-none py-1"
+            id='phone'
+            type='text'
+            placeholder='Número de celular'
+            className='border-b outline-none py-1'
             onBlur={() => {
               setOnBlurPhone(true);
             }}
           />
           {!isPhoneValid && onBlurPhone && formData.phone && (
-            <p className="text-sm mt-1 text-red-600">
+            <p className='text-sm mt-1 text-red-600'>
               Debe tener entre 10 y 16 números, por ejemplo: 1122334455
             </p>
           )}
-          <button className="bg-primaryDark p-2 mt-5 text-white rounded font-normal">
+          <button className='bg-primaryDark p-2 mt-5 text-white rounded font-normal'>
             Crear cuenta
           </button>
         </form>
-        <p className="font-light mt-2">
+        <p className='font-light mt-2'>
           ¿Ya estas registrado?{' '}
-          <Link to="/login" className="font-normal">
+          <Link to='/login' className='font-normal'>
             Ingresar
           </Link>
         </p>
