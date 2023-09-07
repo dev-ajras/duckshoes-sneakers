@@ -7,6 +7,7 @@ import { HiMenu } from 'react-icons/hi';
 import { TiTimes } from 'react-icons/ti';
 import { IoLocationSharp } from 'react-icons/io5';
 import { AiOutlineSearch } from 'react-icons/ai';
+import arrowDrop from '/public/assets/icons/arrowDrop.svg';
 
 import NavbarMenu from './NavbarMenu';
 import CartMenu from './CartMenu';
@@ -18,6 +19,7 @@ function Navbar() {
   const q = searchParams.get('q');
 
   const [inputSearch, setInputSearch] = useState(q ?? '');
+  const [onHover, setOnHover] = useState(false);
   const [logMenu, setLogMenu] = useState(false);
 
   const navigate = useNavigate();
@@ -52,6 +54,23 @@ function Navbar() {
     setNavbarMenu(false);
     setCartMenu(!cartMenu);
   };
+
+  const [timeoutId, setTimeoutId] = useState(null);
+
+  useEffect(() => {
+    if (onHover) {
+      setLogMenu(true);
+      clearTimeout(timeoutId);
+      console.log('onHover');
+    }
+    if (!onHover) {
+      console.log('!onHover');
+      const newTimeoutId = setTimeout(() => {
+        setLogMenu(false);
+      }, 500);
+      setTimeoutId(newTimeoutId);
+    }
+  }, [onHover]);
 
   return (
     <header className=' flex flex-col justify-center bg-background px-3 h-20 md:h-24 fixed w-full z-40 sm:px-5 '>
@@ -88,11 +107,20 @@ function Navbar() {
           {user.role === 0 ? (
             <div
               className='relative cursor-pointer'
-              onMouseEnter={() => setLogMenu(true)}
-              onMouseLeave={() => setLogMenu(false)}
+              onMouseEnter={() => setOnHover(true)}
+              onMouseLeave={() => setOnHover(false)}
             >
-              <div className='select-none text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full'>
-                {user.username.slice(0, 1).toUpperCase()}
+              <div className='flex items-end gap-1'>
+                <span className='select-none text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full'>
+                  {user.username.slice(0, 1).toUpperCase()}
+                </span>
+                <span className='text-white fill-white stroke-white'>
+                  <img
+                    className='fill-white stroke-white text-white w-3 h-4'
+                    src={arrowDrop}
+                    alt='arrow drop'
+                  />
+                </span>
               </div>
               {logMenu && (
                 <div className='absolute text-lg w-56 z-40 right-0 text-start '>
@@ -124,11 +152,20 @@ function Navbar() {
           ) : user.role === 1 ? (
             <div
               className='relative cursor-pointer'
-              onMouseEnter={() => setLogMenu(true)}
-              onMouseLeave={() => setLogMenu(false)}
+              onMouseEnter={() => setOnHover(true)}
+              onMouseLeave={() => setOnHover(false)}
             >
-              <div className='select-none text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full'>
-                {user.username.slice(0, 1).toUpperCase()}
+              <div className='flex items-end gap-1'>
+                <span className='select-none text-white bg-primaryDark w-7 h-7 text-lg font-medium p-2 flex justify-center items-center rounded-full'>
+                  {user.username.slice(0, 1).toUpperCase()}
+                </span>
+                <span className='text-white fill-white stroke-white'>
+                  <img
+                    className='fill-white stroke-white text-white w-3 h-4'
+                    src={arrowDrop}
+                    alt='arrow drop'
+                  />
+                </span>
               </div>
               {logMenu && (
                 <div className='absolute text-lg w-56 z-40 right-0 text-start '>
