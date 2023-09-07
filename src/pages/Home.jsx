@@ -5,7 +5,7 @@ import Info from '../components/Info';
 function Home() {
   return (
     <section className='bg-body'>
-      {/* <CarouselBanner /> */}
+      <CarouselBanner />
       <CarouselFeatured title={'Lanzamientos'} />
       <CarouselFeatured title={'Tendencias'} />
       <Info />
