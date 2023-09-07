@@ -1,9 +1,9 @@
-import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 
-import banner1 from '/assets/banners/sneakerBanner1.webp';
-import banner2 from '/assets/banners/sneakerBanner2.webp';
-import banner3 from '/assets/banners/sneakerBanner3.webp';
+import banner1 from "/assets/banners/sneakerBanner1.webp";
+import banner2 from "/assets/banners/sneakerBanner2.webp";
+import banner3 from "/assets/banners/sneakerBanner3.webp";
 
 const autoplayOptions = {
   delay: 3000,
@@ -19,13 +19,13 @@ function CarouselBanner() {
     <section className="flex justify-center">
       <div className="flex items-center gap-10 max-w-6xl w-full m-3 sm:m-5">
         <article className="w-1/3">
-          <h2 className="text-6xl font-medium mb-3 text-primaryDark">
+          <h2 className="text-2xl md:text-6xl font-medium mb-3 text-primaryDark">
             Gestionamos tu pedido!
           </h2>
-          <p className="text-xl font-medium">
+          <p className=" md:text-xl font-medium">
             Simplicamos y optimizamos tu proceso de compra
           </p>
-          <button className="bg-primaryDark p-3 rounded text-white mt-5 font-normal">
+          <button className="bg-primaryDark p-1 md:p-3 rounded text-white mt-2 md:mt-5 font-normal">
             Realizar pedido
           </button>
         </article>

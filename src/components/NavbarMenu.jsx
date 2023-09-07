@@ -8,11 +8,13 @@ import { RiShoppingBagFill } from "react-icons/ri";
 import { PiSneakerFill } from "react-icons/pi";
 import { MdFavorite } from "react-icons/md";
 import { BiSolidHelpCircle } from "react-icons/bi";
+import { FaUserCircle } from "react-icons/fa";
 
 import { motion } from "framer-motion";
 
 function NavbarMenu() {
-  const { navbarMenu, setNavbarMenu, setCartMenu } = useContext(AppContext);
+  const { user, navbarMenu, setNavbarMenu, setCartMenu } =
+    useContext(AppContext);
 
   const menuVariants = {
     active: { opacity: 0.4 },
@@ -45,7 +47,7 @@ function NavbarMenu() {
             to="/"
             onClick={() => navAndCartOff()}
             onBlur={() => setNavbarMenu(false)}
-            className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1"
+            className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-0"
           >
             <AiFillHome className="fill-background md:hidden" />
             <h5 className="text-background font-semibold md:text-white md:font-normal md:hover:text-primaryLight transition-colors">
@@ -57,7 +59,7 @@ function NavbarMenu() {
           <Link
             to="/products"
             onClick={() => navAndCartOff()}
-            className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1"
+            className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-0"
           >
             <PiSneakerFill className="fill-background md:hidden" />
             <h5 className="text-background font-semibold md:text-white md:font-normal md:hover:text-primaryLight transition-colors">
@@ -69,7 +71,7 @@ function NavbarMenu() {
           <Link
             to="/favorites"
             onClick={() => navAndCartOff()}
-            className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1"
+            className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-0"
           >
             <MdFavorite className="fill-background md:hidden" />
             <h5 className="text-background font-semibold md:text-white md:font-normal md:hover:text-primaryLight transition-colors">
@@ -81,7 +83,7 @@ function NavbarMenu() {
           <Link
             to="/cart"
             onClick={() => navAndCartOff()}
-            className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1"
+            className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-0"
           >
             <RiShoppingBagFill className="fill-background md:hidden" />
             <h5 className="text-background font-semibold md:text-white md:font-normal md:hover:text-primaryLight transition-colors">
@@ -89,11 +91,47 @@ function NavbarMenu() {
             </h5>
           </Link>
         </li>
+        <li className="md:hidden">
+          {user.role === 0 ? (
+            <Link
+              to="/user"
+              onClick={() => navAndCartOff()}
+              className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-0"
+            >
+              <FaUserCircle className="fill-background md:hidden" />
+              <h5 className="text-background font-semibold md:text-white md:font-normal md:hover:text-primaryLight transition-colors">
+                Cuenta
+              </h5>
+            </Link>
+          ) : user.role === 1 ? (
+            <Link
+              to="/admin"
+              onClick={() => navAndCartOff()}
+              className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-0"
+            >
+              <FaUserCircle className="fill-background md:hidden" />
+              <h5 className="text-background font-semibold md:text-white md:font-normal md:hover:text-primaryLight transition-colors">
+                Cuenta
+              </h5>
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              onClick={() => navAndCartOff()}
+              className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-0"
+            >
+              <RiShoppingBagFill className="fill-background md:hidden" />
+              <h5 className="text-background font-semibold md:text-white md:font-normal md:hover:text-primaryLight transition-colors">
+                Ingresar
+              </h5>
+            </Link>
+          )}
+        </li>
         <li>
           <Link
             to="/service"
             onClick={() => navAndCartOff()}
-            className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-1"
+            className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-0"
           >
             <BiSolidHelpCircle className="fill-background md:hidden" />
             <h5 className="text-background font-semibold md:text-white md:font-normal md:hover:text-primaryLight transition-colors">
