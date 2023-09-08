@@ -40,7 +40,7 @@ function NavbarMenu() {
         transition={{ duration: 0.3 }}
         className={`${
           !navbarMenu ? "md:left-[-100%]" : ""
-        } absolute top-20 md:top-0 right-0 z-30 w-1/2 h-screen drop-shadow-md p-3 bg-white text-xl flex flex-col sm:p-5 md:flex-row md:h-full md:left-0 md:w-full md:relative md:bg-background md:text-lg md:items-center md:p-0 md:gap-4`}
+        } absolute top-20 md:top-0 right-0 z-30 w-1/2 h-screen drop-shadow-md md:drop-shadow-none p-3 bg-white text-xl flex flex-col sm:p-5 md:flex-row md:h-full md:left-0 md:w-full md:relative md:bg-background md:text-lg md:items-center md:p-0 md:gap-4`}
       >
         <li>
           <Link

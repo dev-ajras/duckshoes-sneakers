@@ -87,7 +87,7 @@ function Navbar() {
             onClick={() => {
               setCartMenu(false), setNavbarMenu(false);
             }}
-            className="align-middle outline-none border-none p-1 px-2 w-full sm:max-w-md md:max-w-lg sm:text-lg rounded-l-sm"
+            className="align-middle outline-none border-none p-1 px-2 w-full sm:max-w-md md:max-w-lg sm:text-lg rounded-bl-sm rounded-tl-sm"
             type="text"
             placeholder="search..."
             value={inputSearch}
@@ -95,7 +95,7 @@ function Navbar() {
             id="search"
           />
           <label
-            className="flex justify-center items-center px-1 sm:px-2 border-l-2 bg-white rounded-r-sm"
+            className="flex justify-center items-center px-1 sm:px-2 border-l-2 bg-white rounded-tr-sm rounded-br-sm"
             htmlFor="search"
           >
             <AiOutlineSearch />
@@ -104,7 +104,7 @@ function Navbar() {
         <div className="flex items-center gap-3 text-3xl justify-end">
           {user.role === 0 ? (
             <div
-              className="relative cursor-pointer"
+              className="hidden md:block relative cursor-pointer"
               onMouseEnter={() => setOnHover(true)}
               onMouseLeave={() => setOnHover(false)}
             >
@@ -122,7 +122,7 @@ function Navbar() {
               </div>
               {logMenu && (
                 <div className="absolute text-lg w-56 z-40 right-0 text-start ">
-                  <ul className="flex flex-col gap-2 rounded shadow-md bg-white p-5 mt-2">
+                  <ul className="flex flex-col gap-2 rounded shadow-md md:shadow-none bg-white p-5 mt-2">
                     <Link className="hover:text-primaryDark" to="/user/profile">
                       Mi perfil
                     </Link>
@@ -167,7 +167,7 @@ function Navbar() {
               </div>
               {logMenu && (
                 <div className="absolute text-lg w-56 z-40 right-0 text-start ">
-                  <ul className="flex flex-col gap-2 rounded shadow-md bg-white p-5 mt-2">
+                  <ul className="flex flex-col gap-2 rounded shadow-md md:shadow-none bg-white p-5 mt-2">
                     <Link
                       className="hover:text-primaryDark"
                       to="/admin/profile"
