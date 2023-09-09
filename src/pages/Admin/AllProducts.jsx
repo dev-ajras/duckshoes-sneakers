@@ -14,7 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ImSpinner8 } from "react-icons/im";
 
 function AllProducts() {
-  const { user } = useContext(AppContext);
+  const { user, setUser } = useContext(AppContext);
 
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -27,17 +27,42 @@ function AllProducts() {
 
   const productsPerPage = 16;
 
+  const tokenExpiredAlert = () =>
+    toast.error("Tu token expiró, volvé a logearte", {
+      autoClose: 2000,
+      hideProgressBar: true,
+      pauseOnFocusLoss: false,
+      pauseOnHover: false,
+    });
+
+  const tokenExpired = () => {
+    tokenExpiredAlert();
+    setTimeout(() => {
+      localStorage.removeItem("token");
+      setUser("");
+    }, 3000);
+  };
+
   const baseUrl = "https://www.api.duckshoes.com.ar/";
 
   useEffect(() => {
+    setLoading(true);
     const fetchProducts = async () => {
-      setLoading(true);
-      const response = await axios.get(
-        `${baseUrl}products?page=${currentPage}&pageSize=${productsPerPage}`
-      );
-      console.log(response);
-      setLoading(false);
-      setAdminProducts(response.data.products);
+      try {
+        const response = await axios.get(
+          `${baseUrl}products?page=${currentPage}&pageSize=${productsPerPage}`
+        );
+        console.log(response);
+        setLoading(false);
+        setAdminProducts(response.data.products);
+      } catch (error) {
+        if (error.response.status === 403) {
+          tokenExpired();
+        }
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchProducts();
   }, [currentPage]);
@@ -83,7 +108,7 @@ function AllProducts() {
     }
   };
 
-  const productDeleted = () =>
+  const productDeletedAlert = () =>
     toast.success("Producto Eliminado", {
       autoClose: 2000,
       hideProgressBar: true,
@@ -92,16 +117,23 @@ function AllProducts() {
     });
 
   const deleteProduct = async (productId) => {
-    const response = await axios.delete(baseUrl + "products/" + productId, {
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
-    if (response.status === 200) {
-      setAdminProducts(
-        adminProducts.filter((product) => product.id !== productId)
-      );
-      productDeleted();
+    try {
+      const response = await axios.delete(baseUrl + "products/" + productId, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      if (response.status === 200) {
+        setAdminProducts(
+          adminProducts.filter((product) => product.id !== productId)
+        );
+        productDeletedAlert();
+      }
+    } catch (error) {
+      if (error.response.status === 403) {
+        tokenExpired();
+      }
+      console.log(error);
     }
   };
 
