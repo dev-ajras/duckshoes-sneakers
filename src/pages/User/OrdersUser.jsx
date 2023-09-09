@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ImSpinner8 } from "react-icons/im";
 
-function AllOrders() {
+function OrdersUser() {
   const { user, setUser } = useContext(AppContext);
 
   const navigate = useNavigate();
@@ -105,28 +105,6 @@ function AllOrders() {
     }
   };
 
-  const productDeleted = () =>
-    toast.success("Producto Eliminado", {
-      autoClose: 2000,
-      hideProgressBar: true,
-      pauseOnFocusLoss: false,
-      pauseOnHover: false,
-    });
-
-  //   const deleteOrder = async (productId) => {
-  //     const response = await axios.delete(baseUrl + "products/" + productId, {
-  //       headers: {
-  //         Authorization: `Bearer ${user.token}`,
-  //       },
-  //     });
-  //     if (response.status === 200) {
-  //       setAdminProducts(
-  //         adminProducts.filter((product) => product.id !== productId)
-  //       );
-  //       productDeleted();
-  //     }
-  //   };
-
   return (
     <div className="shadow">
       <ToastContainer />
@@ -172,9 +150,9 @@ function AllOrders() {
                 </div>
               )}
             </div>
-            <button onClick={() => deleteProduct(order.id)}>
+            <Link to={`/user/pedido/${order.id}`}>
               <FiMoreVertical className="w-7 h-7 opacity-75" />
-            </button>
+            </Link>
           </div>
         ))
       ) : (
@@ -212,4 +190,4 @@ function AllOrders() {
   );
 }
 
-export default AllOrders;
+export default OrdersUser;

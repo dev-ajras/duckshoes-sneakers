@@ -27,6 +27,7 @@ function ProductDetails() {
   const baseUrl = "https://www.api.duckshoes.com.ar/";
 
   useEffect(() => {
+    setLoading(true);
     const fetchDetailsProducts = async () => {
       const response = await axios.get(`${baseUrl}products/${productId}`);
       console.log(response);

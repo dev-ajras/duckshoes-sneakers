@@ -1,6 +1,6 @@
 import { NavLink, Outlet, Route, Routes } from "react-router-dom";
 import Order from "./Order";
-import AllOrders from "./AllOrders";
+import OrdersUser from "./OrdersUser";
 import Configuration from "./Configuration";
 import { useContext } from "react";
 import { AppContext } from "../../context/AppProvider";
@@ -61,8 +61,8 @@ function Admin() {
             <article className="w-full">
               <Routes>
                 <Route index element={<Order />} />
-                <Route path="pedido" element={<Order />} />
-                <Route path="mis-pedidos" element={<AllOrders />} />
+                <Route path="pedido/:idPedido" element={<Order />} />
+                <Route path="mis-pedidos" element={<OrdersUser />} />
                 <Route path="configuracion" element={<Configuration />} />
               </Routes>
               <Outlet />

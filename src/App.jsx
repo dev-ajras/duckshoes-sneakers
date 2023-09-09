@@ -30,7 +30,7 @@ function App() {
       <div className="bg-body flex flex-col items-center font-outfit font-light">
         <ScrollToTop />
         <Navbar />
-        <main className="flex flex-col box-border mt-20 min-h-screen bg-body w-full md:mt-24">
+        <main className="flex flex-col box-border pt-20 min-h-screen bg-body w-full md:pt-24">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />

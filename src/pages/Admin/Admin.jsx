@@ -2,9 +2,9 @@ import { NavLink, Outlet, Route, Routes } from "react-router-dom";
 import AddProduct from "./AddProduct";
 import EditProduct from "./EditProduct";
 import AllProducts from "./AllProducts";
-import Orders from "./Orders";
 import Configuration from "./Configuration";
 import AdminMain from "./AdminMain";
+import OrdersAdmin from "./OrdersAdmin";
 
 function Admin() {
   return (
@@ -43,7 +43,7 @@ function Admin() {
                       ? "text-primaryDark border-l-2 border-primaryDark pl-2"
                       : "pl-2 border-l-2 border-gray-300 hover:text-primaryDark hover:border-l-2 hover:border-primaryDark"
                   }
-                  to="/admin/pedidos"
+                  to="/admin/todos-pedidos"
                 >
                   Pedidos
                 </NavLink>
@@ -68,7 +68,7 @@ function Admin() {
                   element={<EditProduct />}
                 />
                 <Route path="todos-productos" element={<AllProducts />} />
-                <Route path="pedidos" element={<Orders />} />
+                <Route path="todos-pedidos" element={<OrdersAdmin />} />
                 <Route path="configuracion" element={<Configuration />} />
               </Routes>
               <Outlet />

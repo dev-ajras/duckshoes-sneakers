@@ -24,6 +24,7 @@ function TotalCart({ cartTo, userReject }) {
   const cartToOrder = cart.map((cartItem) => ({
     productId: cartItem.id,
     quantity: cartItem.quantity,
+    color: cartItem.color,
   }));
 
   const orderCreated = () =>
