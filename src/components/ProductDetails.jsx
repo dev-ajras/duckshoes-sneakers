@@ -52,7 +52,7 @@ function ProductDetails() {
   const addedToCart = (productId) => {
     if (cart.find((cartItem) => cartItem.id === productId)) {
       if (!toast.isActive(addToCartRef.current)) {
-        addToCartRef.current = toast.info("Already added!", {
+        addToCartRef.current = toast.info("Este producto ya esta agregado", {
           autoClose: 1000,
           hideProgressBar: true,
           pauseOnFocusLoss: false,
@@ -61,7 +61,7 @@ function ProductDetails() {
       }
     } else {
       if (!toast.isActive(addToCartRef.current)) {
-        addToCartRef.current = toast.success("Added to Cart!", {
+        addToCartRef.current = toast.success("Agregado al carrito", {
           autoClose: 1000,
           hideProgressBar: true,
           pauseOnFocusLoss: false,
