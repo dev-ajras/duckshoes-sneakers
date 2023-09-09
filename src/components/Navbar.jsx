@@ -110,7 +110,7 @@ function Navbar() {
         <div className="flex items-center gap-3 text-3xl justify-end">
           {user.role === 0 ? (
             <div
-              className="hidden md:block relative cursor-pointer"
+              className="hidden md:relative cursor-pointer"
               onMouseEnter={() => setOnHover(true)}
               onMouseLeave={() => setOnHover(false)}
             >
@@ -155,7 +155,7 @@ function Navbar() {
             </div>
           ) : user.role === 1 ? (
             <div
-              className="relative cursor-pointer"
+              className="hidden md:relative cursor-pointer"
               onMouseEnter={() => setOnHover(true)}
               onMouseLeave={() => setOnHover(false)}
             >
