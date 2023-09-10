@@ -60,7 +60,7 @@ function Admin() {
             </article>
             <article className="w-full">
               <Routes>
-                <Route index element={<Order />} />
+                <Route index element={<OrdersUser />} />
                 <Route path="pedido/:idPedido" element={<Order />} />
                 <Route path="mis-pedidos" element={<OrdersUser />} />
                 <Route path="configuracion" element={<Configuration />} />

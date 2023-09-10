@@ -28,12 +28,12 @@ function Cart() {
         </h3>
         <div>
           {cart.length > 0 ? (
-            <div className="flex flex-col md:flex-row md:gap-5">
-              <div className="bg-white rounded-t-md md:rounded-md w-full">
+            <div className="flex flex-col lg:flex-row lg:gap-5">
+              <div className="bg-white rounded-t-md lg:rounded-md w-full">
                 {cart.map((filteredProduct) => (
                   <div key={filteredProduct.id}>
                     <div className="flex gap-3 my-3 p-3 md:gap-5 md:my-5">
-                      <div className="flex items-center w-28 sm:w-36 md:w-48">
+                      <div className="flex items-center w-28 sm:w-36 md:w-48 p-3 md:p-5">
                         {filteredProduct.images &&
                           Object.keys(filteredProduct.images).map(
                             (color, colorIdx) => {
@@ -79,7 +79,7 @@ function Cart() {
                   </div>
                 ))}
               </div>
-              <div className="bg-white rounded-b-md md:rounded-md h-full md:w-64 lg:w-96 md:sticky md:top-28">
+              <div className="bg-white rounded-b-md lg:rounded-md h-full lg:w-[450px] lg:sticky md:top-28">
                 <TotalCart cartTo={0} userReject={userReject} />
               </div>
             </div>

@@ -22,7 +22,7 @@ function AllProducts() {
 
   const [adminProducts, setAdminProducts] = useState([]);
   const [adminNextProducts, setAdminNextProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(pageParam ? pageParam : 1);
 
   const productsPerPage = 16;
@@ -53,7 +53,6 @@ function AllProducts() {
           `${baseUrl}products?page=${currentPage}&pageSize=${productsPerPage}`
         );
         console.log(response);
-        setLoading(false);
         setAdminProducts(response.data.products);
       } catch (error) {
         if (error.response.status === 403) {

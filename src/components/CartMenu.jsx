@@ -46,7 +46,7 @@ function CartMenu({ cartMenu, setCartMenu }) {
               {cart.map((filteredProduct) => (
                 <div key={filteredProduct.id}>
                   <div className="flex gap-3 sm:gap-5 my-3 sm:my-5">
-                    <div className="sm:w-36">
+                    <div className="sm:w-36 p-2">
                       {filteredProduct.images &&
                         Object.keys(filteredProduct.images).map(
                           (color, colorIdx) => {

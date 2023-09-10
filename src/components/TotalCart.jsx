@@ -77,26 +77,23 @@ function TotalCart({ cartTo, userReject }) {
   };
 
   return (
-    <div className="p-3 sm:p-5 ">
+    <div className="p-3 sm:p-5 md:p-8">
       <ToastContainer />
       <h3 className="font-medium text-lg sm:text-xl">Pedido</h3>
       <div className="flex flex-col mt-2">
+        {cart.map((cartItem) => (
+          <div key={cartItem.id} className="flex justify-between">
+            <span className="font-medium opacity-60">
+              {cartItem.sku} x{cartItem.quantity}
+            </span>
+            <span className="font-medium opacity-60 sm:text-lg">
+              ${cartItem.price * cartItem.quantity.toLocaleString("es-ES")}
+            </span>
+          </div>
+        ))}
+        <div className="border-t-[1px] my-1"></div>
         <div className="flex justify-between">
-          <span className="font-medium opacity-60">Subtotal</span>
-          <span className="font-medium sm:text-lg">
-            ${total.toLocaleString("es-ES")}
-          </span>
-        </div>
-        <div className="flex justify-between">
-          <span className="font-medium opacity-60">Envío</span>
-          <span className="font-medium sm:text-lg">Gratis</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="font-medium opacity-60">Descuento</span>
-          <span className="font-medium sm:text-lg">$0</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="font-medium opacity-60">Total</span>
+          <span className="font-medium sm:text-xl">Total</span>
           <span className="font-medium sm:text-lg">
             {" "}
             ${total.toLocaleString("es-ES")}
