@@ -145,8 +145,7 @@ function ProductDetails() {
                         </span>
                       </h2>
                       <span className="block my-3 font-semibold text-3xl sm:text-4xl">
-                        $
-                        {parseFloat(productFound.price).toLocaleString("es-ES")}
+                        ${parseInt(productFound.price).toLocaleString("es-ES")}
                       </span>
                       <div className="my-3 font-semibold sm:text-lg">
                         <span>Temporada: </span>

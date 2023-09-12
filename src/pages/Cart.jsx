@@ -65,7 +65,7 @@ function Cart() {
                         <div className="font-bold text-xl mt-1 mb-3 sm:text-2xl sm:mt-2 sm:mb-5">
                           <span>
                             $
-                            {parseFloat(filteredProduct.price).toLocaleString(
+                            {parseInt(filteredProduct.price).toLocaleString(
                               "es-ES"
                             )}
                           </span>

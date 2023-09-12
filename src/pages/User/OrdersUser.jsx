@@ -108,7 +108,7 @@ function OrdersUser() {
   return (
     <div className="shadow">
       <ToastContainer />
-      <div className="grid grid-cols-11 bg-gray-50 p-5 font-normal">
+      <div className="grid grid-cols-10 bg-gray-100 p-5 font-normal">
         <div className="text-center col-span-2">N° Pedido</div>
         <div className="text-center col-span-2">Imágen</div>
         <div className="text-center col-span-2">Fecha</div>
@@ -121,9 +121,10 @@ function OrdersUser() {
         </div>
       ) : orders.length > 0 ? (
         orders.map((order) => (
-          <div
+          <Link
+            to={`/user/pedido/${order.id}`}
             key={order.id}
-            className="grid grid-cols-11 place-items-center bg-white p-2 mb-0.5"
+            className="grid grid-cols-10 place-items-center bg-white p-2 mb-0.5 md:hover:bg-slate-50 md:transition-colors"
           >
             <div className="flex justify-center items-center col-span-2">
               <span>#{order.id}</span>
@@ -139,21 +140,18 @@ function OrdersUser() {
               {order.createdAt.slice(0, 10)}
             </div>
             <div className="text-center col-span-2">
-              ${parseFloat(order.value).toLocaleString("es-ES")}
+              ${parseInt(order.value).toLocaleString("es-ES")}
             </div>
             <div className="text-center col-span-2">
               {order.status && (
                 <div className="flex justify-evenly items-center">
-                  <span className="bg-orange-600 py-2 px-3 text-white rounded">
+                  <span className="bg-[#FFA625]/40 text-[#CB7800] py-2 px-3 rounded-sm font-medium">
                     {order.status}
                   </span>
                 </div>
               )}
             </div>
-            <Link to={`/user/pedido/${order.id}`}>
-              <FiMoreVertical className="w-7 h-7 opacity-75" />
-            </Link>
-          </div>
+          </Link>
         ))
       ) : (
         <div className="p-3 flex flex-col items-center sm:p-5 sm:py-12 bg-white">
@@ -165,7 +163,7 @@ function OrdersUser() {
           </Link>
         </div>
       )}
-      <div className="bg-gray-50 p-5 flex gap-3 justify-center items-center sm:gap-5">
+      <div className="bg-gray-100 p-5 flex gap-3 justify-center items-center sm:gap-5">
         <button
           className={`${
             currentPage === 1 && "hidden pointer-events-none"

@@ -68,7 +68,6 @@ function AllProducts() {
 
   useEffect(() => {
     const fetchNextProducts = async () => {
-      setLoading(true);
       try {
         const response = await axios.get(
           `${baseUrl}products?page=${
@@ -86,8 +85,6 @@ function AllProducts() {
         } else {
           console.log(error);
         }
-      } finally {
-        setLoading(false);
       }
     };
     fetchNextProducts();

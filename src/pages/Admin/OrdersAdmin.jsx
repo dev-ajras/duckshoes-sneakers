@@ -150,7 +150,7 @@ function OrdersAdmin() {
               {order.createdAt.slice(0, 10)}
             </div>
             <div className="text-center col-span-2">
-              ${parseFloat(order.value).toLocaleString("es-ES")}
+              ${parseInt(order.value).toLocaleString("es-ES")}
             </div>
             <div className="text-center col-span-2">
               {order.status && (

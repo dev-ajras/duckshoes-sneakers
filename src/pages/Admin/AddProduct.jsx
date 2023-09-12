@@ -66,7 +66,7 @@ function AddProduct() {
   };
 
   const handlePrice = (e) => {
-    const currentPrice = parseFloat(e.target.value);
+    const currentPrice = parseInt(e.target.value);
     setProductData({ ...productData, price: currentPrice });
   };
 

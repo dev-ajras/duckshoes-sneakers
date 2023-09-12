@@ -69,7 +69,7 @@ function CarouselFeatured({ title }) {
                       </h3>
                       <div className=" flex mt-1 items-center text-xl sm:text-2xl sm:mt-3">
                         <strong>
-                          ${parseFloat(product.price).toLocaleString("es-ES")}
+                          ${parseInt(product.price).toLocaleString("es-ES")}
                         </strong>
                         <button
                           className="absolute top-4 right-4 sm:top-5 sm:right-5"

@@ -87,14 +87,17 @@ function TotalCart({ cartTo, userReject }) {
               {cartItem.sku} x{cartItem.quantity}
             </span>
             <span className="font-medium opacity-60 sm:text-lg">
-              ${cartItem.price * cartItem.quantity.toLocaleString("es-ES")}
+              $
+              {parseInt(cartItem.price * cartItem.quantity).toLocaleString(
+                "es-ES"
+              )}
             </span>
           </div>
         ))}
         <div className="border-t-[1px] my-1"></div>
         <div className="flex justify-between">
           <span className="font-medium sm:text-xl">Total</span>
-          <span className="font-medium sm:text-lg">
+          <span className="font-medium sm:text-xl">
             {" "}
             ${total.toLocaleString("es-ES")}
           </span>
