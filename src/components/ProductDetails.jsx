@@ -90,7 +90,7 @@ function ProductDetails() {
                       productFound.images[color].map((imageUrl, idx) => (
                         <button
                           key={idx}
-                          className={`p-2 rounded-sm bg-white ${
+                          className={`h-12 sm:h-16 w-12 sm:w-16 p-1 rounded-sm bg-white ${
                             principalImage == idx
                               ? "ring-blue-500 ring-2"
                               : "ring-gray-500 ring-1"
@@ -99,7 +99,7 @@ function ProductDetails() {
                           onClick={() => setPrincipalImage(idx)}
                         >
                           <img
-                            className="bg-white h-12 sm:h-16 w-12 sm:w-16 object-contain mx-auto -z-20"
+                            className="bg-white w-full h-full  object-contain mx-auto -z-20"
                             src={imageUrl}
                             alt={idx}
                           />
@@ -163,7 +163,7 @@ function ProductDetails() {
                           </h3>
                           <div className="w-10 rounded-full ring ring-blue-500 ring-offset-2 my-3 sm:ring-offset-4">
                             <img
-                              className="drop-shadow-md "
+                              className="drop-shadow-md rounded-full "
                               src={`/assets/colors/${productFound.color.toLowerCase()}Color.svg`}
                               alt={productFound.color}
                             />

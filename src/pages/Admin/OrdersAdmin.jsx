@@ -64,7 +64,8 @@ function OrdersAdmin() {
     fetchOrders();
   }, []);
 
-  const deleteProduct = async (productId) => {
+  const deleteProduct = async (e, productId) => {
+    e.preventDefault();
     const response = await axios.delete(`${baseUrl}orders/${productId}`, {
       headers: {
         Authorization: `Bearer ${user.token}`,
@@ -190,7 +191,7 @@ function OrdersAdmin() {
                 </span>
               )}
             </div>
-            <button onClick={() => deleteProduct(order.id)}>
+            <button onClick={(e) => deleteProduct(e, order.id)}>
               <MdDelete className="fill-red-700 md:hover:fill-red-900 w-7 h-7 opacity-75" />
             </button>
           </Link>

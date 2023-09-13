@@ -16,7 +16,7 @@ function AddProduct() {
 
   const initialState = {
     sku: "",
-    color: "",
+    color: "negro",
     temporada: "verano",
     description: "",
     images: [],
@@ -36,6 +36,8 @@ function AddProduct() {
     const currentColor = e.target.value;
     setProductData({ ...productData, color: currentColor });
   };
+
+  console.log("color: ", productData.color);
 
   const handleTemporada = (e) => {
     const currentTemporada = e.target.value;
@@ -169,17 +171,21 @@ function AddProduct() {
           placeholder="sku"
           className="p-2 outline-none border rounded"
         />
-        <label htmlFor="color" className="mt-5 mb-2">
+        <label htmlFor="temporada" className="mt-5 mb-2">
           Color
         </label>
-        <input
-          value={productData.color}
+        <select
           onChange={(e) => handleColor(e)}
-          type="text"
           id="color"
-          placeholder="color"
           className="p-2 outline-none border rounded"
-        />
+        >
+          <option value="negro">Negro</option>
+          <option value="negro-charol">Negro Charol</option>
+          <option value="blanco">Blanco</option>
+          <option value="marron">Marron</option>
+          <option value="verde-militar">Verde Militar</option>
+          <option value="mostaza">Mostaza</option>
+        </select>
         <label htmlFor="temporada" className="mt-5 mb-2">
           Temporada
         </label>

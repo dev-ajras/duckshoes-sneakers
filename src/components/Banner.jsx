@@ -24,7 +24,7 @@ function Banner() {
         </article>
         <article className="mt-8 md:mt-0">
           <div className="flex justify-center">
-            <video
+            {/* <video
               className="md:w-2/3 rounded-lg"
               src="https://handmade.company/sliperymoneys/video/index/credit-card/credit-card-video.mp4"
               alt="video"
@@ -32,7 +32,10 @@ function Banner() {
               muted
               loop
               autoPlay
-            />
+            /> */}
+            <div className="bg-white w-[450px] h-[450px] flex justify-center items-center p-12 rounded-md">
+              <div className="bg-blue-300 w-full h-full [clip-path: polygon(31% 16%, 0% 100%, 100% 100%)]"></div>
+            </div>
           </div>
         </article>
       </div>
