@@ -16,9 +16,9 @@ import { AppContext } from '../context/AppProvider';
 function Navbar() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const q = searchParams.get('q');
+  const sku = searchParams.get('sku');
 
-  const [inputSearch, setInputSearch] = useState(q ?? '');
+  const [inputSearch, setInputSearch] = useState(sku ?? '');
   const [onHover, setOnHover] = useState(false);
   const [logMenu, setLogMenu] = useState(false);
 
@@ -27,22 +27,16 @@ function Navbar() {
   const { user, setUser, cart, navbarMenu, setNavbarMenu } =
     useContext(AppContext);
 
-  const logOut = () => {
-    localStorage.removeItem('token');
-    setUser('');
-    navigate('/login');
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/products?q=${inputSearch}&page=1`);
+    navigate(`/products?sku=${inputSearch}`);
   };
 
   useEffect(() => {
-    if (q !== inputSearch) {
+    if (sku !== inputSearch) {
       setInputSearch('');
     }
-  }, [q]);
+  }, [sku]);
 
   const handleMenu = () => {
     setNavbarMenu(!navbarMenu);
@@ -62,6 +56,12 @@ function Navbar() {
       setTimeoutId(newTimeoutId);
     }
   }, [onHover]);
+
+  const logOut = () => {
+    localStorage.removeItem('token');
+    setUser('');
+    navigate('/login');
+  };
 
   return (
     <header className=' flex flex-col justify-center bg-background px-3 h-20 md:h-24 fixed w-full z-40 sm:px-5 '>
