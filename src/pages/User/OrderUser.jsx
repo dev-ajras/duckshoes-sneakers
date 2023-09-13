@@ -76,7 +76,7 @@ function OrderUser() {
                   </div>
                 ))}
               </div>
-              <div className="bg-white rounded-b-md lg:rounded-md h-full lg:w-[450px] lg:sticky md:top-28 p-5 text-lg">
+              <div className="bg-white rounded-b-md lg:rounded-md h-full lg:w-[450px] lg:sticky md:top-28 p-5">
                 <div className="flex justify-between items-center mb-3">
                   <h4 className="font-medium text-lg sm:text-xl">
                     Pedido: {idPedido}
@@ -106,7 +106,7 @@ function OrderUser() {
                 {order.products.map((product, idx) => (
                   <div className="flex justify-between" key={idx}>
                     <span className="font-medium opacity-60">
-                      sku x{product.quantity}
+                      {product.sku} x{product.quantity}
                     </span>
                     <span className="font-medium opacity-60 sm:text-lg">
                       $
