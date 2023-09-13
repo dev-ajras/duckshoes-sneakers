@@ -90,7 +90,7 @@ function ProductDetails() {
                       productFound.images[color].map((imageUrl, idx) => (
                         <button
                           key={idx}
-                          className={`h-12 sm:h-16 w-12 sm:w-16 p-1 rounded-sm bg-white ${
+                          className={`h-12 sm:h-16 w-12 sm:w-16 p-2 md:p-3 rounded-sm bg-white ${
                             principalImage == idx
                               ? "ring-blue-500 ring-2"
                               : "ring-gray-500 ring-1"
@@ -121,7 +121,7 @@ function ProductDetails() {
                               className="flex justify-center sm:mb-3 md:mb-5 ml-16"
                             >
                               <img
-                                className="h-56 sm:h-80 object-contain px-5 sm:px-20 md:px-14 lg:px-28"
+                                className="h-56 sm:h-80 object-contain px-5 py-10 sm:px-20 md:px-14 lg:px-28"
                                 src={productFoundOne}
                                 alt={productFoundOne}
                               />
