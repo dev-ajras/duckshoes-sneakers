@@ -50,7 +50,7 @@ function ProductsResults() {
         const response = await axios.get(
           `${baseUrl}products?page=${
             currentPage + 1
-          }&pageSize=${productsPerPage}&name=${sku}`
+          }&pageSize=${productsPerPage}&name=${sku ?? ""}`
         );
         if (response.status === 200) {
           setNextProducts(response.data.products);
