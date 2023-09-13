@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ImSpinner8 } from "react-icons/im";
 import { ToastContainer, toast } from "react-toastify";
 
-function TotalCart({ cartTo, userReject }) {
+function TotalCart({ userReject }) {
   const { user, cart, cartFullClear, setCartMenu } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
 
@@ -71,6 +71,9 @@ function TotalCart({ cartTo, userReject }) {
   const handleOrder = () => {
     if (user.role !== 0) {
       userReject();
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
     } else {
       postOrder();
     }
@@ -102,22 +105,12 @@ function TotalCart({ cartTo, userReject }) {
             ${total.toLocaleString("es-ES")}
           </span>
         </div>
-        {cartTo === 0 ? (
-          <button
-            className="flex justify-center items-center bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors font-semibold text-white p-3 rounded-sm mt-2 text-center text-lg"
-            onClick={() => handleOrder()}
-          >
-            {loading ? <ImSpinner8 className="animate-spin" /> : "Encargar"}
-          </button>
-        ) : (
-          <Link
-            to="/cart"
-            className="bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors font-semibold text-white p-3 rounded-sm mt-2 text-center text-lg"
-            onClick={() => setCartMenu(false)}
-          >
-            Ver carrito
-          </Link>
-        )}
+        <button
+          className="flex justify-center items-center bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors font-semibold text-white p-3 rounded-sm mt-2 text-center text-lg"
+          onClick={() => handleOrder()}
+        >
+          {loading ? <ImSpinner8 className="animate-spin" /> : "Encargar"}
+        </button>
       </div>
     </div>
   );

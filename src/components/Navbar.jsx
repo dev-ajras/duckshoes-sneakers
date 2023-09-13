@@ -24,15 +24,8 @@ function Navbar() {
 
   const navigate = useNavigate();
 
-  const {
-    user,
-    setUser,
-    cart,
-    navbarMenu,
-    setNavbarMenu,
-    cartMenu,
-    setCartMenu,
-  } = useContext(AppContext);
+  const { user, setUser, cart, navbarMenu, setNavbarMenu } =
+    useContext(AppContext);
 
   const logOut = () => {
     localStorage.removeItem("token");
@@ -52,13 +45,7 @@ function Navbar() {
   }, [q]);
 
   const handleMenu = () => {
-    setCartMenu(false);
     setNavbarMenu(!navbarMenu);
-  };
-
-  const handleCart = () => {
-    setNavbarMenu(false);
-    setCartMenu(!cartMenu);
   };
 
   const [timeoutId, setTimeoutId] = useState(null);
@@ -78,7 +65,6 @@ function Navbar() {
 
   return (
     <header className=" flex flex-col justify-center bg-background px-3 h-20 md:h-24 fixed w-full z-40 sm:px-5 ">
-      <CartMenu cartMenu={cartMenu} setCartMenu={setCartMenu} />
       <nav className="flex gap-x-3 sm:gap-x-5 md:gap-x-10 sm:gap-y-2 md:gap-y-3 w-full items-center lg:max-w-6xl mx-auto gridNavbar h-full md:py-3">
         <div className="">
           <Link to="/">
@@ -91,7 +77,7 @@ function Navbar() {
         <form className="w-full flex" onSubmit={handleSubmit}>
           <input
             onClick={() => {
-              setCartMenu(false), setNavbarMenu(false);
+              setNavbarMenu(false);
             }}
             className="align-middle outline-none border-none p-1 px-2 w-full sm:max-w-md md:max-w-lg sm:text-lg md:rounded-bl-sm md:rounded-tl-sm"
             type="text"
@@ -129,17 +115,8 @@ function Navbar() {
               {logMenu && (
                 <div className="absolute text-lg w-56 z-40 right-0 text-start ">
                   <ul className="flex flex-col gap-2 rounded shadow-md bg-white p-5 mt-2">
-                    <Link className="hover:text-primaryDark" to="/user/profile">
-                      Mi perfil
-                    </Link>
                     <Link className="hover:text-primaryDark" to="/user">
-                      Cuenta
-                    </Link>
-                    <Link
-                      className="hover:text-primaryDark"
-                      to="/user/configuration"
-                    >
-                      Configuración
+                      Mis pedidos
                     </Link>
                     <button
                       className="text-start hover:text-primaryDark"
@@ -218,20 +195,16 @@ function Navbar() {
               </Link>
             </span>
           )}
-          <button onClick={handleCart}>
-            {cartMenu ? (
-              <TiTimes className="text-white" />
-            ) : (
-              <div className="relative">
-                <RiShoppingBagLine className="text-white" />
-                {cart.length > 0 && (
-                  <span className="text-base font-bold absolute -bottom-2 -right-2 bg-primaryLight rounded-full w-6 h-6 flex justify-center items-center ">
-                    {cart.length}
-                  </span>
-                )}
-              </div>
-            )}
-          </button>
+          <Link to="/cart" className="relative">
+            <div>
+              <RiShoppingBagLine className="text-white" />
+              {cart.length > 0 && (
+                <span className="text-base font-bold absolute -bottom-2 -right-2 bg-primaryLight rounded-full w-6 h-6 flex justify-center items-center ">
+                  {cart.length}
+                </span>
+              )}
+            </div>
+          </Link>
           <button onClick={handleMenu}>
             {navbarMenu ? (
               <TiTimes className="text-white md:hidden" />
@@ -250,11 +223,7 @@ function Navbar() {
         <div className="hidden"></div>
       </nav>
       <div className="md:hidden">
-        <NavbarMenu
-          navbarMenu={navbarMenu}
-          setNavbarMenu={setNavbarMenu}
-          setCartMenu={setCartMenu}
-        />
+        <NavbarMenu navbarMenu={navbarMenu} setNavbarMenu={setNavbarMenu} />
       </div>
     </header>
   );

@@ -2,15 +2,16 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AppContext } from "../../context/AppProvider";
-import TotalCart from "../../components/TotalCart";
 import { ImSpinner8 } from "react-icons/im";
 
-function Order() {
+function OrderAdmin() {
   const { user } = useContext(AppContext);
   const { idPedido } = useParams();
 
   const [order, setOrder] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [status, setStatus] = useState();
+  const [condition, setCondition] = useState(false);
 
   const baseUrl = "https://www.api.duckshoes.com.ar/";
 
@@ -23,8 +24,10 @@ function Order() {
             Authorization: `Bearer ${user.token}`,
           },
         });
-        console.log(response.data.order);
         setOrder(response.data.order);
+        setStatus(response.data.order.status);
+        setCondition(response.data.order.active);
+        console.log(response);
       } catch (error) {
       } finally {
         setLoading(false);
@@ -33,13 +36,44 @@ function Order() {
     fetchOrder();
   }, []);
 
-  const userReject = () =>
-    toast.error("Esta función es solo para clientes", {
-      autoClose: 2000,
-      hideProgressBar: true,
-      pauseOnFocusLoss: false,
-      pauseOnHover: false,
-    });
+  const handleStatus = async (currentStatus) => {
+    const response = await axios.put(
+      `${baseUrl}orders/status/${idPedido}`,
+      {
+        status: currentStatus,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
+    console.log(response);
+    if (response.status === 200) {
+      setStatus(currentStatus);
+    }
+  };
+
+  const onChangeStatus = (e) => {
+    const currentStatus = e.target.value;
+    handleStatus(currentStatus);
+    console.log(currentStatus);
+  };
+
+  const handleCondition = async () => {
+    const response = await axios.put(
+      `${baseUrl}orders/pay/${idPedido}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
+    if (response.status === 200) {
+      setCondition(!condition);
+    }
+  };
 
   return (
     <section className="flex justify-center">
@@ -90,9 +124,27 @@ function Order() {
                   <h4 className="font-medium text-lg sm:text-xl">
                     Pedido: {idPedido}
                   </h4>
-                  <span className="bg-[#FFA625]/40 text-[#CB7800] py-2 px-3 rounded-sm font-medium">
-                    {order.status === "pending" ? "pendiente" : "estado?"}
-                  </span>
+                  {status === "pending" ? (
+                    <span className="bg-[#FFA625]/30 text-[#CB7800] py-2 px-3 rounded-sm font-medium">
+                      Pendiente
+                    </span>
+                  ) : status === "processing" ? (
+                    <span className="bg-[#0033EA]/30 text-[#042CB9] py-2 px-3 rounded-sm font-medium">
+                      En proceso
+                    </span>
+                  ) : status === "completed" ? (
+                    <span className="bg-[#209551]/30 text-[#008A3A] py-2 px-3 rounded-sm font-medium">
+                      Despachado
+                    </span>
+                  ) : status === "cancelled" ? (
+                    <span className="bg-[#FF3535]/30 text-[#B51A1A] py-2 px-3 rounded-sm font-medium">
+                      Cancelado
+                    </span>
+                  ) : (
+                    <span className="bg-[#FF3535]/30 text-[#B51A1A] py-2 px-3 rounded-sm font-medium">
+                      Error
+                    </span>
+                  )}
                 </div>
                 {order.products.map((product, idx) => (
                   <div className="flex justify-between" key={idx}>
@@ -113,6 +165,39 @@ function Order() {
                   <span className="font-medium sm:text-xl">
                     ${parseInt(order.value).toLocaleString("es-ES")}
                   </span>
+                </div>
+                <div className="flex justify-between items-center mt-3 md:mt-5">
+                  <span className="font-medium sm:text-xl">Estado:</span>
+                  <select
+                    onChange={(e) => onChangeStatus(e)}
+                    className="p-2 outline-none border rounded"
+                    name="status"
+                    id="status"
+                    value={status}
+                  >
+                    <option value="pending">Pendiente</option>
+                    <option value="processing">En proceso</option>
+                    <option value="completed">Despachado</option>
+                    <option value="cancelled">Cancelado</option>
+                  </select>
+                </div>
+                <div className="flex justify-between items-center mt-3 md:mt-5">
+                  <span className="font-medium sm:text-xl">Condición:</span>
+                  {condition ? (
+                    <button
+                      onClick={() => handleCondition()}
+                      className="bg-[#209551]/30 text-[#008A3A] md:hover:bg-[#209551]/50 md:transition-colors py-2 px-3 rounded-sm font-medium"
+                    >
+                      Pagado
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handleCondition()}
+                      className="bg-[#FF3535]/30 md:hover:bg-[#FF3535]/50 md:transition-colors text-[#B51A1A] py-2 px-3 rounded-sm font-medium"
+                    >
+                      No pagado
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -135,4 +220,4 @@ function Order() {
   );
 }
 
-export default Order;
+export default OrderAdmin;

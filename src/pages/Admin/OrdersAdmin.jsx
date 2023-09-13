@@ -119,12 +119,13 @@ function OrdersAdmin() {
   return (
     <div className="shadow">
       <ToastContainer />
-      <div className="grid grid-cols-11 bg-gray-50 p-5 font-normal">
-        <div className="text-center col-span-2">N° Pedido</div>
+      <div className="grid grid-cols-12 bg-gray-50 p-5 font-normal">
+        <div className="text-center col-span-1">N° Pedido</div>
         <div className="text-center col-span-2">Imágen</div>
         <div className="text-center col-span-2">Fecha</div>
         <div className="text-center col-span-2">Total</div>
         <div className="text-center col-span-2">Estado</div>
+        <div className="text-center col-span-2">Condición</div>
       </div>
       {loading ? (
         <div className="flex justify-center bg-white min-h-screen">
@@ -132,39 +133,67 @@ function OrdersAdmin() {
         </div>
       ) : orders.length > 0 ? (
         orders.map((order) => (
-          <div
+          <Link
+            to={`/admin/pedido/${order.id}`}
+            className="grid grid-cols-12 place-items-center bg-white p-2 mb-0.5 md:hover:bg-slate-50 md:transition-colors"
             key={order.id}
-            className="grid grid-cols-11 place-items-center bg-white p-2 mb-0.5"
           >
-            <div className="flex justify-center items-center col-span-2">
-              <span>#{order.id}</span>
+            <div className="flex justify-center items-center col-span-1">
+              <span className="font-normal md:text-lg">#{order.id}</span>
             </div>
             <div className="text-center col-span-2">
               <img
                 width={60}
-                src="https://http2.mlstatic.com/D_Q_NP_632746-MLA45632512382_042021-AB.webp"
-                alt="imagenEjemplo"
+                src={order.products[0].images[0]}
+                alt="imagen de pedido"
               />
             </div>
-            <div className="text-center col-span-2">
+            <div className="text-center font-normal col-span-2">
               {order.createdAt.slice(0, 10)}
             </div>
             <div className="text-center col-span-2">
-              ${parseInt(order.value).toLocaleString("es-ES")}
+              <span className="font-normal md:text-lg">
+                ${parseInt(order.value).toLocaleString("es-ES")}
+              </span>
             </div>
             <div className="text-center col-span-2">
-              {order.status && (
-                <div className="flex justify-evenly items-center">
-                  <span className="bg-orange-600 py-2 px-3 text-white rounded">
-                    {order.status}
-                  </span>
-                </div>
+              {order.status === "pending" ? (
+                <span className="bg-[#FFA625]/30 text-[#CB7800] py-2 px-3 rounded-sm font-medium">
+                  Pendiente
+                </span>
+              ) : order.status === "processing" ? (
+                <span className="bg-[#0033EA]/30 text-[#042CB9] py-2 px-3 rounded-sm font-medium">
+                  En proceso
+                </span>
+              ) : order.status === "completed" ? (
+                <span className="bg-[#209551]/30 text-[#008A3A] py-2 px-3 rounded-sm font-medium">
+                  Despachado
+                </span>
+              ) : order.status === "cancelled" ? (
+                <span className="bg-[#FF3535]/30 text-[#B51A1A] py-2 px-3 rounded-sm font-medium">
+                  Cancelado
+                </span>
+              ) : (
+                <span className="bg-[#FF3535]/30 text-[#B51A1A] py-2 px-3 rounded-sm font-medium">
+                  Error
+                </span>
+              )}
+            </div>
+            <div className="text-center col-span-2 ">
+              {order.active ? (
+                <span className="bg-[#209551]/30 text-[#008A3A] py-2 px-3 rounded-sm font-medium">
+                  Pagado
+                </span>
+              ) : (
+                <span className="bg-[#FF3535]/30 text-[#B51A1A] py-2 px-3 rounded-sm font-medium">
+                  No pagado
+                </span>
               )}
             </div>
             <button onClick={() => deleteProduct(order.id)}>
               <MdDelete className="fill-red-700 md:hover:fill-red-900 w-7 h-7 opacity-75" />
             </button>
-          </div>
+          </Link>
         ))
       ) : (
         <div className="p-3 flex flex-col items-center sm:p-5 sm:py-12 bg-white">

@@ -19,11 +19,11 @@ function ProductCard({ product }) {
   return (
     <Link
       to={`/products/${product.sku}/${product.id}?color=${product.color}`}
-      className="shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow rounded-md bg-white p-3 relative sm:p-5 md:p-8"
+      className="shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow rounded-md bg-white p-3 relative sm:p-5 md:p-5"
     >
       <div className="flex flex-col w-full h-full">
         <img
-          className="object-contain py-5 h-full"
+          className="object-contain p-5 h-full"
           src={product.image}
           alt={product.sku}
         />

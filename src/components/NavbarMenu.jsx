@@ -4,16 +4,16 @@ import { AppContext } from "../context/AppProvider";
 import { Link } from "react-router-dom";
 
 import { AiFillHome } from "react-icons/ai";
-import { RiShoppingBagFill } from "react-icons/ri";
+import { RiLogoutBoxLine, RiShoppingBagFill } from "react-icons/ri";
 import { PiSneakerFill } from "react-icons/pi";
 import { MdFavorite } from "react-icons/md";
-import { BiSolidHelpCircle } from "react-icons/bi";
+import { BiLogOut, BiSolidHelpCircle } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 
 import { motion } from "framer-motion";
 
 function NavbarMenu() {
-  const { user, navbarMenu, setNavbarMenu, setCartMenu } =
+  const { user, setUser, navbarMenu, setNavbarMenu, setCartMenu } =
     useContext(AppContext);
 
   const menuVariants = {
@@ -29,6 +29,12 @@ function NavbarMenu() {
   const navAndCartOff = () => {
     setNavbarMenu(false);
     setCartMenu(false);
+  };
+
+  const handleLogout = () => {
+    navAndCartOff();
+    setUser("");
+    localStorage.removeItem("token");
   };
 
   return (
@@ -79,7 +85,7 @@ function NavbarMenu() {
             </h5>
           </Link>
         </li>
-        <li>
+        <li className="hidden md:block">
           <Link
             to="/cart"
             onClick={() => navAndCartOff()}
@@ -100,7 +106,7 @@ function NavbarMenu() {
             >
               <FaUserCircle className="fill-background md:hidden" />
               <h5 className="text-background font-semibold md:text-white md:font-normal md:hover:text-primaryLight transition-colors">
-                Cuenta
+                Mis pedidos
               </h5>
             </Link>
           ) : user.role === 1 ? (
@@ -127,7 +133,22 @@ function NavbarMenu() {
             </Link>
           )}
         </li>
-        <li>
+        <li className="md:hidden">
+          {user ? (
+            <button
+              onClick={() => handleLogout()}
+              className="flex gap-2 items-center p-2 sm:gap-3 sm:p-3 md:p-0"
+            >
+              <RiLogoutBoxLine className="fill-background md:hidden" />
+              <h5 className="text-background font-semibold md:text-white md:font-normal md:hover:text-primaryLight transition-colors">
+                Salir
+              </h5>
+            </button>
+          ) : (
+            <Link to="/login">Ingresar</Link>
+          )}
+        </li>
+        {/* <li>
           <Link
             to="/service"
             onClick={() => navAndCartOff()}
@@ -138,7 +159,7 @@ function NavbarMenu() {
               Servicio
             </h5>
           </Link>
-        </li>
+        </li> */}
       </motion.ul>
       <motion.div
         initial="inactive"

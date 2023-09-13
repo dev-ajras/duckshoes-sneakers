@@ -108,8 +108,8 @@ function OrdersUser() {
   return (
     <div className="shadow">
       <ToastContainer />
-      <div className="grid grid-cols-10 bg-gray-100 p-5 font-normal">
-        <div className="text-center col-span-2">N° Pedido</div>
+      <div className="hidden md:grid grid-cols-9 bg-gray-100 p-5 font-normal">
+        <div className="text-center col-span-1">N° Pedido</div>
         <div className="text-center col-span-2">Imágen</div>
         <div className="text-center col-span-2">Fecha</div>
         <div className="text-center col-span-2">Total</div>
@@ -124,30 +124,48 @@ function OrdersUser() {
           <Link
             to={`/user/pedido/${order.id}`}
             key={order.id}
-            className="grid grid-cols-10 place-items-center bg-white p-2 mb-0.5 md:hover:bg-slate-50 md:transition-colors"
+            className="grid grid-cols-3 gap-y-1 md:grid md:grid-cols-9 place-items-center bg-white p-3 md:p-4 mb-0.5 md:hover:bg-slate-50 md:transition-colors"
           >
-            <div className="flex justify-center items-center col-span-2">
+            <div className="hidden md:flex justify-center items-center md:col-span-1">
               <span>#{order.id}</span>
             </div>
-            <div className="text-center col-span-2">
+            <div className="flex items-center text-center col-start-1 row-start-1 row-span-3 md:row-span-1 h-full md:col-start-2  md:col-span-2">
               <img
-                width={60}
-                src="https://http2.mlstatic.com/D_Q_NP_632746-MLA45632512382_042021-AB.webp"
-                alt="imagenEjemplo"
+                className="h-16 w-16 md:h-20 md:w-20 object-contain"
+                src={order.products[0].images[0]}
+                alt="imagen de pedido"
               />
             </div>
-            <div className="text-center col-span-2">
-              {order.createdAt.slice(0, 10)}
+            <div className="place-self-start md:place-self-center md:text-center col-start-2  font-normal text-sm md:text-base md:col-start-4 md:col-span-2">
+              {order.createdAt.slice(2, 10)}
             </div>
-            <div className="text-center col-span-2">
+            <div className="place-self-start md:place-self-center text-lg font-medium md:text-center col-start-2 col-span-2 md:col-span-2">
               ${parseInt(order.value).toLocaleString("es-ES")}
             </div>
-            <div className="text-center col-span-2">
+            <div className="place-self-start md:place-self-center md:text-center col-start-2 row-start-1 col-span-2 md:col-start-8 md:col-span-2">
               {order.status && (
-                <div className="flex justify-evenly items-center">
-                  <span className="bg-[#FFA625]/40 text-[#CB7800] py-2 px-3 rounded-sm font-medium">
-                    {order.status}
-                  </span>
+                <div className="flex justify-evenly items-center font-medium">
+                  {order.status === "pending" ? (
+                    <span className="bg-[#FFA625]/30 text-[#CB7800] py-1 px-2 md:py-2 md:px-3 rounded-sm md:font-medium">
+                      Pendiente
+                    </span>
+                  ) : order.status === "processing" ? (
+                    <span className="bg-[#0033EA]/30 text-[#042bb9] py-1 px-3 md:py-2 md:px-3 rounded-sm md:font-medium">
+                      En proceso
+                    </span>
+                  ) : order.status === "completed" ? (
+                    <span className="bg-[#209551]/30 text-[#008A3A] md:py-2 md:px-3 rounded-sm md:font-medium">
+                      Despachado
+                    </span>
+                  ) : order.status === "cancelled" ? (
+                    <span className="bg-[#FF3535]/30 text-[#B51A1A] md:py-2 md:px-3 rounded-sm md:font-medium">
+                      Cancelado
+                    </span>
+                  ) : (
+                    <span className="bg-[#FF3535]/30 text-[#B51A1A] md:py-2 md:px-3 rounded-sm md:font-medium">
+                      Error
+                    </span>
+                  )}
                 </div>
               )}
             </div>

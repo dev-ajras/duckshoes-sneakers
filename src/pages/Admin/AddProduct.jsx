@@ -210,7 +210,7 @@ function AddProduct() {
         <div className="flex mt-2 gap-3">
           <label
             htmlFor="images"
-            className="w-24 h-24 min-w-[96px] border-2 border-dashed border-primary flex justify-center items-center"
+            className="cursor-pointer w-24 h-24 min-w-[96px] border-2 border-dashed border-primary md:hover:border-primaryDark flex justify-center items-center"
           >
             <div className="flex flex-col justify-center items-center text-center text-primary text-xs">
               <BiImageAdd className="w-8 h-8" />
@@ -281,7 +281,7 @@ function AddProduct() {
           maxLength={10}
           className="p-2 outline-none border rounded"
         />
-        <button className="flex  justify-center items-center bg-primaryDark text-white p-3 font-normal rounded mt-5">
+        <button className="flex  justify-center items-center bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors text-white p-3 font-normal rounded mt-5">
           {loading ? (
             <ImSpinner8 className="animate-spin" />
           ) : (

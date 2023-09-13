@@ -5,7 +5,7 @@ import TotalCart from "../components/TotalCart";
 import { ToastContainer, toast } from "react-toastify";
 
 function Cart() {
-  const { cart, setCartMenu } = useContext(AppContext);
+  const { cart } = useContext(AppContext);
 
   console.log(cart);
 
@@ -70,9 +70,7 @@ function Cart() {
                             )}
                           </span>
                         </div>
-                        <AddRemoveButtons
-                          filteredProductId={filteredProduct.id}
-                        />
+                        <AddRemoveButtons filteredProduct={filteredProduct} />
                       </div>
                     </div>
                     <hr />
@@ -80,7 +78,7 @@ function Cart() {
                 ))}
               </div>
               <div className="bg-white rounded-b-md lg:rounded-md h-full lg:w-[450px] lg:sticky md:top-28">
-                <TotalCart cartTo={0} userReject={userReject} />
+                <TotalCart userReject={userReject} />
               </div>
             </div>
           ) : (

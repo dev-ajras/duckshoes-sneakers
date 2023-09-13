@@ -42,7 +42,7 @@ function ProductDetails() {
 
   const handleButton = (productToCart) => {
     if (!cart.find((cartItem) => cartItem.id === productToCart.id)) {
-      cartAdd({ ...productToCart, quantity: 1 });
+      cartAdd({ ...productToCart, quantity: 8 });
     }
     addedToCart(productToCart.id);
   };
@@ -90,7 +90,7 @@ function ProductDetails() {
                       productFound.images[color].map((imageUrl, idx) => (
                         <button
                           key={idx}
-                          className={`rounded-sm bg-white ${
+                          className={`p-2 rounded-sm bg-white ${
                             principalImage == idx
                               ? "ring-blue-500 ring-2"
                               : "ring-gray-500 ring-1"
@@ -177,7 +177,7 @@ function ProductDetails() {
                             handleButton(productFound);
                           }}
                         >
-                          Add to cart
+                          Agregar al carrito
                         </button>
                       </div>
                       <div className="flex mb-3 gap-3 sm:gap-5">
@@ -190,14 +190,14 @@ function ProductDetails() {
                           ) : (
                             <MdFavoriteBorder className="sm:w-5 sm:h-5 " />
                           )}
-                          <span className="opacity-80">Favorites</span>
+                          <span className="opacity-80">Favoritos</span>
                         </button>
                         <a
                           href={`https://api.whatsapp.com/send?phone=541138596093&text=Hola! Quería consulta por las zapatillas ${productFound.sku} | Color: ${colorParam}`}
                           className="w-full bg-primaryLight md:hover:bg-primary md:transition-colors p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm"
                         >
                           <BsShare className="sm:w-5 sm:h-5" />
-                          <span className="opacity-80">Share</span>
+                          <span className="opacity-80">Compartir</span>
                         </a>
                       </div>
                       <div className="md:hidden">

@@ -40,7 +40,7 @@ function AppProvider({ children }) {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
-  const cartAdd = (toCart) => {
+  const cartAdd = (toCart, newQuantity) => {
     const found = cart.find((cartOld) => cartOld.id === toCart.id);
     if (!found) {
       setCart([...cart, toCart]);
@@ -50,6 +50,23 @@ function AppProvider({ children }) {
           ? {
               ...cartObj,
               quantity: cartObj.quantity + 1,
+            }
+          : cartObj
+      );
+      setCart(updatedCart);
+    }
+  };
+
+  const cartHandler = (toCart, newQuantity) => {
+    const found = cart.find((cartOld) => cartOld.id === toCart.id);
+    if (!found) {
+      setCart([...cart, { ...toCart, quantity: newQuantity }]);
+    } else {
+      const updatedCart = cart.map((cartObj) =>
+        cartObj.id === toCart.id
+          ? {
+              ...cartObj,
+              quantity: newQuantity,
             }
           : cartObj
       );
@@ -121,6 +138,7 @@ function AppProvider({ children }) {
     setNavbarMenu,
     cartMenu,
     setCartMenu,
+    cartHandler,
   };
 
   return (

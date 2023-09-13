@@ -159,12 +159,16 @@ function AllProducts() {
                 alt={product.sku}
               />
             </div>
-            <div className="text-center col-span-2">{product.sku}</div>
-            <div className="text-center col-span-2">{product.price}</div>
+            <div className="text-center font-normal col-span-2">
+              {product.sku}
+            </div>
+            <div className="md:text-lg font-normal text-center col-span-2">
+              ${parseInt(product.price).toLocaleString("es-ES")}
+            </div>
             <div className="text-center col-span-2">
               {product.active && (
                 <div className="flex justify-evenly items-center">
-                  <span className="bg-green-100 p-3 text-green-800 rounded">
+                  <span className="bg-[#209551]/30 text-[#008A3A] py-2 px-3 rounded-sm font-medium">
                     Publicado
                   </span>
                 </div>
