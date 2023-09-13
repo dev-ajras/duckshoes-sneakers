@@ -33,7 +33,7 @@ function ProductDetails() {
       console.log(response);
       setLoading(false);
       setProductFound(response.data);
-      setPrincipalImage(response.data.images[colorParam].length - 1);
+      setPrincipalImage(0);
     };
     fetchDetailsProducts();
   }, [productId]);

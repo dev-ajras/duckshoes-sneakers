@@ -119,7 +119,7 @@ function OrdersAdmin() {
   return (
     <div className="shadow">
       <ToastContainer />
-      <div className="grid grid-cols-12 bg-gray-50 p-5 font-normal">
+      <div className="grid grid-cols-12 bg-gray-100 p-5 font-normal">
         <div className="text-center col-span-1">N° Pedido</div>
         <div className="text-center col-span-2">Imágen</div>
         <div className="text-center col-span-2">Fecha</div>
@@ -143,7 +143,7 @@ function OrdersAdmin() {
             </div>
             <div className="text-center col-span-2">
               <img
-                width={60}
+                className="h-16 w-16 md:h-20 md:w-20 object-contain"
                 src={order.products[0].images[0]}
                 alt="imagen de pedido"
               />
@@ -202,7 +202,7 @@ function OrdersAdmin() {
           </h5>
         </div>
       )}
-      <div className="bg-gray-50 p-5 flex gap-3 justify-center items-center sm:gap-5">
+      <div className="bg-gray-100 p-5 flex gap-3 justify-center items-center sm:gap-5">
         <button
           className={`${
             currentPage === 1 && "hidden pointer-events-none"

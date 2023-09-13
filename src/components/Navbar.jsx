@@ -151,20 +151,8 @@ function Navbar() {
               {logMenu && (
                 <div className="absolute text-lg w-56 z-40 right-0 text-start ">
                   <ul className="flex flex-col gap-2 rounded shadow-md bg-white p-5 mt-2">
-                    <Link
-                      className="hover:text-primaryDark"
-                      to="/admin/profile"
-                    >
-                      Mi perfil
-                    </Link>
                     <Link className="hover:text-primaryDark" to="/admin">
                       Admin
-                    </Link>
-                    <Link
-                      className="hover:text-primaryDark"
-                      to="/admin/configuration"
-                    >
-                      Configuración
                     </Link>
                     <button
                       className="text-start hover:text-primaryDark"
