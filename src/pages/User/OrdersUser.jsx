@@ -176,7 +176,7 @@ function OrdersUser() {
           <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2 sm:px-5 sm:p-2 sm:mb-3">
             No hay pedidos
           </h5>
-          <Link to="/admin/agregar-producto" className="font-semibold">
+          <Link to="/products" className="font-semibold">
             Añadir pedido +
           </Link>
         </div>
