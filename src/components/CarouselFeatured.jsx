@@ -28,7 +28,7 @@ function CarouselFeatured({ title }) {
       } catch (error) {
         console.log(error);
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
     fecthProducts();
@@ -55,7 +55,7 @@ function CarouselFeatured({ title }) {
                 return (
                   <Link
                     to={`/products/${product.sku}/${product.id}?color=${product.color}`}
-                    className='w-32 sm:w-48 md:w-52 lg:w-60 p-3 shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow bg-white rounded-md relative sm:p-5 '
+                    className='w-40 sm:w-52 md:w-60 p-3 shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow bg-white rounded-md relative sm:p-5 '
                     key={product.id}
                   >
                     <div className='flex flex-col w-full h-full'>
