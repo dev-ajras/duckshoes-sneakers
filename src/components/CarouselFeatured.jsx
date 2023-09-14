@@ -41,12 +41,12 @@ function CarouselFeatured({ title }) {
 
   return (
     <article className="flex justify-center w-full">
-      <div className="max-w-6xl m-3 sm:m-5 overflow-hidden pb-3">
+      <div className="max-w-6xl m-3 sm:m-5 overflow-hidden pb-3 w-full">
         <h3 className="mb-3 font-medium text-xl sm:text-2xl sm:mb-5">
           {title}
         </h3>
         <div ref={emblaRef}>
-          <div className="grid grid-cols-10 gap-3 sm:gap-5">
+          <div className="flex gap-3 sm:gap-5">
             {loading ? (
               <SkeletonCarouselFeatured />
             ) : products.length > 0 ? (
@@ -55,7 +55,7 @@ function CarouselFeatured({ title }) {
                 return (
                   <Link
                     to={`/products/${product.sku}/${product.id}?color=${product.color}`}
-                    className="w-40 sm:w-52 md:w-60 p-3 shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow bg-white rounded-md relative sm:p-5 "
+                    className="w-40 h-56 sm:w-52 sm:h-72 md:w-60 md:h-[340px] p-3 shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow bg-white rounded-md relative sm:p-5 "
                     key={product.id}
                   >
                     <div className="flex flex-col w-full h-full">

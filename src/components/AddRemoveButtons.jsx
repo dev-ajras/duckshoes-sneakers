@@ -19,7 +19,7 @@ export default function AddRemoveButtons({ filteredProduct }) {
   // const quantityInCart = productInCart && productInCart.quantity;
 
   const quantityPerProduct = [
-    8, 16, 24, 36, 48, 60, 72, 84, 96, 108, 120, 180, 240, 300, 360,
+    8, 12, 16, 24, 36, 48, 60, 72, 84, 96, 108, 120, 180, 240, 300, 360,
   ];
 
   console.log(filteredProduct);

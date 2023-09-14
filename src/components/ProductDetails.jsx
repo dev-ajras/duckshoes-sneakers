@@ -43,7 +43,7 @@ function ProductDetails() {
 
   const handleButton = (productToCart) => {
     if (!cart.find((cartItem) => cartItem.id === productToCart.id)) {
-      cartAdd({ ...productToCart, quantity: 8 });
+      cartAdd({ ...productToCart, quantity: 12 });
     }
     addedToCart(productToCart.id);
   };
@@ -100,7 +100,7 @@ function ProductDetails() {
                       productFound.images[color].map((imageUrl, idx) => (
                         <button
                           key={idx}
-                          className={`h-12 sm:h-16 w-12 sm:w-16 p-2 md:p-3 rounded-sm bg-white ${
+                          className={`h-12 sm:h-16 w-12 sm:w-16 p-2 md:p-2 rounded-sm bg-white ${
                             principalImage == idx
                               ? "ring-blue-500 ring-2"
                               : "ring-gray-500 ring-1"

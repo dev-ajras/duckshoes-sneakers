@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 function Banner() {
   return (
     <section className="flex justify-center items-center bg-background">
-      <div className="md:flex md:gap-20 lg:gap-32 items-center max-w-6xl m-5 mb-10 sm:m-10 md:m-16 md:mb-20">
+      <div className="md:flex md:gap-10 lg:gap-32 items-center max-w-6xl m-5 mb-10 sm:m-10 md:m-16 md:mb-20">
         <article className="flex flex-col items-center md:items-start gap-3 md:gap-5">
-          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold text-white">
             Gestionamos tu pedido
           </h2>
           <p
-            className="text-white text-lg text-center sm:text-xl md:text-2xl md:text-start"
+            className="text-white text-lg text-center sm:text-xl lg:text-2xl md:text-start"
             style={{ textWrap: "balance" }}
           >
             Simplificamos y optimizamos tu proceso de compra.
@@ -34,7 +34,7 @@ function Banner() {
               autoPlay
             /> */}
             <img
-              className="md:w-full rounded-md"
+              className="w-5/6  rounded-md"
               src="/assets/banners/homeBanner.webp"
               alt="home image"
             />

@@ -159,7 +159,7 @@ function OrderAdmin() {
                     </span>
                   </div>
                 ))}
-                <div className="border-t-[1px] my-1"></div>
+                <div className="border-t-[1px] my-2"></div>
                 <div className="flex justify-between">
                   <span className="font-medium sm:text-xl">Total: </span>
                   <span className="font-medium sm:text-xl">
