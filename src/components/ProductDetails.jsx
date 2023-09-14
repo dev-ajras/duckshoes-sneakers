@@ -13,6 +13,7 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { AiFillHeart } from "react-icons/ai";
 import axios from "axios";
 import SkeletonProductsDetails from "./Skeletons/SkeletonProductsDetails";
+import { IoReturnDownBack } from "react-icons/io5";
 
 function ProductDetails() {
   const { favorites, cart, cartAdd, favoritesHandler } = useContext(AppContext);
@@ -71,15 +72,24 @@ function ProductDetails() {
     }
   };
 
+  const navigate = useNavigate();
+
+  const returnPrev = () => {
+    navigate(-1);
+  };
+
   return (
     <article className="flex justify-center">
       <ToastContainer className="mt-24" />
       <div className="flex flex-col items-center w-full">
         <div className="w-full flex justify-center p-3 sm:p-5">
           <div className="lg:max-w-6xl w-full">
-            <h3 className="font-medium text-lg mb-3 sm:mb-5 sm:text-2xl">
-              Detalles
-            </h3>
+            <button
+              onClick={() => returnPrev()}
+              className="flex justify-center items-center font-medium text-lg mb-3 sm:mb-5 sm:text-2xl bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors rounded-sm p-2 w-10 h-10 "
+            >
+              <IoReturnDownBack className="stroke-white w-full h-full" />
+            </button>
             {loading === true ? (
               <SkeletonProductsDetails />
             ) : productFound ? (
