@@ -2,25 +2,11 @@ import { useContext, useState } from "react";
 import { AppContext } from "../context/AppProvider";
 
 export default function AddRemoveButtons({ filteredProduct }) {
-  const { cart, cartAdd, cartRemove, cartDelete, cartHandler } =
-    useContext(AppContext);
+  const { cart, cartDelete, cartHandler } = useContext(AppContext);
 
-  const [productQuantity, setProductQuantity] = useState(8);
-
-  const handleAdd = (e, productId) => {
-    e.preventDefault();
-    const maxQ = cart.find((cartItem) => cartItem.id === productId).quantity;
-    if (maxQ < 361) {
-      cartAdd({ id: productId });
-    } else {
-      alert("360 es el máximo por medido");
-    }
-  };
-
-  const handleRemove = (e, productId) => {
-    e.preventDefault();
-    cartRemove({ id: productId });
-  };
+  const [productQuantity, setProductQuantity] = useState(
+    filteredProduct.quantity
+  );
 
   const handleRemoveAll = (e, productId) => {
     e.preventDefault();
@@ -35,6 +21,8 @@ export default function AddRemoveButtons({ filteredProduct }) {
   const quantityPerProduct = [
     8, 16, 24, 36, 48, 60, 72, 84, 96, 108, 120, 180, 240, 300, 360,
   ];
+
+  console.log(filteredProduct);
 
   const handleQuantity = (e) => {
     const currentQuantity = e.target.value;
@@ -61,7 +49,7 @@ export default function AddRemoveButtons({ filteredProduct }) {
         onClick={(e) => handleRemoveAll(e, filteredProduct.id)}
         className="flex items-center gap-3 px-3 py-1 outline outline-2 outline-body rounded bg-red-500 md:hover:bg-red-600 md:transition-colors text-white sm:gap-4 sm:px-4 sm:text-lg"
       >
-        Delete
+        Borrar
       </button>
     </div>
   );

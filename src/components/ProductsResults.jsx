@@ -8,6 +8,7 @@ import { MdOutlineNavigateNext } from "react-icons/md";
 import { MdOutlineNavigateBefore } from "react-icons/md";
 import { ImSpinner8 } from "react-icons/im";
 import SkeletonProductsResults from "./Skeletons/SkeletonProductsResults";
+import { IoReturnDownBack } from "react-icons/io5";
 
 function ProductsResults() {
   const navigate = useNavigate();
@@ -92,12 +93,19 @@ function ProductsResults() {
     }
   }, [pageParam]);
 
+  const returnPrev = () => {
+    navigate(-1);
+  };
+
   return (
     <article className="flex justify-center">
       <div className="m-3 sm:m-5 lg:max-w-6xl w-full">
-        <h3 className="self-start mb-3 sm:mb-5 font-medium text-lg sm:text-2xl">
-          Productos
-        </h3>
+        <button
+          onClick={() => returnPrev()}
+          className="flex justify-center items-center font-medium text-lg mb-3 sm:mb-5 sm:text-2xl bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors rounded-sm p-2 w-10 h-10 "
+        >
+          <IoReturnDownBack className="stroke-white w-full h-full" />
+        </button>
         {loading === true ? (
           <SkeletonProductsResults />
         ) : products.length > 0 ? (

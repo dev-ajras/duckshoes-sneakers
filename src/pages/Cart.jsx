@@ -4,12 +4,13 @@ import AddRemoveButtons from "../components/AddRemoveButtons";
 import TotalCart from "../components/TotalCart";
 import { ToastContainer, toast } from "react-toastify";
 
+import { IoReturnDownBack } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
+
 function Cart() {
   const { cart } = useContext(AppContext);
 
-  console.log(cart);
-
-  console.log("AB ", cart);
+  const navigate = useNavigate();
 
   const userReject = () =>
     toast.error("Esta función es solo para clientes", {
@@ -19,13 +20,20 @@ function Cart() {
       pauseOnHover: false,
     });
 
+  const returnPrev = () => {
+    navigate(-1);
+  };
+
   return (
     <section className="flex justify-center">
       <ToastContainer className="mt-20" />
       <div className="max-w-6xl w-full m-3 sm:m-5">
-        <h3 className="font-medium text-lg mb-3 sm:mb-5 sm:text-2xl">
-          Carrito
-        </h3>
+        <button
+          onClick={() => returnPrev()}
+          className="flex justify-center items-center font-medium text-lg mb-3 sm:mb-5 sm:text-2xl bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors rounded-sm p-2 w-10 h-10 "
+        >
+          <IoReturnDownBack className="stroke-white w-full h-full" />
+        </button>
         <div>
           {cart.length > 0 ? (
             <div className="flex flex-col lg:flex-row lg:gap-5">
@@ -52,7 +60,7 @@ function Cart() {
                         <h4 className="font-semibold text-lg line-clamp-2 leading-6 sm:text-lg sm:leading-10">
                           {filteredProduct.sku}
                         </h4>
-                        <div className="flex gap-2 font-semibold text-sm my-1 sm:gap-3 sm:text-lg">
+                        <div className="flex flex-col md:flex-row gap-2 font-semibold text-sm my-1 sm:gap-3 sm:text-lg">
                           <p>
                             <span className="opacity-60">Color: </span>
                             <span>{filteredProduct.color}</span>

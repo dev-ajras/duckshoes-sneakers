@@ -192,7 +192,7 @@ function OrdersAdmin() {
               )}
             </div>
             <button onClick={(e) => deleteProduct(e, order.id)}>
-              <MdDelete className="fill-red-700 md:hover:fill-red-900 w-7 h-7 opacity-75" />
+              <MdDelete className="fill-red-600 md:hover:fill-red-700 md:transition-colors w-7 h-7 opacity-75" />
             </button>
           </Link>
         ))

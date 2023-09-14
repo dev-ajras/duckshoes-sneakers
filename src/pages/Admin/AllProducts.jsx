@@ -176,10 +176,10 @@ function AllProducts() {
             </div>
             <div className="flex gap-3">
               <Link to={`/admin/editar-producto/${product.id}`}>
-                <BiSolidEdit className="w-7 h-7" />
+                <BiSolidEdit className="w-7 h-7 fill-black/80 md:hover:fill-black md:transition-colors" />
               </Link>
               <button onClick={() => deleteProduct(product.id)}>
-                <MdDelete className="w-7 h-7 fill-red-600" />
+                <MdDelete className="w-7 h-7 fill-red-600 md:hover:fill-red-700 md:transition-colors" />
               </button>
             </div>
           </div>

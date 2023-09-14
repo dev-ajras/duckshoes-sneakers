@@ -85,7 +85,7 @@ function TotalCart({ userReject }) {
       <h3 className="font-medium text-lg sm:text-xl">Pedido</h3>
       <div className="flex flex-col mt-2">
         {cart.map((cartItem) => (
-          <div key={cartItem.id} className="flex justify-between">
+          <div key={cartItem.id} className="flex justify-between items-center">
             <span className="font-medium opacity-60">
               {cartItem.sku} x{cartItem.quantity}
             </span>

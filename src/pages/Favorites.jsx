@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { AppContext } from "../context/AppProvider";
 import ProductCard from "../components/ProductCard";
+import { IoReturnDownBack } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 function Favorites() {
   const { favorites, products } = useContext(AppContext);
@@ -9,12 +11,21 @@ function Favorites() {
     favorites.some((fav) => fav === product.id)
   );
 
+  const navigate = useNavigate();
+
+  const returnPrev = () => {
+    navigate(-1);
+  };
+
   return (
     <section className="bg-body flex justify-center">
       <div className="lg:max-w-6xl m-3 sm:m-5 w-full">
-        <h3 className="font-medium text-xl mb-3 sm:text-2xl sm:mb-5">
-          Favoritos
-        </h3>
+        <button
+          onClick={() => returnPrev()}
+          className="flex justify-center items-center font-medium text-lg mb-3 sm:mb-5 sm:text-2xl bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors rounded-sm p-2 w-10 h-10 "
+        >
+          <IoReturnDownBack className="stroke-white w-full h-full" />
+        </button>
         {!filteredProducts.length && (
           <div className="m-3 flex flex-col items-center sm:mt-12">
             <h5 className="font-normal text-lg bg-primaryLight px-2 py-1 sm:px-3 sm:py-2 mb-1 sm:mb-2">
