@@ -19,7 +19,7 @@ function ProductCard({ product }) {
   return (
     <Link
       to={`/products/${product.sku}/${product.id}?color=${product.color}`}
-      className="w-40 h-56 sm:w-52 sm:h-72 md:w-60 md:h-[340px] shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow rounded-md bg-white p-3 relative sm:p-5 md:p-5"
+      className="shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow rounded-md bg-white p-3 relative sm:p-5 md:p-5"
     >
       <div className="flex flex-col w-full h-full">
         <img
