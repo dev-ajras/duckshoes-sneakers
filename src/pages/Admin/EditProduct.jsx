@@ -24,7 +24,6 @@ function EditProduct() {
     price: 0,
   };
 
-  const [productData, setProductData] = useState(initialState);
   const [previewImages, setPreviewImages] = useState([]);
   const [productOne, setProductOne] = useState(initialState);
   const [productOneConstant, setProductOneConstant] = useState({});
@@ -75,6 +74,10 @@ function EditProduct() {
   formDataImageColor.append("color", productOne.color);
   for (let i = 0; i < productOne.images && productOne.images.length; i++) {
     formDataImageColor.append("images", productOne.images[i]);
+  }
+
+  for (var pair of formDataImageColor.entries()) {
+    console.log(pair[0] + ", " + pair[1]);
   }
 
   const productEdited = (message) =>
@@ -148,16 +151,20 @@ function EditProduct() {
   };
 
   const editColor = async () => {
-    const response = await axios.patch(
-      `${baseUrl}products/add-colors`,
-      formDataImageColor,
-      {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
-    );
-    console.log(response);
+    try {
+      const response = await axios.patch(
+        `${baseUrl}products/add-colors`,
+        formDataImageColor,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleForm = (e) => {
@@ -203,7 +210,6 @@ function EditProduct() {
     setPreviewImages(updatedPreview);
   };
 
-  console.log("productData: ", productData);
   console.log("productOne: ", productOne);
   console.log("productOneConstant: ", productOneConstant);
 
@@ -350,50 +356,26 @@ function EditProduct() {
                   {color.slice(0, 1).toUpperCase()}
                   {color.slice(1)}
                 </h4>
-                <DragDropContext onDragEnd={handleOnDragEnd}>
-                  <Droppable droppableId="images" direction="horizontal">
-                    {(provided) => (
-                      <div
-                        className="flex overflow-auto"
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                      >
-                        {productOneConstant.images[color].map(
-                          (previewImage, index) => (
-                            <Draggable
-                              key={index}
-                              draggableId={`image-${index}`}
-                              index={index}
-                            >
-                              {(provided) => (
-                                <div
-                                  className="relative mr-3"
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}
-                                  ref={provided.innerRef}
-                                >
-                                  <img
-                                    className="object-contain max-w-[100px] max-h-[100px] p-2 border h-full"
-                                    key={index}
-                                    src={previewImage}
-                                    alt={`Preview ${index}`}
-                                  />
-                                  <div
-                                    onClick={(e) => handleRemoveImage(e, index)}
-                                    className="cursor-pointer absolute top-1.5 right-1.5 bg-red-400 md:hover:bg-red-500 md:transition-colors text-white p-1 w-5 h-5 rounded-full flex justify-center items-center"
-                                  >
-                                    <IoClose />
-                                  </div>
-                                </div>
-                              )}
-                            </Draggable>
-                          )
-                        )}
-                        {provided.placeholder}
-                      </div>
-                    )}
-                  </Droppable>
-                </DragDropContext>
+                <div>
+                  <div>
+                    <div className="flex overflow-auto">
+                      {productOneConstant.images[color].map(
+                        (previewImage, index) => (
+                          <div key={index} index={index}>
+                            <div className="relative mr-3 w-[90px] h-[90px]">
+                              <img
+                                className="object-contain w-full h-full p-3 border "
+                                key={index}
+                                src={previewImage}
+                                alt={`Preview ${index}`}
+                              />
+                            </div>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
         </div>
