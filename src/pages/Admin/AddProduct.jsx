@@ -260,7 +260,7 @@ function AddProduct() {
                           />
                           <div
                             onClick={(e) => handleRemoveImage(e, index)}
-                            className="absolute top-1.5 right-1.5 bg-red-400 text-white p-1 w-5 h-5 rounded-full flex justify-center items-center"
+                            className="cursor-pointer absolute top-1.5 right-1.5 bg-red-400 md:hover:bg-red-500 md:transition-colors text-white p-1 w-5 h-5 rounded-full flex justify-center items-center"
                           >
                             <IoClose />
                           </div>
