@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext, useRef } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { AppContext } from "../context/AppProvider";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -29,14 +29,18 @@ function ProductDetails() {
 
   useEffect(() => {
     setLoading(true);
-    const fetchDetailsProducts = async () => {
-      const response = await axios.get(`${baseUrl}products/${productId}`);
-      console.log(response);
+    try {
+      const fetchDetailsProducts = async () => {
+        const response = await axios.get(`${baseUrl}products/${productId}`);
+        setProductFound(response.data);
+        setPrincipalImage(0);
+        console.log(response);
+      };
+      fetchDetailsProducts();
+    } catch (error) {
+    } finally {
       setLoading(false);
-      setProductFound(response.data);
-      setPrincipalImage(0);
-    };
-    fetchDetailsProducts();
+    }
   }, [productId]);
 
   const startIndex = productFound && Math.floor(productFound.id / 7857);
@@ -78,6 +82,14 @@ function ProductDetails() {
     navigate(-1);
   };
 
+  const productFoundOne =
+    productFound.images &&
+    productFound.images[colorParam].find(
+      (imageUrl, idx) => idx === principalImage
+    );
+
+  console.log("productFound: ", productFound);
+
   return (
     <article className="flex justify-center">
       <ToastContainer className="mt-24" />
@@ -96,49 +108,34 @@ function ProductDetails() {
               <div className="p-3 sm:p-5 bg-white rounded-md relative">
                 <div className="absolute top-3 left-3 sm:top-5 sm:left-5 flex flex-col gap-3 sm:gap-5 z-10">
                   {productFound.images &&
-                    Object.keys(productFound.images).map((color) =>
-                      productFound.images[color].map((imageUrl, idx) => (
-                        <button
-                          key={idx}
-                          className={`h-12 sm:h-16 w-12 sm:w-16 p-2 md:p-2 rounded-sm bg-white ${
-                            principalImage == idx
-                              ? "ring-blue-500 ring-2"
-                              : "ring-gray-500 ring-1"
-                          }`}
-                          onMouseEnter={() => setPrincipalImage(idx)}
-                          onClick={() => setPrincipalImage(idx)}
-                        >
-                          <img
-                            className="bg-white w-full h-full  object-contain mx-auto -z-20"
-                            src={imageUrl}
-                            alt={idx}
-                          />
-                        </button>
-                      ))
-                    )}
+                    productFound.images[colorParam].map((imageUrl, idx) => (
+                      <button
+                        key={idx}
+                        className={`h-12 sm:h-16 w-12 sm:w-16 p-2 md:p-2 rounded-sm bg-white ${
+                          principalImage == idx
+                            ? "ring-blue-500 ring-2"
+                            : "ring-gray-500 ring-1"
+                        }`}
+                        onMouseEnter={() => setPrincipalImage(idx)}
+                        onClick={() => setPrincipalImage(idx)}
+                      >
+                        <img
+                          className="bg-white w-full h-full  object-contain mx-auto -z-20"
+                          src={imageUrl}
+                          alt={idx}
+                        />
+                      </button>
+                    ))}
                 </div>
                 <div className="flex flex-col md:flex-row md:gap-10">
                   <div className="relative md:basis-2/3">
-                    {productFound.images &&
-                      Object.keys(productFound.images).map(
-                        (color, colorIdx) => {
-                          const productFoundOne = productFound.images[
-                            color
-                          ].find((imageUrl, idx) => idx === principalImage);
-                          return (
-                            <div
-                              key={colorIdx}
-                              className="flex justify-center sm:mb-3 md:mb-5 ml-16"
-                            >
-                              <img
-                                className="h-56 sm:h-80 object-contain px-5 py-10 sm:px-20 md:px-14 lg:px-28"
-                                src={productFoundOne}
-                                alt={productFoundOne}
-                              />
-                            </div>
-                          );
-                        }
-                      )}
+                    <div className="flex justify-center sm:mb-3 md:mb-5 ml-16">
+                      <img
+                        className="h-56 sm:h-80 object-contain px-5 py-10 sm:px-20 md:px-14 lg:px-28"
+                        src={productFoundOne}
+                        alt={productFoundOne}
+                      />
+                    </div>
                     <div className="hidden md:block">
                       <h3 className="font-semibold sm:text-xl">Descripción:</h3>
                       <p className="font-medium opacity-80 mr-24">
@@ -167,16 +164,29 @@ function ProductDetails() {
                         <div>
                           <h3 className="font-semibold mt-2 sm:text-lg">
                             <span>Color: </span>
-                            <span className="opacity-80">
-                              {productFound.color}
-                            </span>
+                            <span className="opacity-80">{colorParam}</span>
                           </h3>
-                          <div className="w-10 rounded-full ring ring-blue-500 ring-offset-2 my-3 sm:ring-offset-4">
-                            <img
-                              className="drop-shadow-md rounded-full "
-                              src={`/assets/colors/${productFound.color.toLowerCase()}Color.svg`}
-                              alt={productFound.color}
-                            />
+                          <div className="flex gap-5">
+                            {productFound.images &&
+                              Object.keys(productFound.images).map(
+                                (color, idx) => (
+                                  <Link
+                                    key={idx}
+                                    to={`/products/${productFound.sku}/${productFound.id}?color=${color}`}
+                                    className={`${
+                                      color == colorParam
+                                        ? "ring ring-blue-500 ring-offset-2 w-10 rounded-full  my-3 sm:ring-offset-4"
+                                        : "ring-gray-500 ring-1 w-10 rounded-full  my-3 sm:ring-offset-4"
+                                    }`}
+                                  >
+                                    <img
+                                      className="drop-shadow-md rounded-full "
+                                      src={`/assets/colors/${color.toLowerCase()}Color.svg`}
+                                      alt={color}
+                                    />
+                                  </Link>
+                                )
+                              )}
                           </div>
                         </div>
                       )}
