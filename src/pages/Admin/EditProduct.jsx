@@ -21,6 +21,7 @@ function EditProduct() {
     color: "",
     temporada: "",
     description: "",
+    images: [],
     price: 0,
   };
 
@@ -63,6 +64,24 @@ function EditProduct() {
     setProductOne({ ...productOne, description: currentDescription });
   };
 
+  const handleImages = (e) => {
+    const currentImages = Array.from(e.target.files);
+    setProductOne({ ...productOne, images: currentImages });
+
+    const newPreviewImages = currentImages.map((image) =>
+      URL.createObjectURL(image)
+    );
+    setPreviewImages([...previewImages, ...newPreviewImages]);
+  };
+
+  const handleRemoveImage = (e, index) => {
+    e.preventDefault();
+    const updatedImages = productOne.images.filter((_, i) => i !== index);
+    const updatedPreview = previewImages.filter((_, i) => i !== index);
+    setProductOne({ ...productOne, images: updatedImages });
+    setPreviewImages(updatedPreview);
+  };
+
   const handlePrice = (e) => {
     const currentPrice = e.target.value;
     setProductOne({ ...productOne, price: currentPrice });
@@ -72,7 +91,7 @@ function EditProduct() {
 
   formDataImageColor.append("productId", productOne.id);
   formDataImageColor.append("color", productOne.color);
-  for (let i = 0; i < productOne.images && productOne.images.length; i++) {
+  for (let i = 0; i < productOne.images.length; i++) {
     formDataImageColor.append("images", productOne.images[i]);
   }
 
@@ -176,16 +195,6 @@ function EditProduct() {
     }
   };
 
-  const handleImages = (e) => {
-    const currentImages = Array.from(e.target.files);
-    setProductOne({ ...productOne, images: currentImages });
-
-    const newPreviewImages = currentImages.map((image) =>
-      URL.createObjectURL(image)
-    );
-    setPreviewImages([...previewImages, ...newPreviewImages]);
-  };
-
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
     const items = Array.from(previewImages);
@@ -200,14 +209,6 @@ function EditProduct() {
       updatedImages.splice(result.source.index, 1)[0]
     );
     setProductOne({ ...productOne, images: updatedImages });
-  };
-
-  const handleRemoveImage = (e, index) => {
-    e.preventDefault();
-    const updatedImages = productOne.images.filter((_, i) => i !== index);
-    const updatedPreview = previewImages.filter((_, i) => i !== index);
-    setProductOne({ ...productOne, images: updatedImages });
-    setPreviewImages(updatedPreview);
   };
 
   console.log("productOne: ", productOne);
