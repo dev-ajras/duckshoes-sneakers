@@ -173,6 +173,7 @@ function ProductDetails() {
                                   <Link
                                     replace
                                     key={idx}
+                                    onClick={() => setPrincipalImage(0)}
                                     to={`/products/${productFound.sku}/${productFound.id}?color=${color}`}
                                     className={`${
                                       color == colorParam
