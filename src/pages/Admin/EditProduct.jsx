@@ -115,8 +115,16 @@ function EditProduct() {
       pauseOnHover: false,
     });
 
+  const colorRequired = () =>
+    toast.warning("Selecciona un nuevo color", {
+      autoClose: 2000,
+      hideProgressBar: true,
+      pauseOnFocusLoss: false,
+      pauseOnHover: false,
+    });
+
   const tokenExpired = () =>
-    toast.error("Tu token expiró, volvé a logearte", {
+    toast.error("Tu sesión expiró, ingresa nuevamente", {
       autoClose: 2000,
       hideProgressBar: true,
       pauseOnFocusLoss: false,
@@ -137,17 +145,19 @@ function EditProduct() {
     return productDifferences;
   };
 
-  const editProduct = (productDifferences) => {
-    if (Object.keys(productDifferences).length === 0) {
-      productNoEdited("No estas realizando cambios");
-    } else {
-      editProductServer(productDifferences);
-    }
-  };
-
   const navigate = useNavigate();
 
-  const editProductServer = async (productDifferences) => {
+  console.log(Object.keys(productOne.images));
+
+  const editProduct = async (productDifferences) => {
+    if (Object.keys(productDifferences).length === 0) {
+      productNoEdited("No estás realizando cambios");
+      return false;
+    }
+    if (Object.keys(productDifferences).length === 1 && previewImages) {
+      return false;
+    }
+
     try {
       const response = await axios.put(
         baseUrl + "products/update/" + productId,
@@ -158,13 +168,12 @@ function EditProduct() {
           },
         }
       );
-      if (response.status === 201) {
-        productEdited("Producto editado con éxito");
-        setTimeout(() => {
-          navigate("/admin/todos-productos");
-        }, 4000);
+
+      if (response.status === 200) {
+        return true;
+      } else {
+        return false;
       }
-      console.log(response);
     } catch (error) {
       if (error.response.status === 403) {
         tokenExpired();
@@ -173,41 +182,56 @@ function EditProduct() {
           setUser("");
         }, 4000);
       }
+      return false;
     }
   };
 
   const editColor = async () => {
-    if (productOne.color === productOneConstant.color) {
-      alert("Elegir un nuevo color");
-    } else {
-      try {
-        const response = await axios.patch(
-          `${baseUrl}products/add-colors`,
-          formDataImageColor,
-          {
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-            },
-          }
-        );
-        if (response.status === 201) {
-          setTimeout(() => {
-            navigate("/admin/todos-productos");
-          }, 4000);
+    if (productOne.images === productOneConstant.images) {
+      return false;
+    }
+    if (
+      productOne.color === "" ||
+      productOne.color === null ||
+      productOne.color === productOneConstant.color
+    ) {
+      colorRequired();
+      return false;
+    }
+
+    try {
+      const response = await axios.patch(
+        `${baseUrl}products/add-colors`,
+        formDataImageColor,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
         }
-        console.log(response);
-      } catch (error) {
-        console.log(error);
+      );
+
+      if (response.status === 201) {
+        return true;
+      } else {
+        return false;
       }
+    } catch (error) {
+      console.log(error);
+      return false;
     }
   };
 
-  const handleForm = (e) => {
+  const handleForm = async (e) => {
     e.preventDefault();
     const productDifferences = compareObjects();
-    editProduct(productDifferences);
-    if (productOneConstant.images !== productOne.images) {
-      editColor();
+    const productEditedSuccess = await editProduct(productDifferences);
+    const editColorSuccess = await editColor();
+
+    if (productEditedSuccess || editColorSuccess) {
+      productEdited("Producto editado con éxito");
+      // setTimeout(() => {
+      //   navigate("/admin/todos-productos");
+      // }, 3000);
     }
   };
 
