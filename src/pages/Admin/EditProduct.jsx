@@ -18,7 +18,7 @@ function EditProduct() {
   const initialState = {
     id: productId,
     sku: "",
-    color: "",
+    color: null,
     temporada: "",
     description: "",
     images: [],
@@ -233,10 +233,10 @@ function EditProduct() {
   const colorsArray = [
     { value: null, name: "Seleccionar color" },
     { value: "negro", name: "Negro" },
-    { value: "negro-charol", name: "Negro charol" },
+    { value: "negro-charol", name: "Negro-charol" },
     { value: "blanco", name: "Blanco" },
     { value: "marron", name: "Marrón" },
-    { value: "verde-militar", name: "Verde militar" },
+    { value: "verde-militar", name: "Verde-militar" },
     { value: "mostaza", name: "Mostaza" },
   ];
 
