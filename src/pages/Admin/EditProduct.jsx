@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -35,8 +35,8 @@ function EditProduct() {
     try {
       const getProductOne = async () => {
         const response = await axios.get(baseUrl + "products/" + productId);
-        setProductOne(response.data);
-        setProductOneConstant(response.data);
+        setProductOne({ ...response.data, color: productOne.color });
+        setProductOneConstant({ ...response.data, color: productOne.color });
       };
       getProductOne();
     } catch (error) {
@@ -130,7 +130,7 @@ function EditProduct() {
 
     for (let i = 0; i < keys.length; i++) {
       const key = keys[i];
-      if (productOne[key] !== productOneConstant[key]) {
+      if (key !== "color" && productOne[key] !== productOneConstant[key]) {
         productDifferences[key] = productOne[key];
       }
     }
@@ -145,6 +145,8 @@ function EditProduct() {
     }
   };
 
+  const navigate = useNavigate();
+
   const editProductServer = async (productDifferences) => {
     try {
       const response = await axios.put(
@@ -156,7 +158,12 @@ function EditProduct() {
           },
         }
       );
-      productEdited("Producto editado con éxito");
+      if (response.status === 201) {
+        productEdited("Producto editado con éxito");
+        setTimeout(() => {
+          navigate("/admin/todos-productos");
+        }, 4000);
+      }
       console.log(response);
     } catch (error) {
       if (error.response.status === 403) {
@@ -170,19 +177,28 @@ function EditProduct() {
   };
 
   const editColor = async () => {
-    try {
-      const response = await axios.patch(
-        `${baseUrl}products/add-colors`,
-        formDataImageColor,
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
+    if (productOne.color === productOneConstant.color) {
+      alert("Elegir un nuevo color");
+    } else {
+      try {
+        const response = await axios.patch(
+          `${baseUrl}products/add-colors`,
+          formDataImageColor,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+        if (response.status === 201) {
+          setTimeout(() => {
+            navigate("/admin/todos-productos");
+          }, 4000);
         }
-      );
-      console.log(response);
-    } catch (error) {
-      console.log(error);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -215,6 +231,7 @@ function EditProduct() {
   console.log("productOneConstant: ", productOneConstant);
 
   const colorsArray = [
+    { value: null, name: "Seleccionar color" },
     { value: "negro", name: "Negro" },
     { value: "negro-charol", name: "Negro charol" },
     { value: "blanco", name: "Blanco" },
@@ -252,7 +269,7 @@ function EditProduct() {
           onChange={(e) => handleColor(e)}
           id="color"
           className="p-2 outline-none border rounded"
-          value={productOne.color}
+          placeholder="seleccionar color"
         >
           {filteredColors.map(({ value, name }) => (
             <option key={value} value={value}>

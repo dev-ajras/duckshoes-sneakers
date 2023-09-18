@@ -16,6 +16,8 @@ function ProductCard({ product }) {
     favoritesHandler(productId);
   };
 
+  console.log(product);
+
   return (
     <Link
       to={`/products/${product.sku}/${product.id}?color=${product.color}`}
