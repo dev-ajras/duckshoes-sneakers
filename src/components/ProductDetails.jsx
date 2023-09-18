@@ -279,11 +279,7 @@ function ProductDetails() {
             )}
           </div>
         </div>
-        <CarouselFeatured
-          title={'Productos Relacionados'}
-          from={startIndex}
-          to={startIndex + 10}
-        />
+        <CarouselFeatured title={'Productos Relacionados'} />
       </div>
     </article>
   );
