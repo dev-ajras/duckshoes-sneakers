@@ -37,38 +37,8 @@ function SkeletonProductsDetails() {
               <div className="w-full h-10 bg-slate-200 animate-pulse-blue-600 p-1 gap-2 sm:p-2 sm:gap-3 rounded-sm"></div>
             </div>
             <div className="md:hidden">
-              <h3 className="font-semibold sm:text-xl opacity-80">Details:</h3>
-              <div>
-                <div className="pt-3 sm:pt-5">
-                  <table className="border-collapse table-fixed w-full sm:text-lg">
-                    <tbody>
-                      <tr className="bg-body">
-                        <td className="w-1/2 p-2 rounded-tl-lg sm:p-3">
-                          Brand
-                        </td>
-                        <td className="w-1/2 p-2 rounded-tr-lg sm:p-3"></td>
-                      </tr>
-                      <tr>
-                        <td className="w-1/2 p-2 sm:p-3">Nickname</td>
-                        <td className="w-1/2 p-2 sm:p-3"></td>
-                      </tr>
-                      <tr className="bg-body">
-                        <td className="w-1/2 p-2 sm:p-3">Release year</td>
-                        <td className="w-1/2 p-2 sm:p-3"></td>
-                      </tr>
-                      <tr>
-                        <td className="w-1/2 p-2 sm:p-3">Category</td>
-                        <td className="w-1/2 p-2 sm:p-3"></td>
-                      </tr>
-                      <tr className="bg-body">
-                        <td className="w-1/2 p-2 rounded-bl-lg sm:p-3">
-                          Gender
-                        </td>
-                        <td className="w-1/2 p-2 rounded-br-lg sm:p-3"></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+              <div className="font-medium opacity-80 mr-24">
+                <div className=" h-24 bg-slate-200 animate-pulse"></div>
               </div>
             </div>
           </div>

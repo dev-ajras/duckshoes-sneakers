@@ -51,7 +51,11 @@ function AddProduct() {
 
   const handleImages = (e) => {
     const currentImages = Array.from(e.target.files);
-    setProductData({ ...productData, images: currentImages });
+    const updatedImages = productData.images.concat(currentImages);
+
+    // Agregar las nuevas imágenes a la copia
+
+    setProductData({ ...productData, images: updatedImages });
 
     const newPreviewImages = currentImages.map((image) =>
       URL.createObjectURL(image)
@@ -83,6 +87,8 @@ function AddProduct() {
   for (let i = 0; i < productData.images.length; i++) {
     formDataProducts.append("images", productData.images[i]);
   }
+
+  console.log(productData);
 
   const handleForm = (e) => {
     e.preventDefault();

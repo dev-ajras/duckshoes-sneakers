@@ -28,7 +28,7 @@ function AllProducts() {
   const productsPerPage = 16;
 
   const tokenExpiredAlert = () =>
-    toast.error("Tu token expiró, volvé a logearte", {
+    toast.error("Tu sesión expiró, ingresa nuevamente", {
       autoClose: 2000,
       hideProgressBar: true,
       pauseOnFocusLoss: false,
