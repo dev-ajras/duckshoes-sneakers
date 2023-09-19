@@ -42,7 +42,7 @@ function ProductCard({ product }) {
           {isFavorite ? (
             <AiFillHeart className="fill-red-500 w-5 h-5 sm:w-7 sm:h-7" />
           ) : (
-            <MdFavoriteBorder className="w-5 h-5 opacity-70 sm:w-7 sm:h-7" />
+            <MdFavoriteBorder className="w-5 h-5 opacity-60 sm:w-7 sm:h-7" />
           )}
         </button>
       </div>
