@@ -25,7 +25,7 @@ function ProductCard({ product }) {
     >
       <div className="flex flex-col w-full h-full">
         <img
-          className="object-contain px-5 h-full"
+          className="object-contain p-3 md:p-5 h-full"
           src={product.image}
           alt={product.sku}
         />

@@ -19,14 +19,15 @@ function ProductDetails() {
   const { favorites, cart, cartAdd, favoritesHandler } = useContext(AppContext);
   const [loading, setLoading] = useState(true);
 
-  const { productId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { productId } = useParams();
   const colorParam = searchParams.get("color");
   const [productFound, setProductFound] = useState({});
   const [principalImage, setPrincipalImage] = useState(0);
 
   const baseUrl = "https://www.api.duckshoes.com.ar/";
   console.log("colorParam", colorParam);
+  console.log("productId", productId);
 
   useEffect(() => {
     setLoading(true);
@@ -84,7 +85,7 @@ function ProductDetails() {
   };
 
   const productFoundOne =
-    productFound.color === colorParam &&
+    productFound.id == productId &&
     productFound.images[colorParam].find(
       (imageUrl, idx) => idx === principalImage
     );
@@ -105,7 +106,7 @@ function ProductDetails() {
             </button>
             {loading === true ? (
               <SkeletonProductsDetails />
-            ) : productFound.color === colorParam ? (
+            ) : productFound.id == productId ? (
               <div className="p-3 sm:p-5 bg-white rounded-md relative">
                 <div className="absolute top-3 left-3 sm:top-5 sm:left-5 flex flex-col gap-3 sm:gap-5 z-10">
                   {productFound.images &&

@@ -18,7 +18,7 @@ function EditProduct() {
   const initialState = {
     id: productId,
     sku: "",
-    color: null,
+    color: "",
     temporada: "",
     description: "",
     images: [],
@@ -154,7 +154,10 @@ function EditProduct() {
       productNoEdited("No estás realizando cambios");
       return false;
     }
-    if (Object.keys(productDifferences).length === 1 && previewImages) {
+    if (
+      Object.keys(productDifferences).length === 1 &&
+      previewImages.length > 0
+    ) {
       return false;
     }
 
@@ -182,6 +185,7 @@ function EditProduct() {
           setUser("");
         }, 4000);
       }
+      console.error(error.response);
       return false;
     }
   };
@@ -255,7 +259,7 @@ function EditProduct() {
   console.log("productOneConstant: ", productOneConstant);
 
   const colorsArray = [
-    { value: null, name: "Seleccionar color" },
+    { value: "", name: "Seleccionar color" },
     { value: "negro", name: "Negro" },
     { value: "negro-charol", name: "Negro-charol" },
     { value: "blanco", name: "Blanco" },
