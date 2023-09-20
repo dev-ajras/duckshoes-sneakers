@@ -65,7 +65,7 @@ function Cart() {
                             <span>{filteredProduct.temporada}</span>
                           </p>
                         </div>
-                        <div className='font-bold text-xl mt-1 mb-3 sm:text-2xl sm:mt-2 sm:mb-5'>
+                        <div className='font-semibold text-xl mt-1 mb-3 sm:text-2xl sm:mt-2 sm:mb-5'>
                           <span>
                             $
                             {parseInt(filteredProduct.price).toLocaleString(

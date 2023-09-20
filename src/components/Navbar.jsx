@@ -80,7 +80,7 @@ function Navbar() {
             }}
             className='align-middle rounded-none outline-none border-none p-1 px-2 w-full sm:max-w-md md:max-w-lg sm:text-lg md:rounded-bl-sm md:rounded-tl-sm'
             type='text'
-            placeholder='buscar...'
+            placeholder='Buscar...'
             value={inputSearch}
             onChange={(e) => setInputSearch(e.target.value)}
             id='search'

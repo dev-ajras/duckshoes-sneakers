@@ -122,7 +122,7 @@ function OrderAdmin() {
                             </span>
                           </p>
                         </div>
-                        <div className='font-bold text-xl mt-1 mb-3 sm:text-2xl'>
+                        <div className='font-semibold text-xl mt-1 mb-3 sm:text-2xl'>
                           <span className='text-lg opacity-60'>
                             x{filteredProduct.quantity}
                           </span>
@@ -184,8 +184,10 @@ function OrderAdmin() {
                 ))}
                 <div className='border-t-[1px] my-2'></div>
                 <div className='flex justify-between'>
-                  <span className='font-medium sm:text-xl'>Total: </span>
-                  <span className='font-medium sm:text-xl'>
+                  <span className='text-primaryExtraDark font-semibold sm:text-xl md:text-2xl'>
+                    Total:{' '}
+                  </span>
+                  <span className='text-primaryExtraDark font-semibold sm:text-xl md:text-2xl'>
                     ${parseInt(order.value).toLocaleString('es-ES')}
                   </span>
                 </div>
