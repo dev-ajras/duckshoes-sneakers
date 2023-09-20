@@ -84,7 +84,9 @@ function EditProduct() {
 
   const handlePrice = (e) => {
     const currentPrice = e.target.value;
-    setProductOne({ ...productOne, price: currentPrice });
+    if (currentPrice.length <= 10 && !isNaN(currentPrice)) {
+      setProductOne({ ...productOne, price: currentPrice });
+    }
   };
 
   const formDataImageColor = new FormData();

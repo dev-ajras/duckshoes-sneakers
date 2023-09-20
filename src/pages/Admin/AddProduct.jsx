@@ -73,7 +73,9 @@ function AddProduct() {
 
   const handlePrice = (e) => {
     const currentPrice = parseInt(e.target.value);
-    setProductData({ ...productData, price: currentPrice });
+    if (currentPrice.length <= 10 && !isNaN(currentPrice)) {
+      setProductOne({ ...productOne, price: currentPrice });
+    }
   };
 
   const formDataProducts = new FormData();
