@@ -8,9 +8,9 @@ export default function AddRemoveButtons({ filteredProduct }) {
     filteredProduct.quantity
   );
 
-  const handleRemoveAll = (e, productId) => {
+  const handleRemoveAll = (e, product) => {
     e.preventDefault();
-    cartDelete({ id: productId });
+    cartDelete(product);
   };
 
   // const productInCart = cart.find(
@@ -46,10 +46,10 @@ export default function AddRemoveButtons({ filteredProduct }) {
         ))}
       </select>
       <button
-        onClick={(e) => handleRemoveAll(e, filteredProduct.id)}
+        onClick={(e) => handleRemoveAll(e, filteredProduct)}
         className="flex items-center gap-3 px-3 py-1 outline outline-2 outline-body rounded bg-red-500 md:hover:bg-red-600 md:transition-colors text-white sm:gap-4 sm:px-4 sm:text-lg"
       >
-        Borrar
+        Eliminar
       </button>
     </div>
   );

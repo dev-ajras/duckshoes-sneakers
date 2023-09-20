@@ -40,7 +40,7 @@ function AllProducts() {
     setTimeout(() => {
       localStorage.removeItem("token");
       setUser("");
-    }, 3000);
+    }, 4000);
   };
 
   const baseUrl = "https://www.api.duckshoes.com.ar/";

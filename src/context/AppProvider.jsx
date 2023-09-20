@@ -41,7 +41,9 @@ function AppProvider({ children }) {
   }, [favorites]);
 
   const cartAdd = (toCart, newQuantity) => {
-    const found = cart.find((cartOld) => cartOld.id === toCart.id);
+    const found = cart.find(
+      (cartOld) => cartOld.id === toCart.id && cartOld.color === toCart.color
+    );
     if (!found) {
       setCart([...cart, toCart]);
     } else {
@@ -58,12 +60,14 @@ function AppProvider({ children }) {
   };
 
   const cartHandler = (toCart, newQuantity) => {
-    const found = cart.find((cartOld) => cartOld.id === toCart.id);
+    const found = cart.find(
+      (cartOld) => cartOld.id === toCart.id && cartOld.color === toCart.color
+    );
     if (!found) {
       setCart([...cart, { ...toCart, quantity: newQuantity }]);
     } else {
       const updatedCart = cart.map((cartObj) =>
-        cartObj.id === toCart.id
+        cartObj.id === toCart.id && cartObj.color === toCart.color
           ? {
               ...cartObj,
               quantity: newQuantity,
@@ -93,7 +97,9 @@ function AppProvider({ children }) {
   };
 
   const cartDelete = (toCart) => {
-    const newCart = cart.filter((oldCart) => oldCart.id !== toCart.id);
+    const newCart = cart.filter(
+      (oldCart) => oldCart.id !== toCart.id || oldCart.color !== toCart.color
+    );
     setCart(newCart);
   };
 
