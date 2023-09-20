@@ -111,13 +111,25 @@ function OrderAdmin() {
                             <span>{filteredProduct.color}</span>
                           </p>
                         </div>
+                        <div className='flex gap-2 font-semibold text-sm my-1 sm:gap-3 sm:text-lg'>
+                          <p>
+                            <span className='opacity-60'>Unitario: </span>
+                            <span>
+                              $
+                              {parseInt(filteredProduct.price).toLocaleString(
+                                'es-ES'
+                              )}
+                            </span>
+                          </p>
+                        </div>
                         <div className='font-bold text-xl mt-1 mb-3 sm:text-2xl'>
-                          <span>
-                            $
-                            {parseInt(
-                              filteredProduct.price * filteredProduct.quantity
-                            ).toLocaleString('es-ES')}
+                          <span className='text-lg opacity-60'>
+                            x{filteredProduct.quantity}
                           </span>
+                          {''} $
+                          {parseInt(
+                            filteredProduct.price * filteredProduct.quantity
+                          ).toLocaleString('es-ES')}
                         </div>
                       </div>
                     </div>
@@ -153,10 +165,15 @@ function OrderAdmin() {
                   )}
                 </div>
                 {order.products.map((product, idx) => (
-                  <div className='flex justify-between' key={idx}>
-                    <span className='font-medium opacity-60'>
-                      sku x{product.quantity}
-                    </span>
+                  <div className='flex justify-between items-end' key={idx}>
+                    <div>
+                      <span className='block font-medium opacity-60'>
+                        {product.sku} x{product.quantity}
+                      </span>
+                      <span className='text-sm block font-medium opacity-60'>
+                        {product.color.toUpperCase()}
+                      </span>
+                    </div>
                     <span className='font-medium opacity-60 sm:text-lg'>
                       $
                       {parseInt(

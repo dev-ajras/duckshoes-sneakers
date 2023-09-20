@@ -10,7 +10,6 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import arrowDrop from '/assets/icons/arrowDrop.svg';
 
 import NavbarMenu from './NavbarMenu';
-import CartMenu from './CartMenu';
 import { AppContext } from '../context/AppProvider';
 
 function Navbar() {
@@ -19,8 +18,8 @@ function Navbar() {
   const sku = searchParams.get('sku');
 
   const [inputSearch, setInputSearch] = useState(sku ?? '');
-  const [onHover, setOnHover] = useState(false);
-  const [logMenu, setLogMenu] = useState(false);
+  const [onHover, setOnHover] = useState(null);
+  const [logMenu, setLogMenu] = useState(null);
 
   const navigate = useNavigate();
 
