@@ -20,7 +20,7 @@ function Info() {
             Selecciona tus productos
           </p>
         </div>
-        <span className='flex m-auto bg-grayDuck h-[3px] w-32 sm:w-48 sm:h-1 lg:w-[3px] lg:h-20'></span>
+        <span className='flex m-auto bg-grayDuck h-[3px] w-32 sm:w-48 sm:h-1 md:w-[3px] md:h-20'></span>
         <div className='flex flex-col items-center p-8 sm:p-12 md:p-5 basis-1/3'>
           <img
             className='w-16 sm:w-24'
@@ -34,7 +34,7 @@ function Info() {
             Seguimiento durante todo el proceso
           </p>
         </div>
-        <span className='flex m-auto bg-grayDuck h-[3px] w-32 sm:w-48 sm:h-1 lg:w-[3px] lg:h-20'></span>
+        <span className='flex m-auto bg-grayDuck h-[3px] w-32 sm:w-48 sm:h-1 md:w-[3px] md:h-20'></span>
         <div className='flex flex-col items-center p-8 sm:p-12 md:p-5 basis-1/3'>
           <img
             className='w-16 sm:w-24'

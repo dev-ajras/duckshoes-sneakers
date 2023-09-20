@@ -67,7 +67,7 @@ function Navbar() {
       <nav className='flex gap-x-3 sm:gap-x-5 md:gap-x-10 sm:gap-y-2 md:gap-y-3 w-full items-center lg:max-w-6xl mx-auto gridNavbar h-full md:py-3'>
         <div className=''>
           <Link to='/'>
-            <h3 className='text-white font-semibold w-full flex text-lg gap-2 sm:text-2xl'>
+            <h3 className='text-white font-semibold w-full flex text-lg gap-2 sm:text-2xl md:hover:text-primaryLight md:transition-colors'>
               <span>Duck</span>
               <span>Shoes</span>
             </h3>
