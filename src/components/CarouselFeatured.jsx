@@ -60,11 +60,11 @@ function CarouselFeatured({ title }) {
                   >
                     <div className='flex flex-col w-full h-full'>
                       <img
-                        className='object-contain px-3 py-5 md:px-5 md:py-8 h-full'
+                        className='object-contain px-3 py-5 md:px-5 md:py-12 h-full'
                         src={product.image}
                         alt={product.sku}
                       />
-                      <h3 className='line-clamp-1 h-8 sm:text-lg'>
+                      <h3 className='line-clamp-1 h-9 sm:text-lg'>
                         {product.sku}
                       </h3>
                       <div className=' flex mt-1 items-center text-xl sm:text-2xl sm:mt-3'>

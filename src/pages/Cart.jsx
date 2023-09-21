@@ -32,7 +32,7 @@ function Cart() {
       <div className='max-w-6xl w-full m-3 sm:m-5'>
         <button
           onClick={() => returnPrev()}
-          className='flex justify-center items-center font-medium text-lg mb-3 sm:mb-5 sm:text-2xl bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors rounded-sm p-2 w-10 h-10 '
+          className='flex justify-center items-center font-medium text-lg mb-3 sm:mb-5 sm:text-2xl bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors rounded-sm p-1.5 w-10 h-10 '
         >
           <IoReturnDownBack className='stroke-white w-full h-full' />
         </button>

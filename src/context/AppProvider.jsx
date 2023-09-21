@@ -1,5 +1,5 @@
-import { createContext, useState, useEffect } from "react";
-import axios from "axios";
+import { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 const AppContext = createContext();
 
@@ -8,36 +8,42 @@ function AppProvider({ children }) {
   const [favorites, setFavorites] = useState([]);
   const [cart, setCart] = useState([]);
   const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user")) || ""
+    JSON.parse(localStorage.getItem('user')) || ''
   );
   const [navbarMenu, setNavbarMenu] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user")) || "";
+    const storedUser = JSON.parse(localStorage.getItem('user')) || '';
     setUser(storedUser);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
   }, [user]);
 
   const favoritesHandler = (toFavorite) => {
-    const found = favorites.find((fav) => fav === toFavorite);
+    const found = favorites.find(
+      (fav) => fav.id === toFavorite.id && fav.color === toFavorite.color
+    );
     if (!found) {
       setFavorites([...favorites, toFavorite]);
     } else {
-      setFavorites(favorites.filter((fav) => fav !== toFavorite));
+      setFavorites(
+        favorites.filter(
+          (fav) => fav.id !== toFavorite.id || fav.color !== toFavorite.color
+        )
+      );
     }
   };
 
   useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setFavorites(storedFavorites);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+    localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites]);
 
   const cartAdd = (toCart, newQuantity) => {
@@ -108,23 +114,23 @@ function AppProvider({ children }) {
   };
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
     setCart(storedCart);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
-  const baseUrl = "https://www.api.duckshoes.com.ar/";
+  const baseUrl = 'https://www.api.duckshoes.com.ar/';
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get(baseUrl + "products?page=1&pageSize=16");
+      const response = await axios.get(baseUrl + 'products?page=1&pageSize=16');
       setProducts(response.data.products);
     } catch (error) {}
   };

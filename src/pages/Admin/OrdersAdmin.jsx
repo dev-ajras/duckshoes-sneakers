@@ -117,22 +117,20 @@ function OrdersAdmin() {
     }
   };
 
-  // function formatearFecha(fecha) {
-  //   const opciones = {
-  //     year: '2-digit',
-  //     month: 'short',
-  //     day: 'numeric',
-  //     hour: '2-digit',
-  //     minute: '2-digit',
-  //   };
+  function formatearFecha(fecha) {
+    const opciones = {
+      year: '2-digit',
+      month: '2-digit',
+      day: 'numeric',
+    };
 
-  //   const fechaFormateada = new Date(fecha).toLocaleDateString(
-  //     'es-ES',
-  //     opciones
-  //   );
+    const fechaFormateada = new Date(fecha).toLocaleDateString(
+      'es-ES',
+      opciones
+    );
 
-  //   return fechaFormateada;
-  // }
+    return fechaFormateada;
+  }
 
   return (
     <div className='shadow'>
@@ -167,7 +165,7 @@ function OrdersAdmin() {
               />
             </div>
             <div className='text-center font-normal col-span-2'>
-              {order.createdAt.slice(0, 10)}
+              {formatearFecha(order.createdAt)}
             </div>
             <div className='text-center col-span-2'>
               <span className='font-normal md:text-lg'>
@@ -209,7 +207,7 @@ function OrdersAdmin() {
               )}
             </div>
             <button onClick={(e) => deleteProduct(e, order.id)}>
-              <MdDelete className='fill-red-600 md:hover:fill-red-700 md:transition-colors w-7 h-7 opacity-75' />
+              <MdDelete className='fill-red-600 md:hover:fill-red-700 md:hover:opacity-100 transition-opacity md:transition-colors w-7 h-7 opacity-75' />
             </button>
           </Link>
         ))

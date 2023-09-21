@@ -28,7 +28,7 @@ function Navbar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/products?sku=${inputSearch}`);
+    navigate(`/products?sku=${inputSearch.trim()}`);
   };
 
   useEffect(() => {
