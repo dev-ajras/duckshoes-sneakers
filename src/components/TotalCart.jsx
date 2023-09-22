@@ -104,7 +104,7 @@ function TotalCart({ userReject }) {
             </span>
           </div>
         ))}
-        <div className="border-t-[1px] my-2"></div>
+        <div className="border-t-2 my-2"></div>
         <div className="flex justify-between">
           <span className="text-primaryExtraDark font-semibold sm:text-xl md:text-2xl">
             Total
