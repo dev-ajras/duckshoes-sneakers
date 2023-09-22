@@ -1,4 +1,11 @@
-import { NavLink, Outlet, Route, Routes, useNavigate } from 'react-router-dom';
+import {
+  NavLink,
+  Link,
+  Outlet,
+  Route,
+  Routes,
+  useNavigate,
+} from 'react-router-dom';
 import AddProduct from './AddProduct';
 import EditProduct from './EditProduct';
 import AllProducts from './AllProducts';
@@ -6,9 +13,13 @@ import Configuration from './Configuration';
 import AdminMain from './AdminMain';
 import OrdersAdmin from './OrdersAdmin';
 import OrderAdmin from './OrderAdmin';
+
 import { useContext } from 'react';
 import { AppContext } from '../../context/AppProvider';
 import { IoReturnDownBack } from 'react-icons/io5';
+import { PiPlusBold } from 'react-icons/pi';
+import { TbShoe } from 'react-icons/tb';
+import { RiShoppingBagLine } from 'react-icons/ri';
 
 function Admin() {
   const { setUser } = useContext(AppContext);
@@ -29,8 +40,8 @@ function Admin() {
           >
             <IoReturnDownBack className='stroke-white w-full h-full' />
           </button>
-          <div className='flex gap-3'>
-            <article className='bg-white p-5 rounded shadow w-60'>
+          <div className='md:flex gap-3'>
+            <article className='hidden md:block bg-white p-5 rounded shadow w-60'>
               <div className='flex flex-col gap-3'>
                 <NavLink
                   className={({ isActive }) =>
@@ -72,6 +83,26 @@ function Admin() {
                 </button>
               </div>
             </article>
+            <div className='md:hidden flex gap-3 mb-3'>
+              <Link
+                to='/admin/agregar-producto'
+                className='w-10 h-10 p-2 flex justify-center text-primaryDark items-center bg-white rounded-sm shadow-sm'
+              >
+                <PiPlusBold className='w-full h-full' />
+              </Link>
+              <Link
+                to='/admin/todos-productos'
+                className='w-10 h-10 p-2 flex justify-center text-primaryDark items-center bg-white rounded-sm shadow-sm'
+              >
+                <TbShoe className='w-full h-full' />
+              </Link>
+              <Link
+                to='/admin/todos-pedidos'
+                className='w-10 h-10 p-2 flex justify-center text-primaryDark items-center bg-white rounded-sm shadow-sm'
+              >
+                <RiShoppingBagLine className='w-full h-full' />
+              </Link>
+            </div>
             <article className='w-full'>
               <Routes>
                 <Route index element={<AddProduct />} />

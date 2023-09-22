@@ -136,11 +136,11 @@ function AllProducts() {
   return (
     <div className='shadow'>
       <ToastContainer />
-      <div className='grid grid-cols-9 bg-gray-50 p-5 font-normal'>
+      <div className='grid grid-cols-7 sm:grid-cols-9 bg-gray-50 p-3 sm:p-5 font-normal'>
         <div className='text-center col-span-2'>Imágen</div>
         <div className='text-center col-span-2'>Sku</div>
         <div className='text-center col-span-2'>Precio</div>
-        <div className='text-center col-span-2'>Estado</div>
+        <div className='hidden sm:block text-center col-span-2'>Estado</div>
       </div>
       {loading ? (
         <div className='flex justify-center bg-white min-h-screen'>
@@ -150,22 +150,22 @@ function AllProducts() {
         adminProducts.map((product) => (
           <div
             key={product.id}
-            className='grid grid-cols-9 place-items-center bg-white p-2 mb-0.5'
+            className='grid grid-cols-7 sm:grid-cols-9 place-items-center bg-white p-2 mb-0.5'
           >
             <div className='flex justify-center items-center col-span-2'>
               <img
-                className='w-20 h-20 object-contain'
+                className='w-16 h-16 sm:w-20 sm:h-20 object-contain'
                 src={product.image}
                 alt={product.sku}
               />
             </div>
-            <div className='text-center font-normal col-span-2'>
+            <div className='text-sm sm:text-base text-center font-normal col-span-2'>
               {product.sku}
             </div>
             <div className='md:text-lg font-normal text-center col-span-2'>
               ${parseInt(product.price).toLocaleString('es-ES')}
             </div>
-            <div className='text-center col-span-2'>
+            <div className='hidden sm:block text-center col-span-2'>
               {product.active && (
                 <div className='flex justify-evenly items-center'>
                   <span className='bg-[#209551]/30 text-[#008A3A] py-2 px-3 rounded-sm font-medium'>
@@ -174,12 +174,12 @@ function AllProducts() {
                 </div>
               )}
             </div>
-            <div className='flex gap-3'>
+            <div className='flex gap-1 sm:gap-3'>
               <Link to={`/admin/editar-producto/${product.id}`}>
-                <BiSolidEdit className='w-7 h-7 fill-black/80 md:hover:fill-black md:transition-colors' />
+                <BiSolidEdit className='w-6 h-6 sm:w-7 sm:h-7 fill-black/80 md:hover:fill-black md:transition-colors' />
               </Link>
               <button onClick={() => deleteProduct(product.id)}>
-                <MdDelete className='w-7 h-7 fill-red-600 md:hover:fill-red-700 md:hover:opacity-100 md:transition-opacity md:transition-colors' />
+                <MdDelete className='w-6 h-6 sm:w-7 sm:h-7 fill-red-600 md:hover:fill-red-700 md:hover:opacity-100 md:transition-opacity md:transition-colors' />
               </button>
             </div>
           </div>

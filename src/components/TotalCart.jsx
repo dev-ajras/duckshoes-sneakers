@@ -1,12 +1,12 @@
-import { useContext, useState } from "react";
-import { AppContext } from "../context/AppProvider";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { ImSpinner8 } from "react-icons/im";
-import { ToastContainer, toast } from "react-toastify";
+import { useContext, useState } from 'react';
+import { AppContext } from '../context/AppProvider';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import { ImSpinner8 } from 'react-icons/im';
+import { ToastContainer, toast } from 'react-toastify';
 
 function TotalCart({ userReject }) {
-  const { user, cart, cartFullClear, setCartMenu } = useContext(AppContext);
+  const { user, cart, cartFullClear } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
 
   const calculateTotal = (products) => {
@@ -30,7 +30,7 @@ function TotalCart({ userReject }) {
   }));
 
   const orderCreated = () =>
-    toast.success("Pedido creado correctamente", {
+    toast.success('Pedido creado correctamente', {
       autoClose: 2000,
       hideProgressBar: true,
       pauseOnFocusLoss: false,
@@ -39,7 +39,7 @@ function TotalCart({ userReject }) {
 
   const navigate = useNavigate();
 
-  const baseUrl = "https://www.api.duckshoes.com.ar/";
+  const baseUrl = 'https://www.api.duckshoes.com.ar/';
 
   const postOrder = async () => {
     setLoading(true);
@@ -56,9 +56,9 @@ function TotalCart({ userReject }) {
       if (response.status === 201) {
         orderCreated();
         setTimeout(() => {
-          navigate("/user");
+          navigate('/user');
           cartFullClear();
-        }, 3000);
+        }, 4000);
       }
       console.log(response);
     } catch (error) {
@@ -74,7 +74,7 @@ function TotalCart({ userReject }) {
     if (user.role !== 0) {
       userReject();
       setTimeout(() => {
-        navigate("/login");
+        navigate('/login');
       }, 3000);
     } else {
       postOrder();
@@ -82,43 +82,47 @@ function TotalCart({ userReject }) {
   };
 
   return (
-    <div className="p-3 sm:p-5 md:p-8">
+    <div className='p-3 sm:p-5 md:p-8'>
       <ToastContainer />
-      <h3 className="font-medium text-lg sm:text-xl">Pedido</h3>
-      <div className="flex flex-col mt-2">
+      <h3 className='font-medium text-lg sm:text-xl'>Pedido</h3>
+      <div className='flex flex-col mt-2'>
         {cart.map((cartItem, idx) => (
-          <div className="flex justify-between items-end" key={idx}>
+          <div className='flex justify-between items-end' key={idx}>
             <div>
-              <span className="block font-medium opacity-60">
+              <span className='block font-medium opacity-60'>
                 {cartItem.sku} x{cartItem.quantity}
               </span>
-              <span className="text-sm block font-medium opacity-60">
+              <span className='text-sm block font-medium opacity-60'>
                 {cartItem.color.toUpperCase()}
               </span>
             </div>
-            <span className="font-medium opacity-60 sm:text-lg">
+            <span className='font-medium opacity-60 sm:text-lg'>
               $
               {parseInt(cartItem.price * cartItem.quantity).toLocaleString(
-                "es-ES"
+                'es-ES'
               )}
             </span>
           </div>
         ))}
-        <div className="border-t-2 my-2"></div>
-        <div className="flex justify-between">
-          <span className="text-primaryExtraDark font-semibold sm:text-xl md:text-2xl">
+        <div className='border-t-2 my-2'></div>
+        <div className='flex justify-between'>
+          <span className='text-primaryExtraDark font-semibold sm:text-xl md:text-2xl'>
             Total
           </span>
-          <span className="text-primaryExtraDark font-semibold sm:text-xl md:text-2xl">
-            {" "}
-            ${total.toLocaleString("es-ES")}
+          <span className='text-primaryExtraDark font-semibold sm:text-xl md:text-2xl'>
+            {' '}
+            ${total.toLocaleString('es-ES')}
           </span>
         </div>
         <button
-          className="flex justify-center items-center bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors font-semibold text-white p-3 rounded-sm mt-2 text-center text-lg"
+          className='flex justify-center items-center bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors font-semibold text-white p-3 rounded-sm mt-2 text-center text-lg'
           onClick={() => handleOrder()}
         >
-          {loading ? <ImSpinner8 className="animate-spin" /> : "Encargar"}
+          {loading ? (
+            <ImSpinner8 className='animate-spin w-7 h-7' />
+          ) : (
+            'Encargar'
+          )}
         </button>
       </div>
     </div>
