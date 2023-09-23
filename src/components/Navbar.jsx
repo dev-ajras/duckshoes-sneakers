@@ -26,9 +26,13 @@ function Navbar() {
   const { user, setUser, cart, navbarMenu, setNavbarMenu } =
     useContext(AppContext);
 
+  const productsPerPage = 16;
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/products?sku=${inputSearch.trim()}`);
+    navigate(
+      `/products?page=1&pageSize=${productsPerPage}&sku=${inputSearch.trim()}`
+    );
   };
 
   useEffect(() => {
