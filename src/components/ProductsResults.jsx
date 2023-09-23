@@ -24,8 +24,11 @@ function ProductsResults() {
 
   const baseUrl = 'https://www.api.duckshoes.com.ar/';
 
+  console.log('products', products);
+
   useEffect(() => {
     setLoading(true);
+    setProducts([]);
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
@@ -35,7 +38,6 @@ function ProductsResults() {
         );
         setProducts(response.data.products);
       } catch (error) {
-        console.log(error);
       } finally {
         setLoading(false);
       }
@@ -134,11 +136,9 @@ function ProductsResults() {
         ) : (
           <div className='m-3 flex flex-col items-center sm:m-5 sm:mt-12'>
             <h5 className='font-semibold text-lg bg-primaryLight px-3 p-1 mb-2 sm:px-5 sm:p-2 sm:mb-3'>
-              No hay productos
+              La búsqueda de "{sku}" no obtuvo resultados
             </h5>
-            <p className='font-semibold'>
-              Por favor volvé a intentarlo más tarde
-            </p>
+            <p className='font-semibold'>Intente con otra palabra</p>
             <img
               className='w-80 mt-5 sm:mt-8 sm:w-96'
               src='/assets/illustrations/searchEmpty.svg'
