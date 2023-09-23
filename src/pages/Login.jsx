@@ -57,8 +57,8 @@ function Login() {
     }
   };
 
-  if (user.role) {
-    return <Navigate to="/" replace />;
+  if (user.role !== undefined && user.role !== null) {
+    return <Navigate to="/products" replace />;
   }
 
   return (
