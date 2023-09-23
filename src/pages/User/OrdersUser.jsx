@@ -114,7 +114,7 @@ function OrdersUser() {
     <div className="shadow">
       <ToastContainer />
       <div className="hidden md:grid grid-cols-9 bg-gray-100 p-5 font-normal">
-        <div className="text-center col-span-1">N° Pedido</div>
+        <div className="text-center col-span-1">Pedido</div>
         <div className="text-center col-span-2">Imágen</div>
         <div className="text-center col-span-2">Fecha</div>
         <div className="text-center col-span-2">Total</div>
@@ -177,13 +177,26 @@ function OrdersUser() {
           </Link>
         ))
       ) : (
-        <div className="p-3 flex flex-col items-center sm:p-5 sm:py-12 bg-white">
-          <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2 sm:px-5 sm:p-2 sm:mb-3">
+        <div className="p-3 flex flex-col items-center sm:p-5 bg-white">
+          <h5 className="font-medium md:text-lg bg-primaryLight px-3 p-1 sm:px-5 sm:p-2">
             No hay pedidos
           </h5>
-          <Link to="/products" className="font-semibold">
-            Añadir pedido +
+          <div className="flex flex-col md:font-normal md:text-lg my-2 sm:my-3">
+            <span>1. Añade los productos al carrito</span>
+            <span>2. Selecciona las cantidades</span>
+            <span>3. Listo! Pulsa el botón "Encargar"</span>
+          </div>
+          <Link
+            to="/products"
+            className="md:hover:bg-primaryExtraDark md:transition-colors md:font-normal text-white mb-2 sm:mb-3 py-2 px-3 md:px-5 md:py-3 md:text-lg bg-primaryDark rounded"
+          >
+            Empezar
           </Link>
+          <img
+            className="w-5/6 md:w-3/4 rounded"
+            src="/assets/illustrations/agregarPedido.webp"
+            alt="agregar pedido imagen"
+          />
         </div>
       )}
       <div className="bg-gray-100 p-5 flex gap-3 justify-center items-center sm:gap-5">

@@ -221,9 +221,15 @@ function OrderAdmin() {
                     <option value={true}>Pagado</option>
                   </select>
                 </div>
-                <div>
-                  <span>Cliente:</span>
-                  <span>{order.name}</span>
+                <div className="mt-3 md:mt-5 font-normal">
+                  <div>
+                    <span>Cliente: </span>
+                    <span>{order.name}</span>
+                  </div>
+                  <div>
+                    <span>Teléfono: </span>
+                    <span>{order.phone}</span>
+                  </div>
                 </div>
               </div>
             </div>

@@ -127,7 +127,7 @@ function OrdersAdmin() {
     <div className="shadow">
       <ToastContainer />
       <div className="grid grid-cols-12 bg-gray-100 p-5 font-normal">
-        <div className="text-center col-span-1">N° Pedido</div>
+        <div className="text-center col-span-1">Pedido</div>
         <div className="text-center col-span-2">Cliente</div>
         <div className="text-center col-span-2">Fecha</div>
         <div className="text-center col-span-2">Total</div>
