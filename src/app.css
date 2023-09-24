@@ -1,20 +1,6 @@
-.clip-path-image {
-  clip-path: polygon(
-    7% 75%,
-    4% 71%,
-    9% 28%,
-    21% 21%,
-    29% 19%,
-    40% 9%,
-    53% 14%,
-    58% 31%,
-    74% 46%,
-    97% 54%,
-    95% 71%,
-    49% 78%
-  );
+.placeholderBanner {
+  background-image: url("/assets/banners/placeholderBanner.webp");
 }
-
 .gridNavbar {
   display: grid;
   grid-template-columns: 0.3fr 1.5fr 1fr;

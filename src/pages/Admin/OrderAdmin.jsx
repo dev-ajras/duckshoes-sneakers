@@ -221,7 +221,7 @@ function OrderAdmin() {
                     <option value={true}>Pagado</option>
                   </select>
                 </div>
-                <div className="mt-3 md:mt-5 font-normal">
+                <div className="flex flex-col mt-3 md:mt-5 font-normal">
                   <div>
                     <span>Cliente: </span>
                     <span>{order.name}</span>
