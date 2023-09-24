@@ -72,7 +72,7 @@ function AddProduct() {
   const handlePrice = (e) => {
     console.log("bbb");
     const currentPrice = e.target.value;
-    if (currentPrice.length <= 10 && !isNaN(currentPrice)) {
+    if (currentPrice.length <= 10) {
       setProductData({ ...productData, price: parseInt(currentPrice) });
     }
   };
