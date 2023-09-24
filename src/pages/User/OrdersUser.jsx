@@ -181,7 +181,7 @@ function OrdersUser() {
           <h5 className="font-medium md:text-lg bg-primaryLight px-3 p-1 sm:px-5 sm:p-2">
             No hay pedidos
           </h5>
-          <div className="flex flex-col md:font-normal md:text-lg my-2 sm:my-3">
+          <div className="flex flex-col md:font-normal md:text-lg mt-5 mb-3">
             <span>1. Añade los productos al carrito</span>
             <span>2. Selecciona las cantidades</span>
             <span>3. Listo! Pulsa el botón "Encargar"</span>
@@ -192,11 +192,6 @@ function OrdersUser() {
           >
             Empezar
           </Link>
-          <img
-            className="w-5/6 md:w-3/4 rounded"
-            src="/assets/illustrations/agregarPedido.webp"
-            alt="agregar pedido imagen"
-          />
         </div>
       )}
       <div className="bg-gray-100 p-5 flex gap-3 justify-center items-center sm:gap-5">
