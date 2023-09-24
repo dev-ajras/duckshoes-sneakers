@@ -53,7 +53,7 @@ function Login() {
       if (error.response.status === 400) {
         userWrong(error.response.data.error);
       }
-      console.log(error);
+      // console.log(error);
     }
   };
 

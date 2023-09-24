@@ -8,12 +8,12 @@ import placeHolderBanner from "/assets/banners/placeholderBanner.webp";
 import cartBanner from "/assets/banners/orderBanner.webp";
 import orderBanner from "/assets/banners/cartBanner.webp";
 
-const autoplayOptions = {
-  delay: 4000,
-  stopOnInteraction: false,
-};
-
 function Banner() {
+  const autoplayOptions = {
+    delay: 4000,
+    stopOnInteraction: false,
+  };
+
   const [emblaRef] = useEmblaCarousel({ loop: true }, [
     Autoplay(autoplayOptions),
   ]);

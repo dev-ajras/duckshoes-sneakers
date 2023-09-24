@@ -43,7 +43,7 @@ function EditProduct() {
       };
       getProductOne();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }, [productId]);
 
@@ -100,10 +100,6 @@ function EditProduct() {
     formDataImageColor.append("images", productOne.images[i]);
   }
 
-  for (var pair of formDataImageColor.entries()) {
-    console.log(pair[0] + ", " + pair[1]);
-  }
-
   const productEdited = (message) =>
     toast.success(message, {
       autoClose: 2000,
@@ -151,8 +147,6 @@ function EditProduct() {
   };
 
   const navigate = useNavigate();
-
-  console.log(Object.keys(productOne.images));
 
   const editProduct = async (productDifferences) => {
     if (Object.keys(productDifferences).length === 0) {
@@ -261,9 +255,6 @@ function EditProduct() {
     );
     setProductOne({ ...productOne, images: updatedImages });
   };
-
-  console.log("productOne: ", productOne);
-  console.log("productOneConstant: ", productOneConstant);
 
   const colorsArray = [
     { value: "", name: "Seleccionar color" },

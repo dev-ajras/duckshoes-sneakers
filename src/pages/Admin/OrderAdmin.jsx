@@ -27,7 +27,6 @@ function OrderAdmin() {
         setOrder(response.data.order);
         setStatus(response.data.order.status);
         setCondition(response.data.order.active);
-        console.log(response);
       } catch (error) {
       } finally {
         setLoading(false);
@@ -48,7 +47,6 @@ function OrderAdmin() {
         },
       }
     );
-    console.log(response);
     if (response.status === 200) {
       setStatus(currentStatus);
     }
@@ -57,7 +55,6 @@ function OrderAdmin() {
   const onChangeStatus = (e) => {
     const currentStatus = e.target.value;
     handleStatus(currentStatus);
-    console.log(currentStatus);
   };
 
   const handleCondition = async () => {
@@ -78,7 +75,6 @@ function OrderAdmin() {
   const onChangeCondition = (e) => {
     const currentCondition = e.target.value;
     handleCondition();
-    console.log(currentCondition);
   };
 
   return (

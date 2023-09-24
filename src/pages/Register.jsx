@@ -44,7 +44,6 @@ function Register() {
       password,
       phone,
     });
-    console.log(response);
     response.data && userRegistered();
     setTimeout(() => {
       response.data && navigate("/login");

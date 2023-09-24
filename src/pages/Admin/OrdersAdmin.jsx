@@ -48,7 +48,7 @@ function OrdersAdmin() {
         );
         setAdminOrders(response.data.orders);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         if (error.response.status === 403) {
           tokenExpired();
           setTimeout(() => {
@@ -76,7 +76,7 @@ function OrdersAdmin() {
         );
         setAdminNextOrders(response.data.orders);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     fetchNextOrders();
@@ -91,7 +91,6 @@ function OrdersAdmin() {
     });
     const foundOrders = adminOrders.filter((order) => order.id !== productId);
     setOrders(foundOrders);
-    console.log(response);
   };
 
   const handleNextPage = (next) => {

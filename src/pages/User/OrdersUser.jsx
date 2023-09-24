@@ -47,7 +47,7 @@ function OrdersUser() {
         );
         setUserOrders(response.data.orders);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         if (error.response.status === 403) {
           tokenExpired();
           setTimeout(() => {
@@ -75,7 +75,7 @@ function OrdersUser() {
         );
         setUserNextOrders(response.data.orders);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     fetchNextOrders();

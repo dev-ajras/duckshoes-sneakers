@@ -22,8 +22,6 @@ export default function AddRemoveButtons({ filteredProduct }) {
     8, 12, 16, 24, 36, 48, 60, 72, 84, 96, 108, 120, 180, 240, 300, 360,
   ];
 
-  console.log(filteredProduct);
-
   const handleQuantity = (e) => {
     const currentQuantity = e.target.value;
     setProductQuantity(currentQuantity);

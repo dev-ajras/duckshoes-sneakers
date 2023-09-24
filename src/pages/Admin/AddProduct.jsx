@@ -37,8 +37,6 @@ function AddProduct() {
     setProductData({ ...productData, color: currentColor });
   };
 
-  console.log("color: ", productData.color);
-
   const handleTemporada = (e) => {
     const currentTemporada = e.target.value;
     setProductData({ ...productData, temporada: currentTemporada });
@@ -89,8 +87,6 @@ function AddProduct() {
   for (let i = 0; i < productData.images.length; i++) {
     formDataProducts.append("images", productData.images[i]);
   }
-
-  console.log(productData);
 
   const handleForm = (e) => {
     e.preventDefault();
