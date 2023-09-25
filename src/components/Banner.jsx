@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 
-import placeHolderBanner from "/assets/banners/placeholderBanner.webp";
-import cartBanner from "/assets/banners/orderBanner.webp";
-import orderBanner from "/assets/banners/cartBanner.webp";
+import cartBanner from "/assets/banners/cartBanner.webp";
+import ordersBanner from "/assets/banners/ordersBanner.webp";
+import orderBanner from "/assets/banners/orderBanner.webp";
 
 function Banner() {
   const autoplayOptions = {
@@ -47,6 +47,13 @@ function Banner() {
                     className="rounded-md object-fill"
                     src={cartBanner}
                     alt={cartBanner}
+                  />
+                </div>
+                <div className="flex-[0_0_100%] mx-3 sm:mx-5">
+                  <img
+                    className="rounded-md object-fill"
+                    src={ordersBanner}
+                    alt={ordersBanner}
                   />
                 </div>
                 <div className="flex-[0_0_100%] mx-3 sm:mx-5">
