@@ -1,17 +1,17 @@
-import { useContext, useState } from "react";
-import { Link, useNavigate, Navigate } from "react-router-dom";
-import axios from "axios";
-import { AppContext } from "../context/AppProvider";
+import { useContext, useState } from 'react';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
+import axios from 'axios';
+import { AppContext } from '../context/AppProvider';
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
   const { user, setUser } = useContext(AppContext);
 
   const initialState = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   };
 
   const [formData, setFormData] = useState(initialState);
@@ -21,7 +21,7 @@ function Login() {
     userRegister();
   };
 
-  const baseUrl = "https://www.api.duckshoes.com.ar/";
+  const baseUrl = 'https://www.api.duckshoes.com.ar/';
 
   const navigate = useNavigate();
 
@@ -36,7 +36,7 @@ function Login() {
   const userRegister = async () => {
     try {
       const { email, password } = formData;
-      const response = await axios.post(baseUrl + "users/login", {
+      const response = await axios.post(baseUrl + 'users/login', {
         email,
         password,
       });
@@ -44,10 +44,10 @@ function Login() {
       setFormData(initialState);
       if (response.data.role === 0) {
         setUser(response.data);
-        navigate("/user");
+        navigate('/user');
       } else if (response.data.role === 1) {
         setUser(response.data);
-        navigate("/admin");
+        navigate('/admin');
       }
     } catch (error) {
       if (error.response.status === 400) {
@@ -58,19 +58,19 @@ function Login() {
   };
 
   if (user.role !== undefined && user.role !== null) {
-    return <Navigate to="/products" replace />;
+    return <Navigate to='/products' replace />;
   }
 
   return (
-    <section className="flex justify-center m-7 sm:m-14">
-      <article className=" bg-white rounded-md shadow p-10 w-96">
+    <section className='flex justify-center m-7 sm:m-14'>
+      <article className=' bg-white rounded-md shadow p-10 w-96'>
         <ToastContainer />
-        <div className="mb-5 border-b-2 pb-2 border-primaryDark">
-          <h3 className="font-medium text-3xl text-primaryDark">Ingresar</h3>
-          <h4 className="font text-lg">Introducir cuenta</h4>
+        <div className='mb-5 border-b-2 pb-2 border-primaryDark'>
+          <h3 className='font-medium text-3xl text-primaryDark'>Ingresar</h3>
+          <h4 className='font text-lg'>Introducir cuenta</h4>
         </div>
-        <form onSubmit={handleForm} className="flex flex-col">
-          <label className="text-sm" htmlFor="email">
+        <form onSubmit={handleForm} className='flex flex-col'>
+          <label className='text-sm' htmlFor='email'>
             email
           </label>
           <input
@@ -79,12 +79,12 @@ function Login() {
               setFormData({ ...formData, email: e.target.value });
             }}
             required
-            id="email"
-            type="email"
-            placeholder="Correo electrónico"
-            className="mb-5 border-b outline-none py-1"
+            id='email'
+            type='email'
+            placeholder='Correo electrónico'
+            className='mb-5 border-b outline-none py-1'
           />
-          <label className="text-sm" htmlFor="password">
+          <label className='text-sm' htmlFor='password'>
             contraseña
           </label>
           <input
@@ -93,18 +93,18 @@ function Login() {
               setFormData({ ...formData, password: e.target.value });
             }}
             required
-            id="password"
-            type="password"
-            placeholder="Contraseña"
-            className="mb-5 border-b outline-none py-1"
+            id='password'
+            type='password'
+            placeholder='Contraseña'
+            className='mb-5 border-b outline-none py-1'
           />
-          <button className="bg-primaryDark p-2 text-white rounded font-normal">
+          <button className='md:hover:bg-primaryExtraDark md:transition-colors bg-primaryDark p-2 text-white rounded font-normal'>
             Ingresar
           </button>
         </form>
-        <p className="font-light mt-2">
-          ¿No estas registrado?{" "}
-          <Link to="/register" className="font-normal">
+        <p className='font-light mt-2'>
+          ¿No estas registrado?{' '}
+          <Link to='/register' className='font-normal'>
             Registrarse
           </Link>
         </p>
