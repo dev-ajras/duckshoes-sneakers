@@ -1,9 +1,7 @@
 import whatsappIcon from '/assets/social/whatsappIcon.svg';
 import instagramIcon from '/assets/social/instagramIcon.svg';
 import facebookIcon from '/assets/social/facebookIcon.svg';
-import twitterIcon from '/assets/social/twitterIcon.svg';
 
-import { HiLocationMarker } from 'react-icons/hi';
 import { MdEmail } from 'react-icons/md';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
@@ -34,6 +32,14 @@ function Footer() {
                 rel='noopener noreferrer'
               >
                 <img className='w-full' src={whatsappIcon} alt='whatsappIcon' />
+              </a>
+              <a
+                className='bg-white md:hover:bg-rose-100 md:transition-colors p-2.5 w-10 rounded-full sm:w-16 sm:p-4 lg:w-14'
+                href='https://www.facebook.com/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <img className='w-full' src={facebookIcon} alt='facebookIcon' />
               </a>
               <a
                 className='bg-white md:hover:bg-rose-100 md:transition-colors p-2.5 w-10 rounded-full sm:w-16 sm:p-4 lg:w-14'
