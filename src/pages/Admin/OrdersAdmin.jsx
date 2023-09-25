@@ -89,8 +89,9 @@ function OrdersAdmin() {
         Authorization: `Bearer ${user.token}`,
       },
     });
+    console.log(response);
     const foundOrders = adminOrders.filter((order) => order.id !== productId);
-    setOrders(foundOrders);
+    setAdminOrders(foundOrders);
   };
 
   const handleNextPage = (next) => {
