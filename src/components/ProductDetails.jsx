@@ -142,18 +142,20 @@ function ProductDetails() {
                     <div className="flex justify-center sm:mb-3 md:mb-5 ml-16">
                       <img
                         className="h-56 sm:h-80 object-contain px-5 py-10 sm:px-20 md:px-14 lg:px-28"
-                        src={productFoundOne}
-                        alt={productFoundOne}
+                        src={productFoundOne.toString()}
+                        alt={productFoundOne.toString()}
                       />
                     </div>
-                    <div className="hidden md:block">
-                      <h3 className="font-semibold sm:text-xl mb-2">
-                        Descripción:
-                      </h3>
-                      <pre className="font-outfit font-normal opacity-80 mr-24 whitespace-pre-wrap">
-                        {productFound.description}
-                      </pre>
-                    </div>
+                    {productFound.description && (
+                      <div className="hidden md:block">
+                        <h3 className="font-semibold sm:text-xl mb-2">
+                          Descripción:
+                        </h3>
+                        <pre className="font-outfit font-normal opacity-80 mr-24 whitespace-pre-wrap">
+                          {productFound.description}
+                        </pre>
+                      </div>
+                    )}
                   </div>
                   <div className="md:basis-1/3  md:w-full">
                     <div className="md:sticky md:top-28 my-3 md:mb-0">
@@ -238,14 +240,16 @@ function ProductDetails() {
                           <span className="opacity-80">Consultar</span>
                         </a>
                       </div>
-                      <div className="md:hidden">
-                        <h3 className="font-semibold sm:text-xl mb-1 md:mb-2 mt-5">
-                          Descripción:
-                        </h3>
-                        <pre className="font-outfit font-normal opacity-80 whitespace-pre-wrap">
-                          {productFound.description}
-                        </pre>
-                      </div>
+                      {productFound.description && (
+                        <div className="md:hidden">
+                          <h3 className="font-semibold sm:text-xl mb-1 md:mb-2 mt-5">
+                            Descripción:
+                          </h3>
+                          <pre className="font-outfit font-normal opacity-80 whitespace-pre-wrap">
+                            {productFound.description}
+                          </pre>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -279,26 +283,20 @@ function ProductDetails() {
                     <div className="flex justify-center sm:mb-3 md:mb-5 ml-16">
                       <img
                         className="h-56 sm:h-80 object-contain px-5 py-10 sm:px-20 md:px-14 lg:px-28"
-                        src={
-                          productFound.color == colorParam
-                            ? productFoundOne
-                            : undefined
-                        }
-                        alt={
-                          productFound.color == colorParam
-                            ? productFoundOne
-                            : undefined
-                        }
+                        src={productFoundOne.toString()}
+                        alt={productFoundOne.toString()}
                       />
                     </div>
-                    <div className="hidden md:block">
-                      <h3 className="font-semibold sm:text-xl mb-2">
-                        Descripción:
-                      </h3>
-                      <pre className="font-outfit font-normal opacity-80 mr-24 whitespace-pre-wrap">
-                        {productFound.description}
-                      </pre>
-                    </div>
+                    {productFound.description && (
+                      <div className="hidden md:block">
+                        <h3 className="font-semibold sm:text-xl mb-2">
+                          Descripcidasdón:
+                        </h3>
+                        <pre className="font-outfit font-normal opacity-80 mr-24 whitespace-pre-wrap">
+                          {productFound.description}
+                        </pre>
+                      </div>
+                    )}
                   </div>
                   <div className="md:basis-1/3  md:w-full">
                     <div className="md:sticky md:top-28 my-3 md:mb-0">
@@ -354,14 +352,16 @@ function ProductDetails() {
                           Publicación Inactiva
                         </span>
                       </div>
-                      <div className="md:hidden">
-                        <h3 className="font-semibold sm:text-xl mb-1 md:mb-2 mt-5">
-                          Descripción:
-                        </h3>
-                        <pre className="font-outfit font-normal opacity-80 whitespace-pre-wrap">
-                          {productFound.description}
-                        </pre>
-                      </div>
+                      {productFound.description && (
+                        <div className="md:hidden">
+                          <h3 className="font-semibold sm:text-xl mb-1 md:mb-2 mt-5">
+                            Descripción:
+                          </h3>
+                          <pre className="font-outfit font-normal opacity-80 whitespace-pre-wrap">
+                            {productFound.description}
+                          </pre>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
