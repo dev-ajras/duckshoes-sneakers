@@ -9,7 +9,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { MdFavoriteBorder } from "react-icons/md";
 import { AiFillHeart } from "react-icons/ai";
 
-function CarouselFeatured({ title }) {
+function CarouselFeatured({ title, from }) {
   const { favoritesHandler, favorites } = useContext(AppContext);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,7 +21,7 @@ function CarouselFeatured({ title }) {
     const fecthProducts = async () => {
       try {
         const response = await axios.get(
-          `${baseUrl}products?page=1&pageSize=10`
+          `${baseUrl}products?page=1&pageSize=20`
         );
         setProducts(response.data.products);
       } catch (error) {
@@ -48,7 +48,7 @@ function CarouselFeatured({ title }) {
             {loading ? (
               <SkeletonCarouselFeatured />
             ) : products.length > 0 ? (
-              products.map((product) => {
+              products.slice(from, from + 10).map((product) => {
                 const isFavorite = favorites.some((fav) => fav === product.id);
                 return (
                   <Link

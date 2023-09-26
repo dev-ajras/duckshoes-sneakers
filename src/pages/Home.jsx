@@ -6,8 +6,8 @@ function Home() {
   return (
     <section className="bg-body">
       <Banner />
-      <CarouselFeatured title={"Lanzamientos"} />
-      <CarouselFeatured title={"Tendencias"} />
+      <CarouselFeatured title={"Lanzamientos"} from={0} />
+      <CarouselFeatured title={"Tendencias"} from={10} />
       <Info />
     </section>
   );
