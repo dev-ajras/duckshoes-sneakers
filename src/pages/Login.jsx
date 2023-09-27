@@ -96,8 +96,14 @@ function Login() {
             id='password'
             type='password'
             placeholder='Contraseña'
-            className='mb-5 border-b outline-none py-1'
+            className='mb-2 border-b outline-none py-1'
           />
+          <Link
+            to='/restablecer-contraseña'
+            className='flex justify-end text-sm text-black font-normal mb-3'
+          >
+            ¿Olvidaste tu contraseña?
+          </Link>
           <button className='md:hover:bg-primaryExtraDark md:transition-colors bg-primaryDark p-2 text-white rounded font-normal'>
             Ingresar
           </button>
