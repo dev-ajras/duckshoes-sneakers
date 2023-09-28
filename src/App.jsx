@@ -24,7 +24,7 @@ import AdminRoute from "./context/AdminRoute";
 import Admin from "./pages/Admin/Admin";
 import Service from "./pages/Service/Service";
 import RestablecerContraseña from "./pages/RestablecerContraseña";
-import RestablecerContraseñaForm from "./pages/RestablecerContraseñaForm";
+import RestablecerClaveForm from "./pages/RestablecerClaveForm";
 
 function App() {
   return (
@@ -51,8 +51,8 @@ function App() {
               element={<RestablecerContraseña />}
             />
             <Route
-              path="/restablecer-contraseña-form"
-              element={<RestablecerContraseñaForm />}
+              path="/restablecer-clave"
+              element={<RestablecerClaveForm />}
             />
             <Route element={<UserRoute />}>
               <Route path="/user/*" element={<User />} />

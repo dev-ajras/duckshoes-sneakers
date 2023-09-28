@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import CarouselFeatured from "./CarouselFeatured";
 import { BsShare } from "react-icons/bs";

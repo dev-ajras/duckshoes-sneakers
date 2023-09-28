@@ -1,16 +1,16 @@
 import { useContext, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { AppContext } from "../context/AppProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { motion } from "framer-motion";
-
-import { AiFillCheckCircle } from "react-icons/ai";
 import axios from "axios";
 
-function RestablecerContraseñaForm() {
+function RestablecerClaveForm() {
   const { user } = useContext(AppContext);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const keyParam = searchParams.get("key");
+  const userParam = searchParams.get("user");
 
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -57,14 +57,9 @@ function RestablecerContraseñaForm() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${baseUrl}users/change-password`,
+        `${baseUrl}users/change-password?key=${keyParam}&user=${userParam}`,
         {
           password: password,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
         }
       );
       if (response.status === 200) {
@@ -142,4 +137,4 @@ function RestablecerContraseñaForm() {
   );
 }
 
-export default RestablecerContraseñaForm;
+export default RestablecerClaveForm;
