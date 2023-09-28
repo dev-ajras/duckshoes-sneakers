@@ -94,7 +94,7 @@ function RestablecerClaveForm() {
           <input
             value={password}
             onChange={(e) => {
-              setFormData(setPassword(e.target.value));
+              setPassword(e.target.value);
             }}
             required
             id="password"
