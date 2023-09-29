@@ -67,7 +67,7 @@ function RestablecerClaveForm() {
       if (response.status === 200) {
         emailSuccessAlert();
         setTimeout(() => {
-          navigate("/login", { replace });
+          navigate("/login");
         }, 4000);
       }
     } catch (error) {
