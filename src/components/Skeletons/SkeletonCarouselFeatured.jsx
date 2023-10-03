@@ -8,7 +8,7 @@ function SkeletonCarouselFeatured() {
     >
       <div className="flex flex-col w-full h-full">
         <div className="object-contain h-full bg-slate-200 animate-pulse mb-5">
-          <div className="h-32 sm:h-40 md:h-48 w-20 "></div>
+          <div className="h-32 sm:h-40 md:h-60 w-20 "></div>
         </div>
         <h3 className="line-clamp-1 h-8 w-1/2 sm:text-lg bg-slate-200 animate-pulse"></h3>
         <div className="h-10 w-1/2 mt-1  sm:mt-3 bg-slate-200 animate-pulse"></div>
