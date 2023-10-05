@@ -177,7 +177,7 @@ function ProductDetails() {
                       {productFound.color && (
                         <div>
                           <h3 className="font-semibold mt-2 sm:text-lg">
-                            <span>Color: </span>
+                            <span>Seleccionar Color: </span>
                             <span className="opacity-80">{colorParam}</span>
                           </h3>
                           <div className="flex gap-5">
