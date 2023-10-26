@@ -124,89 +124,92 @@ function OrdersAdmin() {
   }
 
   return (
-    <div className="shadow">
+    <div className='shadow'>
       <ToastContainer />
-      <div className="grid grid-cols-12 bg-gray-100 p-5 font-normal">
-        <div className="text-center col-span-1">Pedido</div>
-        <div className="text-center col-span-2">Cliente</div>
-        <div className="text-center col-span-2">Fecha</div>
-        <div className="text-center col-span-2">Total</div>
-        <div className="text-center col-span-2">Estado</div>
-        <div className="text-center col-span-2">Condición</div>
+      <div className='hidden md:grid grid-cols-12 bg-gray-100 p-5 font-normal'>
+        <div className='text-center col-span-1'>Pedido</div>
+        <div className='text-center col-span-2'>Cliente</div>
+        <div className='text-center col-span-2'>Fecha</div>
+        <div className='text-center col-span-2'>Total</div>
+        <div className='text-center col-span-2'>Estado</div>
+        <div className='text-center col-span-2'>Condición</div>
       </div>
       {loading ? (
-        <div className="flex justify-center bg-white min-h-screen">
-          <ImSpinner8 className="animate-spin w-12 h-12 mt-12 fill-primaryExtraDark" />
+        <div className='flex justify-center bg-white min-h-screen'>
+          <ImSpinner8 className='animate-spin w-12 h-12 mt-12 fill-primaryExtraDark' />
         </div>
       ) : adminOrders.length > 0 ? (
         adminOrders.map((order) => (
           <Link
             to={`/admin/pedido/${order.id}`}
-            className="grid grid-cols-12 place-items-center bg-white p-2 mb-0.5 md:hover:bg-slate-50 md:transition-colors"
+            className='relative grid grid-cols-3 gap-y-5 md:col-start-1 md:grid md:grid-cols-12 place-items-center bg-white px-3 py-8 md:p-4 mb-0.5 md:hover:bg-slate-50 md:transition-colors'
             key={order.id}
           >
-            <div className="flex justify-center items-center col-span-1">
-              <span className="font-normal md:text-lg">#{order.id}</span>
+            <div className='absolute top-0 left-0 p-3 md:relative md:p-0 text-sm sm:text-base flex justify-center items-center col-span-1'>
+              <span className='font-normal md:text-lg'>#{order.id}</span>
             </div>
-            <div className="flex flex-col justify-center text-center align-middle col-span-2 min-h-[100px] break-all">
-              <p className="">{order.name}</p>
-              <p className="">{order.phone}</p>
+            <div className='text-sm sm:text-base col-start-1 row-span-2 md:row-span-1 flex flex-col justify-center text-center align-middle md:col-span-2 min-h-[60px] md:min-h-[100px] break-all'>
+              <p className=''>{order.name}</p>
+              <p className=''>{order.phone}</p>
             </div>
-            <div className="text-center font-normal col-span-2">
+            <div className='text-sm sm:text-base text-center font-normal md:col-start-4 md:col-span-2'>
               {formatearFecha(order.createdAt)}
             </div>
-            <div className="text-center col-span-2">
-              <span className="font-normal md:text-lg">
+            <div className='col-start-2 md:col-start-6 text-center md:col-span-2'>
+              <span className='font-medium text-lg sm:text-xl'>
                 ${parseInt(order.value).toLocaleString("es-ES")}
               </span>
             </div>
-            <div className="text-center col-span-2">
+            <div className='col-start-3 row-start-1 md:col-start-8 text-sm sm:text-base text-center md:col-span-2'>
               {order.status === "pending" ? (
-                <span className="bg-[#FFA625]/30 text-[#CB7800] py-2 px-3 rounded-sm font-medium">
+                <span className='bg-[#FFA625]/30 text-[#CB7800] py-2 px-3 rounded-sm font-medium'>
                   Pendiente
                 </span>
               ) : order.status === "processing" ? (
-                <span className="bg-[#0033EA]/30 text-[#042CB9] py-2 px-3 rounded-sm font-medium">
+                <span className='bg-[#0033EA]/30 text-[#042CB9] py-2 px-3 rounded-sm font-medium'>
                   En proceso
                 </span>
               ) : order.status === "completed" ? (
-                <span className="bg-[#209551]/30 text-[#008A3A] py-2 px-3 rounded-sm font-medium">
+                <span className='bg-[#209551]/30 text-[#008A3A] py-2 px-3 rounded-sm font-medium'>
                   Despachado
                 </span>
               ) : order.status === "cancelled" ? (
-                <span className="bg-[#FF3535]/30 text-[#B51A1A] py-2 px-3 rounded-sm font-medium">
+                <span className='bg-[#FF3535]/30 text-[#B51A1A] py-2 px-3 rounded-sm font-medium'>
                   Cancelado
                 </span>
               ) : (
-                <span className="bg-[#FF3535]/30 text-[#B51A1A] py-2 px-3 rounded-sm font-medium">
+                <span className='bg-[#FF3535]/30 text-[#B51A1A] py-2 px-3 rounded-sm font-medium'>
                   Error
                 </span>
               )}
             </div>
-            <div className="text-center col-span-2 ">
+            <div className='col-start-3 row-start-2 md:row-start-1 md:col-start-10 text-sm sm:text-base text-center md:col-span-2 '>
               {order.active ? (
-                <span className="bg-[#209551]/30 text-[#008A3A] py-2 px-3 rounded-sm font-medium">
+                <span className='bg-[#209551]/30 text-[#008A3A] py-2 px-3 rounded-sm font-medium'>
                   Pagado
                 </span>
               ) : (
-                <span className="bg-[#FF3535]/30 text-[#B51A1A] py-2 px-3 rounded-sm font-medium">
+                <span className='bg-[#FF3535]/30 text-[#B51A1A] py-2 px-3 rounded-sm font-medium'>
                   No pagado
                 </span>
               )}
             </div>
-            <button onClick={(e) => deleteProduct(e, order.id)}>
-              <MdDelete className="fill-red-600 md:hover:fill-red-700 md:hover:opacity-100 transition-opacity md:transition-colors w-7 h-7 opacity-75" />
+            <button
+              className='md:col-start-12 hidden md:block'
+              onClick={(e) => deleteProduct(e, order.id)}
+            >
+              <MdDelete className='fill-red-600 md:hover:fill-red-700 md:hover:opacity-100 transition-opacity md:transition-colors w-7 h-7 opacity-75' />
             </button>
           </Link>
         ))
       ) : (
-        <div className="p-3 flex flex-col items-center sm:p-5 sm:py-12 bg-white">
-          <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2 sm:px-5 sm:p-2 sm:mb-3">
+        <div className='p-3 flex flex-col items-center sm:p-5 sm:py-12 bg-white'>
+          <h5 className='font-semibold text-lg bg-primaryLight px-3 p-1 mb-2 sm:px-5 sm:p-2 sm:mb-3'>
             No hay pedidos
           </h5>
         </div>
       )}
-      <div className="bg-gray-100 p-5 flex gap-3 justify-center items-center sm:gap-5">
+      <div className='bg-gray-100 p-5 flex gap-3 justify-center items-center sm:gap-5'>
         <button
           className={`${
             currentPage === 1 && "hidden pointer-events-none"
@@ -215,7 +218,7 @@ function OrdersAdmin() {
         >
           <MdOutlineNavigateBefore />
         </button>
-        <div className="flex justify-center p-2 text-xl bg-white rounded-lg ring-1 ring-primaryDark font-bold w-16 sm:p-3 sm:text-2xl">
+        <div className='flex justify-center p-2 text-xl bg-white rounded-lg ring-1 ring-primaryDark font-bold w-16 sm:p-3 sm:text-2xl'>
           {currentPage}
         </div>
         <button
