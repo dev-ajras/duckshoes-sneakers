@@ -92,24 +92,45 @@ function ProductsResults() {
   };
 
   return (
-    <article className="flex justify-center">
-      <div className="m-3 sm:m-5 lg:max-w-6xl w-full">
+    <article className='flex justify-center'>
+      <div className='relative m-3 sm:m-5 lg:max-w-6xl w-full'>
         <button
           onClick={() => returnPrev()}
-          className="flex justify-center items-center font-medium text-lg mb-3 sm:mb-5 sm:text-2xl bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors rounded-sm p-1.5 w-10 h-10 "
+          className='flex justify-center items-center font-medium text-lg mb-3 sm:mb-5 sm:text-2xl bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors rounded-sm p-1.5 w-10 h-10 '
         >
-          <IoReturnDownBack className="stroke-white w-full h-full" />
+          <IoReturnDownBack className='stroke-white w-full h-full' />
         </button>
         {loading === true ? (
           <SkeletonProductsResults />
         ) : products.length > 0 ? (
           <>
-            <div className="grid grid-cols-2 auto-rows-fr gap-3 sm:gap-5 sm:grid-cols-3 lg:grid-cols-4">
+            <div className='absolute top-0 left-0 w-full flex gap-3 justify-center items-center rounded-md sm:gap-5'>
+              <button
+                className={`${
+                  currentPage === 1 && "opacity-0 pointer-events-none"
+                } p-2 text-2xl bg-primaryDark text-white md:hover:bg-primaryExtraDark md:transition-colors rounded-full ring-1 ring-primaryDark sm:text-2xl`}
+                onClick={() => handlePrevPage(1)}
+              >
+                <MdOutlineNavigateBefore />
+              </button>
+              <div className='flex justify-center p-2 text-xl bg-primaryDark rounded-md text-white font-bold w-16 sm:text-2xl sm:w-20'>
+                {currentPage}
+              </div>
+              <button
+                className={`${
+                  nextProducts.length === 0 && "opacity-0 pointer-events-none"
+                } p-2 text-2xl bg-primaryDark text-white md:hover:bg-primaryExtraDark md:transition-colors rounded-full ring-1 ring-primaryDark sm:text-2xl`}
+                onClick={() => handleNextPage(1)}
+              >
+                <MdOutlineNavigateNext />
+              </button>
+            </div>
+            <div className='grid grid-cols-2 auto-rows-fr gap-3 sm:gap-5 sm:grid-cols-3 lg:grid-cols-4'>
               {products.map((product) => (
                 <ProductCard product={product} key={product.id} />
               ))}
             </div>
-            <div className="m-3 mt-6 flex gap-3 justify-center items-center rounded-md sm:m-5 sm:mt-10 sm:gap-5">
+            <div className='m-3 mt-6 flex gap-3 justify-center items-center rounded-md sm:m-5 sm:mt-10 sm:gap-5'>
               <button
                 className={`${
                   currentPage === 1 && "opacity-0 pointer-events-none"
@@ -118,7 +139,7 @@ function ProductsResults() {
               >
                 <MdOutlineNavigateBefore />
               </button>
-              <div className="flex justify-center p-2 text-xl bg-primaryDark rounded-md text-white font-bold w-16 sm:p-3 sm:text-2xl sm:w-20">
+              <div className='flex justify-center p-2 text-xl bg-primaryDark rounded-md text-white font-bold w-16 sm:p-3 sm:text-2xl sm:w-20'>
                 {currentPage}
               </div>
               <button
@@ -132,15 +153,15 @@ function ProductsResults() {
             </div>
           </>
         ) : (
-          <div className="m-3 flex flex-col items-center sm:m-5 sm:mt-12">
-            <h5 className="font-semibold text-lg bg-primaryLight px-3 p-1 mb-2 sm:px-5 sm:p-2 sm:mb-3">
+          <div className='m-3 flex flex-col items-center sm:m-5 sm:mt-12'>
+            <h5 className='font-semibold text-lg bg-primaryLight px-3 p-1 mb-2 sm:px-5 sm:p-2 sm:mb-3'>
               La búsqueda de "{sku}" no obtuvo resultados
             </h5>
-            <p className="font-semibold">Intente con otra palabra</p>
+            <p className='font-semibold'>Intente con otra palabra</p>
             <img
-              className="w-80 mt-5 sm:mt-8 sm:w-96"
-              src="/assets/illustrations/searchEmpty.svg"
-              alt="favoritesEmpty"
+              className='w-80 mt-5 sm:mt-8 sm:w-96'
+              src='/assets/illustrations/searchEmpty.svg'
+              alt='favoritesEmpty'
             />
           </div>
         )}

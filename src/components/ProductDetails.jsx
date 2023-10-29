@@ -1,19 +1,19 @@
-import { useEffect, useState, useContext, useRef } from 'react';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
-import { AppContext } from '../context/AppProvider';
-import { toast, ToastContainer } from 'react-toastify';
+import { useEffect, useState, useContext, useRef } from "react";
+import { Link, useParams, useSearchParams } from "react-router-dom";
+import { AppContext } from "../context/AppProvider";
+import { toast, ToastContainer } from "react-toastify";
 
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-import CarouselFeatured from './CarouselFeatured';
-import { BsShare } from 'react-icons/bs';
-import { MdFavoriteBorder } from 'react-icons/md';
-import { AiFillHeart } from 'react-icons/ai';
-import axios from 'axios';
-import SkeletonProductsDetails from './Skeletons/SkeletonProductsDetails';
-import { IoReturnDownBack } from 'react-icons/io5';
+import CarouselFeatured from "./CarouselFeatured";
+import { BsShare } from "react-icons/bs";
+import { MdFavoriteBorder } from "react-icons/md";
+import { AiFillHeart } from "react-icons/ai";
+import axios from "axios";
+import SkeletonProductsDetails from "./Skeletons/SkeletonProductsDetails";
+import { IoReturnDownBack } from "react-icons/io5";
 
 function ProductDetails() {
   const { favorites, cart, cartAdd, favoritesHandler } = useContext(AppContext);
@@ -21,11 +21,11 @@ function ProductDetails() {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { productId } = useParams();
-  const colorParam = searchParams.get('color');
+  const colorParam = searchParams.get("color");
   const [productFound, setProductFound] = useState({});
   const [principalImage, setPrincipalImage] = useState(0);
 
-  const baseUrl = 'https://www.api.duckshoes.com.ar/';
+  const baseUrl = "https://www.api.duckshoes.com.ar/";
 
   useEffect(() => {
     setLoading(true);
@@ -65,7 +65,7 @@ function ProductDetails() {
       )
     ) {
       if (!toast.isActive(addToCartRef.current)) {
-        addToCartRef.current = toast.info('Este producto ya esta agregado', {
+        addToCartRef.current = toast.info("Este producto ya esta agregado", {
           autoClose: 1000,
           hideProgressBar: true,
           pauseOnFocusLoss: false,
@@ -74,7 +74,7 @@ function ProductDetails() {
       }
     } else {
       if (!toast.isActive(addToCartRef.current)) {
-        addToCartRef.current = toast.success('Agregado al carrito', {
+        addToCartRef.current = toast.success("Agregado al carrito", {
           autoClose: 1000,
           hideProgressBar: true,
           pauseOnFocusLoss: false,
@@ -125,8 +125,8 @@ function ProductDetails() {
                           key={idx}
                           className={`h-12 sm:h-16 w-12 sm:w-16 p-2 md:p-2 rounded-sm bg-white ${
                             principalImage == idx
-                              ? 'ring-blue-500 ring-2'
-                              : 'ring-gray-500 ring-1'
+                              ? "ring-blue-500 ring-2"
+                              : "ring-gray-500 ring-1"
                           }`}
                           onMouseEnter={() => setPrincipalImage(idx)}
                           onClick={() => setPrincipalImage(idx)}
@@ -168,7 +168,7 @@ function ProductDetails() {
                         </span>
                       </h2>
                       <span className='block my-3 font-semibold text-3xl sm:text-4xl'>
-                        ${parseInt(productFound.price).toLocaleString('es-ES')}
+                        ${parseInt(productFound.price).toLocaleString("es-ES")}
                       </span>
                       <div className='my-3 font-semibold sm:text-lg'>
                         <span>Temporada: </span>
@@ -193,8 +193,8 @@ function ProductDetails() {
                                     to={`/products/${productFound.sku}/${productFound.id}?color=${color}`}
                                     className={`${
                                       color == colorParam
-                                        ? 'ring ring-blue-500 ring-offset-2 w-10 rounded-full  my-3 sm:ring-offset-4'
-                                        : 'ring-gray-500 ring-1 w-10 rounded-full  my-3 sm:ring-offset-4'
+                                        ? "ring ring-blue-500 ring-offset-2 w-10 rounded-full  my-3 sm:ring-offset-4"
+                                        : "ring-gray-500 ring-1 w-10 rounded-full  my-3 sm:ring-offset-4"
                                     }`}
                                   >
                                     <img
@@ -266,8 +266,8 @@ function ProductDetails() {
                         key={idx}
                         className={`h-12 sm:h-16 w-12 sm:w-16 p-2 md:p-2 rounded-sm bg-white ${
                           principalImage == idx
-                            ? 'ring-blue-500 ring-2'
-                            : 'ring-gray-500 ring-1'
+                            ? "ring-blue-500 ring-2"
+                            : "ring-gray-500 ring-1"
                         }`}
                         onMouseEnter={() => setPrincipalImage(idx)}
                         onClick={() => setPrincipalImage(idx)}
@@ -309,7 +309,7 @@ function ProductDetails() {
                         </span>
                       </h2>
                       <span className='block my-3 font-semibold text-3xl sm:text-4xl'>
-                        ${parseInt(productFound.price).toLocaleString('es-ES')}
+                        ${parseInt(productFound.price).toLocaleString("es-ES")}
                       </span>
                       <div className='my-3 font-semibold sm:text-lg'>
                         <span>Temporada: </span>
@@ -334,8 +334,8 @@ function ProductDetails() {
                                     to={`/products/${productFound.sku}/${productFound.id}?color=${color}`}
                                     className={`${
                                       color == colorParam
-                                        ? 'ring ring-blue-500 ring-offset-2 w-10 rounded-full  my-3 sm:ring-offset-4'
-                                        : 'ring-gray-500 ring-1 w-10 rounded-full  my-3 sm:ring-offset-4'
+                                        ? "ring ring-blue-500 ring-offset-2 w-10 rounded-full  my-3 sm:ring-offset-4"
+                                        : "ring-gray-500 ring-1 w-10 rounded-full  my-3 sm:ring-offset-4"
                                     }`}
                                   >
                                     <img
@@ -371,7 +371,7 @@ function ProductDetails() {
             )}
           </div>
         </div>
-        <CarouselFeatured title={'Productos Relacionados'} from={9} />
+        <CarouselFeatured title={"Productos Relacionados"} from={9} />
       </div>
     </article>
   );
