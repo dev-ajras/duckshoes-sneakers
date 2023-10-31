@@ -1,23 +1,23 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from "react";
 
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
-import { RiShoppingBagLine } from 'react-icons/ri';
-import { HiMenu } from 'react-icons/hi';
-import { TiTimes } from 'react-icons/ti';
-import { IoLocationSharp } from 'react-icons/io5';
-import { AiOutlineSearch } from 'react-icons/ai';
-import arrowDrop from '/assets/icons/arrowDrop.svg';
+import { RiShoppingBagLine } from "react-icons/ri";
+import { HiMenu } from "react-icons/hi";
+import { TiTimes } from "react-icons/ti";
+import { IoLocationSharp } from "react-icons/io5";
+import { AiOutlineSearch } from "react-icons/ai";
+import arrowDrop from "/assets/icons/arrowDrop.svg";
 
-import NavbarMenu from './NavbarMenu';
-import { AppContext } from '../context/AppProvider';
+import NavbarMenu from "./NavbarMenu";
+import { AppContext } from "../context/AppProvider";
 
 function Navbar() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const sku = searchParams.get('sku');
+  const sku = searchParams.get("sku");
 
-  const [inputSearch, setInputSearch] = useState(sku ?? '');
+  const [inputSearch, setInputSearch] = useState(sku ?? "");
   const [onHover, setOnHover] = useState(null);
   const [logMenu, setLogMenu] = useState(null);
 
@@ -37,7 +37,7 @@ function Navbar() {
 
   useEffect(() => {
     if (sku !== inputSearch) {
-      setInputSearch('');
+      setInputSearch("");
     }
   }, [sku]);
 
@@ -61,9 +61,9 @@ function Navbar() {
   }, [onHover]);
 
   const logOut = () => {
-    localStorage.removeItem('token');
-    setUser('');
-    navigate('/login');
+    localStorage.removeItem("token");
+    setUser("");
+    navigate("/login");
   };
 
   return (
@@ -90,8 +90,8 @@ function Navbar() {
             id='search'
           />
           <label
-            className='flex justify-center items-center px-1 sm:px-2 border-l-2 bg-white md:rounded-tr-sm md:rounded-br-sm'
-            htmlFor='search'
+            onClick={handleSubmit}
+            className='cursor-pointer flex justify-center items-center px-1 sm:px-2 border-l-2 bg-white md:rounded-tr-sm md:rounded-br-sm'
           >
             <AiOutlineSearch />
           </label>
@@ -163,7 +163,7 @@ function Navbar() {
                     <button
                       className='text-start hover:text-primaryDark'
                       onClick={() => {
-                        setUser(''), localStorage.removeItem('token');
+                        setUser(""), localStorage.removeItem("token");
                       }}
                     >
                       Salir
