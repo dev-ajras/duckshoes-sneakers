@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ImSpinner8 } from "react-icons/im";
 import { ToastContainer, toast } from "react-toastify";
 
-function TotalCart({ userReject }) {
+function TotalCart({ userReject, tokenExpired }) {
   const { user, setUser, cart, cartFullClear } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
 
@@ -31,14 +31,6 @@ function TotalCart({ userReject }) {
 
   const orderCreated = () =>
     toast.success("Pedido creado correctamente", {
-      autoClose: 2000,
-      hideProgressBar: true,
-      pauseOnFocusLoss: false,
-      pauseOnHover: false,
-    });
-
-  const tokenExpired = () =>
-    toast.error("Tu sesión expiró, ingresa nuevamente", {
       autoClose: 2000,
       hideProgressBar: true,
       pauseOnFocusLoss: false,
