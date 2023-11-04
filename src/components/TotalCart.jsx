@@ -1,12 +1,12 @@
-import { useContext, useState } from 'react';
-import { AppContext } from '../context/AppProvider';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
-import { ImSpinner8 } from 'react-icons/im';
-import { ToastContainer, toast } from 'react-toastify';
+import { useContext, useState } from "react";
+import { AppContext } from "../context/AppProvider";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { ImSpinner8 } from "react-icons/im";
+import { ToastContainer, toast } from "react-toastify";
 
 function TotalCart({ userReject }) {
-  const { user, cart, cartFullClear } = useContext(AppContext);
+  const { user, setUser, cart, cartFullClear } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
 
   const calculateTotal = (products) => {
@@ -30,7 +30,15 @@ function TotalCart({ userReject }) {
   }));
 
   const orderCreated = () =>
-    toast.success('Pedido creado correctamente', {
+    toast.success("Pedido creado correctamente", {
+      autoClose: 2000,
+      hideProgressBar: true,
+      pauseOnFocusLoss: false,
+      pauseOnHover: false,
+    });
+
+  const tokenExpired = () =>
+    toast.error("Tu sesión expiró, ingresa nuevamente", {
       autoClose: 2000,
       hideProgressBar: true,
       pauseOnFocusLoss: false,
@@ -39,7 +47,7 @@ function TotalCart({ userReject }) {
 
   const navigate = useNavigate();
 
-  const baseUrl = 'https://www.api.duckshoes.com.ar/';
+  const baseUrl = "https://www.api.duckshoes.com.ar/";
 
   const postOrder = async () => {
     setLoading(true);
@@ -56,11 +64,18 @@ function TotalCart({ userReject }) {
       if (response.status === 201) {
         orderCreated();
         setTimeout(() => {
-          navigate('/user');
+          navigate("/user");
           cartFullClear();
         }, 4000);
       }
     } catch (error) {
+      if (error.response.status === 400) {
+        tokenExpired();
+        setTimeout(() => {
+          localStorage.removeItem("token");
+          setUser("");
+        }, 3000);
+      }
       // console.log(error);
     } finally {
       setLoading(false);
@@ -73,7 +88,7 @@ function TotalCart({ userReject }) {
     if (user.role !== 0) {
       userReject();
       setTimeout(() => {
-        navigate('/login');
+        navigate("/login");
       }, 3000);
     } else {
       postOrder();
@@ -98,7 +113,7 @@ function TotalCart({ userReject }) {
             <span className='font-medium opacity-60 sm:text-lg'>
               $
               {parseInt(cartItem.price * cartItem.quantity).toLocaleString(
-                'es-ES'
+                "es-ES"
               )}
             </span>
           </div>
@@ -109,8 +124,8 @@ function TotalCart({ userReject }) {
             Total
           </span>
           <span className='text-primaryExtraDark font-semibold sm:text-xl md:text-2xl'>
-            {' '}
-            ${total.toLocaleString('es-ES')}
+            {" "}
+            ${total.toLocaleString("es-ES")}
           </span>
         </div>
         <button
@@ -120,7 +135,7 @@ function TotalCart({ userReject }) {
           {loading ? (
             <ImSpinner8 className='animate-spin w-7 h-7' />
           ) : (
-            'Encargar'
+            "Encargar"
           )}
         </button>
       </div>

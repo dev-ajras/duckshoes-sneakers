@@ -1,24 +1,24 @@
-import axios from 'axios';
-import { useContext, useState } from 'react';
-import { AppContext } from '../../context/AppProvider';
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { useContext, useState } from "react";
+import { AppContext } from "../../context/AppProvider";
+import { useNavigate } from "react-router-dom";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import { BiImageAdd } from 'react-icons/bi';
-import { IoClose } from 'react-icons/io5';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import { ImSpinner8 } from 'react-icons/im';
+import { BiImageAdd } from "react-icons/bi";
+import { IoClose } from "react-icons/io5";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { ImSpinner8 } from "react-icons/im";
 
 function AddProduct() {
   const { user, setUser } = useContext(AppContext);
 
   const initialState = {
-    sku: '',
-    color: 'negro',
-    temporada: 'verano',
-    description: '',
+    sku: "",
+    color: "negro",
+    temporada: "verano",
+    description: "",
     images: [],
     price: 0,
   };
@@ -70,7 +70,6 @@ function AddProduct() {
   };
 
   const handlePrice = (e) => {
-    console.log('bbb');
     const currentPrice = e.target.value;
     if (currentPrice.length <= 10) {
       setProductData({ ...productData, price: parseInt(currentPrice) });
@@ -79,14 +78,14 @@ function AddProduct() {
 
   const formDataProducts = new FormData();
 
-  formDataProducts.append('sku', productData.sku);
-  formDataProducts.append('color', productData.color);
-  formDataProducts.append('temporada', productData.temporada);
-  formDataProducts.append('description', productData.description);
-  formDataProducts.append('price', productData.price);
+  formDataProducts.append("sku", productData.sku);
+  formDataProducts.append("color", productData.color);
+  formDataProducts.append("temporada", productData.temporada);
+  formDataProducts.append("description", productData.description);
+  formDataProducts.append("price", productData.price);
 
   for (let i = 0; i < productData.images.length; i++) {
-    formDataProducts.append('images', productData.images[i]);
+    formDataProducts.append("images", productData.images[i]);
   }
 
   const handleForm = (e) => {
@@ -95,7 +94,7 @@ function AddProduct() {
   };
 
   const tokenExpired = () =>
-    toast.error('Tu token expiró, volvé a logearte', {
+    toast.error("Tu sesión expiró, ingresa nuevamente", {
       autoClose: 2000,
       hideProgressBar: true,
       pauseOnFocusLoss: false,
@@ -112,18 +111,18 @@ function AddProduct() {
 
   const navigate = useNavigate();
 
-  const baseUrl = 'https://www.api.duckshoes.com.ar/';
+  const baseUrl = "https://www.api.duckshoes.com.ar/";
 
   const addProduct = async () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        baseUrl + 'products/create',
+        baseUrl + "products/create",
         formDataProducts,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
-            'Content-Type': 'multipart/form-data',
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -132,15 +131,15 @@ function AddProduct() {
         setProductData(initialState);
         setPreviewImages([]);
         setTimeout(() => {
-          navigate('/admin/todos-productos');
+          navigate("/admin/todos-productos");
         }, 3000);
       }
     } catch (error) {
       if (error.response.status === 403) {
         tokenExpired();
         setTimeout(() => {
-          localStorage.removeItem('token');
-          setUser('');
+          localStorage.removeItem("token");
+          setUser("");
         }, 3000);
       }
     } finally {
@@ -299,7 +298,7 @@ function AddProduct() {
           {loading ? (
             <ImSpinner8 className='animate-spin w-6 h-6' />
           ) : (
-            'Agregar Producto'
+            "Agregar Producto"
           )}
         </button>
       </div>
