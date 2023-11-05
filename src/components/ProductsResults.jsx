@@ -94,37 +94,39 @@ function ProductsResults() {
   return (
     <article className='flex justify-center'>
       <div className='relative m-3 sm:m-5 lg:max-w-6xl w-full'>
-        <button
-          onClick={() => returnPrev()}
-          className='flex justify-center items-center font-medium text-lg mb-3 sm:mb-5 sm:text-2xl bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors rounded-sm p-1.5 w-10 h-10 '
-        >
-          <IoReturnDownBack className='stroke-white w-full h-full' />
-        </button>
+        <div className='flex items-start'>
+          <button
+            onClick={() => returnPrev()}
+            className='flex justify-center items-center font-medium text-lg mb-3 sm:mb-5 sm:text-2xl bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors rounded-sm p-1.5 w-10 h-10 '
+          >
+            <IoReturnDownBack className='stroke-white w-full h-full' />
+          </button>
+          <div className=' w-full flex mr-10 gap-3 justify-center items-center rounded-md sm:gap-5'>
+            <button
+              className={`${
+                currentPage === 1 && "opacity-0 pointer-events-none"
+              } p-2 text-2xl bg-primaryDark text-white md:hover:bg-primaryExtraDark md:transition-colors rounded-full ring-1 ring-primaryDark sm:text-2xl`}
+              onClick={() => handlePrevPage(1)}
+            >
+              <MdOutlineNavigateBefore />
+            </button>
+            <div className='flex justify-center p-2 text-xl bg-primaryDark rounded-md text-white font-bold w-16 sm:text-2xl sm:w-20'>
+              {currentPage}
+            </div>
+            <button
+              className={`${
+                nextProducts.length === 0 && "opacity-0 pointer-events-none"
+              } p-2 text-2xl bg-primaryDark text-white md:hover:bg-primaryExtraDark md:transition-colors rounded-full ring-1 ring-primaryDark sm:text-2xl`}
+              onClick={() => handleNextPage(1)}
+            >
+              <MdOutlineNavigateNext />
+            </button>
+          </div>
+        </div>
         {loading === true ? (
           <SkeletonProductsResults />
         ) : products.length > 0 ? (
           <>
-            <div className='absolute top-0 left-0 w-full flex gap-3 justify-center items-center rounded-md sm:gap-5'>
-              <button
-                className={`${
-                  currentPage === 1 && "opacity-0 pointer-events-none"
-                } p-2 text-2xl bg-primaryDark text-white md:hover:bg-primaryExtraDark md:transition-colors rounded-full ring-1 ring-primaryDark sm:text-2xl`}
-                onClick={() => handlePrevPage(1)}
-              >
-                <MdOutlineNavigateBefore />
-              </button>
-              <div className='flex justify-center p-2 text-xl bg-primaryDark rounded-md text-white font-bold w-16 sm:text-2xl sm:w-20'>
-                {currentPage}
-              </div>
-              <button
-                className={`${
-                  nextProducts.length === 0 && "opacity-0 pointer-events-none"
-                } p-2 text-2xl bg-primaryDark text-white md:hover:bg-primaryExtraDark md:transition-colors rounded-full ring-1 ring-primaryDark sm:text-2xl`}
-                onClick={() => handleNextPage(1)}
-              >
-                <MdOutlineNavigateNext />
-              </button>
-            </div>
             <div className='grid grid-cols-2 auto-rows-fr gap-3 sm:gap-5 sm:grid-cols-3 lg:grid-cols-4'>
               {products.map((product) => (
                 <ProductCard product={product} key={product.id} />

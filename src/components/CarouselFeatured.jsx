@@ -38,13 +38,13 @@ function CarouselFeatured({ title, from }) {
   };
 
   return (
-    <article className="flex justify-center w-full">
-      <div className="max-w-6xl m-3 sm:m-5 overflow-hidden pb-3 w-full">
-        <h3 className="mb-3 font-medium text-xl sm:text-2xl sm:mb-5">
+    <article className='flex justify-center w-full'>
+      <div className='max-w-6xl m-3 sm:m-5 overflow-hidden pb-3 w-full'>
+        <h3 className='mb-3 font-medium text-xl sm:text-2xl sm:mb-5'>
           {title}
         </h3>
         <div ref={emblaRef}>
-          <div className="flex gap-3 sm:gap-5">
+          <div className='flex gap-3 sm:gap-5'>
             {loading ? (
               <SkeletonCarouselFeatured />
             ) : products.length > 0 ? (
@@ -53,30 +53,30 @@ function CarouselFeatured({ title, from }) {
                 return (
                   <Link
                     to={`/products/${product.sku}/${product.id}?color=${product.color}`}
-                    className="w-full flex-[0_0_40%] p-3 shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow bg-white rounded-md relative sm:p-5 sm:flex-[0_0_30%] md:flex-[0_0_25%] lg:flex-[0_0_21%]"
+                    className='w-full flex-[0_0_40%] p-3 shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow bg-white rounded-md relative sm:p-5 sm:flex-[0_0_30%] md:flex-[0_0_25%] lg:flex-[0_0_21%]'
                     key={product.id}
                   >
-                    <div className="flex flex-col w-full h-full">
+                    <div className='flex flex-col w-full h-full'>
                       <img
-                        className="object-contain px-3 py-5 md:px-5 md:py-12 h-full"
+                        className='object-contain px-3 py-5 md:px-5 md:py-12 h-full'
                         src={product.image}
                         alt={product.sku}
                       />
-                      <h3 className="line-clamp-1 h-9 sm:text-lg">
+                      <h3 className='line-clamp-1 h-9 sm:text-lg'>
                         {product.sku}
                       </h3>
-                      <div className=" flex mt-1 items-center text-xl sm:text-2xl sm:mt-3">
+                      <div className=' flex mt-1 items-center text-xl sm:text-2xl sm:mt-3'>
                         <strong>
                           ${parseInt(product.price).toLocaleString("es-ES")}
                         </strong>
                         <button
-                          className="absolute top-4 right-4 sm:top-5 sm:right-5"
+                          className='absolute top-4 right-4 sm:top-5 sm:right-5'
                           onClick={(e) => handleFavorite(e, product.id)}
                         >
                           {isFavorite ? (
-                            <AiFillHeart className="fill-red-500 w-5 h-5 sm:w-7 sm:h-7" />
+                            <AiFillHeart className='fill-red-500 w-7 h-7 sm:w-9 sm:h-9' />
                           ) : (
-                            <MdFavoriteBorder className="w-5 h-5 opacity-60 sm:w-7 sm:h-7" />
+                            <MdFavoriteBorder className='w-7 h-7 opacity-60 sm:w-9 sm:h-9' />
                           )}
                         </button>
                       </div>

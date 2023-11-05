@@ -1,10 +1,10 @@
-import { useContext } from 'react';
-import { AppContext } from '../context/AppProvider';
+import { useContext } from "react";
+import { AppContext } from "../context/AppProvider";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { MdFavoriteBorder } from 'react-icons/md';
-import { AiFillHeart } from 'react-icons/ai';
+import { MdFavoriteBorder } from "react-icons/md";
+import { AiFillHeart } from "react-icons/ai";
 
 function ProductCard({ product, favoritesCard }) {
   const { favoritesHandler, favorites } = useContext(AppContext);
@@ -41,7 +41,7 @@ function ProductCard({ product, favoritesCard }) {
         <h3 className='line-clamp-1 h-8 sm:text-lg'>{product.sku}</h3>
         <div className='mt-1 md:mt-2 text-xl'>
           <strong className='sm:text-2xl'>
-            ${parseInt(product.price).toLocaleString('es-ES')}
+            ${parseInt(product.price).toLocaleString("es-ES")}
           </strong>
         </div>
         <button
@@ -49,9 +49,9 @@ function ProductCard({ product, favoritesCard }) {
           onClick={(e) => handleFavorite(e, product)}
         >
           {isFavorite ? (
-            <AiFillHeart className='fill-red-500 w-5 h-5 sm:w-7 sm:h-7' />
+            <AiFillHeart className='fill-red-500 w-7 h-7 sm:w-9 sm:h-9' />
           ) : (
-            <MdFavoriteBorder className='w-5 h-5 opacity-60 sm:w-7 sm:h-7' />
+            <MdFavoriteBorder className='w-7 h-7 opacity-60 sm:w-9 sm:h-9' />
           )}
         </button>
       </div>
