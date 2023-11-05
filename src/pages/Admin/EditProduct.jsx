@@ -273,29 +273,33 @@ function EditProduct() {
     ({ value }) => productOneColors && !productOneColors.includes(value)
   );
 
+  const handleDelete = () => {
+    console.log("delete!");
+  };
+
   return (
-    <form onSubmit={handleForm} className="grid sm:grid-cols-2 gap-3">
-      <div className="flex flex-col bg-white p-5 rounded shadow">
+    <form onSubmit={handleForm} className='grid sm:grid-cols-2 gap-3'>
+      <div className='flex flex-col bg-white p-5 rounded shadow'>
         <ToastContainer />
-        <label htmlFor="sku" className="mb-2">
+        <label htmlFor='sku' className='mb-2'>
           SKU
         </label>
         <input
           value={productOne.sku}
           onChange={(e) => handleSku(e)}
-          type="text"
-          id="sku"
-          placeholder="sku"
-          className="p-2 outline-none border rounded"
+          type='text'
+          id='sku'
+          placeholder='sku'
+          className='p-2 outline-none border rounded'
         />
-        <label htmlFor="color" className="mt-5 mb-2">
+        <label htmlFor='color' className='mt-5 mb-2'>
           Color
         </label>
         <select
           onChange={(e) => handleColor(e)}
-          id="color"
-          className="p-2 outline-none border rounded"
-          placeholder="seleccionar color"
+          id='color'
+          className='p-2 outline-none border rounded'
+          placeholder='seleccionar color'
         >
           {filteredColors.map(({ value, name }) => (
             <option key={value} value={value}>
@@ -303,19 +307,19 @@ function EditProduct() {
             </option>
           ))}
         </select>
-        <label htmlFor="temporada" className="mt-5 mb-2">
+        <label htmlFor='temporada' className='mt-5 mb-2'>
           Temporada
         </label>
         <select
           onChange={(e) => handleTemporada(e)}
-          id="temporada"
-          className="p-2 outline-none border rounded"
+          id='temporada'
+          className='p-2 outline-none border rounded'
           value={productOne.temporada}
         >
-          <option value="verano">Verano</option>
-          <option value="invierno">Invierno</option>
+          <option value='verano'>Verano</option>
+          <option value='invierno'>Invierno</option>
         </select>
-        <label htmlFor="description" className="mt-5 mb-2">
+        <label htmlFor='description' className='mt-5 mb-2'>
           Descripción
         </label>
         <textarea
@@ -323,37 +327,37 @@ function EditProduct() {
           onChange={(e) => handleDescription(e)}
           maxLength={500}
           rows={4}
-          type="text"
-          id="description"
-          placeholder="descripción"
-          className="p-2 outline-none border rounded max-h-96"
+          type='text'
+          id='description'
+          placeholder='descripción'
+          className='p-2 outline-none border rounded max-h-96'
         />
       </div>
-      <div className="flex flex-col bg-white rounded shadow p-5">
+      <div className='flex flex-col bg-white rounded shadow p-5'>
         <h4>Images</h4>
-        <div className="flex mt-2 gap-3">
+        <div className='flex mt-2 gap-3'>
           <label
-            htmlFor="images"
-            className="cursor-pointer w-24 h-24 min-w-[96px] border-2 border-dashed border-primary md:hover:border-primaryDark flex justify-center items-center"
+            htmlFor='images'
+            className='cursor-pointer w-24 h-24 min-w-[96px] border-2 border-dashed border-primary md:hover:border-primaryDark flex justify-center items-center'
           >
-            <div className="flex flex-col justify-center items-center text-center text-primary text-xs">
-              <BiImageAdd className="w-8 h-8" />
+            <div className='flex flex-col justify-center items-center text-center text-primary text-xs'>
+              <BiImageAdd className='w-8 h-8' />
               Agregar fotos
             </div>
           </label>
           <input
             onChange={(e) => handleImages(e)}
-            type="file"
+            type='file'
             multiple
-            id="images"
-            accept="/image/*"
-            className="hidden"
+            id='images'
+            accept='/image/*'
+            className='hidden'
           />
           <DragDropContext onDragEnd={handleOnDragEnd}>
-            <Droppable droppableId="images" direction="horizontal">
+            <Droppable droppableId='images' direction='horizontal'>
               {(provided) => (
                 <div
-                  className="flex overflow-auto"
+                  className='flex overflow-auto'
                   {...provided.droppableProps}
                   ref={provided.innerRef}
                 >
@@ -365,20 +369,20 @@ function EditProduct() {
                     >
                       {(provided) => (
                         <div
-                          className="relative mr-3"
+                          className='relative mr-3'
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
                           ref={provided.innerRef}
                         >
                           <img
-                            className="object-contain max-w-[100px] max-h-[100px] p-2 border h-full"
+                            className='object-contain max-w-[100px] max-h-[100px] p-2 border h-full'
                             key={index}
                             src={previewImage}
                             alt={`Preview ${index}`}
                           />
                           <div
                             onClick={(e) => handleRemoveImage(e, index)}
-                            className="cursor-pointer absolute top-1.5 right-1.5 bg-red-400 md:hover:bg-red-500 md:transition-colors text-white p-1 w-5 h-5 rounded-full flex justify-center items-center"
+                            className='cursor-pointer absolute top-1.5 right-1.5 bg-red-500 md:hover:bg-red-600 md:transition-colors text-white p-1 w-5 h-5 rounded-full flex justify-center items-center'
                           >
                             <IoClose />
                           </div>
@@ -396,19 +400,19 @@ function EditProduct() {
           {productOneConstant.images &&
             Object.keys(productOneConstant.images).map((color) => (
               <div key={color}>
-                <h4 className="mt-2 mb-1">
+                <h4 className='mt-2 mb-1'>
                   {color.slice(0, 1).toUpperCase()}
                   {color.slice(1)}
                 </h4>
                 <div>
                   <div>
-                    <div className="flex overflow-auto">
+                    <div className='flex overflow-auto'>
                       {productOneConstant.images[color].map(
                         (previewImage, index) => (
                           <div key={index} index={index}>
-                            <div className="relative mr-1 sm:mr-3 w-[60px] h-[60px] sm:w-[90px] sm:h-[90px]">
+                            <div className='relative mr-1 sm:mr-3 w-[60px] h-[60px] sm:w-[90px] sm:h-[90px]'>
                               <img
-                                className="object-contain w-full h-full p-1 sm:p-3 border "
+                                className='object-contain w-full h-full p-1 sm:p-3 border '
                                 key={index}
                                 src={previewImage}
                                 alt={`Preview ${index}`}
@@ -423,25 +427,31 @@ function EditProduct() {
               </div>
             ))}
         </div>
-        <label htmlFor="price" className="mt-5 mb-2">
+        <label htmlFor='price' className='mt-5 mb-2'>
           Precio
         </label>
         <input
           value={productOne.price}
           onChange={(e) => handlePrice(e)}
           min={0}
-          type="number"
-          id="price"
-          placeholder="precio"
-          className="p-2 outline-none border rounded"
+          type='number'
+          id='price'
+          placeholder='precio'
+          className='p-2 outline-none border rounded'
         />
-        <button className="flex justify-center text-center bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors text-white p-3 font-normal rounded mt-5">
+        <button className='flex justify-center text-center bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors text-white p-3 font-normal rounded mt-5'>
           {loading ? (
-            <ImSpinner8 className="animate-spin w-6 h-6" />
+            <ImSpinner8 className='animate-spin w-6 h-6' />
           ) : (
             "Editar Producto"
           )}
         </button>
+        {/* <div
+          onClick={() => handleDelete()}
+          className='cursor-pointer flex justify-center text-center bg-red-500 md:hover:bg-red-600 md:transition-colors text-white p-3 font-normal rounded mt-5'
+        >
+          Eliminar Producto
+        </div> */}
       </div>
     </form>
   );

@@ -72,14 +72,14 @@ function OrderUser() {
                         <h4 className='font-semibold text-lg line-clamp-2 leading-6 sm:text-lg sm:leading-10'>
                           {filteredProduct.sku}
                         </h4>
-                        <div className='md:flex gap-2 sm:gap-3'>
-                          <div className='flex gap-2 font-semibold text-sm my-1 sm:gap-3 sm:text-lg'>
+                        <div className='md:flex gap-2 sm:gap-3 text-base'>
+                          <div className='flex gap-2 font-semibold my-1 sm:gap-3 sm:text-lg'>
                             <p>
                               <span className='opacity-60'>Color: </span>
                               <span>{filteredProduct.color}</span>
                             </p>
                           </div>
-                          <div className='flex gap-2 font-semibold text-sm my-1 sm:gap-3 sm:text-lg'>
+                          <div className='flex gap-2 font-semibold my-1 sm:gap-3 sm:text-lg'>
                             <p>
                               <span className='opacity-60'>Unitario: </span>
                               <span>
@@ -188,10 +188,10 @@ function OrderUser() {
                 )}
                 <div className=' border-t border-gray-200 my-2'></div>
                 <div className='flex justify-between'>
-                  <span className='text-primaryExtraDark font-semibold sm:text-xl md:text-2xl'>
+                  <span className='text-primaryExtraDark font-semibold text-2xl'>
                     Total:{" "}
                   </span>
-                  <span className='text-primaryExtraDark font-semibold sm:text-xl md:text-2xl'>
+                  <span className='text-primaryExtraDark font-semibold text-2xl'>
                     ${parseInt(order.value).toLocaleString("es-ES")}
                   </span>
                 </div>

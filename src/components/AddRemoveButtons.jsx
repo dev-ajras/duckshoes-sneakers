@@ -13,11 +13,6 @@ export default function AddRemoveButtons({ filteredProduct }) {
     cartDelete(product);
   };
 
-  // const productInCart = cart.find(
-  //   (cartItem) => cartItem.id === filteredProductId
-  // );
-  // const quantityInCart = productInCart && productInCart.quantity;
-
   const quantityPerProduct = [
     8, 12, 16, 24, 36, 48, 60, 72, 84, 96, 108, 120, 180, 240, 300, 360,
   ];
@@ -32,7 +27,7 @@ export default function AddRemoveButtons({ filteredProduct }) {
     <div className='flex gap-3 sm:gap-5'>
       <select
         onChange={(e) => handleQuantity(e, filteredProduct)}
-        className='p-2 outline-none border rounded sm:px-4 sm:text-lg text-center font-normal'
+        className='p-2 outline-none border rounded sm:px-4 text-lg text-center font-normal'
         name='quantity'
         id='quantity'
         value={productQuantity}

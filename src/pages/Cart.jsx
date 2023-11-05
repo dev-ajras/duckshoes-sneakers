@@ -61,7 +61,7 @@ function Cart() {
                         <h4 className='font-semibold text-lg line-clamp-2 leading-6 sm:text-lg sm:leading-10'>
                           {filteredProduct.sku}
                         </h4>
-                        <div className='flex flex-col md:flex-row sm:gap-2 font-semibold text-sm my-1 md:gap-3 sm:text-lg'>
+                        <div className='flex flex-col md:flex-row sm:gap-2 font-semibold text-base my-1 md:gap-3 sm:text-lg'>
                           <p>
                             <span className='opacity-60'>Color: </span>
                             <span>{filteredProduct.color}</span>

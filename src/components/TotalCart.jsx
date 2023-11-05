@@ -12,8 +12,6 @@ function TotalCart({ userReject, tokenExpired }) {
   const [discount, setDiscount] = useState(0);
   const [discountCoefficient, setDiscountCoefficient] = useState(1);
 
-  console.log(cart);
-
   const calculateTotal = (products) => {
     let total = 0;
     for (let i = 0; i < products.length; i++) {
@@ -109,7 +107,6 @@ function TotalCart({ userReject, tokenExpired }) {
       setDiscountCoefficient(1);
       setDiscount(0);
     }
-    console.log(totalQuantity);
   }, [cart]);
 
   return (
@@ -163,10 +160,10 @@ function TotalCart({ userReject, tokenExpired }) {
         )}
         <div className=' border-t border-gray-200 my-2'></div>
         <div className='flex justify-between'>
-          <span className='text-primaryExtraDark font-semibold sm:text-xl md:text-2xl'>
+          <span className='text-primaryExtraDark font-semibold text-2xl'>
             Total
           </span>
-          <span className='text-primaryExtraDark font-semibold sm:text-xl md:text-2xl'>
+          <span className='text-primaryExtraDark font-semibold text-2xl'>
             {" "}
             ${Math.round(total * discountCoefficient).toLocaleString("es-ES")}
           </span>

@@ -5,21 +5,21 @@ import {
   Route,
   Routes,
   useNavigate,
-} from 'react-router-dom';
-import AddProduct from './AddProduct';
-import EditProduct from './EditProduct';
-import AllProducts from './AllProducts';
-import Configuration from './Configuration';
-import AdminMain from './AdminMain';
-import OrdersAdmin from './OrdersAdmin';
-import OrderAdmin from './OrderAdmin';
+} from "react-router-dom";
+import AddProduct from "./AddProduct";
+import EditProduct from "./EditProduct";
+import AllProducts from "./AllProducts";
+import Configuration from "./Configuration";
+import AdminMain from "./AdminMain";
+import OrdersAdmin from "./OrdersAdmin";
+import OrderAdmin from "./OrderAdmin";
 
-import { useContext } from 'react';
-import { AppContext } from '../../context/AppProvider';
-import { IoReturnDownBack } from 'react-icons/io5';
-import { PiPlusBold } from 'react-icons/pi';
-import { TbShoe } from 'react-icons/tb';
-import { RiShoppingBagLine } from 'react-icons/ri';
+import { useContext } from "react";
+import { AppContext } from "../../context/AppProvider";
+import { IoReturnDownBack } from "react-icons/io5";
+import { PiPlusBold } from "react-icons/pi";
+import { TbShoe } from "react-icons/tb";
+import { RiShoppingBagLine } from "react-icons/ri";
 
 function Admin() {
   const { setUser } = useContext(AppContext);
@@ -46,8 +46,8 @@ function Admin() {
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? 'text-primaryDark border-l-2 border-primaryDark pl-2'
-                      : 'pl-2 border-l-2 border-gray-300 hover:text-primaryDark hover:border-l-2 hover:border-primaryDark'
+                      ? "text-primaryDark border-l-2 border-primaryDark pl-2"
+                      : "pl-2 border-l-2 border-gray-300 hover:text-primaryDark hover:border-l-2 hover:border-primaryDark"
                   }
                   to='/admin/agregar-producto'
                 >
@@ -56,8 +56,8 @@ function Admin() {
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? 'text-primaryDark border-l-2 border-primaryDark pl-2'
-                      : 'pl-2 border-l-2 border-gray-300 hover:text-primaryDark hover:border-l-2 hover:border-primaryDark'
+                      ? "text-primaryDark border-l-2 border-primaryDark pl-2"
+                      : "pl-2 border-l-2 border-gray-300 hover:text-primaryDark hover:border-l-2 hover:border-primaryDark"
                   }
                   to='/admin/todos-productos'
                 >
@@ -66,8 +66,8 @@ function Admin() {
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? 'text-primaryDark border-l-2 border-primaryDark pl-2'
-                      : 'pl-2 border-l-2 border-gray-300 hover:text-primaryDark hover:border-l-2 hover:border-primaryDark'
+                      ? "text-primaryDark border-l-2 border-primaryDark pl-2"
+                      : "pl-2 border-l-2 border-gray-300 hover:text-primaryDark hover:border-l-2 hover:border-primaryDark"
                   }
                   to='/admin/todos-pedidos'
                 >
@@ -75,7 +75,7 @@ function Admin() {
                 </NavLink>
                 <button
                   onClick={() => {
-                    setUser(''), localStorage.removeItem('token');
+                    setUser(""), localStorage.removeItem("token");
                   }}
                   className='pl-2 border-l-2 border-gray-300 hover:text-primaryDark hover:border-l-2 hover:border-primaryDark text-left'
                 >
@@ -105,7 +105,7 @@ function Admin() {
             </div>
             <article className='w-full'>
               <Routes>
-                <Route index element={<AddProduct />} />
+                <Route index element={<OrdersAdmin />} />
                 <Route path='agregar-producto' element={<AddProduct />} />
                 <Route
                   path='editar-producto/:productId'
