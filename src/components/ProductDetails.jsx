@@ -18,6 +18,12 @@ import { IoReturnDownBack } from "react-icons/io5";
 function ProductDetails() {
   const { favorites, cart, cartAdd, favoritesHandler } = useContext(AppContext);
   const [loading, setLoading] = useState(true);
+  const [isHover, setIsHover] = useState(true);
+  const [cursorX, setCursorX] = useState(0);
+  const [cursorY, setCursorY] = useState(0);
+  const [imageWidth, setImageWidth] = useState(0);
+  const [imageHeight, setImageHeight] = useState(0);
+  const imageRef = useRef(null);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { productId } = useParams();
@@ -100,6 +106,25 @@ function ProductDetails() {
     favoritesHandler({ ...product, color: colorParam });
   };
 
+  // const handleHover = (e) => {
+  //   setIsHover(true);
+  // };
+
+  const handleMouseMove = (e) => {
+    if (isHover) {
+      const image = imageRef.current.getBoundingClientRect();
+      const cursorX = e.clientX - image.left;
+      const cursorY = e.clientY - image.top;
+      // console.log("clientX:", e.clientX - image.left);
+      // console.log("clientY:", e.clientY - image.top);
+      // console.log("aaaaa", image);
+      setImageWidth(image.width);
+      setImageHeight(image.height);
+      setCursorX(cursorX);
+      setCursorY(cursorY);
+    }
+  };
+
   return (
     <article className='flex justify-center'>
       <ToastContainer className='mt-24' />
@@ -141,12 +166,28 @@ function ProductDetails() {
                 </div>
                 <div className='flex flex-col md:flex-row md:gap-10'>
                   <div className='relative md:basis-2/3'>
-                    <div className='flex justify-center sm:mb-3 md:mb-5 ml-16'>
+                    <div
+                      onMouseMove={(e) => handleMouseMove(e)}
+                      onMouseEnter={(e) => handleHover(e)}
+                      onMouseLeave={() => setIsHover(false)}
+                      className='flex justify-center sm:mb-3 md:mb-5 ml-16 px-5 py-10 sm:px-20 md:px-14 lg:px-28'
+                    >
                       <img
-                        className='h-56 sm:h-80 object-contain px-5 py-10 sm:px-20 md:px-14 lg:px-28'
+                        className='h-56 sm:h-80 object-contain '
                         src={productFoundOne.toString()}
                         alt={productFoundOne.toString()}
+                        ref={imageRef}
                       />
+                      {isHover && (
+                        <div className='pointer-events-none absolute top-0 left-0 w-full h-full flex items-center justify-center  '>
+                          <div
+                            style={{
+                              transform: `translate(${cursorX}px, ${cursorY}px)`,
+                            }}
+                            className=' w-10 h-10 bg-red-600 opacity-70 '
+                          ></div>
+                        </div>
+                      )}
                     </div>
                     {productFound.description && (
                       <div className='hidden md:block'>
@@ -160,99 +201,116 @@ function ProductDetails() {
                     )}
                   </div>
                   <div className='md:basis-1/3  md:w-full'>
-                    <div className='md:sticky md:top-28 my-3 md:mb-0'>
-                      <h2 className='font-semibold sm:text-lg line-clamp-2 '>
-                        <span>SKU: </span>
-                        <span className='opacity-80'>
-                          {productFound.sku && productFound.sku.toUpperCase()}
+                    {isHover ? (
+                      <div
+                        style={{
+                          backgroundImage: `url(${productFoundOne.toString()})`,
+                          backgroundPosition: `${-cursorX * 1.3}px ${
+                            -cursorY * 1.3
+                          }px`,
+                          backgroundRepeat: "no-repeat",
+                          backgroundSize: `${imageWidth * 2}px ${
+                            imageHeight * 2
+                          }px`,
+                        }}
+                        className='h-full'
+                      ></div>
+                    ) : (
+                      <div className='md:sticky md:top-28 my-3 md:mb-0'>
+                        <h2 className='font-semibold sm:text-lg line-clamp-2 '>
+                          <span>SKU: </span>
+                          <span className='opacity-80'>
+                            {productFound.sku && productFound.sku.toUpperCase()}
+                          </span>
+                        </h2>
+                        <span className='block my-3 font-semibold text-3xl sm:text-4xl'>
+                          $
+                          {parseInt(productFound.price).toLocaleString("es-ES")}
                         </span>
-                      </h2>
-                      <span className='block my-3 font-semibold text-3xl sm:text-4xl'>
-                        ${parseInt(productFound.price).toLocaleString("es-ES")}
-                      </span>
-                      <div className='my-3 font-semibold sm:text-lg'>
-                        <span>Temporada: </span>
-                        <span className='opacity-80 '>
-                          {productFound.temporada && productFound.temporada}
-                        </span>
-                      </div>
-                      {productFound.color && (
-                        <div>
-                          <h3 className='font-semibold mt-2 sm:text-lg'>
-                            <span>Color: </span>
-                            <span className='opacity-80'>{colorParam}</span>
-                          </h3>
-                          <div className='flex gap-5'>
-                            {productFound.images &&
-                              Object.keys(productFound.images).map(
-                                (color, idx) => (
-                                  <Link
-                                    replace
-                                    key={idx}
-                                    onClick={() => setPrincipalImage(0)}
-                                    to={`/products/${productFound.sku}/${productFound.id}?color=${color}`}
-                                    className={`${
-                                      color == colorParam
-                                        ? "ring ring-blue-500 ring-offset-2 w-10 rounded-full  my-3 sm:ring-offset-4"
-                                        : "ring-gray-500 ring-1 w-10 rounded-full  my-3 sm:ring-offset-4"
-                                    }`}
-                                  >
-                                    <img
-                                      className='drop-shadow-md rounded-full '
-                                      src={`/assets/colors/${color.toLowerCase()}Color.svg`}
-                                      alt={color}
-                                    />
-                                  </Link>
-                                )
-                              )}
+                        <div className='my-3 font-semibold sm:text-lg'>
+                          <span>Temporada: </span>
+                          <span className='opacity-80 '>
+                            {productFound.temporada && productFound.temporada}
+                          </span>
+                        </div>
+                        {productFound.color && (
+                          <div>
+                            <h3 className='font-semibold mt-2 sm:text-lg'>
+                              <span>Color: </span>
+                              <span className='opacity-80'>{colorParam}</span>
+                            </h3>
+                            <div className='flex gap-5'>
+                              {productFound.images &&
+                                Object.keys(productFound.images).map(
+                                  (color, idx) => (
+                                    <Link
+                                      replace
+                                      key={idx}
+                                      onClick={() => setPrincipalImage(0)}
+                                      to={`/products/${productFound.sku}/${productFound.id}?color=${color}`}
+                                      className={`${
+                                        color == colorParam
+                                          ? "ring ring-blue-500 ring-offset-2 w-10 rounded-full  my-3 sm:ring-offset-4"
+                                          : "ring-gray-500 ring-1 w-10 rounded-full  my-3 sm:ring-offset-4"
+                                      }`}
+                                    >
+                                      <img
+                                        className='drop-shadow-md rounded-full '
+                                        src={`/assets/colors/${color.toLowerCase()}Color.svg`}
+                                        alt={color}
+                                      />
+                                    </Link>
+                                  )
+                                )}
+                            </div>
                           </div>
+                        )}
+                        <div className='flex'>
+                          <button
+                            className='box-border w-full text-center bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors text-white text-lg font-semibold my-3 p-2 sm:my-5 sm:p-3 rounded-sm'
+                            onClick={() => {
+                              handleButton(productFound);
+                            }}
+                          >
+                            Agregar al carrito
+                          </button>
                         </div>
-                      )}
-                      <div className='flex'>
-                        <button
-                          className='box-border w-full text-center bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors text-white text-lg font-semibold my-3 p-2 sm:my-5 sm:p-3 rounded-sm'
-                          onClick={() => {
-                            handleButton(productFound);
-                          }}
-                        >
-                          Agregar al carrito
-                        </button>
-                      </div>
-                      <div className='flex mb-3 gap-3 sm:gap-5'>
-                        <button
-                          onClick={() => favoriteButton(productFound)}
-                          className='w-full bg-primaryLight md:hover:bg-primary md:transition-colors p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm'
-                        >
-                          {favorites.some(
-                            (fav) =>
-                              fav.id == productFound.id &&
-                              fav.color === colorParam
-                          ) ? (
-                            <AiFillHeart className='fill-red-600 sm:w-5 sm:h-5' />
-                          ) : (
-                            <MdFavoriteBorder className='sm:w-5 sm:h-5 ' />
-                          )}
-                          <span className='opacity-80'>Favoritos</span>
-                        </button>
-                        <a
-                          href={`https://api.whatsapp.com/send?phone=541153761179&text=Hola! Quería consulta por las zapatillas ${productFound.sku} | Color: ${colorParam}`}
-                          className='w-full bg-primaryLight md:hover:bg-primary md:transition-colors p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm'
-                        >
-                          <BsShare className='sm:w-5 sm:h-5' />
-                          <span className='opacity-80'>Consultar</span>
-                        </a>
-                      </div>
-                      {productFound.description && (
-                        <div className='md:hidden'>
-                          <h3 className='font-semibold sm:text-xl mb-1 md:mb-2 mt-5'>
-                            Descripción:
-                          </h3>
-                          <pre className='font-outfit font-normal opacity-80 whitespace-pre-wrap'>
-                            {productFound.description}
-                          </pre>
+                        <div className='flex mb-3 gap-3 sm:gap-5'>
+                          <button
+                            onClick={() => favoriteButton(productFound)}
+                            className='w-full bg-primaryLight md:hover:bg-primary md:transition-colors p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm'
+                          >
+                            {favorites.some(
+                              (fav) =>
+                                fav.id == productFound.id &&
+                                fav.color === colorParam
+                            ) ? (
+                              <AiFillHeart className='fill-red-600 sm:w-5 sm:h-5' />
+                            ) : (
+                              <MdFavoriteBorder className='sm:w-5 sm:h-5 ' />
+                            )}
+                            <span className='opacity-80'>Favoritos</span>
+                          </button>
+                          <a
+                            href={`https://api.whatsapp.com/send?phone=541153761179&text=Hola! Quería consulta por las zapatillas ${productFound.sku} | Color: ${colorParam}`}
+                            className='w-full bg-primaryLight md:hover:bg-primary md:transition-colors p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm'
+                          >
+                            <BsShare className='sm:w-5 sm:h-5' />
+                            <span className='opacity-80'>Consultar</span>
+                          </a>
                         </div>
-                      )}
-                    </div>
+                        {productFound.description && (
+                          <div className='md:hidden'>
+                            <h3 className='font-semibold sm:text-xl mb-1 md:mb-2 mt-5'>
+                              Descripción:
+                            </h3>
+                            <pre className='font-outfit font-normal opacity-80 whitespace-pre-wrap'>
+                              {productFound.description}
+                            </pre>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppProvider";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,6 +8,11 @@ import { ToastContainer, toast } from "react-toastify";
 function TotalCart({ userReject, tokenExpired }) {
   const { user, setUser, cart, cartFullClear } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
+
+  const [discount, setDiscount] = useState(0);
+  const [discountCoefficient, setDiscountCoefficient] = useState(1);
+
+  console.log(cart);
 
   const calculateTotal = (products) => {
     let total = 0;
@@ -87,18 +92,38 @@ function TotalCart({ userReject, tokenExpired }) {
     }
   };
 
+  useEffect(() => {
+    let totalQuantity = 0;
+
+    for (let i = 0; i < cart.length; i++) {
+      totalQuantity += cart[i].quantity;
+    }
+
+    if (totalQuantity >= 120) {
+      setDiscountCoefficient(0.93);
+      setDiscount(7);
+    } else if (totalQuantity >= 60) {
+      setDiscountCoefficient(0.97);
+      setDiscount(3);
+    } else if (totalQuantity < 60) {
+      setDiscountCoefficient(1);
+      setDiscount(0);
+    }
+    console.log(totalQuantity);
+  }, [cart]);
+
   return (
     <div className='p-3 sm:p-5 md:p-8'>
       <ToastContainer />
       <h3 className='font-medium text-lg sm:text-xl'>Pedido</h3>
-      <div className='flex flex-col mt-2'>
+      <div className='flex flex-col mt-2 text-lg'>
         {cart.map((cartItem, idx) => (
           <div className='flex justify-between items-end' key={idx}>
             <div>
               <span className='block font-medium opacity-60'>
                 {cartItem.sku} x{cartItem.quantity}
               </span>
-              <span className='text-sm block font-medium opacity-60'>
+              <span className='text-base block font-medium opacity-60'>
                 {cartItem.color.toUpperCase()}
               </span>
             </div>
@@ -110,14 +135,40 @@ function TotalCart({ userReject, tokenExpired }) {
             </span>
           </div>
         ))}
-        <div className='border-t-2 my-2'></div>
+        {discount !== 0 && (
+          <>
+            <div className=' border-t border-gray-200 my-2'></div>
+            <div className='flex justify-between items-end'>
+              <div>
+                <span className='block font-medium opacity-60'>Subtotal:</span>
+              </div>
+              <span className='font-medium opacity-60 sm:text-lg line-through'>
+                ${total.toLocaleString("es-ES")}
+              </span>
+            </div>
+            <div className='flex justify-between items-end'>
+              <div>
+                <span className='block font-medium opacity-60'>
+                  Descuento {discount}%:
+                </span>
+              </div>
+              <span className='font-medium opacity-60 sm:text-lg'>
+                $
+                {(
+                  total - Math.round(total * discountCoefficient)
+                ).toLocaleString("es-ES")}
+              </span>
+            </div>
+          </>
+        )}
+        <div className=' border-t border-gray-200 my-2'></div>
         <div className='flex justify-between'>
           <span className='text-primaryExtraDark font-semibold sm:text-xl md:text-2xl'>
             Total
           </span>
           <span className='text-primaryExtraDark font-semibold sm:text-xl md:text-2xl'>
             {" "}
-            ${total.toLocaleString("es-ES")}
+            ${Math.round(total * discountCoefficient).toLocaleString("es-ES")}
           </span>
         </div>
         <button
