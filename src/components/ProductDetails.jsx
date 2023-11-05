@@ -110,20 +110,20 @@ function ProductDetails() {
   //   setIsHover(true);
   // };
 
-  const handleMouseMove = (e) => {
-    if (isHover) {
-      const image = imageRef.current.getBoundingClientRect();
-      const cursorX = e.clientX - image.left;
-      const cursorY = e.clientY - image.top;
-      // console.log("clientX:", e.clientX - image.left);
-      // console.log("clientY:", e.clientY - image.top);
-      // console.log("aaaaa", image);
-      setImageWidth(image.width);
-      setImageHeight(image.height);
-      setCursorX(cursorX);
-      setCursorY(cursorY);
-    }
-  };
+  // const handleMouseMove = (e) => {
+  //   if (isHover) {
+  //     const image = imageRef.current.getBoundingClientRect();
+  //     const cursorX = e.clientX - image.left;
+  //     const cursorY = e.clientY - image.top;
+  //     // console.log("clientX:", e.clientX - image.left);
+  //     // console.log("clientY:", e.clientY - image.top);
+  //     // console.log("aaaaa", image);
+  //     setImageWidth(image.width);
+  //     setImageHeight(image.height);
+  //     setCursorX(cursorX);
+  //     setCursorY(cursorY);
+  //   }
+  // };
 
   return (
     <article className='flex justify-center'>
@@ -167,9 +167,9 @@ function ProductDetails() {
                 <div className='flex flex-col md:flex-row md:gap-10'>
                   <div className='relative md:basis-2/3'>
                     <div
-                      onMouseMove={(e) => handleMouseMove(e)}
-                      onMouseEnter={(e) => handleHover(e)}
-                      onMouseLeave={() => setIsHover(false)}
+                      // onMouseMove={(e) => handleMouseMove(e)}
+                      // onMouseEnter={(e) => handleHover(e)}
+                      // onMouseLeave={() => setIsHover(false)}
                       className='flex justify-center sm:mb-3 md:mb-5 ml-16 px-5 py-10 sm:px-20 md:px-14 lg:px-28'
                     >
                       <img
@@ -178,7 +178,7 @@ function ProductDetails() {
                         alt={productFoundOne.toString()}
                         ref={imageRef}
                       />
-                      {isHover && (
+                      {/* {isHover && (
                         <div className='pointer-events-none absolute top-0 left-0 w-full h-full flex items-center justify-center  '>
                           <div
                             style={{
@@ -187,7 +187,7 @@ function ProductDetails() {
                             className=' w-10 h-10 bg-red-600 opacity-70 '
                           ></div>
                         </div>
-                      )}
+                      )} */}
                     </div>
                     {productFound.description && (
                       <div className='hidden md:block'>
