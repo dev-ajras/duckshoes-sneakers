@@ -201,7 +201,7 @@ function ProductDetails() {
                     )}
                   </div>
                   <div className='md:basis-1/3  md:w-full'>
-                    {isHover ? (
+                    {/* {isHover ? (
                       <div
                         style={{
                           backgroundImage: `url(${productFoundOne.toString()})`,
@@ -215,102 +215,101 @@ function ProductDetails() {
                         }}
                         className='h-full'
                       ></div>
-                    ) : (
-                      <div className='md:sticky md:top-28 my-3 md:mb-0'>
-                        <h2 className='font-semibold sm:text-lg line-clamp-2 '>
-                          <span>SKU: </span>
-                          <span className='opacity-80'>
-                            {productFound.sku && productFound.sku.toUpperCase()}
-                          </span>
-                        </h2>
-                        <span className='block my-3 font-semibold text-3xl sm:text-4xl'>
-                          $
-                          {parseInt(productFound.price).toLocaleString("es-ES")}
+                    ) : ( */}
+                    <div className='md:sticky md:top-28 my-3 md:mb-0'>
+                      <h2 className='font-semibold sm:text-lg line-clamp-2 '>
+                        <span>SKU: </span>
+                        <span className='opacity-80'>
+                          {productFound.sku && productFound.sku.toUpperCase()}
                         </span>
-                        <div className='my-3 font-semibold sm:text-lg'>
-                          <span>Temporada: </span>
-                          <span className='opacity-80 '>
-                            {productFound.temporada && productFound.temporada}
-                          </span>
-                        </div>
-                        {productFound.color && (
-                          <div>
-                            <h3 className='font-semibold mt-2 sm:text-lg'>
-                              <span>Color: </span>
-                              <span className='opacity-80'>{colorParam}</span>
-                            </h3>
-                            <div className='flex gap-5'>
-                              {productFound.images &&
-                                Object.keys(productFound.images).map(
-                                  (color, idx) => (
-                                    <Link
-                                      replace
-                                      key={idx}
-                                      onClick={() => setPrincipalImage(0)}
-                                      to={`/products/${productFound.sku}/${productFound.id}?color=${color}`}
-                                      className={`${
-                                        color == colorParam
-                                          ? "ring ring-blue-500 ring-offset-2 w-10 rounded-full  my-3 sm:ring-offset-4"
-                                          : "ring-gray-500 ring-1 w-10 rounded-full  my-3 sm:ring-offset-4"
-                                      }`}
-                                    >
-                                      <img
-                                        className='drop-shadow-md rounded-full '
-                                        src={`/assets/colors/${color.toLowerCase()}Color.svg`}
-                                        alt={color}
-                                      />
-                                    </Link>
-                                  )
-                                )}
-                            </div>
-                          </div>
-                        )}
-                        <div className='flex'>
-                          <button
-                            className='box-border w-full text-center bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors text-white text-lg font-semibold my-3 p-2 sm:my-5 sm:p-3 rounded-sm'
-                            onClick={() => {
-                              handleButton(productFound);
-                            }}
-                          >
-                            Agregar al carrito
-                          </button>
-                        </div>
-                        <div className='flex mb-3 gap-3 sm:gap-5'>
-                          <button
-                            onClick={() => favoriteButton(productFound)}
-                            className='w-full bg-primaryLight md:hover:bg-primary md:transition-colors p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm'
-                          >
-                            {favorites.some(
-                              (fav) =>
-                                fav.id == productFound.id &&
-                                fav.color === colorParam
-                            ) ? (
-                              <AiFillHeart className='fill-red-600 sm:w-5 sm:h-5' />
-                            ) : (
-                              <MdFavoriteBorder className='sm:w-5 sm:h-5 ' />
-                            )}
-                            <span className='opacity-80'>Favoritos</span>
-                          </button>
-                          <a
-                            href={`https://api.whatsapp.com/send?phone=541153761179&text=Hola! Quería consulta por las zapatillas ${productFound.sku} | Color: ${colorParam}`}
-                            className='w-full bg-primaryLight md:hover:bg-primary md:transition-colors p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm'
-                          >
-                            <BsShare className='sm:w-5 sm:h-5' />
-                            <span className='opacity-80'>Consultar</span>
-                          </a>
-                        </div>
-                        {productFound.description && (
-                          <div className='md:hidden'>
-                            <h3 className='font-semibold sm:text-xl mb-1 md:mb-2 mt-5'>
-                              Descripción:
-                            </h3>
-                            <pre className='font-outfit font-normal opacity-80 whitespace-pre-wrap'>
-                              {productFound.description}
-                            </pre>
-                          </div>
-                        )}
+                      </h2>
+                      <span className='block my-3 font-semibold text-3xl sm:text-4xl'>
+                        ${parseInt(productFound.price).toLocaleString("es-ES")}
+                      </span>
+                      <div className='my-3 font-semibold sm:text-lg'>
+                        <span>Temporada: </span>
+                        <span className='opacity-80 '>
+                          {productFound.temporada && productFound.temporada}
+                        </span>
                       </div>
-                    )}
+                      {productFound.color && (
+                        <div>
+                          <h3 className='font-semibold mt-2 sm:text-lg'>
+                            <span>Color: </span>
+                            <span className='opacity-80'>{colorParam}</span>
+                          </h3>
+                          <div className='flex gap-5'>
+                            {productFound.images &&
+                              Object.keys(productFound.images).map(
+                                (color, idx) => (
+                                  <Link
+                                    replace
+                                    key={idx}
+                                    onClick={() => setPrincipalImage(0)}
+                                    to={`/products/${productFound.sku}/${productFound.id}?color=${color}`}
+                                    className={`${
+                                      color == colorParam
+                                        ? "ring ring-blue-500 ring-offset-2 w-10 rounded-full  my-3 sm:ring-offset-4"
+                                        : "ring-gray-500 ring-1 w-10 rounded-full  my-3 sm:ring-offset-4"
+                                    }`}
+                                  >
+                                    <img
+                                      className='drop-shadow-md rounded-full '
+                                      src={`/assets/colors/${color.toLowerCase()}Color.svg`}
+                                      alt={color}
+                                    />
+                                  </Link>
+                                )
+                              )}
+                          </div>
+                        </div>
+                      )}
+                      <div className='flex'>
+                        <button
+                          className='box-border w-full text-center bg-primaryDark md:hover:bg-primaryExtraDark md:transition-colors text-white text-lg font-semibold my-3 p-2 sm:my-5 sm:p-3 rounded-sm'
+                          onClick={() => {
+                            handleButton(productFound);
+                          }}
+                        >
+                          Agregar al carrito
+                        </button>
+                      </div>
+                      <div className='flex mb-3 gap-3 sm:gap-5'>
+                        <button
+                          onClick={() => favoriteButton(productFound)}
+                          className='w-full bg-primaryLight md:hover:bg-primary md:transition-colors p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm'
+                        >
+                          {favorites.some(
+                            (fav) =>
+                              fav.id == productFound.id &&
+                              fav.color === colorParam
+                          ) ? (
+                            <AiFillHeart className='fill-red-600 sm:w-5 sm:h-5' />
+                          ) : (
+                            <MdFavoriteBorder className='sm:w-5 sm:h-5 ' />
+                          )}
+                          <span className='opacity-80'>Favoritos</span>
+                        </button>
+                        <a
+                          href={`https://api.whatsapp.com/send?phone=541153761179&text=Hola! Quería consulta por las zapatillas ${productFound.sku} | Color: ${colorParam}`}
+                          className='w-full bg-primaryLight md:hover:bg-primary md:transition-colors p-1 flex justify-center items-center gap-2 sm:p-2 sm:gap-3 font-bold rounded-sm'
+                        >
+                          <BsShare className='sm:w-5 sm:h-5' />
+                          <span className='opacity-80'>Consultar</span>
+                        </a>
+                      </div>
+                      {productFound.description && (
+                        <div className='md:hidden'>
+                          <h3 className='font-semibold sm:text-xl mb-1 md:mb-2 mt-5'>
+                            Descripción:
+                          </h3>
+                          <pre className='font-outfit font-normal opacity-80 whitespace-pre-wrap'>
+                            {productFound.description}
+                          </pre>
+                        </div>
+                      )}
+                    </div>
+                    {/* )} */}
                   </div>
                 </div>
               </div>
