@@ -23,18 +23,18 @@ export default function AddRemoveButtons({ filteredProduct }) {
   ];
 
   const handleQuantity = (e) => {
-    const currentQuantity = e.target.value;
+    const currentQuantity = Number(e.target.value);
     setProductQuantity(currentQuantity);
     cartHandler({ ...filteredProduct }, currentQuantity);
   };
 
   return (
-    <div className="flex gap-3 sm:gap-5">
+    <div className='flex gap-3 sm:gap-5'>
       <select
         onChange={(e) => handleQuantity(e, filteredProduct)}
-        className="p-2 outline-none border rounded sm:px-4 sm:text-lg text-center font-normal"
-        name="quantity"
-        id="quantity"
+        className='p-2 outline-none border rounded sm:px-4 sm:text-lg text-center font-normal'
+        name='quantity'
+        id='quantity'
         value={productQuantity}
       >
         {quantityPerProduct.map((quantity, idx) => (
@@ -45,7 +45,7 @@ export default function AddRemoveButtons({ filteredProduct }) {
       </select>
       <button
         onClick={(e) => handleRemoveAll(e, filteredProduct)}
-        className="flex items-center gap-3 px-3 py-1 outline outline-2 outline-body rounded bg-red-500 md:hover:bg-red-600 md:transition-colors text-white sm:gap-4 sm:px-4 sm:text-lg"
+        className='flex items-center gap-3 px-3 py-1 outline outline-2 outline-body rounded bg-red-500 md:hover:bg-red-600 md:transition-colors text-white sm:gap-4 sm:px-4 sm:text-lg'
       >
         Eliminar
       </button>
