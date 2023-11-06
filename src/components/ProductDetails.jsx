@@ -18,7 +18,7 @@ import { IoReturnDownBack } from "react-icons/io5";
 function ProductDetails() {
   const { favorites, cart, cartAdd, favoritesHandler } = useContext(AppContext);
   const [loading, setLoading] = useState(true);
-  const [isHover, setIsHover] = useState(true);
+  const [isHover, setIsHover] = useState(false);
   const [cursorX, setCursorX] = useState(0);
   const [cursorY, setCursorY] = useState(0);
   const [imageWidth, setImageWidth] = useState(0);
@@ -115,11 +115,6 @@ function ProductDetails() {
       const image = imageRef.current.getBoundingClientRect();
       const cursorX = e.clientX - image.left;
       const cursorY = e.clientY - image.top;
-      // console.log("clientX:", e.clientX - image.left);
-      // console.log("clientY:", e.clientY - image.top);
-      // console.log("aaaaa", image);
-      console.log("cursorX:", cursorX);
-      console.log("imageWidth:", imageWidth);
       setImageWidth(image.width);
       setImageHeight(image.height);
       setCursorX(cursorX);

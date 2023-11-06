@@ -104,7 +104,9 @@ function Cart() {
               <h5 className='bg-primaryLight text-lg font-normal md:font-medium px-2 py-1 mb-1 sm:px-3 sm:py-2 sm:mb-2'>
                 Carrito vacío
               </h5>
-              <p className='font-normal md:font-medium'>Añade productoss (+)</p>
+              <p className='font-normal md:font-medium'>
+                Agregá productos a tu carrito (+)
+              </p>
               <img
                 className='my-5 w-80 sm:my-8 sm:w-96'
                 src='/assets/illustrations/cartEmpty.svg'
