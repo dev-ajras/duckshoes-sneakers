@@ -133,6 +133,27 @@ function AllProducts() {
   return (
     <div className='shadow'>
       <ToastContainer />
+      <div className='bg-gray-50 p-5 flex gap-3 justify-center items-center sm:gap-5 mb-0.5'>
+        <button
+          className={`${
+            currentPage === 1 && "hidden pointer-events-none"
+          } p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:text-3xl`}
+          onClick={() => handlePrevPage(1)}
+        >
+          <MdOutlineNavigateBefore />
+        </button>
+        <div className='flex justify-center p-2 text-xl bg-white rounded-lg ring-1 ring-primaryDark font-bold w-16 sm:p-3 sm:text-2xl'>
+          {currentPage}
+        </div>
+        <button
+          className={`${
+            adminNextProducts.length === 0 && "hidden"
+          } p-2 text-2xl bg-white rounded-full ring-1 ring-primaryDark sm:text-3xl`}
+          onClick={() => handleNextPage(1)}
+        >
+          <MdOutlineNavigateNext />
+        </button>
+      </div>
       <div className='grid grid-cols-7 sm:grid-cols-9 bg-gray-50 p-3 sm:p-5 font-normal'>
         <div className='text-center col-span-2'>Imágen</div>
         <div className='text-center col-span-2'>Sku</div>

@@ -106,24 +106,26 @@ function ProductDetails() {
     favoritesHandler({ ...product, color: colorParam });
   };
 
-  // const handleHover = (e) => {
-  //   setIsHover(true);
-  // };
+  const handleHover = (e) => {
+    setIsHover(true);
+  };
 
-  // const handleMouseMove = (e) => {
-  //   if (isHover) {
-  //     const image = imageRef.current.getBoundingClientRect();
-  //     const cursorX = e.clientX - image.left;
-  //     const cursorY = e.clientY - image.top;
-  //     // console.log("clientX:", e.clientX - image.left);
-  //     // console.log("clientY:", e.clientY - image.top);
-  //     // console.log("aaaaa", image);
-  //     setImageWidth(image.width);
-  //     setImageHeight(image.height);
-  //     setCursorX(cursorX);
-  //     setCursorY(cursorY);
-  //   }
-  // };
+  const handleMouseMove = (e) => {
+    if (isHover) {
+      const image = imageRef.current.getBoundingClientRect();
+      const cursorX = e.clientX - image.left;
+      const cursorY = e.clientY - image.top;
+      // console.log("clientX:", e.clientX - image.left);
+      // console.log("clientY:", e.clientY - image.top);
+      // console.log("aaaaa", image);
+      console.log("cursorX:", cursorX);
+      console.log("imageWidth:", imageWidth);
+      setImageWidth(image.width);
+      setImageHeight(image.height);
+      setCursorX(cursorX);
+      setCursorY(cursorY);
+    }
+  };
 
   return (
     <article className='flex justify-center'>
@@ -141,53 +143,56 @@ function ProductDetails() {
               <SkeletonProductsDetails />
             ) : productFound.id == productId && productFound.active ? (
               <div className='p-3 sm:p-5 bg-white rounded-md relative'>
-                <div className='absolute top-3 left-3 sm:top-5 sm:left-5 flex flex-col gap-3 sm:gap-5 z-10'>
-                  {productFound.images &&
-                    productFound.images[colorParam]
-                      .slice(0, 4)
-                      .map((imageUrl, idx) => (
-                        <button
-                          key={idx}
-                          className={`h-12 sm:h-16 w-12 sm:w-16 p-2 md:p-2 rounded-sm bg-white ${
-                            principalImage == idx
-                              ? "ring-blue-500 ring-2"
-                              : "ring-gray-500 ring-1"
-                          }`}
-                          onMouseEnter={() => setPrincipalImage(idx)}
-                          onClick={() => setPrincipalImage(idx)}
-                        >
-                          <img
-                            className='bg-white w-full h-full  object-contain mx-auto -z-20'
-                            src={imageUrl}
-                            alt={idx}
-                          />
-                        </button>
-                      ))}
-                </div>
-                <div className='flex flex-col md:flex-row md:gap-10'>
-                  <div className='relative md:basis-2/3'>
+                <div className='flex-wrap md:flex-nowrap flex flex-row md:gap-10'>
+                  <div className='flex flex-col gap-3 sm:gap-5 w-12 sm:w-16'>
+                    {productFound.images &&
+                      productFound.images[colorParam]
+                        .slice(0, 4)
+                        .map((imageUrl, idx) => (
+                          <button
+                            key={idx}
+                            className={`h-12 sm:h-16 w-12 sm:w-16 p-2 md:p-2 rounded-sm bg-white ${
+                              principalImage == idx
+                                ? "ring-blue-500 ring-2"
+                                : "ring-gray-500 ring-1"
+                            }`}
+                            onMouseEnter={() => setPrincipalImage(idx)}
+                            onClick={() => setPrincipalImage(idx)}
+                          >
+                            <img
+                              className='bg-white w-full h-full object-contain mx-auto -z-20'
+                              src={imageUrl}
+                              alt={idx}
+                            />
+                          </button>
+                        ))}
+                  </div>
+                  <div className='relative m-auto basis-2/3 overflow-hidden'>
                     <div
-                      // onMouseMove={(e) => handleMouseMove(e)}
-                      // onMouseEnter={(e) => handleHover(e)}
-                      // onMouseLeave={() => setIsHover(false)}
-                      className='flex justify-center sm:mb-3 md:mb-5 ml-16 px-5 py-10 sm:px-20 md:px-14 lg:px-28'
+                      onMouseMove={(e) => handleMouseMove(e)}
+                      onMouseEnter={(e) => handleHover(e)}
+                      onMouseLeave={() => setIsHover(false)}
+                      className='flex justify-center lg:justify-start items-center px-5 py-10 sm:px-20 md:px-14 lg:px-28 lg:cursor-zoom-in'
                     >
                       <img
-                        className='h-56 sm:h-80 object-contain '
+                        className='sm:min-w-[250px] md:min-w-[220px] lg:max-w-[370px] '
                         src={productFoundOne.toString()}
                         alt={productFoundOne.toString()}
                         ref={imageRef}
                       />
-                      {/* {isHover && (
-                        <div className='pointer-events-none absolute top-0 left-0 w-full h-full flex items-center justify-center  '>
-                          <div
-                            style={{
-                              transform: `translate(${cursorX}px, ${cursorY}px)`,
-                            }}
-                            className=' w-10 h-10 bg-red-600 opacity-70 '
-                          ></div>
-                        </div>
-                      )} */}
+                      {isHover && (
+                        <div
+                          className='hidden lg:block pointer-events-none w-24 h-32'
+                          style={{
+                            position: "absolute",
+                            top: cursorY - 20, // Ajusta el desplazamiento vertical del indicador
+                            left: cursorX + 65, // Ajusta el desplazamiento horizontal del indicador
+                            background: "rgba(0, 0, 0, 0.5)", // Cambia el color de fondo y la opacidad según tus preferencias
+                            color: "#fff", // Cambia el color del texto según tus preferencias
+                            borderRadius: "2px",
+                          }}
+                        ></div>
+                      )}
                     </div>
                     {productFound.description && (
                       <div className='hidden md:block'>
@@ -200,23 +205,8 @@ function ProductDetails() {
                       </div>
                     )}
                   </div>
-                  <div className='md:basis-1/3  md:w-full'>
-                    {/* {isHover ? (
-                      <div
-                        style={{
-                          backgroundImage: `url(${productFoundOne.toString()})`,
-                          backgroundPosition: `${-cursorX * 1.3}px ${
-                            -cursorY * 1.3
-                          }px`,
-                          backgroundRepeat: "no-repeat",
-                          backgroundSize: `${imageWidth * 2}px ${
-                            imageHeight * 2
-                          }px`,
-                        }}
-                        className='h-full'
-                      ></div>
-                    ) : ( */}
-                    <div className='md:sticky md:top-28 my-3 md:mb-0'>
+                  <div className='md:basis-1/3 w-full'>
+                    <div className='relative md:sticky md:top-28 my-3 md:mb-0'>
                       <h2 className='font-semibold sm:text-lg line-clamp-2 '>
                         <span>SKU: </span>
                         <span className='opacity-80'>
@@ -238,7 +228,7 @@ function ProductDetails() {
                             <span>Color: </span>
                             <span className='opacity-80'>{colorParam}</span>
                           </h3>
-                          <div className='flex gap-5'>
+                          <div className='flex gap-5 ml-2'>
                             {productFound.images &&
                               Object.keys(productFound.images).map(
                                 (color, idx) => (
@@ -249,7 +239,7 @@ function ProductDetails() {
                                     to={`/products/${productFound.sku}/${productFound.id}?color=${color}`}
                                     className={`${
                                       color == colorParam
-                                        ? "ring ring-blue-500 ring-offset-2 w-10 rounded-full  my-3 sm:ring-offset-4"
+                                        ? "ring ring-blue-500 ring-offset-2 w-10 rounded-full my-3 sm:ring-offset-4"
                                         : "ring-gray-500 ring-1 w-10 rounded-full  my-3 sm:ring-offset-4"
                                     }`}
                                   >
@@ -308,8 +298,22 @@ function ProductDetails() {
                           </pre>
                         </div>
                       )}
+                      {isHover && (
+                        <div
+                          style={{
+                            backgroundImage: `url(${productFoundOne.toString()})`,
+                            backgroundPosition: `${-cursorX * 1.3}px ${
+                              -cursorY * 1.3
+                            }px`,
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: `${imageWidth * 2}px ${
+                              imageHeight * 2
+                            }px`,
+                          }}
+                          className='hidden lg:block h-full w-full  absolute top-0 left-0 bg-white'
+                        ></div>
+                      )}
                     </div>
-                    {/* )} */}
                   </div>
                 </div>
               </div>
@@ -330,7 +334,7 @@ function ProductDetails() {
                         onClick={() => setPrincipalImage(idx)}
                       >
                         <img
-                          className='bg-white w-full h-full  object-contain mx-auto -z-20'
+                          className='bg-white w-full h-full object-contain mx-auto -z-20'
                           src={imageUrl}
                           alt={idx}
                         />
@@ -341,7 +345,7 @@ function ProductDetails() {
                   <div className='relative md:basis-2/3'>
                     <div className='flex justify-center sm:mb-3 md:mb-5 ml-16'>
                       <img
-                        className='h-56 sm:h-80 object-contain px-5 py-10 sm:px-20 md:px-14 lg:px-28'
+                        className='h-56 sm:h-80 object-contain px-5 py-10 sm:px-20 md:px-14 lg:px-28 '
                         src={productFoundOne.toString()}
                         alt={productFoundOne.toString()}
                       />
@@ -349,7 +353,7 @@ function ProductDetails() {
                     {productFound.description && (
                       <div className='hidden md:block'>
                         <h3 className='font-semibold sm:text-xl mb-2'>
-                          Descripcidasdón:
+                          Descripción:
                         </h3>
                         <pre className='font-outfit font-normal opacity-80 mr-24 whitespace-pre-wrap'>
                           {productFound.description}
