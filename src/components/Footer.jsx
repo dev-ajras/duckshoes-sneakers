@@ -1,12 +1,12 @@
-import whatsappIcon from '/assets/social/whatsappIcon.svg';
-import instagramIcon from '/assets/social/instagramIcon.svg';
-import facebookIcon from '/assets/social/facebookIcon.svg';
+import whatsappIcon from "/assets/social/whatsappIcon.svg";
+import instagramIcon from "/assets/social/instagramIcon.svg";
+import facebookIcon from "/assets/social/facebookIcon.svg";
 
-import { MdEmail } from 'react-icons/md';
-import { BsFillTelephoneFill } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { AppContext } from '../context/AppProvider';
+import { MdEmail } from "react-icons/md";
+import { BsFillTelephoneFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "../context/AppProvider";
 
 function Footer() {
   const { user } = useContext(AppContext);
@@ -35,7 +35,7 @@ function Footer() {
               </a>
               <a
                 className='bg-white md:hover:bg-rose-100 md:transition-colors p-2.5 w-10 rounded-full sm:w-16 sm:p-4 lg:w-14'
-                href='https://www.facebook.com/'
+                href='https://www.facebook.com/tomaspatrizio/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
