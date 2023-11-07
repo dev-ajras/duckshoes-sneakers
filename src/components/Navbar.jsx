@@ -156,7 +156,7 @@ function Navbar() {
                   <ul className='flex flex-col gap-2 rounded shadow-md bg-white p-5 mt-2'>
                     <Link
                       className='hover:text-primaryDark'
-                      to='/admin/agregar-producto'
+                      to='/admin/todos-pedidos'
                     >
                       Admin
                     </Link>
