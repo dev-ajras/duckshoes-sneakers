@@ -53,7 +53,7 @@ function CarouselFeatured({ title, from }) {
                 return (
                   <Link
                     to={`/products/${product.sku}/${product.id}?color=${product.color}`}
-                    className='w-full flex-[0_0_40%] p-3 shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow bg-white rounded-md relative sm:p-5 sm:flex-[0_0_30%] md:flex-[0_0_25%] lg:flex-[0_0_21%]'
+                    className='w-full flex-[0_0_43%] p-3 shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow bg-white rounded-md relative sm:p-5 sm:flex-[0_0_30%] md:flex-[0_0_25%] lg:flex-[0_0_21%]'
                     key={product.id}
                   >
                     <div className='flex flex-col w-full h-full'>
@@ -62,7 +62,7 @@ function CarouselFeatured({ title, from }) {
                         src={product.image}
                         alt={product.sku}
                       />
-                      <h3 className='line-clamp-1 h-9 sm:text-lg'>
+                      <h3 className='line-clamp-1 h-9 text-sm sm:text-lg'>
                         {product.sku}
                       </h3>
                       <div className=' flex mt-1 items-center text-xl sm:text-2xl sm:mt-3'>
