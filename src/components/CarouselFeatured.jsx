@@ -62,7 +62,7 @@ function CarouselFeatured({ title, from }) {
                         src={product.image}
                         alt={product.sku}
                       />
-                      <h3 className='line-clamp-1 h-9 text-sm sm:text-lg'>
+                      <h3 className='line-clamp-1 h-9 sm:text-lg mobileMiniCarouselFeatured'>
                         {product.sku}
                       </h3>
                       <div className=' flex mt-1 items-center text-xl sm:text-2xl sm:mt-3'>
