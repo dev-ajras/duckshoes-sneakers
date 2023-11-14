@@ -153,7 +153,7 @@ function OrderUser() {
                     </div>
                   ))}
                 </div>
-                {order.discount && order.discount !== 0 && (
+                {discount !== 0 && (
                   <>
                     <div className=' border-t border-gray-200 my-2'></div>
                     <div className='flex justify-between items-end'>

@@ -92,7 +92,7 @@ function Cart() {
                   </div>
                 ))}
               </div>
-              <div className='bg-white rounded-b-md lg:rounded-md h-full lg:w-[450px] lg:sticky md:top-28'>
+              <div className='bg-white rounded-b-md lg:rounded-md h-full lg:w-[550px] lg:sticky md:top-28'>
                 <TotalCart
                   userReject={userReject}
                   tokenExpired={tokenExpired}

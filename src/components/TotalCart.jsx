@@ -91,23 +91,28 @@ function TotalCart({ userReject, tokenExpired }) {
   };
 
   useEffect(() => {
-    let totalQuantity = 0;
-
-    for (let i = 0; i < cart.length; i++) {
-      totalQuantity += cart[i].quantity;
-    }
-
-    if (totalQuantity >= 120) {
+    if (user.discount === 7) {
       setDiscountCoefficient(0.93);
       setDiscount(7);
-    } else if (totalQuantity >= 60) {
-      setDiscountCoefficient(0.97);
-      setDiscount(3);
-    } else if (totalQuantity < 60) {
-      setDiscountCoefficient(1);
-      setDiscount(0);
+    } else {
+      let totalQuantity = 0;
+
+      for (let i = 0; i < cart.length; i++) {
+        totalQuantity += cart[i].quantity;
+      }
+
+      if (totalQuantity >= 120) {
+        setDiscountCoefficient(0.93);
+        setDiscount(7);
+      } else if (totalQuantity >= 60) {
+        setDiscountCoefficient(0.97);
+        setDiscount(3);
+      } else if (totalQuantity < 60) {
+        setDiscountCoefficient(1);
+        setDiscount(0);
+      }
     }
-  }, [cart]);
+  }, [cart, user.discount]);
 
   return (
     <div className='p-3 sm:p-5 md:p-8'>
