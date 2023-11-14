@@ -42,7 +42,7 @@ function RestablecerContraseña() {
       const response = await axios.post(`${baseUrl}users/recover-account`, {
         email,
       });
-      console.log(response);
+      // console.log(response);
       if (response.status === 200) {
         setEmailOk(true);
       }
@@ -58,18 +58,18 @@ function RestablecerContraseña() {
   };
 
   return (
-    <section className="flex justify-center m-7 sm:m-14">
+    <section className='flex justify-center m-7 sm:m-14'>
       {!emailOk ? (
-        <article className=" bg-white rounded-md shadow p-10 w-96">
+        <article className=' bg-white rounded-md shadow p-10 w-96'>
           <ToastContainer />
-          <div className="mb-5 border-b-2 pb-2 border-primaryDark">
-            <h3 className="font-medium text-2xl text-primaryDark">
+          <div className='mb-5 border-b-2 pb-2 border-primaryDark'>
+            <h3 className='font-medium text-2xl text-primaryDark'>
               Restablecer contraseña
             </h3>
-            <h4 className="font text-lg">Introducir correo electrónico</h4>
+            <h4 className='font text-lg'>Introducir correo electrónico</h4>
           </div>
-          <form onSubmit={handleForm} className="flex flex-col">
-            <label className="text-sm" htmlFor="email">
+          <form onSubmit={handleForm} className='flex flex-col'>
+            <label className='text-sm' htmlFor='email'>
               email
             </label>
             <input
@@ -78,15 +78,15 @@ function RestablecerContraseña() {
                 setEmail(e.target.value);
               }}
               required
-              id="email"
-              type="email"
-              placeholder="Correo electrónico"
-              className="mb-5 border-b outline-none py-1"
+              id='email'
+              type='email'
+              placeholder='Correo electrónico'
+              className='mb-5 border-b outline-none py-1'
             />
 
-            <button className="flex justify-center items-center md:hover:bg-primaryExtraDark md:transition-colors bg-primaryDark p-2 text-white rounded font-normal">
+            <button className='flex justify-center items-center md:hover:bg-primaryExtraDark md:transition-colors bg-primaryDark p-2 text-white rounded font-normal'>
               {loading ? (
-                <ImSpinner8 className="animate-spin w-7 h-7" />
+                <ImSpinner8 className='animate-spin w-7 h-7' />
               ) : (
                 "Restablecer"
               )}
@@ -94,21 +94,21 @@ function RestablecerContraseña() {
           </form>
         </article>
       ) : (
-        <article className="flex justify-center">
-          <div className="m-3 sm:m-5 max-w-6xl w-full">
-            <h3 className="text-center font-semibold text-lg mb-3 sm:mb-5 sm:text-2xl">
+        <article className='flex justify-center'>
+          <div className='m-3 sm:m-5 max-w-6xl w-full'>
+            <h3 className='text-center font-semibold text-lg mb-3 sm:mb-5 sm:text-2xl'>
               Link de recuperación enviado!
             </h3>
-            <div className="flex flex-col items-center">
+            <div className='flex flex-col items-center'>
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 100 }}
-                className="w-28 h-28 md:w-36 md:h-36 bg-sky-700 p-5 mt-5 mb-3 rounded-full"
+                className='w-28 h-28 md:w-36 md:h-36 bg-sky-700 p-5 mt-5 mb-3 rounded-full'
               >
-                <MdMail className="fill-white w-full h-full" />
+                <MdMail className='fill-white w-full h-full' />
               </motion.div>
-              <h4 className="sm:text-xl font-semibold mt-2">
+              <h4 className='sm:text-xl font-semibold mt-2'>
                 Verifica tu bandeja de correo
               </h4>
             </div>

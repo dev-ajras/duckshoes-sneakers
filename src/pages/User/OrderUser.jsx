@@ -50,10 +50,6 @@ function OrderUser() {
     fetchOrder();
   }, []);
 
-  console.log(order);
-
-  console.log("discount:", discount);
-
   return (
     <section className='flex justify-center'>
       <div className='max-w-6xl w-full'>

@@ -94,8 +94,6 @@ function OrderAdmin() {
     handleCondition();
   };
 
-  console.log(order);
-
   return (
     <section className='flex justify-center'>
       <div className='max-w-6xl w-full'>

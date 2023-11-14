@@ -274,7 +274,7 @@ function EditProduct() {
   );
 
   const handleDelete = () => {
-    console.log("delete!");
+    // console.log("delete!");
   };
 
   return (

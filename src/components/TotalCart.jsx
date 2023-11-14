@@ -71,7 +71,7 @@ function TotalCart({ userReject, tokenExpired }) {
           setUser("");
         }, 3000);
       }
-      console.log(error);
+      // console.log(error);
     } finally {
       setLoading(false);
     }
