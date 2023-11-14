@@ -39,7 +39,9 @@ function OrderUser() {
           },
         });
         setOrder(response.data.order);
-        setDiscount(response.data.order.discount);
+        setDiscount(
+          response.data.order.discount ? response.data.order.discount : 0
+        );
       } catch (error) {
       } finally {
         setLoading(false);
@@ -47,6 +49,10 @@ function OrderUser() {
     };
     fetchOrder();
   }, []);
+
+  console.log(order);
+
+  console.log("discount:", discount);
 
   return (
     <section className='flex justify-center'>
