@@ -192,6 +192,7 @@ function AddProduct() {
           <option value='marron'>Marron</option>
           <option value='verde-militar'>Verde Militar</option>
           <option value='mostaza'>Mostaza</option>
+          <option value='animal-print'>Animal Print</option>
         </select>
         <label htmlFor='temporada' className='mt-5 mb-2'>
           Temporada

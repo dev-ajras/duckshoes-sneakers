@@ -264,6 +264,7 @@ function EditProduct() {
     { value: "marron", name: "Marrón" },
     { value: "verde-militar", name: "Verde-militar" },
     { value: "mostaza", name: "Mostaza" },
+    { value: "animal-print", name: "Animal Print" },
   ];
 
   const productOneColors =
