@@ -14,6 +14,8 @@ function OrderUser() {
   const [discount, setDiscount] = useState(0);
   const [discountCoefficient, setDiscountCoefficient] = useState(1);
 
+  console.log(order);
+
   useEffect(() => {
     switch (discount) {
       case 3:
@@ -50,6 +52,8 @@ function OrderUser() {
     fetchOrder();
   }, []);
 
+  console.log("status:", order.status);
+
   return (
     <section className='flex justify-center'>
       <div className='max-w-6xl w-full'>
@@ -81,26 +85,34 @@ function OrderUser() {
                               <span>{filteredProduct.color}</span>
                             </p>
                           </div>
-                          <div className='flex gap-2 font-semibold my-1 sm:gap-3 sm:text-lg'>
-                            <p>
-                              <span className='opacity-60'>Unitario: </span>
-                              <span>
-                                $
-                                {parseInt(filteredProduct.price).toLocaleString(
-                                  "es-ES"
-                                )}
-                              </span>
-                            </p>
-                          </div>
+                          {(order.status === "pending" ||
+                            order.status === "processing") && (
+                            <div className='flex gap-2 font-semibold my-1 sm:gap-3 sm:text-lg'>
+                              <p>
+                                <span className='opacity-60'>Unitario: </span>
+                                <span>
+                                  $
+                                  {parseInt(
+                                    filteredProduct.price
+                                  ).toLocaleString("es-ES")}
+                                </span>
+                              </p>
+                            </div>
+                          )}
                         </div>
                         <div className='font-semibold text-xl mt-1 mb-3 sm:text-2xl'>
                           <span className='text-lg opacity-60'>
                             x{filteredProduct.quantity}
                           </span>
-                          {""} $
-                          {parseInt(
-                            filteredProduct.price * filteredProduct.quantity
-                          ).toLocaleString("es-ES")}
+                          {(order.status === "pending" ||
+                            order.status === "processing") && (
+                            <span>
+                              {""} $
+                              {parseInt(
+                                filteredProduct.price * filteredProduct.quantity
+                              ).toLocaleString("es-ES")}
+                            </span>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -146,12 +158,15 @@ function OrderUser() {
                           {product.color.toUpperCase()}
                         </span>
                       </div>
-                      <span className='font-medium opacity-60 sm:text-lg'>
-                        $
-                        {parseInt(
-                          product.price * product.quantity
-                        ).toLocaleString("es-ES")}
-                      </span>
+                      {(order.status === "pending" ||
+                        order.status === "processing") && (
+                        <span className='font-medium opacity-60 sm:text-lg'>
+                          $
+                          {parseInt(
+                            product.price * product.quantity
+                          ).toLocaleString("es-ES")}
+                        </span>
+                      )}
                     </div>
                   ))}
                 </div>
