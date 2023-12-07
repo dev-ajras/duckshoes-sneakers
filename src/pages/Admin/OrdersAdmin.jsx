@@ -61,7 +61,7 @@ function OrdersAdmin() {
       }
     };
     fetchOrders();
-  }, []);
+  }, [currentPage]);
 
   useEffect(() => {
     const fetchNextOrders = async () => {
@@ -74,13 +74,17 @@ function OrdersAdmin() {
             },
           }
         );
-        setAdminNextOrders(response.data.orders);
+        if (response.status === 200) {
+          setAdminNextOrders(response.data.orders);
+        }
       } catch (error) {
-        // console.log(error);
+        if (error.response && error.response.status === 404) {
+          setAdminNextOrders([]);
+        }
       }
     };
     fetchNextOrders();
-  }, []);
+  }, [currentPage]);
 
   const deleteProduct = async (e, productId) => {
     e.preventDefault();

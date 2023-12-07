@@ -60,7 +60,7 @@ function OrdersUser() {
       }
     };
     fetchOrders();
-  }, []);
+  }, [currentPage]);
 
   useEffect(() => {
     const fetchNextOrders = async () => {
@@ -73,13 +73,17 @@ function OrdersUser() {
             },
           }
         );
-        setUserNextOrders(response.data.orders);
+        if (response.status === 200) {
+          setUserNextOrders(response.data.orders);
+        }
       } catch (error) {
-        // console.log(error);
+        if (error.response && error.response.status === 404) {
+          setUserNextOrders([]);
+        }
       }
     };
     fetchNextOrders();
-  }, []);
+  }, [currentPage]);
 
   const handleNextPage = (next) => {
     setCurrentPage(currentPage + next);
