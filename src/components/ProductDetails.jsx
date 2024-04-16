@@ -170,7 +170,7 @@ function ProductDetails() {
                       className='flex justify-center lg:justify-start items-center px-5 py-10 sm:px-20 md:px-14 lg:px-28 lg:cursor-zoom-in'
                     >
                       <img
-                        className='sm:min-w-[250px] lg:max-w-[370px] md:max-h-[300px]'
+                        className='sm:min-w-[250px] lg:max-w-[370px] md:max-h-[300px] object-contain'
                         src={productFoundOne.toString()}
                         alt={productFoundOne.toString()}
                         ref={imageRef}

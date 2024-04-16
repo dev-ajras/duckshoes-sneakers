@@ -23,16 +23,16 @@ function ProductCard({ product, favoritesCard }) {
       to={`/products/${product.sku}/${product.id}?color=${product.color}`}
       className='shadow md:hover:shadow-md md:hover:shadow-zinc-500 md:transition-shadow rounded-md bg-white p-3 relative sm:p-5 md:p-5 min-h-[229px] sm:min-h-[265px] md:min-h-[338px] lg:min-h-[385px]'
     >
-      <div className='flex flex-col w-full h-full'>
+      <div className='flex flex-col w-full'>
         {favoritesCard && product.images ? (
           <img
-            className='object-contain px-3 py-5 md:px-5 md:py-10 h-full'
+            className='object-contain px-3 py-5 md:px-5 md:py-10 h-36 min-[500px]:h-44  md:h-56 lg:h-72'
             src={product.images[product.color][0]}
             alt={product.sku}
           />
         ) : (
           <img
-            className='object-contain px-3 py-5 md:px-5 md:py-10 h-full'
+            className='object-contain px-3 py-5 md:px-5 md:py-10 h-36 min-[500px]:h-44  md:h-56 lg:h-72'
             src={product.image}
             alt={product.sku}
           />
