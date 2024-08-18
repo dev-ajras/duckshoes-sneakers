@@ -1,12 +1,13 @@
-import whatsappIcon from "/assets/social/whatsappIcon.svg";
-import instagramIcon from "/assets/social/instagramIcon.svg";
-import facebookIcon from "/assets/social/facebookIcon.svg";
+import whatsappIcon from '/assets/social/whatsappIcon.svg';
+import instagramIcon from '/assets/social/instagramIcon.svg';
+import facebookIcon from '/assets/social/facebookIcon.svg';
 
-import { MdEmail } from "react-icons/md";
-import { BsFillTelephoneFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { AppContext } from "../context/AppProvider";
+import { MdEmail } from 'react-icons/md';
+import { BsFillTelephoneFill } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AppContext } from '../context/AppProvider';
+import GrvityLogo from './icons/GravityLogo';
 
 function Footer() {
   const { user } = useContext(AppContext);
@@ -14,7 +15,7 @@ function Footer() {
   return (
     <footer className='bg-background mt-3 w-full sm:mt-5 text-white'>
       <div className='p-3 sm:p-5 flex justify-center'>
-        <div className='w-full lg:flex lg:py-8 lg:my-5 lg:gap-20 lg:max-w-6xl'>
+        <div className='w-full lg:flex lg:py-8 lg:my-5 lg:gap-20 xl:gap-32 lg:max-w-6xl'>
           <div className='my-3 mt-0 pt-4 sm:my-5 sm:pt-6 lg:pt-0 lg:m-0'>
             <h4 className='font-semibold text-4xl sm:text-5xl lg:text-4xl'>
               Somos <span className='text-primary'>Duck Shoes</span>
@@ -119,10 +120,25 @@ function Footer() {
           </div>
         </div>
       </div>
-
-      <div className='bg-backgroundDark text-white flex justify-center w-full p-2 sm:p-3 sm:text-xl'>
-        Copyright © 2023 Duck Shoes
-      </div>
+      <section className='flex justify-center w-full pb-16 pt-8 border-t-2 border-primary sm:text-2xl md:text-xl sm:gap-1'>
+        <article className='flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-5 w-full max-w-6xl mx-6 sm:mx-8 md:mx-10'>
+          <div className='flex items-center gap-1 sm:gap-2 text-color-text-light'>
+            <span>© Copyright 2024</span>
+            <span>-</span>
+            <span>Duck Shoes</span>
+          </div>
+          <div className='flex items-center gap-2'>
+            <span className='text-color-text-light'>Desarrollado por:</span>
+            <a
+              href='https://www.agenciagrvity.com/'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <GrvityLogo className='w-32 text-white hover:text-[#D1FA2D] transition-colors' />
+            </a>
+          </div>
+        </article>
+      </section>
     </footer>
   );
 }
