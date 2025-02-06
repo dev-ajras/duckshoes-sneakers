@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../context/AppProvider";
-import AddRemoveButtons from "../components/AddRemoveButtons";
-import TotalCart from "../components/TotalCart";
-import { ToastContainer, toast } from "react-toastify";
+import { useContext, useEffect, useState } from 'react';
+import { AppContext } from '../context/AppProvider';
+import AddRemoveButtons from '../components/AddRemoveButtons';
+import TotalCart from '../components/TotalCart';
+import { ToastContainer, toast } from 'react-toastify';
 
-import { IoReturnDownBack } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import { IoReturnDownBack } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
 
 function Cart() {
   const { cart } = useContext(AppContext);
@@ -13,7 +13,7 @@ function Cart() {
   const navigate = useNavigate();
 
   const userReject = () =>
-    toast.error("Esta función es solo para clientes", {
+    toast.error('Esta función es solo para clientes', {
       autoClose: 2000,
       hideProgressBar: true,
       pauseOnFocusLoss: false,
@@ -21,7 +21,7 @@ function Cart() {
     });
 
   const tokenExpired = () =>
-    toast.error("Tu sesión expiró, ingresa nuevamente", {
+    toast.error('Tu sesión expiró, ingresa nuevamente', {
       autoClose: 2000,
       hideProgressBar: true,
       pauseOnFocusLoss: false,
@@ -71,7 +71,7 @@ function Cart() {
                             <span>
                               $
                               {parseInt(filteredProduct.price).toLocaleString(
-                                "es-ES"
+                                'es-ES'
                               )}
                             </span>
                           </p>
@@ -80,10 +80,10 @@ function Cart() {
                           <span className='text-lg opacity-60'>
                             x{filteredProduct.quantity}
                           </span>
-                          {""} $
+                          {''} $
                           {parseInt(
                             filteredProduct.price * filteredProduct.quantity
-                          ).toLocaleString("es-ES")}
+                          ).toLocaleString('es-ES')}
                         </div>
                         <AddRemoveButtons filteredProduct={filteredProduct} />
                       </div>

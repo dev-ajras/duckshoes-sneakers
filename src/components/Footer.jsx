@@ -123,7 +123,7 @@ function Footer() {
       <section className='flex justify-center w-full pb-16 pt-8 border-t-2 border-primary sm:text-2xl md:text-xl sm:gap-1'>
         <article className='flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-5 w-full max-w-6xl mx-6 sm:mx-8 md:mx-10'>
           <div className='flex items-center gap-1 sm:gap-2 text-color-text-light'>
-            <span>© Copyright 2024</span>
+            <span>© Copyright {new Date().getFullYear()}</span>
             <span>-</span>
             <span>Duck Shoes</span>
           </div>

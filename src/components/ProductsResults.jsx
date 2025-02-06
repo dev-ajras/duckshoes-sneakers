@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-import { useSearchParams, useNavigate } from "react-router-dom";
-import ProductCard from "./ProductCard";
+import { useSearchParams, useNavigate } from 'react-router-dom';
+import ProductCard from './ProductCard';
 
-import { MdOutlineNavigateNext } from "react-icons/md";
-import { MdOutlineNavigateBefore } from "react-icons/md";
-import SkeletonProductsResults from "./Skeletons/SkeletonProductsResults";
-import { IoReturnDownBack } from "react-icons/io5";
+import { MdOutlineNavigateNext } from 'react-icons/md';
+import { MdOutlineNavigateBefore } from 'react-icons/md';
+import SkeletonProductsResults from './Skeletons/SkeletonProductsResults';
+import { IoReturnDownBack } from 'react-icons/io5';
 
 function ProductsResults() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const pageParam = Number(searchParams.get("page"));
-  const sku = searchParams.get("sku");
+  const pageParam = Number(searchParams.get('page'));
+  const sku = searchParams.get('sku');
 
   const [products, setProducts] = useState([]);
   const [nextProducts, setNextProducts] = useState([]);
@@ -22,7 +22,7 @@ function ProductsResults() {
 
   const productsPerPage = 16;
 
-  const baseUrl = "https://www.api.duckshoes.com.ar/";
+  const baseUrl = 'https://www.api.duckshoes.com.ar/';
 
   useEffect(() => {
     setLoading(true);
@@ -31,7 +31,7 @@ function ProductsResults() {
       try {
         const response = await axios.get(
           `${baseUrl}products?page=${currentPage}&pageSize=${productsPerPage}&name=${
-            sku ?? ""
+            sku ?? ''
           }`
         );
         setProducts(response.data.products);
@@ -49,7 +49,7 @@ function ProductsResults() {
         const response = await axios.get(
           `${baseUrl}products?page=${
             currentPage + 1
-          }&pageSize=${productsPerPage}&name=${sku ?? ""}`
+          }&pageSize=${productsPerPage}&name=${sku ?? ''}`
         );
         if (response.status === 200) {
           setNextProducts(response.data.products);
@@ -104,7 +104,7 @@ function ProductsResults() {
           <div className=' w-full flex mr-10 gap-3 justify-center items-center rounded-md sm:gap-5'>
             <button
               className={`${
-                currentPage === 1 && "opacity-0 pointer-events-none"
+                currentPage === 1 && 'opacity-0 pointer-events-none'
               } p-2 text-2xl bg-primaryDark text-white md:hover:bg-primaryExtraDark md:transition-colors rounded-full ring-1 ring-primaryDark sm:text-2xl`}
               onClick={() => handlePrevPage(1)}
             >
@@ -115,7 +115,7 @@ function ProductsResults() {
             </div>
             <button
               className={`${
-                nextProducts.length === 0 && "opacity-0 pointer-events-none"
+                nextProducts.length === 0 && 'opacity-0 pointer-events-none'
               } p-2 text-2xl bg-primaryDark text-white md:hover:bg-primaryExtraDark md:transition-colors rounded-full ring-1 ring-primaryDark sm:text-2xl`}
               onClick={() => handleNextPage(1)}
             >
@@ -135,7 +135,7 @@ function ProductsResults() {
             <div className='m-3 mt-6 flex gap-3 justify-center items-center rounded-md sm:m-5 sm:mt-10 sm:gap-5'>
               <button
                 className={`${
-                  currentPage === 1 && "opacity-0 pointer-events-none"
+                  currentPage === 1 && 'opacity-0 pointer-events-none'
                 } p-2 text-2xl bg-primaryDark text-white md:hover:bg-primaryExtraDark md:transition-colors rounded-full ring-1 ring-primaryDark sm:text-3xl`}
                 onClick={() => handlePrevPage(1)}
               >
@@ -146,7 +146,7 @@ function ProductsResults() {
               </div>
               <button
                 className={`${
-                  nextProducts.length === 0 && "opacity-0 pointer-events-none"
+                  nextProducts.length === 0 && 'opacity-0 pointer-events-none'
                 } p-2 text-2xl bg-primaryDark text-white md:hover:bg-primaryExtraDark md:transition-colors rounded-full ring-1 ring-primaryDark sm:text-3xl`}
                 onClick={() => handleNextPage(1)}
               >
