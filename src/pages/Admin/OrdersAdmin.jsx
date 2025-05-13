@@ -32,7 +32,7 @@ function OrdersAdmin() {
       pauseOnHover: false,
     });
 
-  const baseUrl = "https://www.api.duckshoes.com.ar/";
+  const baseUrl = "https://www.ds.agenciagrvity.com/";
 
   useEffect(() => {
     const fetchOrders = async () => {
