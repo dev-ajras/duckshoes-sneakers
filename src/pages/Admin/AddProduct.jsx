@@ -111,7 +111,7 @@ function AddProduct() {
 
   const navigate = useNavigate();
 
-  const baseUrl = "https://www.ds.agenciagrvity.com/";
+  const baseUrl = "https://ds.agenciagrvity.com/";
 
   const addProduct = async () => {
     setLoading(true);

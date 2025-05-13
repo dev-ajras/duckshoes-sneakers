@@ -29,7 +29,7 @@ function OrderUser() {
     }
   }, [discount]);
 
-  const baseUrl = "https://www.ds.agenciagrvity.com/";
+  const baseUrl = "https://ds.agenciagrvity.com/";
 
   useEffect(() => {
     setLoading(true);

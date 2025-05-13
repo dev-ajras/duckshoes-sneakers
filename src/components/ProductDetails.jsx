@@ -31,7 +31,7 @@ function ProductDetails() {
   const [productFound, setProductFound] = useState({});
   const [principalImage, setPrincipalImage] = useState(0);
 
-  const baseUrl = 'https://www.ds.agenciagrvity.com/';
+  const baseUrl = 'https://ds.agenciagrvity.com/';
 
   useEffect(() => {
     setLoading(true);

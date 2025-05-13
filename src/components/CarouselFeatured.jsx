@@ -15,7 +15,7 @@ function CarouselFeatured({ title, from }) {
   const [loading, setLoading] = useState(true);
   const [emblaRef] = useEmblaCarousel({ dragFree: true });
 
-  const baseUrl = "https://www.ds.agenciagrvity.com/";
+  const baseUrl = "https://ds.agenciagrvity.com/";
 
   useEffect(() => {
     const fecthProducts = async () => {

@@ -21,7 +21,7 @@ function Login() {
     userRegister();
   };
 
-  const baseUrl = 'https://www.ds.agenciagrvity.com/';
+  const baseUrl = 'https://ds.agenciagrvity.com/';
 
   const navigate = useNavigate();
 

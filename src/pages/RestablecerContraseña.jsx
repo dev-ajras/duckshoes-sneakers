@@ -34,7 +34,7 @@ function RestablecerContraseña() {
     postRecover();
   };
 
-  const baseUrl = "https://www.ds.agenciagrvity.com/";
+  const baseUrl = "https://ds.agenciagrvity.com/";
 
   const postRecover = async () => {
     setLoading(true);

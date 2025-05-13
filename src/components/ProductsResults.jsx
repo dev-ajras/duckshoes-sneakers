@@ -22,7 +22,7 @@ function ProductsResults() {
 
   const productsPerPage = 16;
 
-  const baseUrl = 'https://www.ds.agenciagrvity.com/';
+  const baseUrl = 'https://ds.agenciagrvity.com/';
 
   useEffect(() => {
     setLoading(true);

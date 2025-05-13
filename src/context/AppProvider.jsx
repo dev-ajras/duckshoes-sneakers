@@ -126,7 +126,7 @@ function AppProvider({ children }) {
     fetchProducts();
   }, []);
 
-  const baseUrl = 'https://www.ds.agenciagrvity.com/';
+  const baseUrl = 'https://ds.agenciagrvity.com/';
 
   const fetchProducts = async () => {
     try {
